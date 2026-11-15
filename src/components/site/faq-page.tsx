@@ -64,7 +64,9 @@ export function FaqPage() {
 
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="space-y-8">
+            {/* Session-203: the reference's own inter-card rhythm —
+                space-y-12 (the decoded 48px gaps; was space-y-8). */}
+            <div className="space-y-12">
               {FAQ_GROUPS.filter((group) => group !== "Still have questions?" && group !== "Quick Tips for Getting Started").map(
                 (group) => (
                   <div key={group} className="rounded-2xl border bg-card text-card-foreground shadow overflow-hidden">

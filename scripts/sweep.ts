@@ -291,8 +291,8 @@ export const STANDING_BASELINES = {
     // + ~2.5 headroom (the s146 volatile-genus precedent).
     services: 12.5,
     gallery: 13.5,
-    faq: 20,
-    booking: 31,
+    faq: 16.5,
+    booking: 27,
     // session-144 (D-144a2): the marketing pair — the maiden runs
     // measured 0.00% (the app chrome + the censused content
     // pixel-identical logged-in); the 0.1 entry rides the family floor
@@ -355,8 +355,8 @@ export const STANDING_BASELINES = {
     // same two-chrome genus at the phone share).
     services: 16,
     gallery: 13.5,
-    faq: 17.5,
-    booking: 21,
+    faq: 16.5,
+    booking: 23.5,
     // session-147: the floor family collapsed with the reference's own
     // hamburger — 0.00-0.51 measured; the 0.1 entries ride the family
     // floor
@@ -420,8 +420,8 @@ export const STANDING_BASELINES = {
     // two-chrome genus at the tablet share).
     services: 8.5,
     gallery: 12,
-    faq: 13.5,
-    booking: 22.5,
+    faq: 9,
+    booking: 15,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // tablet run)
     about: 9,
@@ -475,8 +475,8 @@ export const STANDING_BASELINES = {
     // two-chrome genus at the landscape share).
     services: 17,
     gallery: 12.5,
-    faq: 16.5,
-    booking: 27,
+    faq: 15.5,
+    booking: 22.5,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // landscape run)
     about: 16.5,

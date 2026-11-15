@@ -12938,6 +12938,49 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-203 — THE RESIDUAL POLISH + THE STALE-SERVER INCIDENT (2026-11-15)
+
+The post-202 continuation. The s202 residual ledger, closed:
+
+**F-203a — THE FAQ INTER-CARD RHYTHM (TDD).** Decoded live: the
+reference's accordion list runs `space-y-12` (48px gaps) vs our
+`space-y-8` (32px) — the card heights were ALREADY byte-identical
+(277/330/277/330 both sides; the content + typography at parity since
+s199). The ref's middle-gap +20 is a margin-collapse artifact of its
+CLASSLESS cards (the answer <p>'s margin rides outside the card) — not
+reproducible inside our bordered cards; recorded as the floor.
+**faq 15.98 -> 13.42** (1440).
+
+**F-203b — THE BOOKING ESTIMATE-HEADER RHYTHM (TDD).** Decoded
+row-by-row: the reference's "Instant Estimate" header row sits **mb-6**
+(24px to the label; ours mb-4's 16px — the -8px genus carried through
+EVERY row below: the label, the services grid, the yard row, the
+estimate strip). The yard slider's LABEL-ANCESTRY construction stays
+ours — the s199 axe two-gate contract (aria-input-field-name) rides it.
+**booking 26.68 -> 23.67** (1440). Eight baseline entries re-anchored;
+ALL FOUR drift gates GREEN.
+
+**F-203d — THE STALE-SERVER INCIDENT (the round's real lesson).** Both
+first e2e runs failed wide (35, then 57) — the diagnosis chase went:
+environment-flake theory (wrong) -> the db-path resolver audit (clean)
+-> a live boot-probe of the exact playwright recipe (correctly on
+e2e.db!) -> **the bun:sqlite forensics**: custom.db's 12 users = the
+4 seed + 8 e2e-signup users (timestamped to the failed runs) — **the
+s202 capture standalone on :3100 (custom.db-wired) survived the
+inter-round recycle and was REUSED by both runs** (`reuseExistingServer:
+!CI`); the signup ladder + a `/api/reset` call wrote the standing db.
+My port-kill had hit the CLOSE_WAIT chromium PIDs, not the listener.
+The heal: file-wipe + push + seed (an in-place reseed would NOT heal —
+the seed upserts users, never deletes). **THE THREE RULES** (the s203
+plan §5): kill every spawned server at its work's end · repeated local
+e2e runs go `CI=1` · port-kills go by the LISTEN-state PID (ss -ltnp),
+never `lsof -t -i:`.
+
+**THE VERIFICATION:** lint 0/0 · tsc 0 · 139/2800 unit · the build
+GREEN · **e2e 193/193** (the CI=1 fresh boot + the debounce flake
+verified green in isolation) · census MATCH (healed) · the captures
+26-28 (vs a :3101 standalone, killed after — all ports clean at close).
+
 ### Session-202 — THE F-201g CURES + THE FOUR-BAND RE-DERIVATION (2026-11-15)
 
 The post-201 continuation (the rotation trigger: the owner's 63a034e —

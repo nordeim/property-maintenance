@@ -204,6 +204,17 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     );
     expect(src).toContain("<CircleHelp className=\"w-5 h-5\" aria-hidden=\"true\" />");
     expect(src).toContain("We've Got Answers");
+    // ------------------------------------------------------------------
+    // Session-203 (the faq residual, leg 1): the INTER-CARD RHYTHM —
+    // decoded live: the reference's accordion list runs space-y-12
+    // (the observed 48px gaps; ours space-y-8's 32px — the +16/gap
+    // genus, ~48px of the 64px container delta). The ref's middle-gap
+    // +20 is a margin-collapse artifact of its classless cards (the
+    // answer <p>'s margin rides OUTSIDE the card) — not reproducible
+    // inside our bordered cards without a hack; recorded as the floor.
+    // ------------------------------------------------------------------
+    expect(src).toContain('className="space-y-12"');
+    expect(src).not.toContain('className="space-y-8"');
   });
 
   it("the contact: the extracted form inventory + the superset quote submit", () => {
@@ -244,6 +255,18 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
       src.indexOf('className="bg-white rounded-2xl border border-gray-100 p-8"'),
       "the inner card wraps the EstimateCard (step 1), not the nav row",
     ).toBeLessThan(src.indexOf("Confirm Booking"));
+    // ------------------------------------------------------------------
+    // Session-203 (the booking residual, leg 2): the ESTIMATE HEADER
+    // RHYTHM — decoded live on the reference: its "Instant Estimate"
+    // header row sits mb-6 (the 24px gap to "What do you need?"; ours
+    // mb-4's 16px — the -8px genus carried through EVERY row below:
+    // the label, the services grid, the yard row, the estimate strip).
+    // The yard slider's LABEL-ANCESTRY construction stays ours — the
+    // s199 axe two-gate contract (aria-input-field-name) rides it.
+    // ------------------------------------------------------------------
+    const est = read("src/components/site/estimate-card.tsx");
+    expect(est).toContain('className="flex items-center gap-3 mb-6"');
+    expect(est).not.toContain('className="flex items-center gap-3 mb-4"');
   });
 });
 

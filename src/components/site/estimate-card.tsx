@@ -48,7 +48,9 @@ export function EstimateCard({
 
   return (
     <div className={className}>
-      <div className="flex items-center gap-3 mb-4">
+      {/* Session-203: the reference's own header rhythm — mb-6 (the
+          decoded 24px gap; was mb-4's 16px, the -8px genus). */}
+      <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 bg-[#E8F3ED] rounded-xl flex items-center justify-center">
           <Calculator className="w-5 h-5 text-[#2E7D5F]" aria-hidden="true" />
         </div>
