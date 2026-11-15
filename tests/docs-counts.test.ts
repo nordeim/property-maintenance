@@ -1414,13 +1414,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-205 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-206 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s201 layer now beneath the s205 head)",
+      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s205 layer now beneath the s206 head)",
     ).toContain(
-      "+ beneath it 2800 unit checks + 193 e2e checks green; the session-201 layer (THE CANVAS PARITY SHIP",
+      "+ beneath it 2801 unit checks + 193 e2e checks green; the session-205 layer (THE STANDING VERIFICATION ROUND",
     );
   });
 

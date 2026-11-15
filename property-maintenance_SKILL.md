@@ -13,11 +13,11 @@ description: >
   2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.2.0
+version: 1.3.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.2.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.3.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -103,6 +103,20 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   are the idiom — Tailwind v4 compiles them per-use; do NOT hoist them
   into `@theme` (the corpus's deliberate choice, matching the
   reference's own markup byte-for-byte).
+- **The background canvas** (`background-canvas.tsx`, session-201 →
+  206): the reference's full-viewport painter — the sky→lawn gradient
+  with a SHARP horizon (1px at 0.257 of the height, the 6px blend to
+  0.262), the warm glow + the rock stratum, and the SOLID structures
+  (session-206's decode: the reference's foliage is crisp solid
+  shapes, not radial fades): the terracotta WEDGE on the left-center
+  horizon (the three-tone polygon: the (214,81,55) core hull + the
+  (153,60,35) bottom-left shade + the (190,73,50) slope lining, under
+  the booking glass at x~0.25w), the right mass's flat (95,143,51)
+  dome, the left tree's oval crown + brown trunk, the hedge dome, the
+  corner masses — all via the `polygon()` painter. Effectively static
+  (paints once per resize, no animation loop); `aria-hidden` +
+  `pointer-events-none`; mounted ONLY in the (site) layout (the login
+  and 404 render white — the reference's own posture).
 - The CRM interior keeps the scaffold's own token set (`--color-ink`
   `#0a0a0a` etc.) — two palettes, two surfaces, both intentional.
 

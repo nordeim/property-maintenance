@@ -48,6 +48,22 @@ const BUSH_DEEP = "rgba(24, 117, 67, 0.95)"; // the mid-left bush (darker)
 const MASS = "rgba(95, 143, 51, 0.95)"; // the horizon foliage mass (the landing's exposure)
 const MASS_DEEP = "rgba(75, 124, 38, 0.95)"; // its deeper lobe
 const EDGE_GREEN = "rgba(30, 116, 48, 0.95)"; // the right-edge descending foliage
+// Session-206 (F-204d retired — the terracotta mass, decoded fresh from
+// the ref's booking margins at fine granularity): the two-tone wedge —
+// the bright sunlit core + the darker left/bottom shade.
+const TERRACOTTA = "rgba(214, 81, 55, 0.97)"; // the core (the solid wedge body)
+const TERRACOTTA_SHADE = "rgba(153, 60, 35, 0.97)"; // the lower-left shade
+const TERRACOTTA_MID = "rgba(190, 73, 50, 0.97)"; // the left-slope lining
+const UNDERMASS = "rgba(175, 180, 141, 0.9)"; // the gray-green underlayer
+const UNDERMASS_DEEP = "rgba(130, 166, 153, 0.9)"; // its darker patches
+// Session-206 (F-206e — the SOLID-FOLIAGE genus): the ref's foliage
+// structures are CRISP SOLID SHAPES (the right mass reads a flat
+// (95,143,51) core with a 1-2px boundary), not radial fades — our
+// blobs washed every edge. The decoded solid tones:
+const MASS_CORE_SOLID = "rgba(95, 143, 51, 0.97)"; // the right mass's flat core
+const MASS_DEEP_SOLID = "rgba(75, 124, 38, 0.97)"; // its deeper under-band
+const EDGE_DARK_SOLID = "rgba(21, 103, 39, 0.97)"; // the right-edge descent's dark band
+const HEDGE_SOLID = "rgba(47, 151, 68, 0.97)"; // the bottom-left hedge's core
 
 /** one soft radial blob fading into the lawn (the foliage genus). */
 function blob(
@@ -70,6 +86,99 @@ function blob(
   ctx.fillRect(0, 0, w, h);
 }
 
+// Session-206 (F-206e): the solid-foliage polygon painter — the ref's
+// structures are crisp shapes with hard boundaries; the radial blob's
+// fade was the wrong genus for them. Points are fractional (x,y) pairs.
+function polygon(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  points: Array<[number, number]>,
+  color: string,
+) {
+  ctx.beginPath();
+  points.forEach(([fx, fy], i) => {
+    const x = fx * w;
+    const y = fy * h;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// Session-206 (F-204d): the TERRACOTTA WEDGE — the reference's big
+// red-brown structure on the left-center horizon, decoded fresh from
+// its booking margins (the only page exposing it — the faq/landing
+// content covers the zone; their floors are safe by construction).
+// The geometry (the boundary + tone traces, 1440x900): a rounded cap
+// rising from (286,230) through the dome top (311,222) to (340,231),
+// the right edge running straight down UNDER the booking's glass card
+// at x~359, the bottom at y~310-312, the left slope through (247,250)
+// + (206,280) to the toe (172,310). THREE tones (the row-scans): the
+// bright CORE (214,81,55) fills the whole upper body, the DARK shade
+// (153,60,35) wraps the bottom-left (its top tip ~(258,268), its
+// right boundary a diagonal running (265,270)->(340,300)->(355,306)),
+// and the MID band (190,73,50) lines the left slope (~15-20px wide).
+// Painted CORE-first (the full hull), then D and M over it — the
+// crisp polygon edges are the point: the s204 quick attempts failed
+// exactly because a radial BLOB's soft edges blurred through the
+// glass. The underlayer blobs are painted BEFORE the wedge so their
+// upward fade never contaminates the wedge's bottom edge.
+function terracottaWedge(ctx: CanvasRenderingContext2D, w: number, h: number) {
+  const X = (v: number) => v * w;
+  const Y = (v: number) => v * h;
+  // 1. the full hull in the bright CORE
+  ctx.beginPath();
+  ctx.moveTo(X(0.199), Y(0.256)); // the cap's left shoulder (287,231)
+  ctx.lineTo(X(0.216), Y(0.247)); // the dome top (311,222)
+  ctx.lineTo(X(0.236), Y(0.256)); // the cap's right shoulder (340,231)
+  ctx.lineTo(X(0.249), Y(0.26)); // the right top — under the glass (359,234)
+  ctx.lineTo(X(0.249), Y(0.347)); // straight down the right edge (359,312)
+  ctx.lineTo(X(0.119), Y(0.344)); // the left toe (172,310)
+  ctx.lineTo(X(0.143), Y(0.311)); // the left slope, lower knee (206,280)
+  ctx.lineTo(X(0.172), Y(0.278)); // the left slope, upper knee (247,250)
+  ctx.closePath();
+  ctx.fillStyle = TERRACOTTA;
+  ctx.fill();
+  // 2. the DARK shade — the bottom-left wrap: top tip (258,268), the
+  // right boundary diagonal down to (355,306), the bottom edge, back
+  // up the M/D line
+  ctx.beginPath();
+  ctx.moveTo(X(0.179), Y(0.298)); // the top tip (258,268)
+  ctx.lineTo(X(0.184), Y(0.311)); // (265,280)
+  ctx.lineTo(X(0.201), Y(0.322)); // (290,290)
+  ctx.lineTo(X(0.219), Y(0.333)); // (315,300)
+  ctx.lineTo(X(0.236), Y(0.34)); // (340,306)
+  ctx.lineTo(X(0.249), Y(0.347)); // the bottom-right (359,312)
+  ctx.lineTo(X(0.119), Y(0.344)); // the bottom-left (172,310)
+  ctx.lineTo(X(0.135), Y(0.333)); // (194,300) — the M/D line back up
+  ctx.lineTo(X(0.149), Y(0.322)); // (215,290)
+  ctx.lineTo(X(0.163), Y(0.311)); // (235,280)
+  ctx.closePath();
+  ctx.fillStyle = TERRACOTTA_SHADE;
+  ctx.fill();
+  // 3. the MID band — the left-slope lining (~15-20px wide), from the
+  // cap's shoulder down to the toe
+  ctx.beginPath();
+  ctx.moveTo(X(0.199), Y(0.256)); // the cap's left shoulder
+  ctx.lineTo(X(0.172), Y(0.278)); // the upper knee (247,250)
+  ctx.lineTo(X(0.143), Y(0.311)); // the lower knee (206,280)
+  ctx.lineTo(X(0.119), Y(0.344)); // the toe (172,310)
+  ctx.lineTo(X(0.132), Y(0.344)); // the toe's inner corner (190,310)
+  ctx.lineTo(X(0.135), Y(0.333)); // (194,300)
+  ctx.lineTo(X(0.149), Y(0.322)); // (215,290)
+  ctx.lineTo(X(0.163), Y(0.311)); // (235,280)
+  ctx.lineTo(X(0.177), Y(0.298)); // (255,268)
+  ctx.lineTo(X(0.184), Y(0.289)); // (265,260)
+  ctx.lineTo(X(0.194), Y(0.278)); // (280,250)
+  ctx.lineTo(X(0.205), Y(0.261)); // (295,235)
+  ctx.closePath();
+  ctx.fillStyle = TERRACOTTA_MID;
+  ctx.fill();
+}
+
 export function SiteBackgroundCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -87,11 +196,14 @@ export function SiteBackgroundCanvas() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
       // the sky-over-lawn gradient (the fractional stops scale with
-      // the viewport — the reference's own fixed painter)
+      // the viewport — the reference's own fixed painter). Session-206
+      // (F-206c): the edge tightened to the ref's SHARP horizon — its
+      // sky->lawn transition is 1px at y231 (0.257 of 900); the old
+      // 0.255/0.285 stops blended over ~27px.
       const sky = ctx.createLinearGradient(0, 0, 0, h);
       sky.addColorStop(0.0, SKY);
-      sky.addColorStop(0.255, SKY);
-      sky.addColorStop(0.285, LAWN);
+      sky.addColorStop(0.257, SKY);
+      sky.addColorStop(0.262, LAWN);
       sky.addColorStop(1.0, LAWN);
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, w, h);
@@ -117,26 +229,194 @@ export function SiteBackgroundCanvas() {
       ctx.fillStyle = STRATUM;
       ctx.fillRect(0, h * 0.615, w, h * 0.11);
       // the horizon foliage mass + the right edge's descent (the
-      // landing's exposure — the faq/booking hero bands cover this zone)
-      blob(ctx, w, h, 0.795, 0.325, 0.058, MASS); // the big mass (x~1145, y~292 — hard top at y~230)
-      blob(ctx, w, h, 0.822, 0.335, 0.046, MASS_DEEP); // its deeper lobe
-      blob(ctx, w, h, 0.79, 0.35, 0.04, MASS); // the mass core (density)
-      blob(ctx, w, h, 0.985, 0.34, 0.038, EDGE_GREEN); // the right edge's descent (x~1400+, y~300)
-      blob(ctx, w, h, 0.99, 0.385, 0.032, MASS_DEEP); // its darker core
-      blob(ctx, w, h, 0.978, 0.41, 0.03, SOIL_GREEN); // the deepest descent (y~370)
+      // landing's exposure — the faq/booking hero bands cover this zone).
+      // Session-206 (F-206e): the SOLID re-derivation — the ref's mass
+      // is a crisp dome (top (1123,218), the right slope widening down
+      // to (1265,308), the left clipped at the booking card's x~1080),
+      // a flat (95,143,51) core over a (75,124,38) under-band — not a
+      // radial fade. The descent: the dark band hugging the right edge
+      // (x~1392-1440) from y~284 down, plus the lower lobe at y~680-800.
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.784, 0.238], // the apex — NARROW (1129,214; ref spans just 1128-1130 at y218)
+          [0.801, 0.256], // the right slope's first knee (1153,230)
+          [0.828, 0.278], // (1192,250)
+          [0.849, 0.302], // (1223,272) — the slope bends flatter here
+          [0.876, 0.336], // (1262,302)
+          [0.876, 0.345], // the foot (1262,310)
+          [0.75, 0.345], // the bottom edge, left (1080,310 — the card's boundary)
+          [0.75, 0.269], // straight up the left edge to (1080,242)
+          [0.763, 0.256], // the left slope's knee (1099,230)
+        ],
+        MASS_CORE_SOLID,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.75, 0.30], // the under-band's left top (1080,270)
+          [0.879, 0.30], // its right top (1265,270)
+          [0.879, 0.342], // the foot
+          [0.75, 0.342],
+        ],
+        MASS_DEEP_SOLID,
+      );
+      // the right-edge descent: the dark band from y~278 (its left
+      // edge sloping: 1411@278 -> 1386@290 -> 1391@302) + the lower
+      // lobe (x~1352-1439, y~680-800)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.98, 0.308], // (1411,277) — the top tip
+          [1.0, 0.315], // the top edge out to the corner
+          [1.0, 0.404], // down the right edge (y~364)
+          [0.95, 0.386], // the inner corner (1368,347) — wider at the bottom
+          [0.965, 0.336], // back up the inner edge (1390,302)
+        ],
+        EDGE_DARK_SOLID,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.939, 0.756], // the lower lobe's top (1352,680)
+          [1.0, 0.744], // the top edge to the corner
+          [1.0, 0.888], // down to y~800
+          [0.955, 0.888], // the bottom-left foot
+          [0.95, 0.79], // the inner edge up
+        ],
+        EDGE_DARK_SOLID,
+      );
+      // Session-206 (F-204d): the TERRACOTTA WEDGE (the left-center
+      // horizon — the booking's exposure) + its gray-green UNDERLAYER
+      // (y~316-372: a SOLID band, left edge (184,316)->(203,370), the
+      // right at x~359 under the glass) + the small dark-green bush
+      // (23,117,67) at its foot. The UNDERLAYER paints FIRST (solid,
+      // below the wedge's crisp bottom edge).
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.128, 0.351], // the band's top-left (184,316)
+          [0.25, 0.351], // the top-right, under the glass (360,316)
+          [0.25, 0.419], // the bottom-right (360,377)
+          [0.141, 0.411], // the bottom-left (203,370)
+        ],
+        UNDERMASS,
+      );
+      blob(ctx, w, h, 0.152, 0.362, 0.028, UNDERMASS_DEEP); // the darker left patch (x~218, y~326)
+      blob(ctx, w, h, 0.238, 0.362, 0.026, UNDERMASS_DEEP); // the darker right patch
+      // the dark-green bush at the mass's foot — a SOLID oval (ref
+      // (23,117,67) at (270-295, y335-360); the s204 blob was too weak)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.182, 0.372], // the bush's top-left (262,335)
+          [0.196, 0.367], // the top (282,330)
+          [0.209, 0.373], // the top-right (301,336)
+          [0.207, 0.398], // the bottom-right (298,358)
+          [0.193, 0.402], // the bottom (278,362)
+          [0.181, 0.394], // the bottom-left (260,355)
+        ],
+        "rgba(23, 117, 67, 0.97)",
+      );
+      terracottaWedge(ctx, w, h);
       // the mid-left bush — a small silhouette against the glow, painted
       // UNDER the stratum (it never punches through the rock)
       blob(ctx, w, h, 0.135, 0.565, 0.024, BUSH_DEEP);
-      // the edge foliage — the reference's own spots (horizon bushes,
-      // the left hedge, the mid-left bush, the right-corner mass, the
-      // soil patches at both bottom corners)
-      blob(ctx, w, h, 0.04, 0.34, 0.032, BUSH_LEFT); // the left tree's crown (x~30-80, y~275-340)
-      blob(ctx, w, h, 0.042, 0.365, 0.028, EDGE_GREEN); // the lower dark lobe
-      blob(ctx, w, h, 0.045, 0.385, 0.03, SOIL_BROWN); // the brown base (y~340-365)
+      // the left TREE + the hedges + the corners (Session-206 F-206e: the
+      // SOLID re-derivation — the ref's tree is a crisp oval crown
+      // (x12-82, y278-335) darkening downward + a brown trunk base
+      // (x58-74, y345-365); the hedge a solid band x0-116 y678-790;
+      // the right-corner mass x1352-1439 y676-800)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.014, 0.316], // the crown's top-left (20,284)
+          [0.03, 0.302], // the crown's top (43,272)
+          [0.057, 0.316], // the top-right (82,284)
+          [0.058, 0.35], // the right edge down (84,315)
+          [0.03, 0.376], // the bottom (43,338)
+          [0.008, 0.35], // the left edge (12,315)
+        ],
+        HEDGE_SOLID,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.041, 0.382], // the brown base's top (59,344)
+          [0.052, 0.382], // (75,344)
+          [0.052, 0.407], // the bottom (75,366)
+          [0.038, 0.407], // (55,366)
+        ],
+        SOIL_BROWN,
+      );
       blob(ctx, w, h, 0.985, 0.33, 0.05, BUSH_RIGHT); // the right horizon bush
-      blob(ctx, w, h, 0.035, 0.825, 0.058, BUSH_LEFT); // the left hedge (hugging the edge, x0-105, y~680-775)
-      blob(ctx, w, h, 0.985, 0.78, 0.042, SOIL_GREEN); // the right-corner deep green (x~1395-1440, y~680-780)
-      blob(ctx, w, h, 0.988, 0.77, 0.024, BUSH_RIGHT); // the far-edge green
+      // the left HEDGE — a solid DOME (the top peak (62,670), widening
+      // to the full band x0-124 at y710-725, tapering to the toe
+      // (72,790); the far-left glow shows ABOVE the dome's left slope)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.043, 0.742], // the dome's peak (62,668)
+          [0.062, 0.758], // the right slope (89,682)
+          [0.078, 0.789], // (112,710)
+          [0.087, 0.808], // the right band's widest (125,727)
+          [0.075, 0.872], // the right edge down (108,785)
+          [0.05, 0.882], // the toe (72,794)
+          [0.024, 0.876], // the bottom-left (35,788)
+          [0.0, 0.851], // the left edge's narrow bottom (0,766)
+          [0.0, 0.786], // the left edge, upper (0,707)
+          [0.018, 0.755], // the left slope (26,680)
+        ],
+        HEDGE_SOLID,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.0, 0.822], // the hedge's darker under-band (y~740+)
+          [0.068, 0.822],
+          [0.066, 0.878],
+          [0.0, 0.878],
+        ],
+        EDGE_DARK_SOLID,
+      );
+      // the right-CORNER mass — solid (x1352-1439, y674-795; the inner
+      // edge bulging left to x1352 at y720 then curving back right to
+      // the bottom toe (1396,795))
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.956, 0.749], // (1376,674) — the top tip
+          [1.0, 0.742], // the top-right corner
+          [1.0, 0.888], // the bottom-right (y800)
+          [0.972, 0.882], // the bottom toe (1396,794)
+          [0.95, 0.822], // (1368,740) the inner bulge's lower leg
+          [0.939, 0.792], // the inner bulge (1352,713)
+          [0.939, 0.756], // the inner edge, upper (1352,680)
+        ],
+        EDGE_DARK_SOLID,
+      );
       blob(ctx, w, h, 0.958, 0.872, 0.024, SOIL_BROWN); // the bottom-right soil
       blob(ctx, w, h, 0.075, 0.875, 0.024, SOIL_BROWN); // the bottom-left soil patch
       blob(ctx, w, h, 0.975, 0.445, 0.03, BUSH_RIGHT); // the right mid-height green

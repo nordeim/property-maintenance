@@ -121,8 +121,14 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     // animation-drift floor, not mirrored. The faq/booking hero bands
     // cover the whole transition zone — insensitive to this cure.
     // ------------------------------------------------------------------
-    expect(src).toContain("0.255"); // the sky's last flat stop
-    expect(src).toContain("0.285"); // the lawn's first solid stop
+    // ------------------------------------------------------------------
+    // Session-206 (F-206c supersedes the s204 stops): the transition
+    // tightened to the ref's SHARP horizon — 1px at y231 (0.257), the
+    // 6px blend band to 0.262. The s204's soft 0.255/0.285 stops are
+    // retired (the ref's edge is CRISP, not a 27px blend).
+    // ------------------------------------------------------------------
+    expect(src).toContain("0.257"); // the sky's last flat stop (the sharp edge, y~231)
+    expect(src).toContain("0.262"); // the lawn's first solid stop (the 6px blend band)
     expect(src).toContain("95, 143, 51"); // the horizon foliage mass
     expect(src).toContain("75, 124, 38"); // its deeper lobe
     expect(src).toContain("30, 116, 48"); // the right-edge descending foliage
@@ -131,11 +137,62 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     // landing margins, byte-identical on both): a TALL bush darkening
     // downward into a BROWN base — green (48,147,67)->(24,107,36) over
     // y~275-340, then the brown (91,67,37)/(77,59,31) y~340-365, then
-    // the lawn. Our first-pass core painted the mid-zone too dark and
-    // carried no base.
+    // the lawn. Session-206 (F-206e): the tree re-derived as a SOLID
+    // oval crown + the solid trunk base (the blob construction retired
+    // — the ref's crown is a crisp shape, not a radial fade).
     // ------------------------------------------------------------------
-    expect(src).toContain("blob(ctx, w, h, 0.042, 0.365, 0.028, EDGE_GREEN)"); // the lower dark lobe
-    expect(src).toContain("blob(ctx, w, h, 0.045, 0.385, 0.03, SOIL_BROWN)"); // the brown base
+    expect(src).toContain("[0.014, 0.316]"); // the crown's top-left (the solid oval)
+    expect(src).toContain("[0.041, 0.382]"); // the trunk base's top
+    // ------------------------------------------------------------------
+    // Session-206 (the F-204d deferral retired — the terracotta mass,
+    // decoded fresh at fine granularity from the ref's booking): a crisp
+    // WEDGE — the apex ~(310,222) at the horizon, the right edge running
+    // under the booking's glass card at x~359 (the warm bleed ~60px
+    // inside), the left edge sloping down to (172,310); the bright core
+    // (214,81,55) on the sunlit right, the darker shade (153,60,35) at
+    // the lower-left. PAGE-SHARED but content-covered on the faq/landing
+    // (their content sits over the zone — verified terracotta=0 there),
+    // so the shared painter's polygon cannot hurt their floors. Below:
+    // the gray-green underlayer (175,180,141)/(130,166,153) at y~316-372
+    // + the small dark-green bush (23,117,67) at its foot.
+    // ------------------------------------------------------------------
+    expect(src).toContain("214, 81, 55"); // the terracotta core
+    expect(src).toContain("153, 60, 35"); // the darker shade
+    expect(src).toContain("175, 180, 141"); // the gray-green underlayer
+    expect(src).toContain("TERRACOTTA"); // the wedge constant
+    expect(src).toContain("TERRACOTTA_SHADE"); // the two-tone construction
+    // ------------------------------------------------------------------
+    // Session-206 (F-206e — the SOLID-FOLIAGE genus): the ref's foliage
+    // structures are CRISP SOLID SHAPES (the right mass's flat
+    // (95,143,51) core, the tree's oval crown (47,151,68), the hedge's
+    // band, the corners' dark masses (21,103,39)) — our radial blobs
+    // washed every edge (the sampled deltas: ref (95,143,51) vs our
+    // faded (133,190,129)). The polygon painter is the cure.
+    // ------------------------------------------------------------------
+    expect(src).toContain("95, 143, 51"); // the right mass's flat core
+    expect(src).toContain("47, 151, 68"); // the left tree's crown / the hedge
+    expect(src).toContain("21, 103, 39"); // the right-edge descent's dark band
+    expect(src).toContain("MASS_CORE_SOLID"); // the solid constants
+    expect(src).toContain("HEDGE_SOLID");
+    expect(src).toContain("EDGE_DARK_SOLID");
+    expect(src).toContain("function polygon("); // the polygon painter
+    // the wedge is a POLYGON (the crisp edges), not a radial blob — the
+    // s204 quick attempts failed exactly because a blob's soft edges
+    // blurred through the booking glass
+    expect(src).toContain("moveTo");
+    expect(src).toContain("lineTo");
+    // ------------------------------------------------------------------
+    // Session-206 (F-206c — the horizon sharpness genus): the ref's
+    // sky->lawn edge is SHARP (1px at y231; a 6px band at most) while
+    // ours blended over ~27px (the s204 stops 0.255/0.285). The y231
+    // line = 0.2567 of 900 — the tightened stops below.
+    // ------------------------------------------------------------------
+    expect(src).toContain("sky.addColorStop(0.257, SKY)"); // the sharp edge (y~231)
+    expect(src).toContain("sky.addColorStop(0.262, LAWN)"); // the 6px blend band
+    expect(src).not.toContain("sky.addColorStop(0.285, LAWN)"); // the retired soft blend
+    // the retired first-pass blob attempts never return (the s204 record)
+    expect(src).not.toContain("0.22, 0.29, 0.09");
+    expect(src).not.toContain("0.26, 0.27, 0.1");
     // the painter is a fixed, aria-hidden, pointer-events-none canvas
     // below the content (the reference's own construction)
     expect(src).toContain("fixed inset-0");

@@ -1,6 +1,24 @@
-Task ID: 205 (the standing verification round + the side-sheet re-derivation; VERIFIED green)
+Task ID: 206 (the terracotta mass + the sharp horizon; VERIFIED green)
 Agent: main (Z.ai)
-Task: The post-204 rotation: the fresh-sandbox environment rebuild, the full baseline gate, the live ours-vs-reference mobile-menu comparison (the operator's named focus), the audit with the repo skills, the F-205g TDD cure, the captures, the docs lockstep, and the push.
+Task: The post-205 rotation: the owner's session_8.md archive pulled (610f565), the baseline gate re-proven, the reference re-captured (the moving-target check), the deferred F-204d terracotta mass decoded + landed (TDD), the horizon-sharpness + solid-foliage genera found + cured on the way, the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: 610f565 pulled (the session_8.md archive — the s205 transcript); the environment PERSISTED (no recycle: deps · the six-knob .env · census MATCH 15/24/10/23/12 + 4 users); the baseline gate GREEN at the s205 ship state: lint 0/0 · tsc 0 · 139/2801 unit
+- THE REFERENCE RE-CAPTURE (the moving-target check): the ref STABLE since s204 (the booking stability pair 0.73% — no new redesign); our drifts at the standing floors (booking 12.33 vs the 12.56 s204 floor · landing 9.14/9.26 · faq 5.36/5.59 — the s205 work introduced no regressions)
+- F-206b THE TERRACOTTA MASS (the F-204d deferral, retired): decoded fresh at fine granularity (the probe-206 family): a crisp WEDGE — the cap (286,230)->(311,222)->(340,231), the right edge straight down under the booking's glass at x~359, the left slope through (247,250)+(206,280) to the toe (172,310); THREE tones (the row-scans): the bright CORE (214,81,55) hull, the DARK shade (153,60,35) wrapping the bottom-left (its boundary a diagonal (265,270)->(340,300)->(355,306)), the MID band (190,73,50) lining the left slope; the SOLID gray-green UNDERLAYER band (x184-359, y316-377, (175,180,141)) + the dark bush (23,117,67) at the foot. PAGE-SHARED but content-covered on faq/landing (verified terracotta=0 there) — the shared painter cannot hurt their floors
+- F-206c THE HORIZON SHARPNESS (found on the way): the ref's sky->lawn edge is SHARP (1px at y231, x100-260) while ours blended over ~27px (the s204 stops 0.255/0.285). CURED: the stops tightened 0.257/0.262 (a 6px band)
+- F-206e THE SOLID-FOLIAGE GENUS (the round's biggest find): the ref's foliage structures are CRISP SOLID SHAPES, not radial fades — the right mass a flat (95,143,51) dome (apex (1129,214); the right slope bending at (1223,272) to the foot (1262,310)), the left tree an oval crown (47,151,68) + the brown trunk, the left hedge a DOME (peak (62,670), the full band x0-124 at y710-725, the toe (72,790)), the right corner a solid mass with the inner bulge. Our blobs washed every edge (ref (95,143,51) vs our faded (133,190,129)). CURED: the polygon() painter born; five structures re-derived as solids
+- THE TDD LOOP: the RED pin born first (the wedge tones + the polygon construction), GREEN after the cure; 7 measurement iterations (the geometry walked to the boundary traces; the hedge clump experiment REVERTED — it made both pages worse, the honest record); the retired s204 blob pins updated to the solid construction
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · the build · the smoke · the e2e (the CI=1 fresh boot); the drift matrix re-measured: booking 12.33 -> 8.86 · faq 5.36 -> 4.21 · landing 9.14 -> 6.66 — ALL at or below HALF the standing floors (16/9/12.5), the gates comfortably green
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-206 section + the plan's execution record + the SKILL head surgery (v1.211.0, the s206 layer) + the pm-SKILL canvas section re-anchored (v1.3.0)
+- THE CAPTURES: 44-46 (the booking/landing/faq at 1440, the new canvas) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the drift gates GREEN (all pages at/below half their floors)
+- The deliverables: the terracotta wedge + the sharp horizon + the solid-foliage re-derivation (the F-204d deferral RETIRED), the polygon painter, the captures 44-46, the docs lockstep, the probe-206 decode family
+- Everything committed to main and pushed via the SSH wrapper
+
+Task ID: 205 (the standing verification round + the side-sheet re-derivation; VERIFIED green)
 
 Work Log:
 - THE INTAKE: the sandbox recycled — the repo re-cloned to 9eba8c0 (the owner's session_7.md archive + the s204 evidence tail); the environment rebuilt from scratch (bun install · .env rebuilt at DATABASE_URL="file:../db/custom.db" + a fresh 64-hex AUTH_SECRET · db:push + db:seed → census MATCH 15/24/10/23/12 + 4 users at <repo>/db/custom.db · Playwright chromium 1248)
