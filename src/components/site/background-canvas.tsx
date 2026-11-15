@@ -93,6 +93,25 @@ const RIGHT_BUSH_RED = "rgba(183, 99, 42, 0.97)"; // the red blossoms ((183,99,4
 // (225,228,232)-family grays.
 const MID_TREE = "rgba(70, 155, 80, 0.95)"; // the dark-green mid tree (x460-620, y265-315)
 const MID_BLUE = "rgba(55, 75, 100, 0.95)"; // the blue-gray structure (x660-800, y265-310)
+// Session-209 (F-209a — the flying birds, decoded by the 22-frame
+// rapid-fire tracker): a two-part red sprite — the leading band
+// (~13x8 @y356-362) + the wing-spread body (~48x16 @y382-394) —
+// translating right at ~46px/s, entering at x~-60, exiting x~420,
+// cycling every ~17s; the cycle's SECOND pass is the two-bird flock
+// (both shapes side-by-side at y408-424).
+const BIRD_RED = "rgba(199, 66, 62, 0.97)"; // the bird's core tone
+const BIRD_RED_EDGE = "rgba(185, 100, 82, 0.97)"; // the wing-edge tone
+const BIRD_CYCLE_MS = 22_000; // the full cycle (two passes: single + flock, ~11s each)
+const BIRD_SPEED = 46 / 1000; // px per ms (~46px/s per the tracker)
+// Session-209 (F-209b — the growing bush strip): the light-green
+// strip (y430-502) grows from the right edge leftward — the right
+// edge FIXED at x1419, the left edge sweeping x1317 -> x1080 over 5s
+// (~47px/s), holding 3s, VANISHING 8s, then regrowing (a 16s cycle;
+// the 22-frame decode: f0 seed -> f5 full -> f8 held -> f9-f16 gone
+// -> f17 regrowing).
+const STRIP_CYCLE_MS = 16_000; // grow 5s + hold 3s + vanish 8s
+const STRIP_GROW_MS = 5_000;
+const STRIP_HOLD_MS = 3_000;
 
 /** one soft radial blob fading into the lawn (the foliage genus). */
 function blob(
@@ -189,6 +208,248 @@ function polygonHGradient(
   grad.addColorStop(1, rightColor);
   ctx.fillStyle = grad;
   ctx.fill();
+}
+
+// Session-209 (F-209a): the BIRD painter — the two-part sprite from
+// the 22-frame decode. The leading band (a small wedge ~13x8) rides
+// ~26px ahead of the body; the body is the wing-spread shape (~48x16:
+// two wings sweeping down-out + a round body between). Both drawn at
+// an ABSOLUTE pixel offset from the sprite's left edge (the decode's
+// coordinates, 1440x900-relative but position-independent).
+function drawBird(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+) {
+  // the leading band (the decode: x+~4..+17, y356-362 — a wedge)
+  polygon(
+    ctx,
+    1,
+    1, // the absolute-pixel mode: fractions ARE pixels (w=h=1)
+    [
+      [x + 4, y - 24],
+      [x + 17, y - 22],
+      [x + 14, y - 18],
+      [x + 2, y - 19],
+    ],
+    BIRD_RED,
+  );
+  // the body's left wing (sweeping down-left)
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [x + 47, y - 2], // the left wing's tip (down)
+      [x + 30, y - 8], // the wing's root
+      [x + 38, y - 14], // the shoulder
+      [x + 49, y - 11], // the wing's top edge
+    ],
+    BIRD_RED,
+  );
+  // the body's right wing (sweeping down-right, the deeper stroke)
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [x + 60, y - 2], // the right wing's tip
+      [x + 58, y - 12], // the wing's top
+      [x + 46, y - 15], // the shoulder
+      [x + 40, y - 8], // the root
+    ],
+    BIRD_RED_EDGE,
+  );
+  // the body between the wings
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [x + 36, y - 12], // the body's top
+      [x + 50, y - 12], //
+      [x + 54, y - 6], // the belly's right
+      [x + 40, y - 2], // the belly
+    ],
+    BIRD_RED,
+  );
+}
+
+// Session-209 (F-209b): the BUSH-STRIP painter — the strip at a given
+// growth fraction. The RIGHT bush (the s208 decode's shape + accents)
+// stays FIXED; the LEFT lobe GROWS leftward — its right edge anchored
+// at the right bush's left knee (x1264), its left edge sweeping
+// x1317 (the seed, hidden) -> x1080 (full). The growth front carries
+// its own red-blossom + dark-spot cluster (the decode: x1078-1130,
+// y428-460). The gap (x1240-1264) shows the G band underneath.
+function drawBushStrip(
+  ctx: CanvasRenderingContext2D,
+  growFrac: number,
+) {
+  // ---- the RIGHT bush (the fixed base + an expanding right lobe) ---
+  // the seed state (the ref's standing captures): the compact bush
+  // x1325-1410; as the strip grows the right lobe extends to x1435.
+  const rLobe = 1410 + 25 * growFrac; // the right lobe's out-point
+  const rBottom = 1410 + 21 * growFrac; // the bottom-right
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1323, 440], // the body's top-left
+      [1364, 437], // the top
+      [1371, 443], // the shoulder
+      [1361, 462], // the inner knee
+      [1375, 470], // the re-widening
+      [rLobe, 475], // the right lobe out (1410@seed -> 1435@full)
+      [rBottom, 502], // the bottom-right
+      [1328, 505], // the bottom-left
+      [1315, 470], // the left knee
+    ],
+    RIGHT_BUSH,
+  );
+  // the accents per the s209 a-shot decode (the seed phase): the
+  // blossom cluster x1348-1377 y444-477 (red + brown) + the dark band
+  // x1320-1367 y471-477 + the red foot x1320-1364 y480-486 + the
+  // dark spot x1331-1340 y489
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1352, 453],
+      [1374, 444],
+      [1377, 460],
+      [1348, 477],
+    ],
+    RIGHT_BUSH_RED,
+  );
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1359, 459],
+      [1375, 459],
+      [1374, 468],
+      [1357, 468],
+    ],
+    RIGHT_BUSH_BROWN,
+  );
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1320, 471],
+      [1367, 471],
+      [1364, 477],
+      [1320, 477],
+    ],
+    RIGHT_BUSH_DARK,
+  );
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1320, 480],
+      [1364, 480],
+      [1363, 486],
+      [1320, 486],
+    ],
+    RIGHT_BUSH_RED,
+  );
+  polygon(
+    ctx,
+    1,
+    1,
+    [
+      [1331, 489],
+      [1340, 489],
+      [1340, 492],
+      [1331, 492],
+    ],
+    RIGHT_BUSH_DARK,
+  );
+
+  // ---- the growth front's own cluster (rides the left lobe) --------
+  const lx = 1317 + (1080 - 1317) * growFrac;
+  if (lx < 1300) {
+    // the lobe's green mass — the top band SLOPES down toward the
+    // front (y455 at x1210 -> y468 at the front knee), the bottom
+    // sweeps from the gap's edge (x1256) to the front's foot
+    polygon(
+      ctx,
+      1,
+      1,
+      [
+        [lx, 468], // the growth front (the left knee)
+        [lx + 32, 452], // the shoulder (the tip's base)
+        [1160, 455], // the top band's mid
+        [1218, 455], // the top band's right end (the gap's edge)
+        [1264, 470], // the right anchor (the gap's right edge)
+        [1264, 502], // down to the bottom
+        [lx + 25, 505], // the wavy bottom's left
+      ],
+      RIGHT_BUSH,
+    );
+    // the growth tip's compact blossom cluster (the ref: x1080-1105,
+    // y428-452 — a tall red/dark cluster riding the very top of the
+    // front, ABOVE the lobe's top band)
+    polygon(
+      ctx,
+      1,
+      1,
+      [
+        [lx + 3, 431],
+        [lx + 14, 428],
+        [lx + 20, 433],
+        [lx + 14, 438],
+        [lx + 19, 444],
+        [lx + 5, 450],
+        [lx + 7, 440],
+      ],
+      RIGHT_BUSH_RED,
+    );
+    polygon(
+      ctx,
+      1,
+      1,
+      [
+        [lx + 21, 429],
+        [lx + 27, 429],
+        [lx + 27, 437],
+        [lx + 21, 437],
+      ],
+      RIGHT_BUSH_DARK,
+    );
+    polygon(
+      ctx,
+      1,
+      1,
+      [
+        [lx + 4, 446],
+        [lx + 11, 446],
+        [lx + 11, 452],
+        [lx + 4, 452],
+      ],
+      RIGHT_BUSH_DARK,
+    );
+    // the front's brown patch (the ref's nnnn column x1097-1105)
+    polygon(
+      ctx,
+      1,
+      1,
+      [
+        [lx + 17, 439],
+        [lx + 25, 439],
+        [lx + 25, 451],
+        [lx + 17, 451],
+      ],
+      RIGHT_BUSH_BROWN,
+    );
+  }
 }
 
 // Session-206 (F-204d): the TERRACOTTA WEDGE — the reference's big
@@ -668,93 +929,10 @@ export function SiteBackgroundCanvas() {
         ],
       );
       blob(ctx, w, h, 0.958, 0.872, 0.024, SOIL_BROWN); // the bottom-right soil
-      // Session-208 (F-208e): the right-side FLOWERING BUSH cluster
-      // (x1300-1425, y440-500, decoded at 6px granularity) — a
-      // light-green bush body + the RED-BLOSSOM patch (1354-1362,
-      // y455-465) + the dark core (1354-1362, y470-485) + the
-      // red-flowered left foot (1300-1330, y470-490).
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.919, 0.489], // the body's top-left (1323,440)
-          [0.947, 0.486], // the top (1364,437)
-          [0.952, 0.492], // the shoulder (1371,443)
-          [0.945, 0.514], // the inner knee (1361,462)
-          [0.955, 0.522], // the re-widening (1375,470)
-          [0.997, 0.528], // the right lobe out (1435,475)
-          [0.994, 0.558], // the bottom-right (1431,502)
-          [0.922, 0.561], // the bottom-left (1328,505)
-          [0.913, 0.522], // the left knee (1315,470)
-        ],
-        RIGHT_BUSH,
-      );
-      // the red-blossom patch ((183,99,42) family)
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.941, 0.505], // (1355,455)
-          [0.947, 0.505], // (1363,455)
-          [0.947, 0.517], // (1363,465)
-          [0.941, 0.517], // (1355,465)
-        ],
-        RIGHT_BUSH_RED,
-      );
-      // the dark core (the blossom cluster's shadow, (15,20,19))
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.941, 0.522], // (1355,470)
-          [0.947, 0.522], // (1363,470)
-          [0.947, 0.539], // (1363,485)
-          [0.941, 0.539], // (1355,485)
-        ],
-        RIGHT_BUSH_DARK,
-      );
-      // the red-flowered left foot (x1300-1330, y470-490 — the
-      // (146,51,42) + (183,99,42) mix + the (98,62,14) brown)
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.903, 0.522], // (1300,470)
-          [0.924, 0.522], // (1330,470)
-          [0.924, 0.545], // (1330,490)
-          [0.903, 0.545], // (1300,490)
-        ],
-        RIGHT_BUSH_RED,
-      );
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.908, 0.535], // the brown patch (1308,481)
-          [0.917, 0.535], // (1323,481)
-          [0.917, 0.545], // (1323,490)
-          [0.908, 0.545], // (1308,490)
-        ],
-        RIGHT_BUSH_BROWN,
-      );
-      // the foot's dark rows ((15,20,19) at x1301-1310, y485-490)
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.903, 0.539], // (1300,485)
-          [0.91, 0.539], // (1310,485)
-          [0.91, 0.545], // (1310,490)
-          [0.903, 0.545], // (1300,490)
-        ],
-        RIGHT_BUSH_DARK,
-      );
+      // Session-209 (F-209b): the static bush RETIRED — the strip is
+      // now ANIMATED (the RAF loop below): it grows from the right
+      // edge leftward, holds, vanishes, regrows. The s208 static
+      // decode's geometry + accents live on in drawBushStrip().
       // Session-208 (F-208f): the MID-DISTANCE structures — painted
       // AFTER the horizon but BEFORE nothing else covers them (they sit
       // mid-canvas, behind the glass cards). The dark-green tree mass
@@ -786,9 +964,61 @@ export function SiteBackgroundCanvas() {
         MID_BLUE,
       );
     };
-    paint();
     window.addEventListener("resize", paint);
-    return () => window.removeEventListener("resize", paint);
+
+    // Session-209 (the ANIMATION PORT): the two sprites run as a RAF
+    // loop over the static paint — each frame repaints the full scene
+    // (paint()) then draws the animated sprites on top, so nothing
+    // trails. The bird: a 22s cycle — the FIRST pass a single bird
+    // (y384 baseline), the SECOND the two-bird flock (y417, the two
+    // bodies offset ~30px). The strip: grow 5s (the left edge
+    // sweeping x1317->x1080) + hold 3s + vanish 8s, repeating. Both
+    // keyed off performance.now() from the mount.
+    const start = performance.now();
+    let raf = 0;
+    const frame = () => {
+      // repaint the full static scene each frame (no trails), then
+      // the animated sprites on top
+      paint();
+      const canvasEl = ref.current;
+      const ctx2 = canvasEl?.getContext("2d");
+      if (ctx2) {
+        const t = performance.now() - start;
+
+        // ---- the bird cycle ----------------------------------------
+        // each pass gets half the cycle; within a pass the bird
+        // crosses in ~11s (x-60 -> x420 at ~46px/s)
+        const passMs = BIRD_CYCLE_MS / 2;
+        const pass = Math.floor(t / passMs) % 2;
+        const tp = t % passMs;
+        const bx = -60 + BIRD_SPEED * tp;
+        if (bx < 420) {
+          const by = pass === 0 ? 384 : 417;
+          drawBird(ctx2, bx, by);
+          if (pass === 1) {
+            drawBird(ctx2, bx + 30, by - 2); // the flock's second bird
+          }
+        }
+
+        // ---- the strip cycle ---------------------------------------
+        const ts = t % STRIP_CYCLE_MS;
+        if (ts < STRIP_GROW_MS + STRIP_HOLD_MS) {
+          // growing (or at full): the growth fraction 0 -> 1
+          const growFrac = Math.min(1, ts / STRIP_GROW_MS);
+          drawBushStrip(ctx2, growFrac);
+        }
+      }
+      raf = requestAnimationFrame(frame);
+    };
+    // the first static paint immediately (the t=0 state), then the
+    // RAF loop takes over (repainting the scene + the sprites)
+    paint();
+    raf = requestAnimationFrame(frame);
+
+    return () => {
+      window.removeEventListener("resize", paint);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (

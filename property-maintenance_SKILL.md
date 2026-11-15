@@ -13,11 +13,11 @@ description: >
   2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.5.0
+version: 1.6.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.5.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.6.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -104,7 +104,7 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   into `@theme` (the corpus's deliberate choice, matching the
   reference's own markup byte-for-byte).
 - **The background canvas** (`background-canvas.tsx`, session-201 →
-  208): the reference's full-viewport painter — the sky→lawn gradient
+  209): the reference's full-viewport painter — the sky→lawn gradient
   with a SHARP horizon (1px at 0.257 of the height, the 6px blend to
   0.262), the warm glow + the rock stratum, and the SOLID structures
   (session-206's decode: the reference's foliage is crisp solid
@@ -126,13 +126,21 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   (1370,235)→(1430,273) — the flat gradient's corners corrected), the
   mid-distance structures behind the glass (the dark-green tree mass
   x460-620 + the blue-gray structure x660-800, y265-315), the
-  right-side flowering bush (five polygons), and the right corner's
+  right-side flowering bush, and the right corner's
   two-layer gradient (the horizontal base + the vertical darkening
   veil — the `polygonHGradient` painter). The booking form's
   live-DOM cures: the step-dots connector (two sibling w-8 h-0.5) +
   the yard-slider charcoal fill (#171717 — the ref's shadcn primary;
-  ours is blue). Effectively static (paints once per resize, no
-  animation loop); `aria-hidden` + `pointer-events-none`; mounted ONLY
+  ours is blue). Session-209's layer: the ANIMATION PORT — a
+  requestAnimationFrame loop over the static paint (each frame
+  repaints the scene, then the sprites): the FLYING BIRDS
+  (`drawBird`: the leading band + the wing-spread body, tone
+  (199,66,62), ~46px/s, a 22s cycle — single bird then the two-bird
+  flock) + the GROWING BUSH STRIP (`drawBushStrip`: the fixed right
+  bush + the left lobe growing x1317→x1080 over 5s with its blossom
+  cluster riding the tip; hold 3s; vanish 8s; a 16s cycle — the s208
+  static bush retired INTO it). The cleanup cancels the RAF handle.
+  `aria-hidden` + `pointer-events-none`; mounted ONLY
   in the (site) layout (the login and 404 render white — the
   reference's own posture).
 - The CRM interior keeps the scaffold's own token set (`--color-ink`

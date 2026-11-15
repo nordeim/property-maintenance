@@ -12938,6 +12938,41 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-209 — THE ANIMATION PORT: THE FLYING BIRDS + THE GROWING BUSH (2026-11-16)
+
+The post-208 rotation — the standing ANIMATION FLOOR retired. The
+22-frame rapid-fire tracker (1s apart on the ref's booking) decoded
+both sprites, and the port landed as real requestAnimationFrame
+animations over the static paint:
+
+**F-209a — THE FLYING BIRDS.** A two-part red sprite: the leading
+band (~13x8 wedge @y356-362) + the wing-spread body (~48x16 @y382-394,
+core (199,66,62) + edge (185,100,82)). It translates right at ~46px/s
+(x~-60 → x~420) on a 22s cycle — the FIRST pass a single bird (y384
+baseline), the SECOND the two-bird FLOCK (side-by-side at y408-424,
+entering lower). `drawBird` paints it as absolute-pixel polygons.
+
+**F-209b — THE GROWING BUSH STRIP.** The s208 "static flowering bush"
+re-decoded as ANIMATED: the light-green strip grows from the right
+edge leftward over a 16s cycle — the right bush (x1315-1435) stays
+fixed (its right lobe extending 1410→1435 as it grows), the LEFT
+lobe's growth front sweeps x1317 → x1080 over 5s (its own
+red-blossom + dark-spot cluster riding the tip), holds 3s at full
+(the two lobes + the gap x1218-1264 showing the G band), VANISHES
+8s, then regrows. `drawBushStrip` paints it; the s208 static block
+retired (its geometry lives on as the strip's right lobe).
+
+**THE RAF LOOP.** Each frame repaints the full static scene (no
+trails), then draws the sprites on top; `performance.now()` keys both
+cycles from the mount; the resize listener stays; the cleanup
+cancels the RAF handle (no leak). The corpus held through the port:
+lint 0/0 · tsc 0 · 139/2801 · build · smoke 14/14 · e2e 193/193.
+
+**THE MEASURE:** the standing-capture drift booking **5.68** ·
+landing **4.72** (best-ever) · faq **3.26** — all at or below the
+s208 floors; the phase-matched comparisons hold too (seed 5.65 ·
+full-growth 6.19 · vanished 6.32).
+
 ### Session-208 — THE MID-DISTANCE + THE HORIZON DIAGONALS + THE CORNER GRADIENT (2026-11-16)
 
 The post-207 rotation — the sandbox had been RECYCLED (the fresh

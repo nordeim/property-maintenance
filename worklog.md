@@ -1,3 +1,25 @@
+Task ID: 209 (the animation port: the flying birds + the growing bush; VERIFIED green)
+Agent: main (Z.ai)
+Task: The post-208 rotation: the sandbox recycled again (the fresh clone + env rebuild + census MATCH), the owner's session_11.md archive reviewed (c35d5b9), the baseline gate re-proven, the reference re-captured (STABLE), the standing ANIMATION FLOOR retired — the two sprites decoded by the 22-frame rapid-fire tracker and ported as real requestAnimationFrame animations (TDD), the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: the sandbox RECYCLED — the fresh clone (c35d5b9, the session_11.md archive) + bun install + the .env rebuild + db:push/db:seed (census MATCH 15/24/10/23/12 + 4 users) + the playwright chromium v1248 reinstall; the baseline gate GREEN at the s208 ship state: lint 0/0 · tsc 0 · 139/2801 unit
+- THE REFERENCE RE-CAPTURE: STABLE (the pairs 0.56/0.80/0.74 — no redesign); the sprite-hunt pairs + the 22-frame rapid-fire tracker (1s apart) ran on the booking page
+- F-209a THE FLYING BIRDS decoded: a two-part red sprite — the leading band (~13x8 wedge @y356-362) + the wing-spread body (~48x16 @y382-394, core (199,66,62) + edge (185,100,82)) — translating right at ~46px/s (x~-60 -> x~420), a 22s cycle; the cycle's SECOND pass is the TWO-BIRD FLOCK (both shapes side-by-side at y408-424, entering lower)
+- F-209b THE GROWING BUSH STRIP decoded (the s208 "static bush" re-decoded as ANIMATED): the light-green strip GROWS from the right edge leftward — the right bush (x1315-1435) stays fixed (its right lobe extending 1410->1435 as it grows), the LEFT LOBE's growth front sweeping x1317 -> x1080 over 5s with its own red-blossom + dark-spot cluster riding the tip; holds 3s at full (the two lobes + the gap x1218-1264 showing the G band), VANISHES 8s, regrows — a 16s cycle
+- THE ANIMATION PORT (TDD): the RED pin first (requestAnimationFrame + drawBird + drawBushStrip + BIRD_CYCLE_MS + STRIP_CYCLE_MS + the cancelAnimationFrame cleanup) -> GREEN; the drawBird painter (the leading band + the two wings + the body, absolute-pixel polygons) + the drawBushStrip painter (the fixed right bush + the growing left lobe + the front cluster) + the RAF frame loop (the full scene repaint each frame — no trails; the sprites drawn on top; the resize listener intact; the cleanup cancels the RAF handle)
+- THE STATIC-BUSH RETIREMENT: the s208 static flowering-bush block retired from the static paint (its geometry + accents live on inside drawBushStrip — the strip's right lobe IS that bush)
+- THE TUNING LOOP: 4 geometry iterations (the strip zone 46.2 -> 30.0 at full growth; the seed-state 22.3) — the two-lobe decode, the expanding right lobe, the front cluster's true shape (the tall red/dark cluster x1080-1105 y428-452), the accents re-anchored to the a-shot phase
+- THE MEASURE: the standing-capture drift booking 5.68 · landing 4.72 (best-ever) · faq 3.26 — all at or below the s208 floors (5.60/4.82/3.26); the phase-matched comparisons: the seed state 5.65 vs the ref's a-shot · the full-growth 6.19 vs the ref's track-5 · the vanished state 6.32 vs the ref's track-12
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 (the CI=1 fresh boot — the animated canvas holds the corpus)
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-209 section + the plan (docs/plans/2026-11-16-session209-animation-port.md) + the SKILL head surgery (v1.213.0 -> v1.214.0) + the pm-SKILL canvas section re-anchored (v1.5.0 -> v1.6.0)
+- THE CAPTURES: 53-55 (the animation states at 1440: the seed + the strip-full + the vanished) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the standing drifts at or below the s208 floors (5.68/4.72/3.26)
+- The deliverables: the animation port (drawBird + drawBushStrip + the RAF loop + the cleanup), the two sprites decoded + ported, the static-bush retirement, the captures 53-55, the docs lockstep, the probe-209 decode family
+- Everything committed to main and pushed via the SSH wrapper
+
 Task ID: 208 (the mid-distance + the horizon diagonals; VERIFIED green)
 Agent: main (Z.ai)
 Task: The post-207 rotation: the sandbox RESET (the fresh clone + env rebuild + census MATCH), the owner's session_10.md archive reviewed (9b7cd60), the baseline gate re-proven on the fresh clone, the reference re-captured (STABLE), the mid-distance genus + both horizon diagonals decoded + landed (TDD), the corner-mass two-layer gradient decoded on the way, the docs lockstep, and the push.

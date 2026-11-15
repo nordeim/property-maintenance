@@ -255,6 +255,30 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     // ------------------------------------------------------------------
     expect(src).toContain("MID_TREE"); // the dark-green mid tree mass
     expect(src).toContain("MID_BLUE"); // the blue-gray mid structure
+    // ------------------------------------------------------------------
+    // Session-209 (F-209a/b — the ANIMATION PORT, decoded by the
+    // 22-frame rapid-fire tracker): the two standing sprites are real
+    // animations. THE BIRD: a two-part red sprite (the leading band
+    // ~13x8 @y356-362 + the wing-spread body ~48x16 @y382-394, tone
+    // (199,66,62)) translating right at ~46px/s from x~-60 to x~420,
+    // cycling every ~17s; the second pass is the TWO-BIRD flock at
+    // y408-424. THE BUSH STRIP: the light-green strip (y430-502) GROWS
+    // from the right edge (x1317) leftward to x1080 over 9s, holds,
+    // VANISHES 8s, regrows. A requestAnimationFrame loop drives both.
+    // ------------------------------------------------------------------
+    expect(src).toContain("requestAnimationFrame"); // the animation loop
+    expect(src).toContain("BIRD_RED"); // the bird's core tone
+    expect(src).toContain("drawBird"); // the two-part bird painter
+    expect(src).toContain("drawBushStrip"); // the growing strip painter
+    expect(src).toContain("BIRD_CYCLE_MS"); // the ~17s bird cycle
+    expect(src).toContain("STRIP_CYCLE_MS"); // the grow/hold/vanish cycle
+    // the static-paint compatibility: the t=0 state reproduces the
+    // s208 ship (the strip at its x1317 seed + no bird in frame) so
+    // the drift captures stay comparable
+    expect(src).toContain("1317 + (1080 - 1317)"); // the left lobe's grow sweep (x1317 -> x1080)
+    expect(src).toContain("drawBushStrip(ctx2, growFrac)"); // the RAF call site
+    // the cleanup: the RAF handle cancelled on unmount (no leak)
+    expect(src).toMatch(/cancelAnimationFrame/);
     // the wedge is a POLYGON (the crisp edges), not a radial blob — the
     // s204 quick attempts failed exactly because a blob's soft edges
     // blurred through the booking glass
