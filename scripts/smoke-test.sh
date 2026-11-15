@@ -87,7 +87,10 @@ code() { curl -s -o /dev/null -w "%{http_code}" "$@"; }
 
 # 04/05 — the pages render
 body "$BASE/login" | grep -q "<title>" && ok 04 "login renders" || { fail 04 "login page"; exit 1; }
-body "$BASE/" | grep -q "<title>" && body "$BASE/" | grep -qi "neo" && ok 05 "landing renders" || { fail 05 "landing page"; exit 1; }
+# session-199/200: the root is the OASIS home now — the identity check
+# keys on the Oasis title (the retired neo-crm "neo" grep followed its
+# landing)
+body "$BASE/" | grep -q "<title>" && body "$BASE/" | grep -qi "oasis property maintenance" && ok 05 "landing renders" || { fail 05 "landing page"; exit 1; }
 
 # 06 — the demo login round-trip (the seed contract's credentials)
 login_code=$(code -c "$COOKIE_JAR" -H "Content-Type: application/json" \

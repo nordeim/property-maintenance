@@ -69,4 +69,4 @@ The worklog entry, the plan's execution record, the AGENTS session-200 section, 
 - [x] R4 the docs heads — AGENTS/README/CLAUDE/PAD re-titled at the Oasis identity (the PAD companion row names the new skill; the historical records untouched).
 - [ ] R5 the SKILL creation.
 - [x] R6 the sweeps — the maiden Oasis-reference run (see above) + probe:ref STANDING.
-- [ ] R7 the lockstep tail + the full gate + the push.
+- [x] R7 the lockstep tail + the full gate + the push — the worklog entry (Task ID 200) + this record + the AGENTS property-maintenance Session-200 section; THE FINAL GATE: lint 0/0 · tsc 0 · **139/2797 unit · build · smoke 14/14 (the 05 identity check re-anchored to the Oasis title — the retired 'neo' grep followed its landing) · e2e 193/193** (the full confirmation run on the fresh build) · probe:ref STANDING on every layer.

@@ -1,4 +1,4 @@
-Task ID: 200 (the audit + remediation round — post-a35a754)
+Task ID: 200 (the audit + remediation round — post-a35a754; VERIFIED green)
 Agent: main (Z.ai)
 Task: The post-refresh rotation: pull the owner's 5 commits (the session logs + the dashboard-asset delete), review the docs, audit the session-199 Oasis layer with the repo skills, re-verify the e2e, remediate the findings (TDD), capture, distill the project skill, and push.
 
@@ -17,7 +17,7 @@ Work Log:
 - R7: this worklog + the plan's execution record + the AGENTS session-200 section + the final gate + the push
 
 Stage Summary:
-- The corpus: lint 0/0 · tsc 0 · unit 2797/2797 · build GREEN · smoke + e2e at 192/192 (the full-suite re-run + the targeted verifications) · probe:ref STANDING at the Oasis reference
+- The corpus: lint 0/0 · tsc 0 · unit 2797/2797 · build GREEN · smoke 14/14 (the 05 identity check re-anchored to the Oasis title) · e2e 193/193 (the full confirmation run on the fresh build — the Radix keyboard-contract check included) · probe:ref STANDING at the Oasis reference
 - The deliverables: the remediated menu (Radix), the captures, the distilled skill, the re-anchored docs (the count ladder + the heads), the plan with its execution record
 - Everything committed to main and pushed via the SSH wrapper
 
