@@ -13,11 +13,11 @@ description: >
   2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.3.0
+version: 1.4.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.3.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.4.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -104,7 +104,7 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   into `@theme` (the corpus's deliberate choice, matching the
   reference's own markup byte-for-byte).
 - **The background canvas** (`background-canvas.tsx`, session-201 →
-  206): the reference's full-viewport painter — the sky→lawn gradient
+  207): the reference's full-viewport painter — the sky→lawn gradient
   with a SHARP horizon (1px at 0.257 of the height, the 6px blend to
   0.262), the warm glow + the rock stratum, and the SOLID structures
   (session-206's decode: the reference's foliage is crisp solid
@@ -112,11 +112,19 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   horizon (the three-tone polygon: the (214,81,55) core hull + the
   (153,60,35) bottom-left shade + the (190,73,50) slope lining, under
   the booking glass at x~0.25w), the right mass's flat (95,143,51)
-  dome, the left tree's oval crown + brown trunk, the hedge dome, the
-  corner masses — all via the `polygon()` painter. Effectively static
-  (paints once per resize, no animation loop); `aria-hidden` +
-  `pointer-events-none`; mounted ONLY in the (site) layout (the login
-  and 404 render white — the reference's own posture).
+  dome + its SUNLIT RIM (108,162,59) + the deep band below y~0.31, the
+  left tree's oval crown + brown trunk, the corner masses, and
+  session-207's fine layer: the HEDGE's convex gradient (the flat hold
+  (49,160,72) to y~0.80, the knee (41,141,60), the bottom (15,95,26) —
+  the multi-stop `polygonGradient()` painter), the right side's
+  gray-green G band (x0.75-0.87w, y0.35-0.41h, (173,174,129)) with
+  teal patches + the BLUE slab (30,54,89) + its light cap, and the
+  descent's lower anatomy (the wide band, the lobe, the brown tip).
+  The two s201-era PHANTOM blobs retired (the ref paints pure lawn at
+  their zones). Effectively static (paints once per resize, no
+  animation loop); `aria-hidden` + `pointer-events-none`; mounted ONLY
+  in the (site) layout (the login and 404 render white — the
+  reference's own posture).
 - The CRM interior keeps the scaffold's own token set (`--color-ink`
   `#0a0a0a` etc.) — two palettes, two surfaces, both intentional.
 

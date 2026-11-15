@@ -1,6 +1,26 @@
-Task ID: 206 (the terracotta mass + the sharp horizon; VERIFIED green)
+Task ID: 207 (the fine shapes + the right underlayer; VERIFIED green)
 Agent: main (Z.ai)
-Task: The post-205 rotation: the owner's session_8.md archive pulled (610f565), the baseline gate re-proven, the reference re-captured (the moving-target check), the deferred F-204d terracotta mass decoded + landed (TDD), the horizon-sharpness + solid-foliage genera found + cured on the way, the docs lockstep, and the push.
+Task: The post-206 rotation: the owner's session_9.md archive pulled (ae49559), the baseline gate re-proven, the reference re-captured (STABLE — the moving-target check), the s206 residual ledger's fine shapes decoded + landed (TDD), the phantom-blob genus found + retired on the way, the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: ae49559 pulled (the session_9.md archive — the s206 transcript); the environment PERSISTED (deps · the six-knob .env · census MATCH 15/24/10/23/12 + 4 users); the baseline gate GREEN at the s206 ship state: lint 0/0 · tsc 0 · 139/2801 unit
+- THE REFERENCE RE-CAPTURE: STABLE (the booking pair 0.54% — no redesign since the s206 decode); our drifts hold at the s206 floors (booking 8.72 · landing 6.62 · faq 4.20) — no regressions
+- F-207a THE DEAD-CODE RETIREMENT: five s201-era constants (MASS · MASS_DEEP · BUSH_LEFT · SOIL_GREEN · EDGE_GREEN) orphaned by the s206 solid re-derivation, retired + their three s201/s204 tone pins re-anchored to the live carriers
+- F-207b THE HEDGE GRADIENT (the residual ledger's first item): the ref's hedge holds (49,160,72) flat to y~722 then declines convexly to (15,95,26)@y788 — the polygonGradient() painter born (the multi-stop construction); the flat fill + the hard under-band retired; the right slope widened ((116,700) knee); the soil patch at the foot re-derived (the rounded-top shape (94,780)->(73-110,790-800)->(81,810), (96,71,40))
+- F-207c THE RIGHT SIDE'S UNDERLAYER (a whole genus ours lacked): the gray-green G band (x1080-1255, y314-370, (173,174,129)) + its teal top-edge patches (130,166,153) + the stable BLUE slab (30,54,89) at (1143-1173, y334-370) with its light bottom cap (237,234,224) — all page-shared (booking+landing expose them; the faq content-covers). The mass's SUNLIT RIM (108,162,59) — the diagonal band ((1140,225)->(1252,297)) — landed; the DEEP band re-confined below y~279 (the s206 version painted it 9px too high); the descent's lower anatomy decoded + re-derived (wide to y355, the lobe (1380-1418)@360, the brown tip (1380-1398, y362-378))
+- THE PHANTOM-BLOB GENUS (found on the way, the round's best catch): the two BUSH_RIGHT blobs ((1420,297) + (1404,400)) were s201-era MISREADS — the ref paints pure lawn at their zones (verified: no light-green family runs there); the (1404,400) one's radial fade was LIGHTENING the descent's lower section (the 63.8% zone). Both retired + the constant + the tone pin; the descent zone collapsed 63.8 -> 23.9
+- THE TDD LOOP: the RED pin born first (the G band's tone), GREEN after the cures; 7 measurement iterations (the stale-compile hazard caught + the warm-request discipline noted); the pin suite 16/16 throughout
+- THE MEASURE: booking 8.72 -> 7.18 · landing 6.62 -> 5.08 · faq 4.20 -> 3.74 (1440) — every page at its best-ever floor, all comfortably inside the standing drift gates (16/12.5/9)
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 (the CI=1 fresh boot)
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-207 section + the plan (docs/plans/2026-11-15-session207-fine-shapes.md) + the SKILL head surgery (v1.211.0 -> v1.212.0) + the pm-SKILL canvas section re-anchored (v1.3.0 -> v1.4.0)
+- THE CAPTURES: 47-49 (the booking/landing/faq at 1440, the fine-shapes canvas) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the drift floors at their best-ever (7.18/5.08/3.74)
+- The deliverables: the hedge gradient + the G band + the blue slab + the sunlit rim + the descent anatomy + the phantom retirement + the dead-code cleanup, the polygonGradient painter, the captures 47-49, the docs lockstep, the probe-207 decode family
+- Everything committed to main and pushed via the SSH wrapper
+
+Task ID: 206 (the terracotta mass + the sharp horizon; VERIFIED green)
 
 Work Log:
 - THE INTAKE: 610f565 pulled (the session_8.md archive — the s205 transcript); the environment PERSISTED (no recycle: deps · the six-knob .env · census MATCH 15/24/10/23/12 + 4 users); the baseline gate GREEN at the s205 ship state: lint 0/0 · tsc 0 · 139/2801 unit

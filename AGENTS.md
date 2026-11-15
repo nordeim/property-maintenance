@@ -12938,6 +12938,47 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-207 — THE FINE SHAPES + THE RIGHT UNDERLAYER + THE PHANTOM RETIREMENT (2026-11-15)
+
+The post-206 rotation — the residual ledger's fine shapes retired,
+plus a whole right-side genus decoded, plus the round's best catch:
+two s201-era PHANTOM BLOBS retired. The ref re-captured first
+(STABLE: 0.54% pair; our pages at the s206 floors — no regressions),
+then four cures over 7 TDD measurement iterations:
+
+**F-207a — the dead-code retirement.** Five s201-era constants (MASS ·
+MASS_DEEP · BUSH_LEFT · SOIL_GREEN · EDGE_GREEN) had been orphaned by
+the s206 solid re-derivation — retired, with their three s201/s204
+tone pins re-anchored to the live carriers (the dead-code doctrine).
+
+**F-207b — the hedge's convex gradient.** The ref's hedge holds
+(49,160,72) FLAT to y~722 then declines convexly through
+(41,141,60)@y754 to (15,95,26)@y788 — not the s206 flat fill + hard
+under-band. The `polygonGradient()` painter born (the multi-stop
+construction); the right slope widened ((116,700) knee); the soil
+patch at the foot re-derived as the rounded-top shape ((96,71,40)).
+
+**F-207c — the right side's underlayer.** A whole genus ours lacked:
+the gray-green G band (x1080-1255, y314-370, (173,174,129)) with teal
+top-edge patches (130,166,153) + the stable BLUE slab (30,54,89) at
+(1143-1173, y334-370) with its light bottom cap (237,234,224) — all
+PAGE-SHARED (booking+landing expose them; faq content-covers). The
+mass's SUNLIT RIM (108,162,59) landed; the DEEP band re-confined
+below y~279; the descent's lower anatomy decoded (wide to y355, the
+lobe, the brown tip (1380-1398, y362-378)).
+
+**THE PHANTOM-BLOB GENUS (the best catch).** The two BUSH_RIGHT blobs
+((1420,297) + (1404,400)) were s201-era MISREADS — the ref paints pure
+lawn at their zones (verified: no light-green family runs there). The
+(1404,400) phantom's radial fade was LIGHTENING the descent's lower
+section (a 63.8% diff zone). Both retired + the constant + its tone
+pin; the descent zone collapsed 63.8 → 23.9.
+
+**THE MEASURE:** booking **8.72 → 7.18** · landing **6.62 → 5.08** ·
+faq **4.20 → 3.74** (1440) — every page at its best-ever floor, all
+comfortably inside the standing drift gates (16/12.5/9). The corpus
+held: lint 0/0 · tsc 0 · 139/2801 · build · smoke 14/14 · e2e 193/193.
+
 ### Session-206 — THE TERRACOTTA MASS + THE SHARP HORIZON + THE SOLID FOLIAGE (2026-11-15)
 
 The post-205 rotation — the F-204d deferral RETIRED, plus two genera

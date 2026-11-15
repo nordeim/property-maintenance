@@ -83,10 +83,17 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).not.toContain("#E7F6FF"); // the retired crest misread (the white/70 header over the sky decodes as 231,246,255)
     expect(src).toContain("#8BC687"); // the lawn
     expect(src).toContain("216, 209, 189"); // the warm sun band
-    expect(src).toContain("44, 147, 64"); // the left horizon bush
-    expect(src).toContain("46, 152, 67"); // the right horizon bush
+    // Session-207 (F-207a): the left-bush tone pin re-anchored — the
+    // s201 blob constant BUSH_LEFT (44,147,64) retired with the solid
+    // re-derivation; the tone family lives in the HEDGE_GRAD_TOP stop
+    expect(src).toContain("49, 160, 72"); // the hedge gradient's top (the left-bush tone family)
+    // Session-207 (F-207c): the BUSH_RIGHT (46,152,67) tone pin retired —
+    // the two right-side blobs were PHANTOMS (the ref paints pure lawn
+    // at their zones; the descent polygon owns that structure)
     expect(src).toContain("87, 93, 99"); // the sun-band rocks
-    expect(src).toContain("16, 96, 28"); // the corner's deep green
+    // Session-207 (F-207a): the SOIL_GREEN (16,96,28) tone pin retired with
+    // the dead constant — the corner masses paint EDGE_DARK_SOLID (21,103,39)
+    expect(src).toContain("21, 103, 39"); // the corner masses' dark band
     // ------------------------------------------------------------------
     // Session-204 (the F-201e refinement — the faq/booking exposure):
     // the narrow-content pages expose canvas zones the landing's
@@ -131,7 +138,9 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).toContain("0.262"); // the lawn's first solid stop (the 6px blend band)
     expect(src).toContain("95, 143, 51"); // the horizon foliage mass
     expect(src).toContain("75, 124, 38"); // its deeper lobe
-    expect(src).toContain("30, 116, 48"); // the right-edge descending foliage
+    // Session-207 (F-207a): the EDGE_GREEN (30,116,48) tone pin re-anchored to
+    // the live EDGE_DARK_SOLID construction (the s206 solid re-derivation)
+    expect(src).toContain("EDGE_DARK_SOLID"); // the descent's live constant
     // ------------------------------------------------------------------
     // Session-204 (the left tree — decoded from the ref's booking AND
     // landing margins, byte-identical on both): a TALL bush darkening
@@ -176,6 +185,45 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).toContain("HEDGE_SOLID");
     expect(src).toContain("EDGE_DARK_SOLID");
     expect(src).toContain("function polygon("); // the polygon painter
+    // ------------------------------------------------------------------
+    // Session-207 (F-207c — the right side's underlayer band, a whole
+    // genus ours lacked): the gray-green G band (x1080-1255, y318-370,
+    // (173,174,129)) with TEAL patches (130,166,153) along its top +
+    // the stable BLUE slab (30,54,89) at (1143-1173, y334-370) —
+    // verified PAGE-SHARED (booking+landing show it; faq content-
+    // covered). The mass's SUNLIT RIM (108,162,59) — the diagonal band
+    // inside the right slope — + the DEEP band confined below y~275
+    // (ours painted it too high) + the descent's bottom tip at y~375.
+    // ------------------------------------------------------------------
+    expect(src).toContain("173, 174, 129"); // the G band
+    expect(src).toContain("130, 166, 153"); // the teal patches
+    expect(src).toContain("30, 54, 89"); // the blue slab
+    expect(src).toContain("108, 162, 59"); // the sunlit rim
+    expect(src).toContain("G_BAND"); // the band constant
+    expect(src).toContain("SUNLIT_RIM"); // the rim constant
+    // ------------------------------------------------------------------
+    // Session-207 (F-207b — the hedge's vertical gradient): the ref's
+    // hedge darkens (49,160,72)@y698 -> (15,95,26)@y788 — a smooth
+    // linear gradient inside the dome, NOT the flat fill + the hard
+    // under-band (both retired). The soil patch at its foot: solid
+    // (96,71,40), x73-110 y780-805.
+    // ------------------------------------------------------------------
+    expect(src).toContain("49, 160, 72"); // the gradient's top stop
+    expect(src).toContain("15, 95, 26"); // the gradient's bottom stop
+    expect(src).toContain("function polygonGradient("); // the multi-stop gradient painter
+    expect(src).toContain("[0.802, HEDGE_GRAD_TOP]"); // the convex hold (the ref's flat top to y~722)
+    expect(src).toContain("[0.876, HEDGE_GRAD_BOTTOM]"); // the gradient's bottom (y~788)
+    expect(src).toContain("96, 71, 40"); // the soil patch's solid tone
+    // ------------------------------------------------------------------
+    // Session-207 (F-207a — the dead-code retirement): the five s201-era
+    // constants orphaned by the s206 solid re-derivation are GONE (the
+    // s146 dead-code doctrine — no orphaned constants left behind).
+    // ------------------------------------------------------------------
+    expect(src).not.toContain("const MASS ="); // retired with the s206 polygons
+    expect(src).not.toContain("const MASS_DEEP =");
+    expect(src).not.toContain("const BUSH_LEFT =");
+    expect(src).not.toContain("const SOIL_GREEN =");
+    expect(src).not.toContain("const EDGE_GREEN =");
     // the wedge is a POLYGON (the crisp edges), not a radial blob — the
     // s204 quick attempts failed exactly because a blob's soft edges
     // blurred through the booking glass
