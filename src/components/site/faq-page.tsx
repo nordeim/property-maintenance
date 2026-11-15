@@ -45,6 +45,13 @@ export function FaqPage() {
         <section className="bg-gradient-to-br from-[#2E7D5F]/90 to-[#236B4F]/90 backdrop-blur-md text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div>
+              {/* Session-202 (F-201g cure #2): the reference's own hero
+                  eyebrow — the glassy pill decoded live (its absence
+                  was the 60px shift under every accordion header). */}
+              <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6">
+                <CircleHelp className="w-5 h-5" aria-hidden="true" />
+                <span className="text-sm font-medium">We've Got Answers</span>
+              </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
                 Frequently Asked Questions
               </h1>

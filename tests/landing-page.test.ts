@@ -189,6 +189,21 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     expect(src).toContain("@radix-ui/react-accordion");
     expect(src).toContain("FAQ_ITEMS");
     expect(src).toContain("Still have questions?");
+    // ------------------------------------------------------------------
+    // Session-202 (F-201g cure #2): the faq hero's EYEBROW — decoded live
+    // on the reference (its hero runs 332px vs our 272: the missing 60px
+    // was this element): a glassy pill above the h1 —
+    // inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full
+    // mb-6 — carrying the CircleHelp icon (w-5 h-5) + the span
+    // "We've Got Answers" (text-sm font-medium). Its absence shifted
+    // every accordion header below by 60px (the faq drift's dominant
+    // genus).
+    // ------------------------------------------------------------------
+    expect(src).toContain(
+      'className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6"',
+    );
+    expect(src).toContain("<CircleHelp className=\"w-5 h-5\" aria-hidden=\"true\" />");
+    expect(src).toContain("We've Got Answers");
   });
 
   it("the contact: the extracted form inventory + the superset quote submit", () => {
@@ -208,6 +223,27 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     expect(src).toContain("react-day-picker");
     expect(src).toContain('"/api/bookings"');
     expect(src).toContain("Confirm Booking");
+    // ------------------------------------------------------------------
+    // Session-202 (F-201g cure #1): the OPAQUE INNER FORM CARD — decoded
+    // live on the reference's booking flow (steps 1 AND 2 censused: the
+    // same card at 401,374, 638x542/393, pad-32, radius-16, the 1px
+    // gray-100 border). Our step fields rode the /85 outer card directly
+    // — the greenish tint showed through (the booking drift's 42%
+    // genus, post-canvas). The reference's anatomy: the outer card
+    // carries heading + progress + the step zone; the INNER opaque card
+    // wraps the step FIELDS; the nav rows (Back/Continue/Confirm) stay
+    // BELOW the card in the outer zone.
+    // ------------------------------------------------------------------
+    expect(
+      src,
+      "every step's fields ride the opaque inner card (the reference's own construction)",
+    ).toContain('className="bg-white rounded-2xl border border-gray-100 p-8"');
+    const wraps = src.split('className="bg-white rounded-2xl border border-gray-100 p-8"').length - 1;
+    expect(wraps, "all THREE steps carry the inner card").toBe(3);
+    expect(
+      src.indexOf('className="bg-white rounded-2xl border border-gray-100 p-8"'),
+      "the inner card wraps the EstimateCard (step 1), not the nav row",
+    ).toBeLessThan(src.indexOf("Confirm Booking"));
   });
 });
 

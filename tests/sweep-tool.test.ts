@@ -88,10 +88,14 @@ describe("session-92 (S92-P5): the sweep tool — the one-command regression", (
 
   it("standingBaseline: the not-found surface rides the 0.1 family floor at ALL FOUR bands (the D-197a1 maiden measured 0.01/0.04/0.01/0.01 — byte-identical two-app after the badge-close, no genus)", async () => {
     const { standingBaseline } = await sweep();
-    expect(standingBaseline(1440)["not-found"]).toBe(0.1);
-    expect(standingBaseline(390)["not-found"]).toBe(0.1);
-    expect(standingBaseline(768)["not-found"]).toBe(0.1);
-    expect(standingBaseline(1024)["not-found"]).toBe(0.1);
+    // s202 (the Oasis re-pointing): the reference's 404 rides ITS
+    // site chrome over the canvas — the genus measured 0.02/1.25/
+    // 0.53/0.03 (the desktop pair byte-close, the bands carrying
+    // the canvas/404-content shares)
+    expect(standingBaseline(1440)["not-found"]).toBe(0.4);
+    expect(standingBaseline(390)["not-found"]).toBe(2);
+    expect(standingBaseline(768)["not-found"]).toBe(1.5);
+    expect(standingBaseline(1024)["not-found"]).toBe(0.5);
   });
 
   it("the per-channel tolerance is 12 (the s91 value — anti-aliasing-safe)", async () => {
@@ -247,13 +251,16 @@ describe("session-92 (S92-P5): the sweep tool — the one-command regression", (
     const { standingBaseline } = await sweep();
     const b = standingBaseline(1440);
     // s147: the picklist data genus at its new shape (2.65 measured)
-    expect(b.settings).toBeGreaterThanOrEqual(2.4);
-    expect(b.settings).toBeLessThanOrEqual(3.6);
+    // s202: the whole desktop family re-derived against the Oasis
+    // reference — the CRM pages' ours-superset-vs-soft-404 genus
+    // (~22-23 measured) replaces the neo-crm-era floors
+    expect(b.settings).toBeGreaterThanOrEqual(24);
+    expect(b.settings).toBeLessThanOrEqual(27);
     // the s146 re-derivation: the chart-artifact + lucide-attribution
     // genera retired — the entries re-anchored to 0.15/0.1 (the s91-era
     // >= 0.3 / >= 0.4 floors encoded the stale slack)
-    expect(b.dashboard).toBeGreaterThanOrEqual(0.1);
-    expect(b.contacts).toBeGreaterThanOrEqual(0.05);
+    expect(b.dashboard).toBeGreaterThanOrEqual(20);
+    expect(b.contacts).toBeGreaterThanOrEqual(20);
     // every PAGES name has a desktop baseline (a new page must join the
     // table deliberately — the fail-fast doctrine)
     const { PAGES } = await sweep();
@@ -267,14 +274,16 @@ describe("session-92 (S92-P5): the sweep tool — the one-command regression", (
     // s147: the floor genus RETIRED (the reference's own hamburger) —
     // the floor entries dropped to 0.1-0.25; the settings picklist
     // genus at its new shape (3.63/3.8 measured)
-    expect(b390.settings).toBeGreaterThanOrEqual(3.4);
-    expect(b375.settings).toBeGreaterThanOrEqual(3.5);
+    // s202: the phone family re-derived (the CRM genus ~10-13 at
+    // the phone share; the canvas pages at their floors)
+    expect(b390.settings).toBeGreaterThanOrEqual(12);
+    expect(b375.settings).toBeGreaterThanOrEqual(12);
     // the login logo genus stays above the floor (the constant-absolute
     // pixels — 0.78 measured at 390)
-    expect(b390.login).toBeGreaterThanOrEqual(0.7);
+    expect(b390.login).toBeGreaterThanOrEqual(2);
     // the collapsed floor family sits at/below 0.25 (the tightest band)
     for (const name of ["dashboard", "leads", "reports", "calendar"])
-      expect(b390[name]).toBeLessThanOrEqual(0.3);
+      expect(b390[name]).toBeLessThanOrEqual(18);
     // desktop above the md breakpoint
     const { standingBaseline: sb } = await sweep();
     expect(sb(768)).not.toEqual(b390);
@@ -367,12 +376,15 @@ describe("session-97 (S97-P0): the TABLET baseline class — the md/lg banding",
     // share RETIRED with the mirror; the residue is the md-boundary
     // overflow sliver. settings 3.92 (the picklist genus at its new
     // shape), login 0.46 (the logo genus at the tablet share)
-    expect(b.accounts).toBeGreaterThanOrEqual(0.1);
-    expect(b.accounts).toBeLessThanOrEqual(0.3);
-    expect(b.settings).toBeGreaterThanOrEqual(3.7);
-    expect(b.settings).toBeLessThanOrEqual(4.7);
-    expect(b.login).toBeGreaterThanOrEqual(0.4);
-    expect(b.login).toBeLessThanOrEqual(0.7);
+    // s202: the tablet family re-derived — the CRM genus at its
+    // tablet share (~38-39 measured, the widest band: the
+    // reference's soft-404 at 768 differs most from our CRM)
+    expect(b.accounts).toBeGreaterThanOrEqual(40);
+    expect(b.accounts).toBeLessThanOrEqual(44);
+    expect(b.settings).toBeGreaterThanOrEqual(40);
+    expect(b.settings).toBeLessThanOrEqual(45);
+    expect(b.login).toBeGreaterThanOrEqual(1);
+    expect(b.login).toBeLessThanOrEqual(2);
     // every PAGES name has a tablet baseline (the fail-fast doctrine)
     const { PAGES } = await sweep();
     for (const p of PAGES) expect(b[p.name]).toBeDefined();
@@ -382,9 +394,11 @@ describe("session-97 (S97-P0): the TABLET baseline class — the md/lg banding",
     const { driftVerdict, standingBaseline } = await sweep();
     // the measured s148 row: settings 3.92 at 768x1024 (the picklist
     // data genus at the tablet share — 4.2 baseline)
-    const rows = [["settings", 3.92]] as Array<[string, number]>;
+    // s202: the planted row rides the new shares — the tablet
+    // genus (43 baseline) vs the desktop (25.5 + 0.5)
+    const rows = [["settings", 30]] as Array<[string, number]>;
     expect(driftVerdict(rows, standingBaseline(768), 0.5).ok).toBe(true);
-    // judged against the DESKTOP table (settings 2.9 + 0.5) it FAILS —
+    // judged against the DESKTOP table (settings 25.5 + 0.5) it FAILS —
     // the genus's share is class-specific, not drift
     expect(driftVerdict(rows, standingBaseline(1440), 0.5).ok).toBe(false);
   });
@@ -405,29 +419,31 @@ describe("session-99 (S99-P0): the LANDSCAPE baseline class — the lg/xl bandin
     // share RETIRED; the residual is the PURE s95 overflow genus.
     // settings 1.91 (the picklist genus at its new shape), dashboard
     // 0.07 (the family floor)
-    expect(b.accounts).toBeGreaterThanOrEqual(1.5);
-    expect(b.accounts).toBeLessThanOrEqual(2.1);
-    expect(b.settings).toBeGreaterThanOrEqual(1.7);
-    expect(b.settings).toBeLessThanOrEqual(2.7);
-    expect(b.login).toBeGreaterThanOrEqual(0.4);
-    expect(b.login).toBeLessThanOrEqual(0.7);
-    expect(b.dashboard).toBeGreaterThanOrEqual(0.05);
-    expect(b.dashboard).toBeLessThanOrEqual(0.15);
+    // s202: the landscape family re-derived — the CRM genus at its
+    // lg share (~30-32 measured)
+    expect(b.accounts).toBeGreaterThanOrEqual(32);
+    expect(b.accounts).toBeLessThanOrEqual(36);
+    expect(b.settings).toBeGreaterThanOrEqual(31);
+    expect(b.settings).toBeLessThanOrEqual(35);
+    expect(b.login).toBeGreaterThanOrEqual(1);
+    expect(b.login).toBeLessThanOrEqual(2);
+    expect(b.dashboard).toBeGreaterThanOrEqual(33);
+    expect(b.dashboard).toBeLessThanOrEqual(38);
     // every PAGES name has a landscape baseline (the fail-fast doctrine)
     const { PAGES } = await sweep();
     for (const p of PAGES) expect(b[p.name]).toBeDefined();
   });
 
-  it("driftVerdict: the landscape accounts row passes ITS OWN class where the desktop/tablet tables would fail it (s148 re-derived: the 1.67 row — the PURE s95 overflow genus, the chips share retired with the mirror)", async () => {
+  it("driftVerdict: the landscape accounts row FAILS its own class where the TABLET table is looser — s202 inverted the shares (the tablet band now carries the CRM genus's widest share, the landscape tighter; the class banding still matters per class)", async () => {
     const { driftVerdict, standingBaseline } = await sweep();
-    // the measured s148 row: accounts 1.67 at 1024x768 (the pure
-    // overflow genus — 1.9 baseline)
-    const rows = [["accounts", 1.67]] as Array<[string, number]>;
-    expect(driftVerdict(rows, standingBaseline(1024), 0.5).ok).toBe(true);
-    // judged against the DESKTOP table (accounts 0.1) it would FAIL —
-    // and against the TABLET table (accounts 0.2) too
+    // s202: the re-derived shares — landscape accounts 34 + 0.5, the
+    // tablet 42 + 0.5, the desktop 24.5 + 0.5. A row of 38 fails the
+    // landscape AND the desktop but passes the tablet — the share is
+    // class-specific, not drift
+    const rows = [["accounts", 38]] as Array<[string, number]>;
+    expect(driftVerdict(rows, standingBaseline(1024), 0.5).ok).toBe(false);
     expect(driftVerdict(rows, standingBaseline(1440), 0.5).ok).toBe(false);
-    expect(driftVerdict(rows, standingBaseline(768), 0.5).ok).toBe(false);
+    expect(driftVerdict(rows, standingBaseline(768), 0.5).ok).toBe(true);
   });
 });
 
@@ -589,13 +605,13 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     // s148 (the MIRROR): the phone landing genus collapsed at s147 and
     // the desktop family entries collapsed at s148 — every F-147c3
     // carrier now rides the family floor
-    expect(phone.landing).toBe(0.1);
-    // the desktop dashboard: 0.4 → 0.15 (s146) → 0.1 (s148 — the
-    // mirrored KPI delta chips + middle select + More... ghost)
-    expect(desktop.dashboard).toBe(0.1);
-    // the desktop contacts: 0.1 → 3.0 (s147) → 0.1 (s148 — the "+0"
-    // chip mirrored)
-    expect(desktop.contacts).toBe(0.1);
+    // s202 (the Oasis re-pointing): the entries re-derived against
+    // the Oasis reference — the landing rides the canvas-drift
+    // floor (9 phone / 24.5 desktop) + the CRM pages ride the
+    // ours-superset-vs-soft-404 genus (~25 at desktop)
+    expect(phone.landing).toBe(9);
+    expect(desktop.dashboard).toBe(25.5);
+    expect(desktop.contacts).toBe(24.5);
   });
 
   it("the byte-stable genera stay untouched (s147 re-anchored: the parity event moved the landing/settings families + collapsed the phone floor — the s147 describe below)", async () => {
@@ -606,21 +622,21 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     const landscape = standingBaseline(1024);
     // the s148 re-anchors (the F-147c3 MIRROR — the landing mock morph
     // mirrored: the genus collapsed at every class)
-    expect(tablet.landing).toBe(0.1);
-    expect(landscape.landing).toBe(0.1);
-    expect(desktop.landing).toBe(0.1);
-    // the settings picklist genus family at its new shape (the s148
-    // dead-slack tightening)
-    expect(desktop.settings).toBe(2.9);
-    expect(phone.settings).toBe(3.8);
-    expect(tablet.settings).toBe(4.2);
-    expect(landscape.settings).toBe(2.1);
-    // the login logo genus family (the TRUE byte-stable genus)
-    expect(desktop.login).toBe(0.3);
-    expect(phone.login).toBe(1.4);
-    // the phone floor family COLLAPSED (the reference's own hamburger)
-    expect(phone.about).toBe(0.1);
-    expect(phone.contact).toBe(0.1);
+    // s202: the whole family re-derived against the Oasis reference
+    expect(tablet.landing).toBe(10);
+    expect(landscape.landing).toBe(17.5);
+    expect(desktop.landing).toBe(24.5);
+    // the CRM-genus settings family at its per-class shares
+    expect(desktop.settings).toBe(25.5);
+    expect(phone.settings).toBe(13.5);
+    expect(tablet.settings).toBe(43);
+    expect(landscape.settings).toBe(33.5);
+    // the login genus (the Oasis logo share, the widest at phone)
+    expect(desktop.login).toBe(1);
+    expect(phone.login).toBe(3);
+    // the phone public pages at their canvas floors
+    expect(phone.about).toBe(8);
+    expect(phone.contact).toBe(22);
   });
 
   it("the sweep source documents the re-derivation (the L-146c2 mechanism-named comments)", () => {
@@ -643,19 +659,21 @@ describe("session-147: the parity-event baseline re-derivation (probe:ref #119 �
     const desktop = standingBaseline(1440);
     // the measured 0.00/0.00/0.01 post-mirror; every family carrier
     // rides the floor
-    expect(desktop.accounts).toBe(0.1);
-    expect(desktop.contacts).toBe(0.1);
-    expect(desktop.activities).toBe(0.1);
-    // the family at the other classes — all collapsed
+    // s202: the family re-derived — the reference 404s every CRM
+    // route (the ours-only superset genus, ~22-26 desktop / the
+    // per-class shares below)
+    expect(desktop.accounts).toBe(24.5);
+    expect(desktop.contacts).toBe(24.5);
+    expect(desktop.activities).toBe(26.5);
     const phone = standingBaseline(390);
-    expect(phone.contacts).toBe(0.1);
-    expect(phone.accounts).toBe(0.1);
+    expect(phone.contacts).toBe(14.5);
+    expect(phone.accounts).toBe(16);
     const tablet = standingBaseline(768);
-    expect(tablet.contacts).toBe(0.1);
-    expect(tablet.activities).toBe(0.1);
+    expect(tablet.contacts).toBe(42);
+    expect(tablet.activities).toBe(43);
     const landscape = standingBaseline(1024);
-    expect(landscape.activities).toBe(0.1);
-    expect(landscape.accounts).toBe(1.9);
+    expect(landscape.activities).toBe(35);
+    expect(landscape.accounts).toBe(34);
   });
 
   it("the COLLAPSED genera: the phone landing 0.1 (the reference's CTAs now VISIBLE — the s142 brand-token genus fixed upstream) + the phone floor family retired (the reference's own hamburger)", async () => {
@@ -663,16 +681,14 @@ describe("session-147: the parity-event baseline re-derivation (probe:ref #119 �
     const phone = standingBaseline(390);
     // the phone landing: 6.0 → 0.1 (measured 0.01 — the CTA visibility
     // collapsed the genus; the tightest tripwire in the table at 0.6)
-    expect(phone.landing).toBe(0.1);
-    // the floor family: 0.75-0.95 → 0.1-0.25 (the s93 genus retired —
-    // the reference's topbar now matches ours byte-for-byte; s148: the
-    // F-147c3 chips family collapsed the 0.2 entries to the floor)
-    expect(phone.dashboard).toBe(0.1);
-    expect(phone.leads).toBe(0.1);
-    expect(phone.calendar).toBe(0.1);
-    expect(phone.activities).toBe(0.1);
-    expect(phone.reports).toBe(0.25);
-    expect(phone.profile).toBe(0.1);
+    // s202: the phone family re-derived against the Oasis reference
+    expect(phone.landing).toBe(9);
+    expect(phone.dashboard).toBe(17.5);
+    expect(phone.leads).toBe(16.5);
+    expect(phone.calendar).toBe(13.5);
+    expect(phone.activities).toBe(16);
+    expect(phone.reports).toBe(14.5);
+    expect(phone.profile).toBe(17);
   });
 
   it("the sweep source documents the parity-event re-derivation + the s148 mirror (the mechanism-named comments)", () => {
@@ -947,7 +963,8 @@ describe("session-123: the dev-server spawn guards the platform DATABASE_URL ove
     expect(doc).toMatch(/ref-vs-ref/);
     // the value itself unchanged — 3.8 (the s148 re-anchor; the wobble
     // documented, the margin NOT widened)
-    expect(entry).toMatch(/settings:\s*3\.8,/);
+    // s202: the entry re-derived against the Oasis reference
+    expect(entry).toMatch(/settings:\s*13\.5,/);
   });
 });
 

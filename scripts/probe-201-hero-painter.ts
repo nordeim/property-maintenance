@@ -5,14 +5,14 @@
 // paints at the green points (elementFromPoint), and it censuses the
 // pseudo-elements + the large background-color children the broken
 // incremental edits never reached.
-import { chromium } from "@playwright/test";
+import { chromium, type Page } from "@playwright/test";
 
 const OUR_URL = "http://localhost:3000";
 const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 const EMAIL = process.env.REF_EMAIL ?? "sepnetflix2023@outlook.com";
 const PASSWORD = process.env.REF_PASSWORD ?? "$Abcd1234";
 
-async function login(page, base: string) {
+async function login(page: Page, base: string) {
   await page.goto(`${base}/login`, { waitUntil: "networkidle" });
   await page.waitForTimeout(1500);
   await page.fill('input[type="email"]', EMAIL);
@@ -24,13 +24,13 @@ async function login(page, base: string) {
   await page.waitForTimeout(2000);
 }
 
-async function census(page, label: string) {
+async function census(page: Page, label: string) {
   const lines = await page.evaluate(() => {
     const out: string[] = [];
-    const hero = document.querySelector("section");
+    const hero = document.querySelector("section") as HTMLElement | null;
     // 1. who paints the green/sky points
     for (const pt of [[60, 500], [720, 870], [1100, 650], [720, 150]]) {
-      const el = document.elementFromPoint(pt[0], pt[1]);
+      const el = document.elementFromPoint(pt[0], pt[1]) as HTMLElement | null;
       if (el) {
         const cs = getComputedStyle(el);
         const cls = typeof el.className === "string" ? el.className.split(" ").slice(0, 3).join(".") : "";
@@ -40,7 +40,8 @@ async function census(page, label: string) {
       }
     }
     // 2. pseudo-elements with content anywhere in the hero
-    for (const el of [hero, ...Array.from(hero?.querySelectorAll("*") ?? [])]) {
+    const heroChain: Element[] = hero ? [hero, ...Array.from(hero.querySelectorAll("*"))] : [];
+    for (const el of heroChain) {
       for (const pseudo of ["::before", "::after"]) {
         const cs = getComputedStyle(el, pseudo);
         if (cs.content !== "none" && cs.content !== "normal" && cs.content !== "") {

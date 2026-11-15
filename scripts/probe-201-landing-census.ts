@@ -5,14 +5,14 @@
 // section landmarks, the heading text, the body text length, and the
 // computed chrome (sticky header height + footer bg) — to classify
 // the genus before any baseline is recorded.
-import { chromium } from "@playwright/test";
+import { chromium, type Page } from "@playwright/test";
 
 const OUR_URL = "http://localhost:3000";
 const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 const EMAIL = process.env.REF_EMAIL ?? "sepnetflix2023@outlook.com";
 const PASSWORD = process.env.REF_PASSWORD ?? "$Abcd1234";
 
-async function census(page, label: string) {
+async function census(page: Page, label: string) {
   const data = await page.evaluate(() => {
     const header = document.querySelector("header");
     const footer = document.querySelector("footer");
@@ -36,7 +36,7 @@ async function census(page, label: string) {
   console.log(`[${label}] body="${data.bodyText}"`);
 }
 
-async function login(page, base: string) {
+async function login(page: Page, base: string) {
   await page.goto(`${base}/login`, { waitUntil: "networkidle" });
   await page.waitForTimeout(1500);
   await page.fill('input[type="email"]', EMAIL);

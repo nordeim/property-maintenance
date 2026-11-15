@@ -171,12 +171,18 @@ export function BookingFlow() {
           {/* ---- step 1: service + estimate ------------------------- */}
           {step === 1 ? (
             <div>
-              <EstimateCard
-                serviceId={serviceId}
-                onServiceChange={setServiceId}
-                yardSize={yardSize}
-                onYardSizeChange={setYardSize}
-              />
+              {/* Session-202 (F-201g cure #1): the OPAQUE INNER FORM CARD —
+                  the reference's own anatomy (decoded live: 638x542 at
+                  401,374, pad-32, radius-16, the 1px gray-100 border);
+                  the step FIELDS ride it, the nav rows stay below. */}
+              <div className="bg-white rounded-2xl border border-gray-100 p-8">
+                <EstimateCard
+                  serviceId={serviceId}
+                  onServiceChange={setServiceId}
+                  yardSize={yardSize}
+                  onYardSizeChange={setYardSize}
+                />
+              </div>
               <div className="flex justify-end mt-6">
                 <Button
                   className="shadow h-9 py-2 bg-[#2E7D5F] hover:bg-[#236B4F] text-white px-8"
@@ -191,7 +197,9 @@ export function BookingFlow() {
 
           {/* ---- step 2: date + time -------------------------------- */}
           {step === 2 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div className="bg-white rounded-2xl border border-gray-100 p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <CalendarCheck className="w-5 h-5 text-[#2E7D5F]" aria-hidden="true" />
@@ -234,8 +242,9 @@ export function BookingFlow() {
                   })}
                 </div>
               </div>
-              <div className="md:col-span-2">
-                <div className="flex justify-between mt-6">
+                </div>
+              </div>
+              <div className="flex justify-between mt-6">
                   <Button variant="outline" className="h-9 px-4 py-2" onClick={() => setStep(1)}>
                     <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
                     Back
@@ -248,7 +257,6 @@ export function BookingFlow() {
                     Continue
                     <ChevronRight className="w-4 h-4 ml-1" aria-hidden="true" />
                   </Button>
-                </div>
               </div>
             </div>
           ) : null}
@@ -256,6 +264,7 @@ export function BookingFlow() {
           {/* ---- step 3: your details ------------------------------- */}
           {step === 3 ? (
             <div>
+              <div className="bg-white rounded-2xl border border-gray-100 p-8">
               <div className="flex items-center gap-2 mb-4">
                 <House className="w-5 h-5 text-[#2E7D5F]" aria-hidden="true" />
                 <h3 className="font-bold text-[#1F2933]">Your details</h3>
@@ -328,6 +337,7 @@ export function BookingFlow() {
                 <p className="text-lg font-bold text-[#2E7D5F]" data-testid="summary-estimate">
                   {estimate?.replace(/ /g, "")}
                 </p>
+              </div>
               </div>
               {error ? (
                 <p className="text-sm text-red-600 mt-4" role="alert">

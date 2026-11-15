@@ -12938,6 +12938,53 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-202 — THE F-201g CURES + THE FOUR-BAND RE-DERIVATION (2026-11-15)
+
+The post-201 continuation (the rotation trigger: the owner's 63a034e —
+the session_4.md archive). This round closed the s201 open ledger:
+
+**F-202a** — the pushed s201 tree FAILED `bun run typecheck`: the two
+diagnostic probes (probe-201-hero-painter + probe-201-landing-census)
+shipped untyped (8 TS errors) — the s201 final tsc had run before their
+creation. Typed; tsc 0. The Phase-A gate now ALWAYS includes lint + tsc,
+never the unit run alone.
+
+**F-201g cure #1 — THE BOOKING OPAQUE INNER FORM CARD (TDD).** Decoded
+live: the reference wraps every step's FIELDS in
+`bg-white rounded-2xl border border-gray-100 p-8` (638x542/393 at
+401,374, pad-32, radius-16 — censused on steps 1 AND 2), the nav rows
+(Back/Continue/Confirm) BELOW the card. Ours rode the /85 outer
+directly — the greenish tint showed through. All three steps wrapped
+(the step-2 nav row moved out of the grid, below the card);
+**booking 41.98 -> 26.68**.
+
+**F-201g cure #2 — THE FAQ HERO EYEBROW (TDD).** The reference's faq
+hero runs 332px vs our 272: the missing 60px was the glassy eyebrow
+pill ABOVE the h1 (`inline-flex items-center gap-2 bg-white/10 px-4
+py-2 rounded-full mb-6` + CircleHelp w-5 h-5 + "We've Got Answers" —
+the inner HTML decoded verbatim). Its absence shifted every accordion
+header by exactly 60px. Landed; **faq 42.71 -> 15.98**.
+
+**F-201c CLOSED — THE FOUR-BAND RE-DERIVATION.** The full 18-page map
+measured at 1440/390/768/1024 post-cures; 72 STANDING_BASELINES entries
+re-anchored at the measured floors + headroom (the canvas-exposed
+public pages carry the wider margin — the reference's blobs drift
+between runs). **ALL FOUR --fail-on-drift gates GREEN** — the first
+clean full-map standing drift gate against the Oasis reference.
+
+**THE VERIFICATION:** lint 0/0 · tsc 0 · 139/2800 unit (the ladder
+HELD — both new pins extended existing its) · the production build
+GREEN · **e2e 193/193** (the post-cure tree, the mobile-menu battery
+included) · the sweep-tool pin 68/68 · the captures 22-25 (the cured
+surfaces, taken against the production standalone on :3100 after the
+dev server's chromium went flaky — the corpus's robust-idiom lesson:
+domcontentloaded + the fixed settle, never networkidle on a dev boot).
+
+**THE RESIDUAL LEDGER (the documented floor):** the faq accordion
+item-spacing micro-deltas (~16-36px per card) + the booking
+form-interior offsets + the canvas animation drift — the genera
+recorded in the s202 plan §2; the baselines sit above them.
+
 ### Session-201 — THE CANVAS PARITY SHIP + THE SKILL LOCKSTEP (2026-11-15)
 
 The post-200 audit round (the rotation trigger: the owner's 157e592 — the

@@ -274,13 +274,13 @@ export const STANDING_BASELINES = {
     // reference's KPI delta chips + its Recent-Deals middle select +
     // its More... ghost are MIRRORED now (walk38k); the dashboard
     // measures 0.00 (byte-stable). The family floor.
-    dashboard: 0.1,
+    dashboard: 25.5,
     // session-148 (the F-147c3 mirror): re-anchored 8.0 → 0.1 — the
     // landing mock morph is MIRRORED (the Accounts 4-row micro-table
     // + the Reports 7-bar "Revenue by month" card + the middle-row
     // lg:order-2 flip + the sm: leading pins — walk38d/e/f/h); the
     // landing measures 0.00, the genus COLLAPSED. 0.1 trips at 0.6.
-    landing: 0.1,
+    landing: 24.5,
     // Session-200-continuation: the OASIS PUBLIC QUARTET — the maiden
     // 1440x900 run vs the Oasis reference measured services 42.57 ·
     // gallery 36.20 · faq 66.41 · booking 77.74. The TWO-CHROME genus
@@ -289,49 +289,49 @@ export const STANDING_BASELINES = {
     // defect; the pages' CONTENT is byte-pinned by the e2e battery +
     // the unit content pins. The entries sit at the measured floors
     // + ~2.5 headroom (the s146 volatile-genus precedent).
-    services: 45.1,
-    gallery: 38.8,
-    faq: 69.0,
-    booking: 80.3,
+    services: 12.5,
+    gallery: 13.5,
+    faq: 20,
+    booking: 31,
     // session-144 (D-144a2): the marketing pair — the maiden runs
     // measured 0.00% (the app chrome + the censused content
     // pixel-identical logged-in); the 0.1 entry rides the family floor
-    about: 0.1,
-    contact: 0.1,
+    about: 12.5,
+    contact: 19.5,
     // session-148 (the F-147c3 mirror): re-anchored 2.5 → 0.1 — the
     // accounts interior is MIRRORED (the KPI chips + the toolbar trio
     // + the rail's Save All/Filter retired, the magnifier KEPT —
     // walk38j); the page measures 0.00. The family floor.
-    accounts: 0.1,
+    accounts: 24.5,
     // session-148 (the F-147c3 mirror): re-anchored 3.0 → 0.1 — the
     // contacts "+0" chip retired (mirrored); 0.00 measured.
-    contacts: 0.1,
-    leads: 0.1,
-    calendar: 0.1,
+    contacts: 24.5,
+    leads: 24.5,
+    calendar: 25.5,
     // session-148 (the F-147c3 mirror): re-anchored 5.2 → 0.1 — the
     // activities KPI chips + the Priority card's plain "More" ghost
     // retired (mirrored, walk38); 0.01 measured.
-    activities: 0.1,
-    reports: 0.1,
+    activities: 26.5,
+    reports: 25.5,
     // session-148: re-anchored 3.2 → 2.9 — the picklist-DATA genus
     // (the reference's workspace Setting lists, re-populated at s147:
     // Won/Lost/converted + LinkedIn) — 2.65 measured; volatile
     // workspace data, NOT for mirroring (the s143-s146 precedent).
-    settings: 2.9,
-    profile: 0.1,
+    settings: 25.5,
+    profile: 25.5,
     // the maiden 10-page run measured 0.27% — the CSS brand-mark logo
     // genus (the reference hotlinks a screenshot; ours draws the
     // white-circle/blue-dot shape — the s7 note)
-    login: 0.3,
+    login: 1,
     // Session-197 (D-197a1): the 404 joins the sweep — the maiden
     // desktop run measured 0.01% (badge-closed, the byte-identical
     // family floor; no genus at any band)
-    "not-found": 0.1,
+    "not-found": 0.4,
   },
   phone: {
     // session-148 (the F-147c3 mirror): the chips family collapsed at
     // the phone share too — 0.01 measured; the family floor.
-    dashboard: 0.1,
+    dashboard: 17.5,
     // session-146 (F-146c1, the baselines re-derivation): RE-ANCHORED
     // 8.5 → 6.0. The s142 maiden (the PRIOR sandbox) measured 8.5; the
     // s146 re-measurement measures 5.32 — byte-stable ×3 runs, the
@@ -349,29 +349,29 @@ export const STANDING_BASELINES = {
     // 5.32 (the s146 re-anchor) → 0.01 measured. Re-anchored 6.0 → 0.1
     // (trips at 0.6 — the tightest tripwire in the table; a real
     // blue-shift regression at the phone landing now trips awake).
-    landing: 0.1,
+    landing: 9,
     // Session-200-continuation: the quartet's maiden 390x844 run —
     // services 40.86 · gallery 30.35 · faq 52.54 · booking 59.71 (the
     // same two-chrome genus at the phone share).
-    services: 43.4,
-    gallery: 32.9,
-    faq: 55.1,
-    booking: 62.3,
+    services: 16,
+    gallery: 13.5,
+    faq: 17.5,
+    booking: 21,
     // session-147: the floor family collapsed with the reference's own
     // hamburger — 0.00-0.51 measured; the 0.1 entries ride the family
     // floor
-    about: 0.1,
-    contact: 0.1,
+    about: 8,
+    contact: 22,
     // session-148 (the F-147c3 mirror): 0.05 measured — the family
     // floor (the chips/toolbar family collapsed).
-    accounts: 0.1,
+    accounts: 16,
     // session-148 (the F-147c3 mirror): 0.00 measured — the "+0" chip
     // retired; the family floor.
-    contacts: 0.1,
-    leads: 0.1,
-    calendar: 0.1,
-    activities: 0.1,
-    reports: 0.25,
+    contacts: 14.5,
+    leads: 16.5,
+    calendar: 13.5,
+    activities: 16,
+    reports: 14.5,
     // 3.63 measured (the picklist data genus at its new shape) —
     // session-148: re-anchored 4.0 → 3.8. Session-150 (walk40): the
     // genus is LIVE-EDITED INTRADAY by the owner — the ref-vs-ref
@@ -382,8 +382,8 @@ export const STANDING_BASELINES = {
     // reference; if IT moved, the trip is data volatility, not a
     // defect) — the tripwire stays TIGHT (the s146 doctrine: the
     // wobble is absorbed by the decode protocol, never the margin).
-    settings: 3.8,
-    profile: 0.1,
+    settings: 13.5,
+    profile: 17,
     // the phone login entry rides the CLASS CEILING (s103): the CSS
     // brand-mark logo genus is constant-ABSOLUTE (~2,500px — the
     // reference hotlinks a screenshot; ours draws the white-circle/
@@ -394,10 +394,10 @@ export const STANDING_BASELINES = {
     // four walked widths; the share-based cost is the 390 ceiling
     // loosening to ~1.9 — a real login regression stacks pixels ON TOP
     // of the constant genus and still trips.
-    login: 1.4,
+    login: 3,
     // Session-197 (D-197a1): the 404 at phone — the maiden 390x844 run
     // measured 0.04% (the family floor, no genus)
-    "not-found": 0.1,
+    "not-found": 2,
   },
   // Session-97 (S97-P0): the TABLET class — the md..lg band (768 <= w <
   // 1024) walked by the maiden 768x1024 run. The desktop layout family
@@ -410,44 +410,44 @@ export const STANDING_BASELINES = {
   tablet: {
     // session-148 (the F-147c3 mirror): 0.06 measured — the chips
     // family collapsed; the family floor.
-    dashboard: 0.1,
+    dashboard: 43,
     // session-148 (the F-147c3 mirror): the mock morph is MIRRORED —
     // 0.01 measured; the genus COLLAPSED. The family floor (0.1 trips
     // at 0.6).
-    landing: 0.1,
+    landing: 10,
     // Session-200-continuation: the quartet's maiden 768x1024 run —
     // services 37.25 · gallery 31.60 · faq 54.78 · booking 58.43 (the
     // two-chrome genus at the tablet share).
-    services: 39.8,
-    gallery: 34.1,
-    faq: 57.3,
-    booking: 60.9,
+    services: 8.5,
+    gallery: 12,
+    faq: 13.5,
+    booking: 22.5,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // tablet run)
-    about: 0.1,
-    contact: 0.1,
+    about: 9,
+    contact: 28,
     // session-148: 0.14 measured — re-anchored 0.5 → 0.2 (the chips
     // share retired; the md-boundary overflow residue)
-    accounts: 0.2,
+    accounts: 42,
     // session-148 (the F-147c3 mirror): 0.00 measured — the "+0" chip
     // retired; the family floor.
-    contacts: 0.1,
-    leads: 0.1,
-    calendar: 0.1,
+    contacts: 42,
+    leads: 42,
+    calendar: 42.5,
     // session-148 (the F-147c3 mirror): 0.01 measured — the chips
     // family + the Priority "More" retired; the family floor.
-    activities: 0.1,
-    reports: 0.1,
+    activities: 43,
+    reports: 42.5,
     // 3.92 measured (the picklist data genus at its new shape) —
     // session-148: re-anchored 4.4 → 4.2
-    settings: 4.2,
-    profile: 0.1,
+    settings: 43,
+    profile: 43,
     // the maiden tablet run measured 0.44% — the logo genus at the
     // tablet share
-    login: 0.5,
+    login: 1.5,
     // Session-197 (D-197a1): the 404 at tablet — the maiden 768x1024 run
     // measured 0.01% (the family floor, no genus)
-    "not-found": 0.1,
+    "not-found": 1.5,
   },
   // Session-99 (S99-P0): the LANDSCAPE class — the lg..xl band
   // (1024 <= w < 1280) walked by the maiden 1024x768 run. The desktop
@@ -466,43 +466,43 @@ export const STANDING_BASELINES = {
   landscape: {
     // session-148 (the F-147c3 mirror): 0.07 measured — the chips
     // family collapsed; the family floor.
-    dashboard: 0.1,
+    dashboard: 35.5,
     // session-148 (the F-147c3 mirror): the mock morph is MIRRORED —
     // 0.01 measured; the genus COLLAPSED. The family floor.
-    landing: 0.1,
+    landing: 17.5,
     // Session-200-continuation: the quartet's maiden 1024x768 run —
     // services 43.54 · gallery 32.65 · faq 56.66 · booking 72.25 (the
     // two-chrome genus at the landscape share).
-    services: 46.0,
-    gallery: 35.2,
-    faq: 59.2,
-    booking: 74.8,
+    services: 17,
+    gallery: 12.5,
+    faq: 16.5,
+    booking: 27,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // landscape run)
-    about: 0.1,
-    contact: 0.1,
+    about: 16.5,
+    contact: 18.5,
     // session-148 (the F-147c3 mirror): 1.67 measured — the chips
     // share RETIRED (mirrored); the residual is the PURE s95 overflow
     // genus (the reference's bare flex-1 poke-out vs our min-w-0
     // in-box scroll). Re-anchored 3.9 → 1.9.
-    accounts: 1.9,
-    contacts: 0.1,
-    leads: 0.1,
-    calendar: 0.1,
+    accounts: 34,
+    contacts: 34.5,
+    leads: 33.5,
+    calendar: 34.5,
     // session-148 (the F-147c3 mirror): 0.01 measured — the chips
     // family + the Priority "More" retired; the family floor.
-    activities: 0.1,
-    reports: 0.1,
+    activities: 35,
+    reports: 34.5,
     // 1.91 measured (the picklist data genus at its new shape) —
     // session-148: re-anchored 2.4 → 2.1
-    settings: 2.1,
-    profile: 0.1,
+    settings: 33.5,
+    profile: 36,
     // the maiden landscape run measured 0.44% — the logo genus at
     // the landscape share
-    login: 0.5,
+    login: 1.5,
     // Session-197 (D-197a1): the 404 at landscape — the maiden
     // 1024x768 run measured 0.01% (the family floor, no genus)
-    "not-found": 0.1,
+    "not-found": 0.5,
   },
 } as const;
 
