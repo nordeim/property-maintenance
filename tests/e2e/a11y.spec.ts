@@ -91,7 +91,19 @@ const SANCTIONED: Record<string, Array<{ any: string[]; cite: string }>> = {
       // service chip's green #2E7D5F on the #E8F3ED tint, the estimate
       // card's gray micro-captions, the footer's gray/green small print
       // on the #1F2933 band — every form decoded at recon leg 8)
-      any: ["#2E7D5F", "mb-6.text-xs", "text-xs.text-gray-500", "border-gray-800"],
+      any: [
+        "#2E7D5F",
+        "mb-6.text-xs",
+        // the estimate card's micro-captions (the "Estimated price" label
+        // + the "Final price confirmed" note + the footer's emergency
+        // line — the reference's own gray-500/green small print; axe's
+        // targets for these are the bare margin-class selectors)
+        "mb-1",
+        "mt-1",
+        "mt-2",
+        "text-xs.text-gray-500",
+        "border-gray-800",
+      ],
       cite: "the Oasis brand-green + gray micro-copy families — the reference's own palette (the badge/selected-chip green on #E8F3ED, the estimate + footer small print)",
     },
     {

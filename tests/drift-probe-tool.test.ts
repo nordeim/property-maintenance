@@ -58,11 +58,12 @@ describe("session-101 (S101-P1): the drift probe — the reference-stability too
     ).toBe("CHANGED");
   });
 
-  it("desktopNavVerdict: STANDING at 256px + 8 visible links (the reference desktop sidebar census)", async () => {
+  it("desktopNavVerdict: STANDING at 485px + 6 visible links (the Oasis reference's site-header census)", async () => {
     const { desktopNavVerdict } = await probe();
-    expect(desktopNavVerdict({ width: 256, visibleLinks: 8, menuButtons: 0 })).toBe("STANDING");
-    expect(desktopNavVerdict({ width: 240, visibleLinks: 8, menuButtons: 0 })).toBe("CHANGED");
-    expect(desktopNavVerdict({ width: 256, visibleLinks: 7, menuButtons: 0 })).toBe("CHANGED");
+    // session-199: the OASIS standing (the six-link site header nav)
+    expect(desktopNavVerdict({ width: 485, visibleLinks: 6, menuButtons: 0 })).toBe("STANDING");
+    expect(desktopNavVerdict({ width: 240, visibleLinks: 6, menuButtons: 0 })).toBe("CHANGED");
+    expect(desktopNavVerdict({ width: 485, visibleLinks: 7, menuButtons: 0 })).toBe("CHANGED");
   });
 
   it("mobileNavVerdict: DEFECT-STANDS at the triple-zero (the reference's own bug at TRUE 390 — nav w=0 · 0 visible links · 0 menu buttons)", async () => {
@@ -98,22 +99,24 @@ describe("session-101 (S101-P1): the drift probe — the reference-stability too
     // MOBILE-NAV-FIX parity event (index-n8TZHw0K.js: the Radix Sheet
     // drawer + the guest re-gating; the second bundle change, 5 stable
     // sessions after the s142 event).
-    expect(STANDING.bundle).toEqual({ md5: "46bc2d9c6bfa2c0ec13e2e5cef61d5b6", bytes: 1_699_576 });
-    expect(STANDING.desktopNav).toEqual({ width: 256, visibleLinks: 8 });
+    // Session-199 (the OASIS re-derivation): the probe's reference is
+    // the operator's Oasis deployment — the neo-crm constants retired.
+    expect(STANDING.bundle).toEqual({ md5: "ee166dd50138f1d9626f48811ab7b768", bytes: 1_314_236 });
+    expect(STANDING.desktopNav).toEqual({ width: 485, visibleLinks: 6 });
     expect(STANDING.mobileNav).toEqual({ width: 0, visibleLinks: 0, menuButtons: 1 });
   });
 
-  it("landingNavVerdict: STANDING at the marketing layer's 7 header links + 5 sections (the s142 landing census)", async () => {
+  it("landingNavVerdict: STANDING at the Oasis home's 6 header links + 5 sections (the session-199 census)", async () => {
     const { landingNavVerdict } = await probe();
-    expect(landingNavVerdict({ navLinks: 7, sections: 5 })).toBe("STANDING");
-    expect(landingNavVerdict({ navLinks: 6, sections: 5 })).toBe("CHANGED");
-    expect(landingNavVerdict({ navLinks: 7, sections: 4 })).toBe("CHANGED");
+    expect(landingNavVerdict({ navLinks: 6, sections: 5 })).toBe("STANDING");
+    expect(landingNavVerdict({ navLinks: 7, sections: 5 })).toBe("CHANGED");
+    expect(landingNavVerdict({ navLinks: 6, sections: 4 })).toBe("CHANGED");
   });
 
-  it("STANDING: the TRUE-390 census targets the CRM SHELL at /Dashboard (not the landing — the defect tracker stays on the app pages)", async () => {
+  it("STANDING: the TRUE-390 census targets the OASIS HOME at /home (the reference's /Dashboard is a 404 — session-199)", async () => {
     const { STANDING } = await probe();
-    expect(STANDING.mobileCensusPage).toBe("/Dashboard");
-    expect(STANDING.landing).toEqual({ navLinks: 7, sections: 5 });
+    expect(STANDING.mobileCensusPage).toBe("/home");
+    expect(STANDING.landing).toEqual({ navLinks: 6, sections: 5 });
   });
 
   it("the probe wires the seams: the header documents the tool · package.json gains probe:ref · the --json flag literal · NOT part of the offline gate", () => {

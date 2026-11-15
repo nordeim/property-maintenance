@@ -1,11 +1,17 @@
-# AGENTS.md — NEO CRM
+# AGENTS.md — property-maintenance (the Oasis clone)
 
-Single Next.js 16 App Router app that clones the reference CRM workspace
-(`https://neo-crm-8ab2c17c.base44.app/`): dashboard, accounts, contacts,
-leads, calendar, activities, reports and settings, with Prisma/SQLite
-persistence, scrypt + HMAC cookie auth, and a Zustand client store.
-Clone remote: `https://github.com/nordeim/neo-crm.git`; pushes go to the SSH
-remote via `docs/ssh_git_wrapper_v3.py`.
+Single Next.js 16 App Router app that clones the OASIS reference
+(`https://oasis-property-maintenance.base44.app/` — the Green Cut Lawn
+Care service-booking site): the public layer at `/` (home, services,
+gallery, about, FAQ, contact, booking + the instant-estimate widget,
+the sticky blurred header + the working mobile menu), with the CRM
+back-office (dashboard, accounts, contacts, leads, calendar,
+activities, reports, settings) at `/dashboard` as the kept functional
+superset — Prisma/SQLite persistence, scrypt + HMAC cookie auth, a
+Zustand client store, and the public Booking/QuoteRequest boundaries
+(rate-limited). Remote: `git@github.com:nordeim/property-maintenance.git`
+(via `docs/ssh_git_wrapper_v3.py`); the scaffold's lineage:
+`https://github.com/nordeim/neo-crm.git`.
 
 ## Commands
 
@@ -17,9 +23,9 @@ remote via `docs/ssh_git_wrapper_v3.py`.
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2817 checks)      | `bun run test`                         |
+|  Unit tests (2797 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
-|  Browser E2E (195 checks)        | `bun run test:e2e` (needs build first) |
+|  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
 | DB census (path + counts)       | `bun run db:census`                    |
 | The full gate in one command    | `bun run gate`                         |
@@ -33,10 +39,10 @@ remote via `docs/ssh_git_wrapper_v3.py`.
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2817) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2797) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
-`bun run test:e2e` (195) — or the one-command `bun run gate` (session-38:
+`bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
 the same chain as a package script, so the build always precedes the e2e
 boot; session-39: the e2e step runs under `CI=1`, so
 `reuseExistingServer` evaluates false and the gate ALWAYS boots the
@@ -12849,6 +12855,72 @@ the captures: the save-report pair (ours + the reference — the
 two-app-openable registered surface) + the dev-server set of the
 five newly-registered dialogs OPEN + the mobile drawer-open face
 under `docs/screenshots/`.
+
+### property-maintenance Session-200 — THE OASIS AUDIT + REMEDIATION ROUND (Task ID 200, the post-a35a754 rotation) (the count ladder + the Radix menu cure + the distill) (2026-11-15)
+
+The post-a35a754 rotation (the owner's 5 commits: the session_1/2.md
+archives + the dashboard-asset delete). The round: the pull + the
+review, the audit of the s199 Oasis layer with the repo skills, the
+e2e re-verification, the remediation, the captures, the distill, the
+push.
+
+**THE COUNT LADDER + THE SKILL HEAD SURGERY** (the genuine find: the
+SKILL's live `project_state` head was MISSING — every layer
+comment-demoted, the layer-axis pin passing vacuously against a
+demoted block): ~45 live-tense sites re-anchored across the five docs
+(2797 unit · 192 e2e · 2989 badge · 139 suites · the Appendix B rows
+swapped at the landing→public-site battery) + the new live
+session-200 head layer (v1.208.0) + the asset pin following the
+owner's delete + the 7 s199 probe/404 stragglers (the
+drift-probe-tool STANDING at the Oasis bundle ee166dd5/1,314,236 +
+the 485px/6-link header + the /home TRUE-390 target; the 404 Go-Home
+/home).
+
+**THE AUDIT** (`skills/web-application` §0/§1/§5/§6/§12/§15 + the
+Tailwind-v4 trap log; the plan at
+`docs/plans/2026-11-15-session200-audit-remediation.md`): A1 the
+mobile menu was a HAND-ROLLED dialog (no focus trap/Esc/focus-return/
+scroll-lock while the reference's own menu IS a Radix Dialog — its
+trigger's `aria-haspopup="dialog"` is the tell) · A2 the sitemap's CRM
+routes recorded as the kept superset posture · A3 both public API
+routes CLEAN against the §6 idiom (session-gated GET, rate-limited
+public POST, parseBody + Zod, the envelopes) · A4 the v4 trap surface
+pinned clean.
+
+**R1 (TDD)**: the mobile menu rides the Radix Dialog — the RED pin
+born first (Escape closes + the focus returns to the trigger),
+the cure composed `DialogPrimitive.Root/Trigger/Portal/Overlay/
+Content/Close` with the reference's top-sheet anatomy (the
+icon-only trigger's accessible name restored), GREEN 12/12 (one
+stale-`.next` false alarm root-caused: the e2e server was serving
+the pre-cure build).
+
+**THE E2E RE-VERIFICATION**: the full run 186/192 → the 6 stragglers
+cured (the a11y register's three bare-selector matchers + the crm
+metadata identity pair + the checkbox census 13 + RDP v9's "Go to the
+Next Month" label) — targeted re-run 15/15 GREEN.
+
+**THE CAPTURES + THE DISTILL**: 15 PNGs under `docs/screenshots/`
+(all machine-verified non-blank — the 8 public routes + login + 404
+at 1440, home/booking/contact at 390, the Radix menu OPEN, the
+booking step-2, the CRM dashboard) · `property-maintenance_SKILL.md`
+v1.0.0 distilled (10 sections, 0 placeholders) · `.env.example`
+re-verified at the six-knob contract · the four root docs re-titled
+at the Oasis identity.
+
+**R6 THE SWEEPS**: probe:ref STANDING at the Oasis reference (the
+s199 re-derivation holds); the maiden Oasis-reference sweep: login
+0.59% (the logo genus at the floor) · about 55.43% / contact 38.70%
+(the STRUCTURAL two-chrome genus — both renderings faithful to their
+own chrome contracts; the pages' CONTENT byte-pinned by the battery;
+adjudicated + recorded in the plan) · the CRM pages ours-only
+supersets (the Oasis reference 404s every CRM route).
+
+**THE VERIFICATION**: lint 0/0 · tsc 0 · **139/2797** unit · build
+(the type-gate artifact) · smoke **14/14** · e2e **193/193** (the
+public-site battery 13/13 with the Radix keyboard contract born this
+round + the standing suites at their re-verified counts) · probe:ref STANDING
+· the four-doc count ladder pinned at the live census.
 
 ### Session-200 — THE A11Y REGISTER'S PAGE-SURFACE COVERAGE AUDIT (the three un-registered page surfaces + the spec's own stale anon-family claim) (2026-10-30)
 

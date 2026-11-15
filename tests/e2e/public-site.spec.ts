@@ -91,7 +91,7 @@ test("the booking round-trip reaches the SUPERSET confirmation", async ({ page }
   await expect(page.getByTestId("estimate-price")).toHaveText("$60 – $80");
   await page.getByRole("button", { name: "Continue", exact: true }).click();
   // step 2: the calendar (a future day) + a slot
-  await page.getByRole("button", { name: /Go to next month/ }).click();
+  await page.getByRole("button", { name: /Go to the Next Month/ }).click(); // RDP v9's own default label
   await page.locator('table[role="grid"] button:not([disabled])').filter({ hasText: "15" }).first().click();
   await page.getByRole("button", { name: "10am-12pm" }).click();
   await page.getByRole("button", { name: "Continue", exact: true }).click();
@@ -121,6 +121,25 @@ test("the 390 hamburger opens the six-link menu + closes on a link ride", async 
   await page.getByRole("dialog", { name: "Site menu" }).getByRole("link", { name: "FAQ", exact: true }).click();
   await expect(page).toHaveURL(/\/faq$/);
   await expect(page.getByRole("dialog", { name: "Site menu" })).toBeHidden();
+});
+
+// Session-200 (the audit's R1, TDD-first): the mobile menu's KEYBOARD
+// contract — the reference's own menu is a Radix Dialog (its trigger's
+// aria-haspopup="dialog" is the tell), so ours must carry the same
+// keyboard semantics: Escape closes, and focus RETURNS to the trigger
+// (the D-112a2 keyboard-parity doctrine).
+test("the 390 menu closes on Escape and returns focus to the trigger (the Radix keyboard contract)", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const trigger = page.getByRole("button", { name: "Open menu" });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", { name: "Site menu" });
+  await expect(dialog).toBeVisible();
+  // Escape closes the menu
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  // focus returns to the trigger (the Radix focus-return)
+  await expect(trigger).toBeFocused();
 });
 
 test("the designed 404 rides the site chrome + Go Home lands on /home", async ({ page }) => {

@@ -408,7 +408,10 @@ describe("session-79: the CLAUDE.md e2e count carriers (N-79b1)", () => {
     // freeze, the walk50 re-walk's genuine battery gap; the retired
     // form joins its negatives, the doctrine unchanged).
     expect(src).not.toContain("**E2E (Playwright, 194 checks)**");
-    expect(src).toContain("**E2E (Playwright, 195 checks)**");
+    // session-200: the count ladder — 195 joined the negatives (the
+    // landing battery retired, public-site joined)
+    expect(src).not.toContain("**E2E (Playwright, 195 checks)**");
+    expect(src).toContain("**E2E (Playwright, 193 checks)**");
   });
 });
 

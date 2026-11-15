@@ -1531,7 +1531,7 @@ test("the head ships the reference's #000000 theme-color + PWA metas (S19-P2, S1
   ).toHaveAttribute("content", "black");
   await expect(
     page.locator('meta[name="apple-mobile-web-app-title"]'),
-  ).toHaveAttribute("content", "NEO CRM");
+  ).toHaveAttribute("content", "Oasis Property Maintenance");
 });
 
 test("the apple-touch-icon link resolves to a real asset (S19-P3)", async ({ page }) => {
@@ -1559,7 +1559,7 @@ test("inner pages ship PER-ROUTE canonical + OG/Twitter (S19-P4, S19-P5)", async
     .locator('meta[property="og:description"]')
     .getAttribute("content");
   expect(ogDesc?.startsWith("Accounts on Oasis Property Maintenance. ")).toBe(true);
-  expect(ogDesc).toContain("customer relationship management platform");
+  expect(ogDesc).toContain("hassle-free."); // the Oasis description's tail
   const twitterUrl = await page
     .locator('meta[name="twitter:url"]')
     .getAttribute("content");

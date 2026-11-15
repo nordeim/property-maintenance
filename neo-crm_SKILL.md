@@ -1,15 +1,20 @@
 ---
 name: neo-crm
 description: >
-  Complete engineering skill for the NEO CRM codebase — a production-grade,
-  self-hosted clone of the reference Base44 CRM workspace on Next.js 16 App
-  Router + React 19 + Prisma/SQLite + Tailwind CSS v4. Covers the design
-  system, component architecture, the SQLite path-normalization seam, the
-  mobile-navigation drawer fix, auth, testing strategy, anti-patterns and
+  Complete engineering skill for the property-maintenance codebase — the
+  OASIS clone (a service-booking marketing site: home/services/gallery/
+  about/faq/contact/booking + the instant-estimate widget) on the kept
+  NEO-CRM scaffold (Next.js 16 App Router + React 19 + Prisma/SQLite +
+  Tailwind CSS v4, with the CRM back-office at /dashboard as the
+  functional superset). Covers the design system, component
+  architecture, the SQLite path-normalization seam, the
+  mobile-navigation menu, auth, testing strategy, anti-patterns and
   the full debugging playbook. Use it to extend, debug, onboard, or
   replicate this architecture.
-version: 1.207.0
-last_updated: 2026-11-02
+version: 1.208.0
+last_updated: 2026-11-15
+project_state: 2797 unit checks + 193 e2e checks green; the session-200 layer (THE OASIS PARITY SHIP — the post-199 audit round [the rotation trigger THE OWNER'S a35a754: the session logs + the dashboard-asset delete; the baseline: lint 0/0 · tsc 0 · 2790/2797 unit with 7 doc-truth stragglers from the s199 probe/404 surgery · build GREEN · probe:ref STABLE at the Oasis bundle ee166dd5 (the s199 re-derivation: the content census 12 services · 6 gallery pairs · 21 FAQ items STANDING; the 485px/6-link site header; the TRUE-390 icon-only aria-haspopup=dialog hamburger; the landing 6/5)] — THE COUNT LADDER + THE LOCKSTEP [the docs re-anchored at the live truth: the unit 2817 -> 2797 · e2e 195 -> 192 (the landing battery retired -14, public-site +10, marketing-mobile rewritten 1 -> 2) · badge 3012 -> 2989 · suites 138 -> 139 · the SKILL head restored from its VACUOUS state (every layer was comment-demoted; the s198-form pin matched a demoted block — the F-166f single-key form now real again: THIS line) · the Appendix B rows re-anchored (the landing row -> the public-site row 10; marketing-mobile 1 -> 2; the PAD a11y row 453) · the probe pins re-anchored to the Oasis STANDING + the 404 Go-Home /home + the owner-deleted dashboard asset followed] + THE E2E RE-VERIFICATION [the 11 s199 fixes re-run green] + THE REMAINING s199 FOLLOW-UPS [the screenshots to docs/screenshots/ · the .env.example · the count ladder completion · the docs heads at the Oasis identity]); + beneath it 2797 unit checks + 192 e2e checks green; the session-199 layer (THE OASIS RE-POINTING + THE E2E BATTERY RE-ANCHOR — the reference discovery [oasis-property-maintenance.base44.app is a service-booking marketing site, Green Cut Lawn Care — the neo-crm reference's CRM routes all 404 there] + the doc-truth cure [all 23 red pins: 32 count sites, the audit ledger at the live 10-advisory census, mutation-proven] + the Oasis public layer [the site chrome + the 8 public routes + the 7 capital aliases + the login/404 re-skins + the SITE_TITLE seam + the sitemap 16 routes] + the booking superset [the TDD seam 12/12 + the Booking/QuoteRequest models + both rate-limited API routes] + the e2e battery [landing.spec retired -> public-site.spec 10 checks; marketing-mobile rewritten; the a11y register + the slider LABEL-ancestry name fix] — the full unit gate 139/2797 GREEN, lint 0/0, tsc 0, build GREEN);
+
 <!-- retired session-141 layer (the DUPLICATE project_state key this file carried
      since the s165 head bump — comment-demoted at session-166, the F-166f cure;
      the single-key house form restored):
@@ -387,7 +392,7 @@ project_state: 2559 unit checks + 161 e2e checks green; the session-169 layer (T
 
 ---
 
-# NEO CRM — Engineering Skill (SKILL.md v1.207.0)
+# NEO CRM — Engineering Skill (SKILL.md v1.208.0)
 
 > **How to use this document:** §1–§3 give you the mental model and a
 > working environment. §4–§8 describe what the code actually does (every
@@ -1150,9 +1155,9 @@ and `curl` against the envelope (`{"ok":true,"data":…}`) for API truth.
 ```bash
 bun run lint         # 0 errors, 0 warnings
 bun run typecheck    # clean (the REAL type gate — build ignores errors)
-bun run test         # 2817/2817
+bun run test         # 2797/2797
 bun run build        # standalone build succeeds
-bun run test:e2e     # 195/195 (build first; boots :3100 with db/e2e.db)
+bun run test:e2e     # 193/193 (build first; boots :3100 with db/e2e.db)
 ```
 
 Manual additions:
@@ -6951,8 +6956,8 @@ Full ADRs with context/decision/rationale/consequences/alternatives live in
 | login-reset (session-11) | `tests/login-reset.test.ts` | 14 | ~6 ms |
 | seeded-dashboard-kpis (session-110) | `tests/seeded-dashboard-kpis.test.ts` | 4 | ~12 ms |
 | leading-inert-genus (session-150) | `tests/leading-inert-genus.test.ts` | 4 | ~10 s (the src scan) |
-| **unit total** | 138 files | **2817** | **~21 s** (one worker per file) |
-| e2e landing (the marketing family, s142 + the s144 guest block) | `tests/e2e/landing.spec.ts` | 14 | — |
+| **unit total** | 139 files | **2797** | **~21 s** (one worker per file) |
+| e2e public-site (the OASIS battery, s199+s200 — the pages/estimate/booking/390-menu + the Radix keyboard contract/404/login) | `tests/e2e/public-site.spec.ts` | 11 | — |
 | e2e auth (logged out + reset flow) | `tests/e2e/auth.spec.ts` | 11 | — |
 | e2e setup (login) | `tests/e2e/auth.setup.ts` | 1 | — |
 | e2e golden path (incl. titles, reports tabs, chart geometry, 404) | `tests/e2e/crm.spec.ts` | 112 | — |
@@ -6961,13 +6966,13 @@ Full ADRs with context/decision/rationale/consequences/alternatives live in
 | e2e settings-mobile (the third-surface walk, s106) | `tests/e2e/settings-mobile.spec.ts` | 1 | — |
 | e2e calendar-mobile (the fourth-surface walk, s108) | `tests/e2e/calendar-mobile.spec.ts` | 1 | — |
 | e2e activities-mobile (the fifth-surface walk, s109) | `tests/e2e/activities-mobile.spec.ts` | 1 | — |
-| e2e marketing-mobile (the walk40 scroll model, s150) | `tests/e2e/marketing-mobile.spec.ts` | 1 | — |
+| e2e marketing-mobile (the OASIS phone contract, s199 — the 390 no-overflow walk + the censused copy) | `tests/e2e/marketing-mobile.spec.ts` | 2 | — |
 | e2e reset-password (the s163 auth-retrofit round-trip + the eviction pin) | `tests/e2e/reset-password.spec.ts` | 8 | — |
 | e2e a11y two-gate (the s171 §8.3 axe battery: 9 CRM pages × 2 widths + the anon family × 2 + the drawer-open + the s172 dialog-open family: the five create dialogs + the contact edit dialog + the s195 404 pair + the s199 register-coverage closure: the Edit Lead + Edit Account siblings + the Import/Insights/Save-Report standalone dialogs + the s200 page-surface closure: the /about + /contact marketing interiors + the /reset-password anon surface + the s201 width-scope closure: the eleven phone dialog-open twins — every Radix Dialog's open state registered at both widths + the s202 client-state closure: the login card's three in-card view states (reset/sent/verify) at both widths — every LoginView state the machine names rides the two-gate + the s203 marketing-state closure: the landing page's client-state arms — the FAQ non-default open state at both widths + the mobile disclosure menu open at phone, the md:hidden width-inverse) | `tests/e2e/a11y.spec.ts` | 33 | — |
-| **e2e total** | 11 spec files + the setup project | **195** | **~6 m** (incl. server boot + reseed + the axe scans) |
+| **e2e total** | 11 spec files + the setup project | **193** | **~6 m** (incl. server boot + reseed + the axe scans) |
 
 Full gate wall-clock (the s109 standing, re-anchored s169): lint ~10 s, typecheck ~8 s, unit
-~21 s (138 suites, one worker per file), build ~40 s, e2e ~6 m (195
+~21 s (139 suites, one worker per file), build ~40 s, e2e ~6 m (193
 checks, fresh server boot + in-place e2e.db reseed under CI=1) → roughly
 4.6 m end-to-end. Costs worth knowing: e2e reseeds
 `db/e2e.db` in place (global-setup) and boots the standalone build on

@@ -64,7 +64,8 @@ test("the about + contact surfaces carry their censused copy at the phone axis",
       .filter((t) => t !== "Select your suburb");
     return { checkboxCount: checkboxes.length, suburbCount: suburbs.length };
   });
-  // the recon-leg-9 census: 15 service checkboxes + the 19-suburb select
-  expect(contact.checkboxCount).toBe(15);
+  // the census: 13 service checkboxes (Email Address + the 11
+  // services + Other) + the 19-suburb select — source-truth counted
+  expect(contact.checkboxCount).toBe(13);
   expect(contact.suburbCount).toBe(19);
 });

@@ -1268,7 +1268,10 @@ describe("session-12: custom 404 page (S12-P2)", () => {
     expect(NOT_FOUND_LAYOUT.homeButton).toContain("text-slate-700");
     expect(NOT_FOUND_LAYOUT.homeButton).toContain("focus:ring-slate-500");
     expect(NOT_FOUND_LAYOUT.homeIcon).toBe("w-4 h-4 mr-2");
-    expect(NOT_FOUND_LAYOUT.homeHref).toBe("/");
+    // Session-199: the Oasis 404's Go Home targets the canonical /home
+    // (the reference's own 404 carries the site chrome — its home target
+    // is the public site's canonical path)
+    expect(NOT_FOUND_LAYOUT.homeHref).toBe("/home");
   });
 });
 
@@ -4705,7 +4708,10 @@ describe("session-192: the login anon-surface + landing marketing-arms walk (wal
     // construction)
     const header = read("src/components/site/site-header.tsx");
     expect(header).toContain("const [open, setOpen] = useState(false);");
-    expect(header).toContain("{open ? (");
+    // session-200 (R1): the menu rides the Radix Dialog now — the
+    // open state is DialogPrimitive.Root's (no {open ? ( hand-roll)
+    expect(header).toContain("<DialogPrimitive.Root open={open} onOpenChange={setOpen}>");
+    expect(header).toContain("<DialogPrimitive.Trigger asChild>");
     expect(header).toContain('aria-haspopup="dialog"');
     expect(header).toContain('aria-label="Open menu"');
     expect(header).toContain('onClick={() => setOpen(false)}');

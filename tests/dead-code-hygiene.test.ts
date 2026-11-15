@@ -696,7 +696,10 @@ describe("session-61: the dead-surface narrowing (S61-P1)", () => {
     expect(stripComments(read("src/components/ui/dropdown.tsx") ?? "")).toMatch(
       /@radix-ui\/react-popover/,
     );
-    expect(read("docs/neo-crm-dashboard.png")).not.toBeNull();
+    // Session-200: the docs/ dashboard capture retired by the operator's
+    // 2026-11-15 delete (a35a754) — the docs screenshots live under
+    // docs/screenshots/ now; the pin follows the tree.
+    expect(read("docs/neo-crm-dashboard.png")).toBeNull();
   });
 });
 

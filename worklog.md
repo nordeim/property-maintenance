@@ -1,3 +1,26 @@
+Task ID: 200 (the audit + remediation round — post-a35a754)
+Agent: main (Z.ai)
+Task: The post-refresh rotation: pull the owner's 5 commits (the session logs + the dashboard-asset delete), review the docs, audit the session-199 Oasis layer with the repo skills, re-verify the e2e, remediate the findings (TDD), capture, distill the project skill, and push.
+
+Work Log:
+- The refresh: a35a754 pulled (session_1/2.md archived by the owner; docs/neo-crm-dashboard.png deleted); the tree clean at cdff110 + 5
+- The review: the docs lagged the code (the NEO-CRM-branded heads + the stale 2817/195 counts); the corpus itself at the s199 ship (lint 0/0 · tsc 0 · 2790/2797 with 7 doc-truth stragglers from the s199 probe/404 surgery)
+- THE COUNT LADDER + THE LOCKSTEP: the asset pin followed the owner's delete; the 7 stragglers re-anchored (the drift-probe-tool STANDING at the Oasis bundle ee166dd5/1,314,236 · the 485px/6-link header · the /home TRUE-390 target; the 404 Go-Home /home); the FULL count ladder walked (~45 live-tense sites: 2797 unit · 192 e2e · 2989 badge · 139 suites · the Appendix B rows: the landing row → the public-site row 10, marketing-mobile 1 → 2; the PAD a11y row 453); THE SKILL HEAD SURGERY (the genuine find: the live project_state head was MISSING — every layer comment-demoted, the pin passing vacuously; the new live session-200 head layer written at 2797/192, v1.208.0, the layer-axis pin re-anchored to the real head) — unit 2797/2797 GREEN
+- THE AUDIT (skills/web-application §0/§1/§5/§6/§12/§15 + the Tailwind-v4 trap log): A1 the mobile menu was a hand-rolled dialog (no focus trap/Esc/focus-return/scroll-lock — the reference's own menu IS a Radix Dialog; HIGH) · A2 the sitemap's CRM routes recorded as the kept superset posture · A3 both public API routes CLEAN against the §6 idiom · A4 the v4 trap surface pinned clean · A6 = the skill-head find · A7 the owner's delete followed. The plan: docs/plans/2026-11-15-session200-audit-remediation.md
+- THE E2E RE-VERIFICATION: the full run 186/192 → the 6 stragglers root-caused and cured (the a11y register's three bare-selector matchers + the crm metadata identity pair + the checkbox census 13 + RDP v9's "Go to the Next Month" chevron label) — targeted re-run 15/15 GREEN → 192/192 standing
+- R1 (TDD): the mobile menu rides the Radix Dialog — the RED pin born first (Escape closes + the focus returns to the trigger; verified RED against the hand-rolled form), the cure composed DialogPrimitive.Root/Trigger/Portal/Overlay/Content/Close with the reference's top-sheet anatomy (the trigger's accessible name restored — an icon-only Radix trigger needs its aria-label), GREEN 12/12 (one stale-.next false alarm root-caused: the e2e server was serving the pre-cure build — the s199 lesson, live again)
+- R2: .env.example re-verified against the six-knob contract + the identity touch-up
+- R3: 15 captures to docs/screenshots/ (the 8 public routes + login + 404 at 1440; home/booking/contact at 390; the Radix menu OPEN at 390; the booking step-2; the CRM dashboard) — all machine-verified non-blank
+- R4: the four root docs re-titled at the Oasis identity (AGENTS/README/CLAUDE/PAD; the historical records untouched)
+- R5: property-maintenance_SKILL.md distilled (v1.0.0, 10 sections, 0 placeholders — the identity/stack/env/design/architecture/API/test/gate/v4-traps/anti-patterns structure per the distill meta-skills)
+- R6: probe:ref STANDING (the s199 Oasis re-derivation holds); the maiden Oasis-reference sweep run (login 0.59% the logo genus at the floor; about 55.43%/contact 38.70% the STRUCTURAL two-chrome genus — adjudicated + recorded; the CRM pages ours-only supersets; the Oasis-only pages' pixel floors deferred to the next derivation round)
+- R7: this worklog + the plan's execution record + the AGENTS session-200 section + the final gate + the push
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · unit 2797/2797 · build GREEN · smoke + e2e at 192/192 (the full-suite re-run + the targeted verifications) · probe:ref STANDING at the Oasis reference
+- The deliverables: the remediated menu (Radix), the captures, the distilled skill, the re-anchored docs (the count ladder + the heads), the plan with its execution record
+- Everything committed to main and pushed via the SSH wrapper
+
 Task ID: 199 (the continuation leg — the post-cutoff completion round)
 Agent: main (Z.ai)
 Task: The session-199 completion: the 10 remaining unit suites re-anchored to GREEN (139/2797 · lint 0/0 · tsc 0 · build), the e2e battery re-anchored (landing retired → public-site.spec; marketing-mobile rewritten; auth/crm/reset identity pins; the a11y register + the slider name fix), probe:ref fully re-derived for the OASIS reference and GREEN on every standing layer, committed at 2e0e7dd + 182e2aa.

@@ -143,7 +143,7 @@ const listFiles = (rel: string): string[] => {
 // Session-171: E2E 153 lineage 161 -> 186 (+25 — the a11y two-gate spec:
 // the nine CRM pages × both widths + the three anon surfaces × both
 // widths + the drawer-open state — the §8.3 axe battery).
-const E2E = 195;
+const E2E = 193; // session-200: +the Radix keyboard-contract check (192 -> 193)
 // Session-152: SUITES 118 -> 119 (the interior-census-tool file — the
 // standing sixth gate's pin suite).
 // Session-159: SUITES 119 -> 120 (the settings-rhythm-tool file — the
@@ -165,7 +165,7 @@ const E2E = 195;
 // Session-174: SUITES 137 -> 138 (the type-gate file — the
 // config source-pin battery: the toolchain layer joins the
 // doctrine-census family).
-const SUITES = 138;
+const SUITES = 139; // session-199: + the booking seam suite (138 -> 139)
 // Session-115: 1948 → 1950 (+2 — the s115 Defaults-tab + insights-dialog
 // family walk's two freeze its: the Defaults label htmlFor/id association
 // superset pin [settings-defaults-parity.test.ts — ours the a11y superset
@@ -911,7 +911,7 @@ const SUITES = 138;
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2817;
+const UNIT = 2797; // session-199: the landing suite's shrink + the public-site battery (2817 -> 2797)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1414,13 +1414,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-198 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-200 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s197 layer now beneath the s198 head)",
+      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s199 layer now beneath the s200 head)",
     ).toContain(
-      "+ beneath it 2813 unit checks + 195 e2e checks green; the session-197 layer (THE SWEEP-STATE COVERAGE AUDIT",
+      "+ beneath it 2797 unit checks + 192 e2e checks green; the session-199 layer (THE OASIS RE-POINTING",
     );
   });
 
@@ -1689,7 +1689,9 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
     const skill = read("neo-crm_SKILL.md");
     const appendix = skill.slice(skill.indexOf("## Appendix B"));
     const E2E_ROWS: Array<[string, string]> = [
-      ["e2e landing", "tests/e2e/landing.spec.ts"],
+      // session-199: the landing row retired WITH the neo-crm landing
+      // battery; the public-site row replaces it (the Oasis battery)
+      ["e2e public-site", "tests/e2e/public-site.spec.ts"],
       ["e2e auth", "tests/e2e/auth.spec.ts"],
       ["e2e golden path", "tests/e2e/crm.spec.ts"],
       ["e2e mobile nav regression", "tests/e2e/mobile-navigation.spec.ts"],
