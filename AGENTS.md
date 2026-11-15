@@ -12938,6 +12938,50 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-204 — THE CANVAS RE-DERIVATION + THE MOVING TARGET (2026-11-15)
+
+The s203 residual ledger's "canvas animation drift" item, decomposed:
+
+**F-204a — IT WAS NEVER ANIMATION DRIFT.** The band + x-profile
+decomposition (PIL against paired captures) localized the faq/booking
+residuals to the page MARGINS with the middle byte-CLEAN — the shared
+background canvas painted a scene the s201 decode never saw (the
+landing's full-bleed content covered those zones, blinding the decode
+AND the landing floor to them). The faq/booking margins exposed: the
+full-width ROCK STRATUM (y560-650), the near-opaque GLOW WASH
+sandwiching it, the left HEDGE + the LEFT TREE with its brown base,
+the soil corners, the horizon foliage mass, the right-edge descent.
+Eight TDD iterations: **faq 13.42 -> 5.57 · booking 23.67 -> 12.59**.
+
+**F-204b — THE REFERENCE REDESIGNED ITS CANVAS MID-FLIGHT.** The
+landing — 0.00 at breakfast — measured 11.46 by afternoon: the ref's
+horizon rose ~70px, the foliage mass appeared, and two MOVING SPRITES
+joined (a red element + a diagonal warm streak, flipping between
+captures — the documented animation floor now). The ref's scene
+verified byte-identical across ITS pages (one shared painter). Cured
+to the new floor: **landing 11.46 -> 9.25** (the pre-event 0.00 floor
+is gone with the reference's own update — the target moved).
+
+**F-204c — THE STALE-BASELINE GENERALIZATION.** 26 of 28 public
+entries still carried stale-loose ceilings (desktop landing 24.5
+against a 9.26 measurement); three history pins asserted the
+superseded values. All walked + carried forward; the four-band matrix
+re-measured; ALL FOUR drift gates GREEN.
+
+**F-204d — THE TERRACOTTA MASS (decoded, deferred).** A stable
+red-brown structure (214,81,55) on the left-center horizon, visible
+only through the booking's glass card — the backdrop-blur composite
+defeated two quick blob placements (both pages got WORSE); reverted
+cleanly. The next round's first work item: its geometry needs a
+dedicated pass with the glass composite in the loop.
+
+**THE LESSON (the s201 decode's blind spot, generalized):** a floor
+derived from ONE page's exposure is only proven for THAT exposure —
+the landing's 0.00 floor never validated the canvas's hidden zones.
+When a new page's exposure opens (faq/booking's margins), re-derive
+against ITS exposure, and expect the older page's floor to move when
+the shared surface changes underneath it.
+
 ### Session-203 — THE RESIDUAL POLISH + THE STALE-SERVER INCIDENT (2026-11-15)
 
 The post-202 continuation. The s202 residual ledger, closed:

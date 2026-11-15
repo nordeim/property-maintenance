@@ -280,7 +280,7 @@ export const STANDING_BASELINES = {
     // + the Reports 7-bar "Revenue by month" card + the middle-row
     // lg:order-2 flip + the sm: leading pins — walk38d/e/f/h); the
     // landing measures 0.00, the genus COLLAPSED. 0.1 trips at 0.6.
-    landing: 24.5,
+    landing: 12.5,
     // Session-200-continuation: the OASIS PUBLIC QUARTET — the maiden
     // 1440x900 run vs the Oasis reference measured services 42.57 ·
     // gallery 36.20 · faq 66.41 · booking 77.74. The TWO-CHROME genus
@@ -289,15 +289,15 @@ export const STANDING_BASELINES = {
     // defect; the pages' CONTENT is byte-pinned by the e2e battery +
     // the unit content pins. The entries sit at the measured floors
     // + ~2.5 headroom (the s146 volatile-genus precedent).
-    services: 12.5,
-    gallery: 13.5,
-    faq: 16.5,
-    booking: 27,
+    services: 4.5,
+    gallery: 8,
+    faq: 9,
+    booking: 16,
     // session-144 (D-144a2): the marketing pair — the maiden runs
     // measured 0.00% (the app chrome + the censused content
     // pixel-identical logged-in); the 0.1 entry rides the family floor
-    about: 12.5,
-    contact: 19.5,
+    about: 4.5,
+    contact: 14,
     // session-148 (the F-147c3 mirror): re-anchored 2.5 → 0.1 — the
     // accounts interior is MIRRORED (the KPI chips + the toolbar trio
     // + the rail's Save All/Filter retired, the magnifier KEPT —
@@ -349,19 +349,19 @@ export const STANDING_BASELINES = {
     // 5.32 (the s146 re-anchor) → 0.01 measured. Re-anchored 6.0 → 0.1
     // (trips at 0.6 — the tightest tripwire in the table; a real
     // blue-shift regression at the phone landing now trips awake).
-    landing: 9,
+    landing: 7.5,
     // Session-200-continuation: the quartet's maiden 390x844 run —
     // services 40.86 · gallery 30.35 · faq 52.54 · booking 59.71 (the
     // same two-chrome genus at the phone share).
-    services: 16,
-    gallery: 13.5,
-    faq: 16.5,
-    booking: 23.5,
+    services: 6,
+    gallery: 10.5,
+    faq: 8,
+    booking: 19,
     // session-147: the floor family collapsed with the reference's own
     // hamburger — 0.00-0.51 measured; the 0.1 entries ride the family
     // floor
-    about: 8,
-    contact: 22,
+    about: 6,
+    contact: 18,
     // session-148 (the F-147c3 mirror): 0.05 measured — the family
     // floor (the chips/toolbar family collapsed).
     accounts: 16,
@@ -414,18 +414,18 @@ export const STANDING_BASELINES = {
     // session-148 (the F-147c3 mirror): the mock morph is MIRRORED —
     // 0.01 measured; the genus COLLAPSED. The family floor (0.1 trips
     // at 0.6).
-    landing: 10,
+    landing: 7.5,
     // Session-200-continuation: the quartet's maiden 768x1024 run —
     // services 37.25 · gallery 31.60 · faq 54.78 · booking 58.43 (the
     // two-chrome genus at the tablet share).
-    services: 8.5,
-    gallery: 12,
-    faq: 9,
-    booking: 15,
+    services: 6,
+    gallery: 9.5,
+    faq: 7,
+    booking: 10,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // tablet run)
-    about: 9,
-    contact: 28,
+    about: 7,
+    contact: 26,
     // session-148: 0.14 measured — re-anchored 0.5 → 0.2 (the chips
     // share retired; the md-boundary overflow residue)
     accounts: 42,
@@ -469,18 +469,18 @@ export const STANDING_BASELINES = {
     dashboard: 35.5,
     // session-148 (the F-147c3 mirror): the mock morph is MIRRORED —
     // 0.01 measured; the genus COLLAPSED. The family floor.
-    landing: 17.5,
+    landing: 10,
     // Session-200-continuation: the quartet's maiden 1024x768 run —
     // services 43.54 · gallery 32.65 · faq 56.66 · booking 72.25 (the
     // two-chrome genus at the landscape share).
-    services: 17,
-    gallery: 12.5,
-    faq: 15.5,
-    booking: 22.5,
+    services: 4.5,
+    gallery: 8,
+    faq: 8,
+    booking: 14.5,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // landscape run)
-    about: 16.5,
-    contact: 18.5,
+    about: 4.5,
+    contact: 13.5,
     // session-148 (the F-147c3 mirror): 1.67 measured — the chips
     // share RETIRED (mirrored); the residual is the PURE s95 overflow
     // genus (the reference's bare flex-1 poke-out vs our min-w-0

@@ -87,6 +87,55 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).toContain("46, 152, 67"); // the right horizon bush
     expect(src).toContain("87, 93, 99"); // the sun-band rocks
     expect(src).toContain("16, 96, 28"); // the corner's deep green
+    // ------------------------------------------------------------------
+    // Session-204 (the F-201e refinement — the faq/booking exposure):
+    // the narrow-content pages expose canvas zones the landing's
+    // full-bleed content always covered, so the s201 decode never saw
+    // them. Decoded from the reference's faq margins (grid-sampled,
+    // both edges): a FULL-WIDTH ROCK STRATUM (y~560-650, the 87,93,99
+    // gray — solid across both margins), a WARM GLOW zone sandwiching
+    // it (y~505-675, the 202,193,172/193,185,166 soft tones), a BUSH
+    // HEDGE along the left edge (x0-115, y~690-775), a mid-left bush
+    // (x~135-265, y~510-560), the right-corner dark-green mass +
+    // soil browns at both bottom corners. Our first-pass mirror
+    // painted only small rock blobs + a misplaced left tint there.
+    // The one slowly-moving glow element (the sun's gap position
+    // differs between captures) stays the documented animation-drift
+    // floor — the static scene is what mirrors.
+    // ------------------------------------------------------------------
+    expect(src).toContain("STRATUM"); // the full-width rock stratum
+    expect(src).toContain("0.615"); // its top edge (y~553 of 900)
+    expect(src).toContain("0.725"); // its bottom edge (y~652)
+    expect(src).toContain("193, 185, 166"); // the glow's solid wash (near-opaque — the lawn never shows through)
+    expect(src).toContain("89, 67, 37"); // the bottom-left soil brown
+    expect(src).not.toContain("TINT_LEFT"); // the misplaced left tint, retired
+    expect(src).not.toContain("0.008, 0.665"); // the small rock blobs, retired
+    // ------------------------------------------------------------------
+    // Session-204 (the LANDING half — the reference's canvas updated
+    // TODAY: the horizon sits higher): the lawn now begins ~y250 (the
+    // sky-to-lawn transition ~25.5-28.5% — was 28-36%), a BIG dark
+    // foliage mass rides the horizon at x~1050-1250 ((95,143,51) +
+    // the deeper (75,124,38)) + the right edge descends in dark greens
+    // (x~1380+, y~280-340). The red sprite + the diagonal warm streak
+    // are MOVING elements (they flip between captures) — the
+    // animation-drift floor, not mirrored. The faq/booking hero bands
+    // cover the whole transition zone — insensitive to this cure.
+    // ------------------------------------------------------------------
+    expect(src).toContain("0.255"); // the sky's last flat stop
+    expect(src).toContain("0.285"); // the lawn's first solid stop
+    expect(src).toContain("95, 143, 51"); // the horizon foliage mass
+    expect(src).toContain("75, 124, 38"); // its deeper lobe
+    expect(src).toContain("30, 116, 48"); // the right-edge descending foliage
+    // ------------------------------------------------------------------
+    // Session-204 (the left tree — decoded from the ref's booking AND
+    // landing margins, byte-identical on both): a TALL bush darkening
+    // downward into a BROWN base — green (48,147,67)->(24,107,36) over
+    // y~275-340, then the brown (91,67,37)/(77,59,31) y~340-365, then
+    // the lawn. Our first-pass core painted the mid-zone too dark and
+    // carried no base.
+    // ------------------------------------------------------------------
+    expect(src).toContain("blob(ctx, w, h, 0.042, 0.365, 0.028, EDGE_GREEN)"); // the lower dark lobe
+    expect(src).toContain("blob(ctx, w, h, 0.045, 0.385, 0.03, SOIL_BROWN)"); // the brown base
     // the painter is a fixed, aria-hidden, pointer-events-none canvas
     // below the content (the reference's own construction)
     expect(src).toContain("fixed inset-0");

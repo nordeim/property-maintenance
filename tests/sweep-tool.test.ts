@@ -609,7 +609,10 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     // the Oasis reference — the landing rides the canvas-drift
     // floor (9 phone / 24.5 desktop) + the CRM pages ride the
     // ours-superset-vs-soft-404 genus (~25 at desktop)
-    expect(phone.landing).toBe(9);
+    // s204 (the reference's mid-flight canvas redesign): the public
+    // family re-derived again — the phone landing 9 -> 7.5 (measured
+    // 3.85 + headroom)
+    expect(phone.landing).toBe(7.5);
     expect(desktop.dashboard).toBe(25.5);
     expect(desktop.contacts).toBe(24.5);
   });
@@ -623,9 +626,12 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     // the s148 re-anchors (the F-147c3 MIRROR — the landing mock morph
     // mirrored: the genus collapsed at every class)
     // s202: the whole family re-derived against the Oasis reference
-    expect(tablet.landing).toBe(10);
-    expect(landscape.landing).toBe(17.5);
-    expect(desktop.landing).toBe(24.5);
+    // s204: the canvas redesign re-derivation — the landing family
+    // at the new canvas floors (tablet 7.5 · landscape 10 · desktop
+    // 12.5; the measured 4.02/6.60/9.26 + headroom)
+    expect(tablet.landing).toBe(7.5);
+    expect(landscape.landing).toBe(10);
+    expect(desktop.landing).toBe(12.5);
     // the CRM-genus settings family at its per-class shares
     expect(desktop.settings).toBe(25.5);
     expect(phone.settings).toBe(13.5);
@@ -635,8 +641,9 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     expect(desktop.login).toBe(1);
     expect(phone.login).toBe(3);
     // the phone public pages at their canvas floors
-    expect(phone.about).toBe(8);
-    expect(phone.contact).toBe(22);
+    // s204: about 8 -> 6 · contact 22 -> 18 (the re-derived floors)
+    expect(phone.about).toBe(6);
+    expect(phone.contact).toBe(18);
   });
 
   it("the sweep source documents the re-derivation (the L-146c2 mechanism-named comments)", () => {
@@ -682,7 +689,8 @@ describe("session-147: the parity-event baseline re-derivation (probe:ref #119 �
     // the phone landing: 6.0 → 0.1 (measured 0.01 — the CTA visibility
     // collapsed the genus; the tightest tripwire in the table at 0.6)
     // s202: the phone family re-derived against the Oasis reference
-    expect(phone.landing).toBe(9);
+    // s204: the canvas redesign re-derivation — 9 -> 7.5
+    expect(phone.landing).toBe(7.5);
     expect(phone.dashboard).toBe(17.5);
     expect(phone.leads).toBe(16.5);
     expect(phone.calendar).toBe(13.5);
