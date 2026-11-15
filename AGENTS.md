@@ -23,7 +23,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2800 checks)      | `bun run test`                         |
+|  Unit tests (2801 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
 |  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
@@ -39,7 +39,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2800) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2801) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
 `bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
@@ -12937,6 +12937,52 @@ width table), the PAD smoke-row re-anchor (163 lines — the s200
 identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
+
+### Session-205 — THE STANDING VERIFICATION ROUND + THE SIDE-SHEET RE-DERIVATION (2026-11-15)
+
+The post-204 rotation on the recycled sandbox — the fresh-clone
+environment rebuild, the full gate re-proven (lint 0/0 · tsc 0 ·
+139/2800 · build · smoke 14/14 · e2e 193/193 at the CI=1 fresh boot),
+and the operator's named mobile-nav focus compared LIVE against the
+reference logged in at 390.
+
+**F-205g — THE REFERENCE'S MOBILE MENU REDESIGNED (the round's
+material).** Ours verified working first (the 8 routes' h1s · the
+hamburger opens the Radix dialog · 8 links · Esc + focus-return) —
+then the reference's own menu opened + decoded live (the probe-205
+family: ref-menu → sheet-geometry → sheet-structure → footer-html):
+it is NOW A **RIGHT SIDE SHEET** — the shadcn Sheet anatomy (`fixed
+inset-y-0 right-0 h-full border-l w-80 bg-white shadow-lg
+slide-in-from-right` over `bg-black/80`, the absolute `right-4 top-4`
+X, the h-14 logo row, the `gap-2` nav, the `border-t pt-6 space-y-3`
+footer with the `bg-[#E8F3ED]` phone pill + the anchor-wrapped Book
+Now). The s200 decode's top-sheet anatomy is SUPERSEDED — the same
+moving-target genus as the reference's s204 canvas redesign. THE TDD
+CURE: the side-sheet anatomy pin born RED (exactly at
+`inset-y-0 right-0`) → `site-header.tsx`'s `DialogPrimitive.Content`
+re-derived at the reference's own class strings → GREEN; live-verified
+**byte-identical geometry** `{x:70, y:0, w:320, h:844}` both sides,
+the same 8 links, Esc + focus-return holding. The ref's login path
+itself decoded on the way (`fill()`'s actionability check races its
+hydration re-renders — click + `keyboard.type` is the reliable form;
+the probe-205-fillpath record).
+
+**The count ladder:** unit 2800 → **2801** (+1: the F-205g pin) ·
+SUITES 139 HELD · E2E 193 HELD · badge 2993 → **2994** — every
+live-tense site walked (count-ladder-205.py); the space-y census
+26/133 → **27/134** (the sheet footer's `space-y-3`, the reference's
+own class string); the SKILL head surgery (v1.209.0 → **v1.210.0**,
+the s205 layer live, the s201 layer demoted at its ship 2800/193).
+
+**The deferred ledger carried (the honest record):** the terracotta
+mass (F-204d) stays deferred — the under-glass geometry needs a fresh
+reference capture first; the moving sprites + the fine shapes stay the
+documented floors.
+
+**The captures 32-43** (docs/screenshots/): the 8 public routes at
+1440 + the booking step-2 + the menu OPEN at 390 (re-captured
+post-cure) + the home at 390 + the login + the CRM dashboard — all
+machine-verified non-blank.
 
 ### Session-204 — THE CANVAS RE-DERIVATION + THE MOVING TARGET (2026-11-15)
 

@@ -184,6 +184,52 @@ describe("session-199: the site chrome construction (the recon-decoded anatomy)"
     expect(src).toContain("© 2026 Green Cut Lawn Care. All rights reserved.");
     expect(src).toContain("Emergency/storm clean-up available");
   });
+
+  it("session-205 (F-205g): the mobile menu is the reference's RIGHT SIDE SHEET — the live-decoded anatomy (w-80, inset-y-0 right-0, border-l, slide-in-from-right, the absolute X, the h-14 logo row, the tinted phone pill, the anchor-wrapped Book Now)", () => {
+    // ------------------------------------------------------------------
+    // Session-205 (F-205g): the reference's mobile menu RE-DECODED LIVE
+    // (the s205 ref-menu + sheet-geometry + footer-html probes, all on
+    // the logged-in reference at 390): the menu opens as a RIGHT SIDE
+    // SHEET — the shadcn Sheet anatomy: `fixed z-50 gap-4 p-6 shadow-lg
+    // transition ease-in-out ... inset-y-0 right-0 h-full border-l
+    // data-[state=closed]:slide-out-to-right data-[state=open]:
+    // slide-in-from-right sm:max-w-sm w-80 bg-white` over a
+    // `bg-black/80` overlay — NOT the top sheet the s200 decode
+    // recorded (the reference redesigned its menu since, the same
+    // moving-target genus as its s204 canvas redesign). The inner
+    // construction (live outerHTML): the absolute `right-4 top-4` X
+    // close (sr-only "Close"), then `flex flex-col h-full`: the
+    // LOGO ROW (`flex items-center gap-2 pb-6 border-b`, the h-14
+    // img, NO title text), the NAV (`flex flex-col gap-2 py-6 flex-1`,
+    // six `px-4 py-3 rounded-lg text-base font-medium transition-all
+    // text-[#1F2933] hover:bg-[#E8F3ED]/50` links), the FOOTER
+    // (`border-t pt-6 space-y-3`: the phone PILL `flex items-center
+    // gap-3 px-4 py-3 bg-[#E8F3ED] rounded-lg text-[#2E7D5F]
+    // font-medium` with the lucide Phone w-5 h-5 + the span, then the
+    // ANCHOR-WRAPPED Book Now button `w-full bg-[#2E7D5F]
+    // hover:bg-[#236B4F] text-white` inside href="/booking").
+    // ------------------------------------------------------------------
+    const src = read("src/components/site/site-header.tsx");
+    // the sheet geometry (the reference's own classes, verbatim)
+    expect(src).toContain("inset-y-0 right-0");
+    expect(src).toContain("border-l");
+    expect(src).toContain("w-80");
+    expect(src).toContain("slide-in-from-right");
+    expect(src).toContain("data-[state=closed]:slide-out-to-right");
+    expect(src).toContain("bg-black/80");
+    // the close: the absolute top-right X (the reference's own spot)
+    expect(src).toContain("absolute right-4 top-4");
+    // the logo row: the h-14 image, no title text band
+    expect(src).toContain("h-14");
+    expect(src).not.toContain('className="text-sm font-semibold text-[#1F2933]"');
+    // the nav: the reference's gap-2 stack + flex-1
+    expect(src).toContain("flex flex-col gap-2 py-6 flex-1");
+    // the footer block: the reference's own construction
+    expect(src).toContain("border-t pt-6 space-y-3");
+    expect(src).toContain("bg-[#E8F3ED] rounded-lg text-[#2E7D5F] font-medium");
+    // the retired top-sheet classes never return
+    expect(src).not.toContain("inset-x-0 top-0");
+  });
 });
 
 describe("session-199: the Oasis surfaces' content wiring", () => {

@@ -911,7 +911,7 @@ const SUITES = 139; // session-199: + the booking seam suite (138 -> 139)
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2800; // session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
+const UNIT = 2801; // session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1414,13 +1414,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-201 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-205 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s200 layer now beneath the s201 head)",
+      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s201 layer now beneath the s205 head)",
     ).toContain(
-      "+ beneath it 2797 unit checks + 193 e2e checks green; the session-200 layer (THE OASIS PARITY SHIP",
+      "+ beneath it 2800 unit checks + 193 e2e checks green; the session-201 layer (THE CANVAS PARITY SHIP",
     );
   });
 

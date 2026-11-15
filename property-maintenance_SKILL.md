@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2800-check Vitest / 193-check Playwright corpus and a single-command
+  2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.1.0
+version: 1.2.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.1.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.2.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (139 suites / 2800 checks) | |
+| Unit | Vitest 5 (139 suites / 2801 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -128,8 +128,17 @@ src/app/
   Portal/Overlay/Content/Close`, the trigger's accessible name "Open
   menu", the content named "Site menu"; the focus trap, Esc-close,
   focus-return, and scroll-lock come from the primitive — session-200's
-  R1), `site-footer.tsx` (the dark band, the region links, the
-  emergency line).
+  R1; **session-205's F-205g re-derivation: the Content is the
+  reference's own RIGHT SIDE SHEET anatomy** — `fixed inset-y-0
+  right-0 h-full border-l w-80 bg-white shadow-lg
+  data-[state=open]:slide-in-from-right
+  data-[state=closed]:slide-out-to-right` over a `bg-black/80`
+  overlay, the absolute `right-4 top-4` X, the h-14 logo row, the
+  `gap-2` nav, the `border-t pt-6 space-y-3` footer with the
+  `bg-[#E8F3ED]` phone pill + the anchor-wrapped Book Now — the
+  reference redesigned its menu from the s200 top-sheet; live-verified
+  byte-identical geometry at 390), `site-footer.tsx` (the dark band,
+  the region links, the emergency line).
 - **The pages** compose `src/lib/site-content.ts` (the reference's own
   copy, extracted programmatically) — never inline the copy.
 - **The estimate card** (`estimate-card.tsx`) is shared between the
@@ -165,7 +174,7 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2800 unit / 193 e2e)
+## 7. The Test Corpus (2801 unit / 193 e2e)
 
 - **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins

@@ -424,10 +424,12 @@ describe("session-169 (WP-1f): the README tree + Quick Start + gate pins (F-169h
     for (const f of files) {
       total += (noComments(readFileSync(f, "utf8")).match(/space-y-/g) ?? []).length;
     }
-    expect(files.length).toBe(26); // the dialog-geometry census (session-199: + the Oasis site layer)
+    expect(files.length).toBe(27); // the dialog-geometry census (session-199: + the Oasis site layer; session-205: + the sheet footer)
     // session-199 re-anchor: 122 -> 133 (the Oasis site layer's eleven
     // occurrences across its three joining files)
-    expect(total).toBe(133);
+    // session-205 re-anchor: 133 -> 134 (the F-205g sheet footer's
+    // `space-y-3` — the reference's own class string)
+    expect(total).toBe(134);
     expect(readme).toContain(`the space-y census at ${files.length} files / ${total} occurrences`);
     expect(readme).not.toContain("the space-y census re-anchored 110/18");
   });

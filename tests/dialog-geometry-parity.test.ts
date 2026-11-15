@@ -199,7 +199,7 @@ describe("session-92 (F-92a1): the space-y usage census (the documented method)"
   // occurrence count is the census below). This it IS the method: the
   // s91 suite's own noComments() strip + a global occurrence count
   // over src/**/*.{ts,tsx}. Re-derive here when the codebase changes.
-  it("the census: 133 comment-stripped space-y occurrences across the 26 src files that carry one", () => {
+  it("the census: 134 comment-stripped space-y occurrences across the 27 src files that carry one", () => {
     const files = execFileSync(
       "grep",
       ["-rl", "space-y-", `${root}/src`, "--include=*.ts", "--include=*.tsx"],
@@ -220,7 +220,11 @@ describe("session-92 (F-92a1): the space-y usage census (the documented method)"
     // footer's column stacks, the booking flow's slot list + steps grid,
     // the contact rail's detail rows: the reference's own space-y
     // vocabulary, live-decoded from its DOM)
-    expect(files.length).toBe(26);
+    // session-205 re-anchor: 26 -> 27 (the F-205g sheet re-derivation:
+    // the mobile menu's footer block carries the reference's own
+    // `border-t pt-6 space-y-3` verbatim — site-header joins the census
+    // files, the count +1 occurrence)
+    expect(files.length).toBe(27);
     // session-147 re-anchor: 114 -> 115 (the s147 sheet re-derivation: the
     // mobile drawer's SheetHeader carries the reference's own
     // `flex flex-col space-y-2` rhythm — the sheet family's header, live-
@@ -265,7 +269,10 @@ describe("session-92 (F-92a1): the space-y usage census (the documented method)"
     // session-199 re-anchor: 122 -> 133 (the Oasis public layer's eleven
     // new occurrences across its three census-joining files — the same
     // vocabulary the reference itself ships)
-    expect(total).toBe(133);
+    // session-205 re-anchor: 133 -> 134 (the F-205g sheet re-derivation:
+    // the mobile menu's footer `space-y-3`, the reference's own class
+    // string, live-decoded from its sheet's outerHTML)
+    expect(total).toBe(134);
   });
 
   it("the s91 header's unstable '99' claim is re-derived (spacey-hazard-parity no longer asserts an un-derivable count)", () => {
@@ -656,7 +663,8 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("Unit (Vitest, 2811 checks)"); // session-197: the retired form joins the negatives
     expect(claude).not.toContain("Unit (Vitest, 2813 checks)"); // session-198: the retired form joins the negatives
     expect(claude).not.toContain("Unit (Vitest, 2813 checks)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
-    expect(claude).toContain("Unit (Vitest, 2800 checks)"); // session-201: the count ladder
+    expect(claude).not.toContain("Unit (Vitest, 2800 checks)"); // session-205: the retired form joins the negatives ladder (the F-205g +1)
+    expect(claude).toContain("Unit (Vitest, 2801 checks)"); // session-205: the count ladder (the F-205g side-sheet pin +1)
     // session-145 lockstep carry-forward: the coverage line 2108 ->
     // 2112 (the walk35 transition pins); s146: 2112 -> 2115.
     expect(claude).not.toContain("(currently 2108)");
@@ -699,7 +707,8 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("(currently 2811)"); // session-197: the retired form joins the negatives ladder
     expect(claude).not.toContain("(currently 2813)"); // session-198: the retired form joins the negatives ladder
     expect(claude).not.toContain("(currently 2813)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
-    expect(claude).toContain("(currently 2800)");
+    expect(claude).not.toContain("(currently 2800)"); // session-205: the retired form joins the negatives
+    expect(claude).toContain("(currently 2801)"); // session-205: the F-205g count ladder
     expect(claude).not.toContain("Vitest unit suites (2108 checks)");
     expect(claude).not.toContain("Vitest unit suites (2112 checks)");
     expect(claude).not.toContain("Vitest unit suites (2167 checks)");
@@ -743,7 +752,8 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("Vitest unit suites (2811 checks)"); // session-197: the retired form joins the neg
     expect(claude).not.toContain("Vitest unit suites (2813 checks)"); // session-198: the retired form joins the neg
     expect(claude).not.toContain("Vitest unit suites (2813 checks)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
-    expect(claude).toContain("Vitest unit suites (2800 checks)");
+    expect(claude).not.toContain("Vitest unit suites (2800 checks)"); // session-205: the retired form
+    expect(claude).toContain("Vitest unit suites (2801 checks)"); // session-205
     expect(claude).not.toContain("`bun run test` (2108)");
     expect(claude).not.toContain("`bun run test` (2112)");
     expect(claude).not.toContain("`bun run test` (2115)");
@@ -792,7 +802,8 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("`bun run test` (2811)"); // session-197: the retired form joins the negatives ladd
     expect(claude).not.toContain("`bun run test` (2813)"); // session-198: the retired form joins the negatives ladd
     expect(claude).not.toContain("`bun run test` (2813)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
-    expect(claude).toContain("`bun run test` (2800)");
+    expect(claude).not.toContain("`bun run test` (2800)"); // session-205: the retired form
+    expect(claude).toContain("`bun run test` (2801)"); // session-205
     expect(claude).not.toContain("Unit (Vitest, 2060 checks)");
     expect(claude).not.toContain("Vitest unit suites (2060 checks)");
     expect(claude).not.toContain("(currently 2101)");
