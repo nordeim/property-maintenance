@@ -22,9 +22,18 @@ import type { Metadata } from "next";
 
 export const DEFAULT_SITE_URL = "http://localhost:3000";
 
+/**
+ * Session-199: the OASIS site identity. The title is the reference's
+ * own document.title (recon-verified on every public surface); the
+ * description is the reference's hero paragraph (its own copy — the
+ * exact <meta name="description"> bytes are re-derived at the
+ * measurement pass and re-pinned if they differ).
+ */
+export const SITE_TITLE = "Oasis Property Maintenance";
+
 /** The reference's meta description, mirrored verbatim (405 chars). */
 export const SITE_DESCRIPTION =
-  "NEO CRM is a clean, intuitive customer relationship management platform designed to help teams manage accounts, contacts, and leads in one centralized dashboard. With powerful search, clear account tracking, activity monitoring, and built-in reporting, NEO CRM keeps your client data organized, accessible, and actionable—so you can focus on building stronger relationships and closing more opportunities.";
+  "Lawns, gardens, pressure washing and property care — booked online in under a minute, with instant price estimates. Green Cut Lawn Care services the Gold Coast, Logan and South Brisbane.";
 
 /**
  * Canonical public origin: NEXT_PUBLIC_SITE_URL when set (trailing slashes
@@ -47,7 +56,7 @@ export function siteUrl(
  * /Reports, /Settings, /Profile; the root and /login stay unprefixed).
  */
 export function pageOgDescription(page: string): string {
-  return `${page} on NEO CRM. ${SITE_DESCRIPTION}`;
+  return `${page} on ${SITE_TITLE}. ${SITE_DESCRIPTION}`;
 }
 
 /**
@@ -60,7 +69,7 @@ export function pageOgDescription(page: string): string {
 export const PWA_META: Record<string, string> = {
   "mobile-web-app-capable": "yes",
   "apple-mobile-web-app-status-bar-style": "black",
-  "apple-mobile-web-app-title": "NEO CRM",
+  "apple-mobile-web-app-title": SITE_TITLE,
 };
 
 /**

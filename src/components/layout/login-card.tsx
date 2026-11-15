@@ -623,13 +623,21 @@ export function LoginCard({ mode = "signin" }: { mode?: Mode }) {
                 slate glow, ringed and shadowed like the reference avatar. */}
             <div className={LOGIN_LAYOUT.logoWrap}>
               <div className={LOGIN_LAYOUT.logoGlow} aria-hidden="true" />
-              <span className={LOGIN_LAYOUT.logo} aria-hidden="true">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sidebar sm:h-12 sm:w-12" />
+              <span className={LOGIN_LAYOUT.logo}>
+                {/* Session-199 (the Oasis re-skin): the reference's own
+                    logo asset (media.base44.com, its /v1/fit webp
+                    transform) inside the same ringed avatar. */}
+                {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted asset; the raw URL keeps the shared-source parity */}
+                <img
+                  src="https://media.base44.com/images/public/6907475d81a975154143174e/1f56b6773_logo.png/v1/fit/w_192,h_192/1f56b6773_logo.webp"
+                  alt="Oasis Property Maintenance logo"
+                  className="aspect-square h-full w-full object-cover"
+                />
               </span>
             </div>
 
             <div className="space-y-2 sm:space-y-3">
-              <h1 className={LOGIN_LAYOUT.title}>Welcome to NEO CRM</h1>
+              <h1 className={LOGIN_LAYOUT.title}>Welcome to Oasis Property Maintenance</h1>
               <p className={LOGIN_LAYOUT.subtitle}>Sign in to continue</p>
             </div>
 
@@ -648,6 +656,13 @@ export function LoginCard({ mode = "signin" }: { mode?: Mode }) {
                 reference's inert space-y-3 class. */}
             <div className="w-full">
               <div className="space-y-3">
+              {/* Session-199 (the Oasis re-skin): the reference's social
+                  row — Google + Facebook + Apple, its own button idiom
+                  (w-full px-5 py-3.5 rounded-xl, the brand-mark icons).
+                  Visual parity: the reference's buttons ride its
+                  platform's OAuth; ours toast the email/password path
+                  (the working auth), the same honest superset posture
+                  as the s96 Google stub. */}
               <button
                 type="button"
                 className={LOGIN_LAYOUT.google}
@@ -662,6 +677,36 @@ export function LoginCard({ mode = "signin" }: { mode?: Mode }) {
                   <GoogleIcon />
                 </div>
                 <span>Continue with Google</span>
+              </button>
+              <button
+                type="button"
+                className={LOGIN_LAYOUT.google}
+                onClick={() =>
+                  toast.info(
+                    "Facebook sign-in not configured",
+                    "This self-hosted clone uses email and password sign-in (demo credentials in the README).",
+                  )
+                }
+              >
+                <div className={LOGIN_LAYOUT.googleIcon}>
+                  <FacebookIcon />
+                </div>
+                <span>Continue with Facebook</span>
+              </button>
+              <button
+                type="button"
+                className={LOGIN_LAYOUT.google}
+                onClick={() =>
+                  toast.info(
+                    "Apple sign-in not configured",
+                    "This self-hosted clone uses email and password sign-in (demo credentials in the README).",
+                  )
+                }
+              >
+                <div className={LOGIN_LAYOUT.googleIcon}>
+                  <AppleIcon />
+                </div>
+                <span>Continue with Apple</span>
               </button>
               </div>
 
@@ -800,6 +845,30 @@ function GoogleIcon() {
       <path
         fill="#EA4335"
         d="M12 4.7c2.2 0 3.7.9 4.5 1.7l3.3-3.2C17.9 1.2 15.2 0 12 0 7.4 0 3.5 2.7 1.3 6.7l3.9 3c1-2.9 3.7-5 6.8-5z"
+      />
+    </svg>
+  );
+}
+
+/** Session-199 (the Oasis re-skin): the Facebook + Apple brand marks —
+ * the reference login's own SVG paths (recon leg 8, decoded verbatim). */
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+      <path
+        fill="#1877F2"
+        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+      />
+    </svg>
+  );
+}
+
+function AppleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+      <path
+        fill="#000000"
+        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.82-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.39 2.85zM12.05 4.53c.69-.83 1.16-1.99 1.03-3.14-1.02.04-2.25.68-2.97 1.51-.65.74-1.22 1.92-1.07 3.05 1.14.09 2.31-.58 3.01-1.42z"
       />
     </svg>
   );

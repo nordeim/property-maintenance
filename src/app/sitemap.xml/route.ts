@@ -20,6 +20,15 @@ export const dynamic = "force-static";
 
 const ROUTES: Array<{ path: string; priority: string }> = [
   { path: "/", priority: "1.0" },
+  // Session-199: the Oasis public layer joins the crawlable surface
+  // (/home is the reference's canonical home path; /services, /gallery,
+  // /faq + /booking are its public app pages — the CRM routes below
+  // stay listed as the superset back-office).
+  { path: "/home", priority: "0.8" },
+  { path: "/services", priority: "0.8" },
+  { path: "/gallery", priority: "0.8" },
+  { path: "/faq", priority: "0.8" },
+  { path: "/booking", priority: "0.8" },
   { path: "/accounts", priority: "0.8" },
   { path: "/contacts", priority: "0.8" },
   { path: "/leads", priority: "0.8" },

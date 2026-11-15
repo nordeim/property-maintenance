@@ -1,4 +1,6 @@
 import { NotFoundBody } from "./not-found-body";
+import { SiteFooter } from "@/components/site/site-footer";
+import { SiteHeader } from "@/components/site/site-header";
 
 export default function NotFound() {
 
@@ -27,5 +29,15 @@ export default function NotFound() {
 // the designed 404 with the true 404 status, for anon and authenticated
 // visitors alike. The reference's posture is its SPA platform artifact
 // (the s149 family) — never mirrored.
-  return <NotFoundBody />;
+  // Session-199 (the Oasis re-skin): the reference's 404 rides the SITE
+  // chrome (its header + footer render around the bare 404 body —
+  // recon-verified on its own 404 page); the Go Home arm points at
+  // /home (its canonical home path).
+  return (
+    <>
+      <SiteHeader />
+      <NotFoundBody />
+      <SiteFooter />
+    </>
+  );
 }

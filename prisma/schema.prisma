@@ -260,3 +260,46 @@ model Setting {
   firstDayOfWeek   String   @default("monday")
   updatedAt        DateTime @updatedAt
 }
+
+// Session-199 (the property-maintenance checkout round): the OASIS
+// booking domain — the reference's booking flow + quote form have no
+// observable persistence (the write-probe boundary; their submit
+// targets are Unknown), so OURS is the designed SUPERSET: real rows,
+// validated at the boundary (Zod), surfaced in the CRM back-office.
+model Booking {
+  id          String   @id @default(cuid())
+  serviceId   String // the booking seam's stable id (lawn|garden|pressure|gutter|tidy)
+  serviceName String // the label at submit time (the seam's own words)
+  yardSize    Int // m² — the slider value
+  date        String // ISO yyyy-mm-dd (the picked calendar day)
+  slot        String // the seam's TIME_SLOTS member ("8am-10am" …)
+  name        String
+  phone       String
+  email       String?
+  address     String?
+  suburb      String
+  notes       String?
+  status      String   @default("requested") // requested | confirmed | completed | cancelled
+  createdAt   DateTime @default(now())
+
+  @@index([serviceId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// The /contact quote-request form's row (the same superset posture).
+model QuoteRequest {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  suburb      String
+  services    String // JSON array of the checked service labels
+  serviceType String   @default("one_off") // one_off | ongoing
+  message     String?
+  status      String   @default("new")
+  createdAt   DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "@/components/ui/toast";
-import { PWA_META, SITE_DESCRIPTION, siteUrl } from "@/lib/site";
+import { PWA_META, SITE_DESCRIPTION, SITE_TITLE, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 // Session-22 (S22-P1): the Inter webfont is RETIRED. The reference app
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   manifest: `${siteUrl()}/manifest.json`,
   title: {
-    default: "NEO CRM",
+    default: SITE_TITLE,
     // Session-10 (S10-10): the reference's separator is a pipe
     // ("Accounts | NEO CRM" — document.title probes on all 10 routes).
-    template: "%s | NEO CRM",
+    template: `%s | ${SITE_TITLE}`,
   },
   description: SITE_DESCRIPTION,
   // The reference's canonical link: origin + route (the dashboard's is
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
   // pages override this through pageMetadata().
   alternates: { canonical: "/" },
   openGraph: {
-    title: "NEO CRM",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: siteUrl(),
     type: "website",
-    siteName: "NEO CRM",
+    siteName: SITE_TITLE,
     images: [
       {
         url: "/og-image.png",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEO CRM",
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: ["/og-image.png"],
   },

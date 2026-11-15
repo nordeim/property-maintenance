@@ -1147,9 +1147,9 @@ and `curl` against the envelope (`{"ok":true,"data":…}`) for API truth.
 ```bash
 bun run lint         # 0 errors, 0 warnings
 bun run typecheck    # clean (the REAL type gate — build ignores errors)
-bun run test         # 2858/2858
+bun run test         # 2817/2817
 bun run build        # standalone build succeeds
-bun run test:e2e     # 226/226 (build first; boots :3100 with db/e2e.db)
+bun run test:e2e     # 195/195 (build first; boots :3100 with db/e2e.db)
 ```
 
 Manual additions:
@@ -6948,7 +6948,7 @@ Full ADRs with context/decision/rationale/consequences/alternatives live in
 | login-reset (session-11) | `tests/login-reset.test.ts` | 14 | ~6 ms |
 | seeded-dashboard-kpis (session-110) | `tests/seeded-dashboard-kpis.test.ts` | 4 | ~12 ms |
 | leading-inert-genus (session-150) | `tests/leading-inert-genus.test.ts` | 4 | ~10 s (the src scan) |
-| **unit total** | 138 files | **2858** | **~21 s** (one worker per file) |
+| **unit total** | 138 files | **2817** | **~21 s** (one worker per file) |
 | e2e landing (the marketing family, s142 + the s144 guest block) | `tests/e2e/landing.spec.ts` | 14 | — |
 | e2e auth (logged out + reset flow) | `tests/e2e/auth.spec.ts` | 11 | — |
 | e2e setup (login) | `tests/e2e/auth.setup.ts` | 1 | — |
@@ -6960,8 +6960,8 @@ Full ADRs with context/decision/rationale/consequences/alternatives live in
 | e2e activities-mobile (the fifth-surface walk, s109) | `tests/e2e/activities-mobile.spec.ts` | 1 | — |
 | e2e marketing-mobile (the walk40 scroll model, s150) | `tests/e2e/marketing-mobile.spec.ts` | 1 | — |
 | e2e reset-password (the s163 auth-retrofit round-trip + the eviction pin) | `tests/e2e/reset-password.spec.ts` | 8 | — |
-| e2e a11y two-gate (the s171 §8.3 axe battery: 9 CRM pages × 2 widths + the anon family × 2 + the drawer-open + the s172 dialog-open family: the five create dialogs + the contact edit dialog + the s195 404 pair + the s199 register-coverage closure: the Edit Lead + Edit Account siblings + the Import/Insights/Save-Report standalone dialogs + the s200 page-surface closure: the /about + /contact marketing interiors + the /reset-password anon surface + the s201 width-scope closure: the eleven phone dialog-open twins — every Radix Dialog's open state registered at both widths + the s202 client-state closure: the login card's three in-card view states (reset/sent/verify) at both widths — every LoginView state the machine names rides the two-gate + the s203 marketing-state closure: the landing page's client-state arms — the FAQ non-default open state at both widths + the mobile disclosure menu open at phone, the md:hidden width-inverse) | `tests/e2e/a11y.spec.ts` | 64 | — |
-| **e2e total** | 11 spec files + the setup project | **226** | **~6 m** (incl. server boot + reseed + the axe scans) |
+| e2e a11y two-gate (the s171 §8.3 axe battery: 9 CRM pages × 2 widths + the anon family × 2 + the drawer-open + the s172 dialog-open family: the five create dialogs + the contact edit dialog + the s195 404 pair + the s199 register-coverage closure: the Edit Lead + Edit Account siblings + the Import/Insights/Save-Report standalone dialogs + the s200 page-surface closure: the /about + /contact marketing interiors + the /reset-password anon surface + the s201 width-scope closure: the eleven phone dialog-open twins — every Radix Dialog's open state registered at both widths + the s202 client-state closure: the login card's three in-card view states (reset/sent/verify) at both widths — every LoginView state the machine names rides the two-gate + the s203 marketing-state closure: the landing page's client-state arms — the FAQ non-default open state at both widths + the mobile disclosure menu open at phone, the md:hidden width-inverse) | `tests/e2e/a11y.spec.ts` | 33 | — |
+| **e2e total** | 11 spec files + the setup project | **195** | **~6 m** (incl. server boot + reseed + the axe scans) |
 
 Full gate wall-clock (the s109 standing, re-anchored s169): lint ~10 s, typecheck ~8 s, unit
 ~21 s (138 suites, one worker per file), build ~40 s, e2e ~6 m (195

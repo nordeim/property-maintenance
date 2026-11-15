@@ -725,12 +725,16 @@ describe("session-62: the manifest honesty + the dead-arm retirement", () => {
     const script = read("scripts/install_packages.sh") ?? "";
     expect(script).not.toContain("@radix-ui/react-toast");
     expect(script).toContain("@types/node");
-    // 20 runtime + 13 dev (session-163: zod joins as the 20th runtime
+    // 24 runtime + 13 dev (session-163: zod joins as the 20th runtime
     // dep — the validation layer for the auth family; session-171:
     // axe-core joins as the 12th dev dep — the DECLARED engine of the
     // a11y two-gate e2e battery; session-172: fast-check joins as the
-    // 13th dev dep — the DECLARED engine of the property battery).
-    expect(Object.keys(pkg.dependencies ?? {}).length).toBe(20);
+    // 13th dev dep — the DECLARED engine of the property battery;
+    // session-199: the Oasis public layer adds its 4 — the radix
+    // accordion + slider (the FAQ groups + the yard-size slider, the
+    // reference's own component family) + react-day-picker + date-fns
+    // (the booking calendar, the reference's own rdp construction)).
+    expect(Object.keys(pkg.dependencies ?? {}).length).toBe(24);
     expect(Object.keys(pkg.devDependencies ?? {}).length).toBe(13);
     expect(pkg.devDependencies?.["axe-core"]).toBe("^4.13.0");
     expect(pkg.devDependencies?.["fast-check"]).toBe("^4.10.2");
@@ -759,6 +763,15 @@ describe("session-62: the manifest honesty + the dead-arm retirement", () => {
     );
     expect(stripComments(read("src/components/ui/label.tsx") ?? "")).toMatch(
       /@radix-ui\/react-label/,
+    );
+    // Session-199: the Oasis layer's two — the accordion (the FAQ
+    // groups' construction, the reference's own shadcn family) + the
+    // slider (the yard-size arm), each pinned to its consumer.
+    expect(stripComments(read("src/components/site/faq-page.tsx") ?? "")).toMatch(
+      /@radix-ui\/react-accordion/,
+    );
+    expect(stripComments(read("src/components/site/estimate-card.tsx") ?? "")).toMatch(
+      /@radix-ui\/react-slider/,
     );
   });
 });

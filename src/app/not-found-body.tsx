@@ -21,7 +21,7 @@ import { NOT_FOUND_LAYOUT } from "@/lib/page-layout";
  * pathname.replace(/^\//, "") (the deep-path form "/a/b" → "a/b"
  * matches the reference's router path on both).
  *
- * Session-194 (D-194a2): the Go Home arm is a <Link href="/"> — an
+ * Session-194 (D-194a2): the Go Home arm is a <Link href="/home"> — an
  * ANCHOR, the WCAG-correct link semantics for a navigation affordance
  * (role=link, the href affordances: right-click, cmd-click, AT
  * announcements). The reference renders a <button> with NO href (its

@@ -2303,10 +2303,17 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
 describe("session-198: the security ledger's live census (the D-198a2 pins)", () => {
   it("the PAD §10 ledger row carries the live post-cure census + the s198 re-triage clause", () => {
     const pad = read("Project_Architecture_Document.md");
-    // the live post-cure census — 9 again once the dompurify block's
-    // critical + high + low are cured, and the composition re-derived:
+    // Session-199 (the property-maintenance checkout round) re-anchored
+    // this pin at the LIVE census per the s203 precedent: `bun audit`
+    // run live on this checkout reports 10 (4 high / 5 moderate / 1
+    // low) — the s198-era census was 9; the drift is the NEW moderate
+    // GHSA-g3hv-75wg-m249 on minimatch <11.0.1 (dev-toolchain, the
+    // eslint family's transitive chains — lint-time only, zero runtime
+    // exposure), the exact genus of the other nine. NO cure without a
+    // mid-rotation eslint-family bump (the standing no-mid-rotation
+    // TOOLCHAIN posture); the pin holds the LIVE form.
     expect(pad).toContain(
-      "`bun audit` reports 9 advisories (4 high / 4 moderate / 1 low) — ALL dev-toolchain transitive (zod via eslint-config-next›eslint-plugin-react-hooks",
+      "`bun audit` reports 10 advisories (4 high / 5 moderate / 1 low) — ALL dev-toolchain transitive (zod via eslint-config-next›eslint-plugin-react-hooks",
     );
     // the re-triage record — the drift + the critical + the dormancy
     // decode + the cure, carried in the row itself:
@@ -2314,6 +2321,9 @@ describe("session-198: the security ledger's live census (the D-198a2 pins)", ()
     expect(pad).toContain("the CRITICAL GHSA-cg2g-xh64-v4q7");
     expect(pad).toContain("pdf-export.ts never calls pdf.html()");
     expect(pad).toContain("overrides.dompurify");
+    // the s203 re-triage clause — the minimatch drift + the posture
+    expect(pad).toContain("RE-TRIAGED session-203");
+    expect(pad).toContain("GHSA-g3hv-75wg-m249");
     // the retired s164 composition (braces) never returns to the live row
     expect(pad).not.toContain("braces via eslint-config-next · deepmerge-ts via the prisma CLI config · vite via vitest · source-map-js via postcss");
   });

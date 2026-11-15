@@ -714,3 +714,71 @@ export const profileUpdateSchema = z.object(
   },
   { error: "Name must be at least 2 characters" },
 );
+
+// ---------------------------------------------------------------------------
+// Session-199: the OASIS public-form schemas — the booking + quote-request
+// boundaries (the superset submits; the reference's own targets are
+// Unknown — the write-probe boundary). The serviceId/slot fields validate
+// against the booking SEAM's own catalogs (never a free string), and the
+// date is the calendar's ISO form.
+// ---------------------------------------------------------------------------
+
+import { BOOKING_SERVICES, TIME_SLOTS } from "@/lib/booking";
+
+const SERVICE_IDS = BOOKING_SERVICES.map((s) => s.id) as [string, ...string[]];
+
+export const bookingCreateSchema = z.object({
+  serviceId: z
+    .string()
+    .refine((id) => (SERVICE_IDS as readonly string[]).includes(id), {
+      message: "Please pick one of our services",
+    }),
+  yardSize: z
+    .number({ message: "Yard size is required" })
+    .int()
+    .min(100, "Yard size must be at least 100 m²")
+    .max(2000, "Yard size must be at most 2000 m²"),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Please pick a date"),
+  slot: z
+    .string()
+    .refine((s) => (TIME_SLOTS as readonly string[]).includes(s), {
+      message: "Please pick a time window",
+    }),
+  name: z.string().trim().min(1, "Full name is required").max(120, "Name must be reasonably sized"),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Phone is required")
+    .max(40, "Phone must be reasonably sized"),
+  email: z
+    .union([z.string().trim().max(200, "Email must be reasonably sized").email("Enter a valid email"), z.literal("")])
+    .optional(),
+  address: z.string().trim().max(240, "Address must be reasonably sized").optional(),
+  suburb: z.string().trim().min(1, "Suburb is required").max(80, "Suburb must be reasonably sized"),
+  notes: z.string().trim().max(2000, "Notes must be reasonably sized").optional(),
+});
+
+export type BookingCreate = z.output<typeof bookingCreateSchema>;
+
+export const quoteRequestCreateSchema = z.object({
+  name: z.string().trim().min(1, "Your name is required").max(120, "Name must be reasonably sized"),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Phone number is required")
+    .max(40, "Phone must be reasonably sized"),
+  email: z
+    .union([z.string().trim().max(200, "Email must be reasonably sized").email("Enter a valid email"), z.literal("")])
+    .optional(),
+  suburb: z.string().trim().min(1, "Suburb is required").max(80, "Suburb must be reasonably sized"),
+  services: z
+    .array(z.string().trim().min(1).max(80))
+    .min(1, "Pick at least one service")
+    .max(20, "Too many services selected"),
+  serviceType: z.enum(["one_off", "ongoing"]),
+  message: z.string().trim().max(2000, "Message must be reasonably sized").optional(),
+});
+
+export type QuoteRequestCreate = z.output<typeof quoteRequestCreateSchema>;
