@@ -1414,13 +1414,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-207 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-208 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s206 layer now beneath the s207 head)",
+      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s207 layer now beneath the s208 head)",
     ).toContain(
-      "+ beneath it 2801 unit checks + 193 e2e checks green; the session-206 layer (THE TERRACOTTA MASS",
+      "+ beneath it 2801 unit checks + 193 e2e checks green; the session-207 layer (THE FINE SHAPES",
     );
   });
 

@@ -1,6 +1,29 @@
-Task ID: 207 (the fine shapes + the right underlayer; VERIFIED green)
+Task ID: 208 (the mid-distance + the horizon diagonals; VERIFIED green)
 Agent: main (Z.ai)
-Task: The post-206 rotation: the owner's session_9.md archive pulled (ae49559), the baseline gate re-proven, the reference re-captured (STABLE — the moving-target check), the s206 residual ledger's fine shapes decoded + landed (TDD), the phantom-blob genus found + retired on the way, the docs lockstep, and the push.
+Task: The post-207 rotation: the sandbox RESET (the fresh clone + env rebuild + census MATCH), the owner's session_10.md archive reviewed (9b7cd60), the baseline gate re-proven on the fresh clone, the reference re-captured (STABLE), the mid-distance genus + both horizon diagonals decoded + landed (TDD), the corner-mass two-layer gradient decoded on the way, the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: the sandbox had been RECYCLED — the fresh clone (9b7cd60, the session_10.md archive) + bun install + the .env rebuild + db:push/db:seed (census MATCH 15/24/10/23/12 + 4 users) + the playwright chromium reinstall; the baseline gate GREEN at the s207 ship state: lint 0/0 · tsc 0 · 139/2801 unit
+- THE REFERENCE RE-CAPTURE: STABLE (the pairs 0.53/0.99/0.78 — no redesign); our drifts reproduce the s207 floors (7.32/5.21/3.80 vs the ship's 7.18/5.08/3.74 — capture noise)
+- F-208a THE CONNECTOR ROW (the live-DOM decode): the ref's step-dots row is a flat gap-2 flex with TWO sibling connectors (w-8 h-0.5) between the groups; ours nested a w-8 sm:w-12 h-px mx-2 connector inside each group (48x1 vs the ref's 32x2) — re-derived with the reduce-interleave
+- F-208b THE SLIDER FILL (the live-DOM decode): the ref's yard-slider fill + thumb border are the shadcn CHARCOAL rgb(23,23,23) (bg-primary on ITS stack); ours painted brand green #2E7D5F — cured to the literal #171717 (OUR --primary is #2563eb blue, so the literal tone, not the token)
+- F-208c THE FAR-LEFT HORIZON DIAGONAL (a genus ours left flat): the ref's sky holds over the far-left corner — y278@x0 -> 266@x20 -> 253@x40 -> 241@x60 -> flat 231@x80+ (page-shared) — the HORIZON_DIAGONAL sky-polygon patch over the flat gradient; the mid-round discovery: the far-RIGHT horizon is ALSO diagonal (flat 231 to x~1370 then descending (1370,235)->(1430,273), page-shared) — both landed
+- F-208d THE LEFT CROWN: verified already at (43,272) — the defensive pin holds
+- F-208e THE RIGHT-SIDE FLOWERING BUSH (x1300-1430, y440-500, decoded at 6px granularity): a light-green body (187,220,170) + the RED-BLOSSOM patch (183,99,42) + the dark core (15,20,19) + the red-flowered left foot (146,51,42) + the brown patch (98,62,14) — four polygons; 3 geometry iterations (36.4 -> 27.1)
+- F-208f THE MID-DISTANCE STRUCTURES (decoded by unmixing the booking card's white/85): the dark-green tree mass (x460-620, y265-315) + the blue-gray structure (x660-800, y265-310) behind the glass — they tint the ref's glass zones (booking + landing agree); ours left pure lawn — both landed
+- THE CORNER-MASS TWO-LAYER GRADIENT (decoded mid-round): the ref's right corner lightens toward the right edge AND darkens toward the bottom — the horizontal base ((24,107)->(43,143)) + the vertical darkening veil (the fitted alpha profile to (16,96) at the bottom); the flat EDGE_DARK_SOLID retired there; the polygonHGradient painter born
+- THE TDD LOOP: RED first (HORIZON_DIAGONAL + the connector) -> GREEN after the cures; 6 measurement iterations (the duplicate-corner overwrite caught — the paint-order discipline)
+- THE MEASURE: booking 7.32 -> 5.60 · landing 5.21 -> 4.82 · faq 3.80 -> 3.26 (1440) — every page at its best-ever floor, all comfortably inside the standing drift gates (16/12.5/9)
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 (the CI=1 fresh boot)
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-208 section + the plan (docs/plans/2026-11-16-session208-mid-distance.md) + the SKILL head surgery (v1.212.0 -> v1.213.0) + the pm-SKILL canvas section re-anchored (v1.4.0 -> v1.5.0)
+- THE CAPTURES: 50-52 (the booking/landing/faq at 1440, the diagonals + mid-distance canvas) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the drift floors at their best-ever (5.60/4.82/3.26)
+- The deliverables: both horizon diagonals + the mid-distance structures + the flowering bush + the corner two-layer gradient + the connector/slider live-DOM cures, the polygonHGradient painter, the captures 50-52, the docs lockstep, the probe-208 decode family
+- Everything committed to main and pushed via the SSH wrapper
+
+Task ID: 207 (the fine shapes + the right underlayer; VERIFIED green)
 
 Work Log:
 - THE INTAKE: ae49559 pulled (the session_9.md archive — the s206 transcript); the environment PERSISTED (deps · the six-knob .env · census MATCH 15/24/10/23/12 + 4 users); the baseline gate GREEN at the s206 ship state: lint 0/0 · tsc 0 · 139/2801 unit

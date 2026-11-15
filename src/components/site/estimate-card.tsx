@@ -97,15 +97,20 @@ export function EstimateCard({
           step={10}
           onValueChange={(value) => onYardSizeChange(value[0] ?? YARD_DEFAULT)}
         >
+        {/* Session-208 (F-208b, decoded live): the track keeps the mint
+            tint but the FILL + thumb border are CHARCOAL
+            rgb(23,23,23) (#171717 — the shadcn default on the reference's
+            stack; OUR --primary is #2563eb blue, so the literal tone).
+            The reference paints the default shadcn slider, not brand green. */}
         <Slider.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-[#2E7D5F]/20">
-          <Slider.Range className="absolute h-full bg-[#2E7D5F]" />
+          <Slider.Range className="absolute h-full bg-[#171717]" />
         </Slider.Track>
         {/* the accessible name rides the THUMB (role="slider") — a
             Root-level label never reaches it (the s199 axe two-gate
             catch: aria-input-field-name) */}
         <Slider.Thumb
           aria-label="Yard size in square metres"
-          className="block h-4 w-4 rounded-full border border-[#2E7D5F]/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+          className="block h-4 w-4 rounded-full border border-[#171717]/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
         />
         </Slider.Root>
       </label>

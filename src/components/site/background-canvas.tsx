@@ -75,6 +75,24 @@ const SOIL_PATCH = "rgba(96, 71, 40, 0.97)"; // the solid soil patch (x73-110, y
 // Session-207 (F-207c): the mass's sunlit rim — the diagonal band
 // inside the right slope ((1140,225)->(1252,297)).
 const SUNLIT_RIM = "rgba(108, 162, 59, 0.97)";
+// Session-208 (F-208c): the far-left horizon DIAGONAL — the ref's sky
+// holds over the far-left corner (sky to y278@x0 -> 266@x20 ->
+// 253@x40 -> 241@x60 -> flat 231@x80+; page-shared) — painted as a
+// sky-colored polygon patch OVER the flat gradient.
+const HORIZON_DIAGONAL = "rgba(174, 226, 255, 0.97)"; // the flat SKY tone (#AEE2FF)
+// Session-208 (F-208e): the right-side bush (x1310-1430, y440-500) —
+// the light-green mass + the brown patches + the dark spot.
+const RIGHT_BUSH = "rgba(187, 220, 170, 0.97)"; // the light-green mass
+const RIGHT_BUSH_BROWN = "rgba(98, 62, 14, 0.97)"; // the brown patches
+const RIGHT_BUSH_DARK = "rgba(26, 30, 27, 0.97)"; // the dark spot
+const RIGHT_BUSH_RED = "rgba(183, 99, 42, 0.97)"; // the red blossoms ((183,99,42) + the (146,51,42) foot)
+// Session-208 (F-208f): the mid-distance structures behind the glass
+// (decoded by unmixing the booking card's white/85) — the dark-green
+// tree mass + the blue-gray structure. The tones are the UNMIXED
+// values: under the card's 0.85 white they render as the observed
+// (225,228,232)-family grays.
+const MID_TREE = "rgba(70, 155, 80, 0.95)"; // the dark-green mid tree (x460-620, y265-315)
+const MID_BLUE = "rgba(55, 75, 100, 0.95)"; // the blue-gray structure (x660-800, y265-310)
 
 /** one soft radial blob fading into the lawn (the foliage genus). */
 function blob(
@@ -142,6 +160,33 @@ function polygonGradient(
   stops.forEach(([yFrac, color]) => {
     grad.addColorStop(span > 0 ? (yFrac - stops[0][0]) / span : 0, color);
   });
+  ctx.fillStyle = grad;
+  ctx.fill();
+}
+
+// Session-208: the HORIZONTAL gradient variant — the right corner
+// mass lightens toward the right edge (a left->right blend).
+function polygonHGradient(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  points: Array<[number, number]>,
+  leftColor: string,
+  rightColor: string,
+  x0Frac: number,
+  x1Frac: number,
+) {
+  ctx.beginPath();
+  points.forEach(([fx, fy], i) => {
+    const x = fx * w;
+    const y = fy * h;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(x0Frac * w, 0, x1Frac * w, 0);
+  grad.addColorStop(0, leftColor);
+  grad.addColorStop(1, rightColor);
   ctx.fillStyle = grad;
   ctx.fill();
 }
@@ -245,6 +290,46 @@ export function SiteBackgroundCanvas() {
       sky.addColorStop(1.0, LAWN);
       ctx.fillStyle = sky;
       ctx.fillRect(0, 0, w, h);
+      // Session-208 (F-208c): the far-left horizon DIAGONAL — the flat
+      // gradient puts the sky->lawn edge at y231 everywhere, but the
+      // ref's corner holds SKY much lower (y278@x0 -> 241@x60, flat
+      // 231 from x80). A sky-colored polygon paints the corner back:
+      // the boundary runs (0,278)->(20,266)->(40,253)->(60,241)->
+      // (80,231), closing along the top.
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.0, 0.0], // the top-left corner
+          [0.055, 0.0], // along the top (x80)
+          [0.055, 0.257], // down to the flat horizon (80,231)
+          [0.042, 0.268], // (60,241)
+          [0.028, 0.281], // (40,253)
+          [0.014, 0.296], // (20,266)
+          [0.0, 0.309], // (0,278)
+        ],
+        HORIZON_DIAGONAL,
+      );
+      // the far-RIGHT horizon diagonal (the same genus, mirrored):
+      // flat 231 to x~1370 then descending (1370,235)->(1390,248)->
+      // (1410,260)->(1430,273) — the sky patch closes the top-right
+      // corner (page-shared: booking + landing agree).
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [1.0, 0.0], // the top-right corner
+          [0.952, 0.0], // along the top (x1370)
+          [0.952, 0.261], // down to the boundary's start (1370,235)
+          [0.965, 0.269], // (1390,242)
+          [0.979, 0.276], // (1410,248)
+          [0.993, 0.283], // (1430,255)
+          [1.0, 0.287], // (1440,258)
+        ],
+        HORIZON_DIAGONAL,
+      );
       // the warm glow zone (~56-75% of the height — softer and wider
       // than the first-pass band: the reference's glow sandwiches the
       // rock stratum, visible above it and through its gaps)
@@ -363,19 +448,6 @@ export function SiteBackgroundCanvas() {
           [0.958, 0.42], // (1380,378)
         ],
         "rgba(71, 54, 27, 0.97)",
-      );
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.939, 0.756], // the lower lobe's top (1352,680)
-          [1.0, 0.744], // the top edge to the corner
-          [1.0, 0.888], // down to y~800
-          [0.955, 0.888], // the bottom-left foot
-          [0.95, 0.79], // the inner edge up
-        ],
-        EDGE_DARK_SOLID,
       );
       // Session-207 (F-207c): the right side's UNDERLAYER BAND — the
       // gray-green G band (x1080-1255 -> x1080-1240, y318-370) with
@@ -547,10 +619,12 @@ export function SiteBackgroundCanvas() {
         ],
         SOIL_PATCH,
       );
-      // the right-CORNER mass — solid (x1352-1439, y674-795; the inner
-      // edge bulging left to x1352 at y720 then curving back right to
-      // the bottom toe (1396,795))
-      polygon(
+      // the right-CORNER mass (x1352-1439, y674-795; the inner edge
+      // bulging left to x1352 at y720 then curving back right to the
+      // bottom toe (1396,795)). Session-208 (decoded mid-round): the
+      // ref LIGHTENS toward the right edge — (19,100,33) at the inner
+      // edge -> (44,144,65) at x1438 — the horizontal gradient.
+      polygonHGradient(
         ctx,
         w,
         h,
@@ -563,9 +637,154 @@ export function SiteBackgroundCanvas() {
           [0.939, 0.792], // the inner bulge (1352,713)
           [0.939, 0.756], // the inner edge, upper (1352,680)
         ],
-        EDGE_DARK_SOLID,
+        "rgba(24, 107, 43, 1)", // the TOP tones' left (x1352)
+        "rgba(43, 143, 65, 1)", // the TOP tones' right (x1438)
+        0.939, // the gradient's left
+        1.0, // the gradient's right
+      );
+      // the VERTICAL DARKENING VEIL over the same shape — the ref's
+      // field declines convexly to (16,96) at the bottom (the fitted
+      // alpha profile: 0@y676 -> 0.22@y724 -> 0.44@y756 -> 0.89@y788)
+      polygonGradient(
+        ctx,
+        w,
+        h,
+        [
+          [0.956, 0.749], // (1376,674) — the top tip
+          [1.0, 0.742], // the top-right corner
+          [1.0, 0.888], // the bottom-right (y800)
+          [0.972, 0.882], // the bottom toe (1396,794)
+          [0.95, 0.822], // (1368,740) the inner bulge's lower leg
+          [0.939, 0.792], // the inner bulge (1352,713)
+          [0.939, 0.756], // the inner edge, upper (1352,680)
+        ],
+        [
+          [0.751, "rgba(16, 96, 32, 0)"], // the top (y676) — the base shows
+          [0.805, "rgba(16, 96, 32, 0.22)"], // y724
+          [0.84, "rgba(16, 96, 32, 0.44)"], // y756
+          [0.858, "rgba(16, 96, 32, 0.59)"], // y772
+          [0.876, "rgba(16, 96, 32, 0.89)"], // y788
+          [0.883, "rgba(16, 96, 32, 0.95)"], // the bottom (y795)
+        ],
       );
       blob(ctx, w, h, 0.958, 0.872, 0.024, SOIL_BROWN); // the bottom-right soil
+      // Session-208 (F-208e): the right-side FLOWERING BUSH cluster
+      // (x1300-1425, y440-500, decoded at 6px granularity) — a
+      // light-green bush body + the RED-BLOSSOM patch (1354-1362,
+      // y455-465) + the dark core (1354-1362, y470-485) + the
+      // red-flowered left foot (1300-1330, y470-490).
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.919, 0.489], // the body's top-left (1323,440)
+          [0.947, 0.486], // the top (1364,437)
+          [0.952, 0.492], // the shoulder (1371,443)
+          [0.945, 0.514], // the inner knee (1361,462)
+          [0.955, 0.522], // the re-widening (1375,470)
+          [0.997, 0.528], // the right lobe out (1435,475)
+          [0.994, 0.558], // the bottom-right (1431,502)
+          [0.922, 0.561], // the bottom-left (1328,505)
+          [0.913, 0.522], // the left knee (1315,470)
+        ],
+        RIGHT_BUSH,
+      );
+      // the red-blossom patch ((183,99,42) family)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.941, 0.505], // (1355,455)
+          [0.947, 0.505], // (1363,455)
+          [0.947, 0.517], // (1363,465)
+          [0.941, 0.517], // (1355,465)
+        ],
+        RIGHT_BUSH_RED,
+      );
+      // the dark core (the blossom cluster's shadow, (15,20,19))
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.941, 0.522], // (1355,470)
+          [0.947, 0.522], // (1363,470)
+          [0.947, 0.539], // (1363,485)
+          [0.941, 0.539], // (1355,485)
+        ],
+        RIGHT_BUSH_DARK,
+      );
+      // the red-flowered left foot (x1300-1330, y470-490 — the
+      // (146,51,42) + (183,99,42) mix + the (98,62,14) brown)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.903, 0.522], // (1300,470)
+          [0.924, 0.522], // (1330,470)
+          [0.924, 0.545], // (1330,490)
+          [0.903, 0.545], // (1300,490)
+        ],
+        RIGHT_BUSH_RED,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.908, 0.535], // the brown patch (1308,481)
+          [0.917, 0.535], // (1323,481)
+          [0.917, 0.545], // (1323,490)
+          [0.908, 0.545], // (1308,490)
+        ],
+        RIGHT_BUSH_BROWN,
+      );
+      // the foot's dark rows ((15,20,19) at x1301-1310, y485-490)
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.903, 0.539], // (1300,485)
+          [0.91, 0.539], // (1310,485)
+          [0.91, 0.545], // (1310,490)
+          [0.903, 0.545], // (1300,490)
+        ],
+        RIGHT_BUSH_DARK,
+      );
+      // Session-208 (F-208f): the MID-DISTANCE structures — painted
+      // AFTER the horizon but BEFORE nothing else covers them (they sit
+      // mid-canvas, behind the glass cards). The dark-green tree mass
+      // (x460-620, y265-315) + the blue-gray structure (x660-800,
+      // y265-310).
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.32, 0.294], // the tree's top-left (460,265)
+          [0.39, 0.282], // the top (562,254)
+          [0.43, 0.294], // the top-right (620,265)
+          [0.43, 0.35], // the bottom-right (620,315)
+          [0.32, 0.35], // the bottom-left (460,315)
+        ],
+        MID_TREE,
+      );
+      polygon(
+        ctx,
+        w,
+        h,
+        [
+          [0.458, 0.294], // the structure's top-left (660,265)
+          [0.556, 0.294], // the top-right (800,265)
+          [0.556, 0.344], // the bottom-right (800,310)
+          [0.458, 0.344], // the bottom-left (660,310)
+        ],
+        MID_BLUE,
+      );
     };
     paint();
     window.addEventListener("resize", paint);

@@ -12938,6 +12938,54 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-208 — THE MID-DISTANCE + THE HORIZON DIAGONALS + THE CORNER GRADIENT (2026-11-16)
+
+The post-207 rotation — the sandbox had been RECYCLED (the fresh
+clone + env rebuild + census MATCH), then the drift map's remaining
+hotspots decoded + cured over 6 TDD iterations:
+
+**F-208a — the connector row (the live-DOM decode).** The ref's
+step-dots row is a flat `gap-2` flex with TWO sibling connectors
+(`w-8 h-0.5`, 32x2) between the three groups; ours nested a
+`w-8 sm:w-12 h-px mx-2` (48x1) connector inside each group. Re-derived
+with a reduce-interleave.
+
+**F-208b — the slider fill (the live-DOM decode).** The ref's
+yard-slider fill + thumb border are the shadcn CHARCOAL rgb(23,23,23)
+— `bg-primary` on ITS stack; ours painted brand green #2E7D5F. Cured
+to the literal `#171717` (OUR `--primary` is #2563eb blue, so the
+literal tone, not the token — the two stacks' primaries differ).
+
+**F-208c — BOTH horizon diagonals (the round's head genus).** The
+flat sky→lawn gradient puts the edge at y231 everywhere, but the ref's
+FAR-LEFT corner holds sky much lower — y278@x0 → 266@x20 → 253@x40 →
+241@x60 → flat 231@x80+ (page-shared) — and the FAR-RIGHT horizon
+descends too (flat 231 to x~1370, then (1370,235)→(1430,273)). Both
+landed as sky-colored polygon patches (`HORIZON_DIAGONAL`) over the
+flat gradient.
+
+**F-208e — the right-side FLOWERING BUSH** (x1300-1430, y440-500,
+decoded at 6px granularity): a light-green body (187,220,170) + the
+red-blossom patch (183,99,42) + the dark core (15,20,19) + the
+red-flowered left foot (146,51,42) + the brown patch (98,62,14) —
+five polygons.
+
+**F-208f — the MID-DISTANCE STRUCTURES** (decoded by unmixing the
+booking card's white/85): the dark-green tree mass (x460-620,
+y265-315) + the blue-gray structure (x660-800, y265-310) behind the
+glass — they tint the ref's glass zones on booking + landing alike.
+
+**THE CORNER TWO-LAYER GRADIENT (decoded mid-round).** The ref's right
+corner lightens toward the right edge AND darkens toward the bottom —
+the horizontal base ((24,107)→(43,143)) + the vertical darkening veil
+(the fitted alpha profile to (16,96) at the bottom); the flat
+EDGE_DARK_SOLID retired there. The `polygonHGradient` painter born.
+
+**THE MEASURE:** booking **7.32 → 5.60** · landing **5.21 → 4.82** ·
+faq **3.80 → 3.26** (1440) — every page at its best-ever floor, all
+comfortably inside the standing drift gates (16/12.5/9). The corpus
+held: lint 0/0 · tsc 0 · 139/2801 · build · smoke 14/14 · e2e 193/193.
+
 ### Session-207 — THE FINE SHAPES + THE RIGHT UNDERLAYER + THE PHANTOM RETIREMENT (2026-11-15)
 
 The post-206 rotation — the residual ledger's fine shapes retired,

@@ -134,38 +134,46 @@ export function BookingFlow() {
           </div>
 
           {/* ---- the progress bar ---------------------------------- */}
-          <div className="flex items-center justify-center mb-10">
+          {/* Session-208 (F-208a, decoded live on the reference): the
+              dots row is a flat gap-2 flex — 3 dot groups + TWO sibling
+              connectors (w-8 h-0.5) between them; the nested
+              group-end connector (w-8 sm:w-12 h-px mx-2) retired. */}
+          <div className="flex items-center justify-center gap-2 mb-10">
             {STEP_LABELS.map((label, i) => {
               const n = i + 1;
               const active = n === step;
               const done = n < step;
               return (
                 <div key={label} className="flex items-center gap-2">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                        done
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                      done
+                        ? "bg-[#2E7D5F] text-white"
+                        : active
                           ? "bg-[#2E7D5F] text-white"
-                          : active
-                            ? "bg-[#2E7D5F] text-white"
-                            : "bg-gray-200 text-gray-500"
-                      }`}
-                      aria-current={active ? "step" : undefined}
-                    >
-                      {n}
-                    </div>
-                    <span
-                      className={`hidden sm:block text-sm font-medium ${
-                        active ? "text-[#1F2933]" : "text-gray-400"
-                      }`}
-                    >
-                      {label}
-                    </span>
+                          : "bg-gray-200 text-gray-500"
+                    }`}
+                    aria-current={active ? "step" : undefined}
+                  >
+                    {n}
                   </div>
-                  {n < STEP_LABELS.length ? <div className="w-8 sm:w-12 h-px bg-gray-200 mx-2" /> : null}
+                  <span
+                    className={`hidden sm:block text-sm font-medium ${
+                      active ? "text-[#1F2933]" : "text-gray-400"
+                    }`}
+                  >
+                    {label}
+                  </span>
                 </div>
               );
-            })}
+            }).reduce<React.ReactNode[]>((acc, group, i) => {
+              // interleave the connectors between the groups
+              if (i > 0) {
+                acc.push(<div key={`connector-${i}`} className="w-8 h-0.5 bg-gray-200" />);
+              }
+              acc.push(group);
+              return acc;
+            }, [])}
           </div>
 
           {/* ---- step 1: service + estimate ------------------------- */}

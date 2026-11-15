@@ -224,6 +224,37 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).not.toContain("const BUSH_LEFT =");
     expect(src).not.toContain("const SOIL_GREEN =");
     expect(src).not.toContain("const EDGE_GREEN =");
+    // ------------------------------------------------------------------
+    // Session-208 (F-208c — the far-left horizon DIAGONAL): the ref's
+    // sky->lawn boundary at the far-left corner is a DIAGONAL — sky
+    // holds to y278@x0 -> y266@x20 -> y253@x40 -> y241@x60 -> flat
+    // y231@x80+ (page-shared: booking + landing agree). The diagonal
+    // polygon patches the corner OVER the flat gradient.
+    // ------------------------------------------------------------------
+    expect(src).toContain("HORIZON_DIAGONAL"); // the far-left diagonal patch
+    expect(src).toContain("rgba(174, 226, 255"); // the diagonal paints SKY over the corner
+    // ------------------------------------------------------------------
+    // Session-208 (F-208d — the left crown's true top): the ref's
+    // crown rises to (43,272) — a taller oval ((30-55)@277 widening
+    // to (12-82)@307); ours peaked at y284. The crown re-derived.
+    // ------------------------------------------------------------------
+    expect(src).toContain("the crown's top (43,272)"); // the taller crown
+    // ------------------------------------------------------------------
+    // Session-208 (F-208e — the right-side bush): the ref's light-green
+    // + brown bush at (x1310-1430, y440-500) — tones (187,220,170) +
+    // (165-176,123-137,72-92) + the dark spot (26,30,27).
+    // ------------------------------------------------------------------
+    expect(src).toContain("187, 220, 170"); // the bush's light-green
+    expect(src).toContain("RIGHT_BUSH"); // the bush constants
+    expect(src).toContain("26, 30, 27"); // the bush's dark spot
+    // ------------------------------------------------------------------
+    // Session-208 (F-208f — the mid-distance structures): behind the
+    // booking glass the ref paints a dark-green tree mass (x460-620,
+    // y265-315) + a blue-gray structure (x660-800, y265-310) — they
+    // tint the glass zones (booking + landing agree).
+    // ------------------------------------------------------------------
+    expect(src).toContain("MID_TREE"); // the dark-green mid tree mass
+    expect(src).toContain("MID_BLUE"); // the blue-gray mid structure
     // the wedge is a POLYGON (the crisp edges), not a radial blob — the
     // s204 quick attempts failed exactly because a blob's soft edges
     // blurred through the booking glass
@@ -467,6 +498,26 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     const est = read("src/components/site/estimate-card.tsx");
     expect(est).toContain('className="flex items-center gap-3 mb-6"');
     expect(est).not.toContain('className="flex items-center gap-3 mb-4"');
+    // ------------------------------------------------------------------
+    // Session-208 (F-208a — the step-dots row, decoded live on the
+    // reference): 3 dot groups in a gap-2 flex + TWO sibling
+    // connectors (w-8 h-0.5 bg-gray-200) BETWEEN the groups — not the
+    // nested w-8 sm:w-12 h-px mx-2 connector at each group's end (the
+    // s199 construction; the ref renders 2x32x2 connectors, ours
+    // 2x48x1 — the dots row's drift cell).
+    // ------------------------------------------------------------------
+    expect(src).toContain("flex items-center justify-center gap-2 mb-10");
+    expect(src).toContain('"w-8 h-0.5 bg-gray-200"');
+    expect(src).not.toContain("w-8 sm:w-12 h-px bg-gray-200 mx-2"); // the retired nested connector
+    // ------------------------------------------------------------------
+    // Session-208 (F-208b — the yard slider's fill): the reference's
+    // fill + thumb border are the shadcn CHARCOAL primary (rgb(23,23,23)
+    // / border-primary/50), not the brand green. The mint track stays.
+    // ------------------------------------------------------------------
+    expect(est).toContain("bg-[#171717]"); // the charcoal fill (the ref's shadcn primary; OURS is blue)
+    expect(est).toContain("border-[#171717]/50"); // the charcoal thumb border
+    expect(est).not.toContain('bg-[#2E7D5F]"'); // the retired green fill
+    expect(est).not.toContain("border-[#2E7D5F]/50"); // the retired green thumb border
   });
 });
 
