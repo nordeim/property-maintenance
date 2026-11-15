@@ -144,6 +144,17 @@ export const PAGES: readonly PageEntry[] = [
   // mock-dashboards render near-identically two-app; the landing's own
   // noise floor sits at the chart-bars' anti-aliasing).
   { name: "landing", path: "/" },
+  // Session-200-continuation: the OASIS PUBLIC QUARTET — the four
+  // Oasis-public surfaces the map never carried (the R6 deferral in
+  // docs/plans/2026-11-15-session200-audit-remediation.md closed).
+  // Both apps render them; the sweep captures logged-in (the s142
+  // landing precedent — the reference serves its public pages to
+  // authenticated visitors too); the maiden baselines derived
+  // against the Oasis reference.
+  { name: "services", path: "/services" },
+  { name: "gallery", path: "/gallery" },
+  { name: "faq", path: "/faq" },
+  { name: "booking", path: "/booking" },
   // Session-144 (D-144a2/F-144c1): the marketing pair joins the standing
   // sweep — the reference serves /about + /contact PUBLICLY (walk34,
   // rendered-level) and ours now mirrors it (the (marketing) group is
@@ -270,6 +281,18 @@ export const STANDING_BASELINES = {
     // lg:order-2 flip + the sm: leading pins — walk38d/e/f/h); the
     // landing measures 0.00, the genus COLLAPSED. 0.1 trips at 0.6.
     landing: 0.1,
+    // Session-200-continuation: the OASIS PUBLIC QUARTET — the maiden
+    // 1440x900 run vs the Oasis reference measured services 42.57 ·
+    // gallery 36.20 · faq 66.41 · booking 77.74. The TWO-CHROME genus
+    // (ours: the Oasis pages inside OUR site chrome; the reference:
+    // its pages inside ITS platform chrome) — structural, not a
+    // defect; the pages' CONTENT is byte-pinned by the e2e battery +
+    // the unit content pins. The entries sit at the measured floors
+    // + ~2.5 headroom (the s146 volatile-genus precedent).
+    services: 45.1,
+    gallery: 38.8,
+    faq: 69.0,
+    booking: 80.3,
     // session-144 (D-144a2): the marketing pair — the maiden runs
     // measured 0.00% (the app chrome + the censused content
     // pixel-identical logged-in); the 0.1 entry rides the family floor
@@ -327,6 +350,13 @@ export const STANDING_BASELINES = {
     // (trips at 0.6 — the tightest tripwire in the table; a real
     // blue-shift regression at the phone landing now trips awake).
     landing: 0.1,
+    // Session-200-continuation: the quartet's maiden 390x844 run —
+    // services 40.86 · gallery 30.35 · faq 52.54 · booking 59.71 (the
+    // same two-chrome genus at the phone share).
+    services: 43.4,
+    gallery: 32.9,
+    faq: 55.1,
+    booking: 62.3,
     // session-147: the floor family collapsed with the reference's own
     // hamburger — 0.00-0.51 measured; the 0.1 entries ride the family
     // floor
@@ -385,6 +415,13 @@ export const STANDING_BASELINES = {
     // 0.01 measured; the genus COLLAPSED. The family floor (0.1 trips
     // at 0.6).
     landing: 0.1,
+    // Session-200-continuation: the quartet's maiden 768x1024 run —
+    // services 37.25 · gallery 31.60 · faq 54.78 · booking 58.43 (the
+    // two-chrome genus at the tablet share).
+    services: 39.8,
+    gallery: 34.1,
+    faq: 57.3,
+    booking: 60.9,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // tablet run)
     about: 0.1,
@@ -433,6 +470,13 @@ export const STANDING_BASELINES = {
     // session-148 (the F-147c3 mirror): the mock morph is MIRRORED —
     // 0.01 measured; the genus COLLAPSED. The family floor.
     landing: 0.1,
+    // Session-200-continuation: the quartet's maiden 1024x768 run —
+    // services 43.54 · gallery 32.65 · faq 56.66 · booking 72.25 (the
+    // two-chrome genus at the landscape share).
+    services: 46.0,
+    gallery: 35.2,
+    faq: 59.2,
+    booking: 74.8,
     // session-144: the marketing pair — 0.00% measured (the maiden
     // landscape run)
     about: 0.1,

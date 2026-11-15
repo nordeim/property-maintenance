@@ -28,13 +28,22 @@ const read = (p: string) => readFileSync(path.join(root, p), "utf8");
 const sweep = () => import("../scripts/sweep");
 
 describe("session-92 (S92-P5): the sweep tool — the one-command regression", () => {
-  it("exports the 14-page sweep list (the s91 set + the s96 login + the s142 landing/route-move + the s144 marketing pair + the s197 not-found)", async () => {
+  it("exports the 18-page sweep list (the s91 set + the s96 login + the s142 landing/route-move + the s144 marketing pair + the s197 not-found + the s200-c Oasis public quartet)", async () => {
     const { PAGES } = await sweep();
     expect(PAGES).toEqual([
       // Session-142 (D-142a6): the dashboard re-anchored to /dashboard
       // (the root became the PUBLIC landing) + the landing entry.
       { name: "dashboard", path: "/dashboard" },
       { name: "landing", path: "/" },
+      // Session-200-continuation: the OASIS PUBLIC QUARTET joins the
+      // standing sweep — services/gallery/faq/booking are the four
+      // Oasis-public surfaces the map never carried (the R6 deferral
+      // closed: both apps render them, logged-in capture, the maiden
+      // baselines derived against the Oasis reference).
+      { name: "services", path: "/services" },
+      { name: "gallery", path: "/gallery" },
+      { name: "faq", path: "/faq" },
+      { name: "booking", path: "/booking" },
       // Session-144 (D-144a2): the marketing pair joins the standing
       // sweep — the reference serves /about + /contact publicly
       // (walk34/F-144c1) and ours now mirrors it; the sweep captures

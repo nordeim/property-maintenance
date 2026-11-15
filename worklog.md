@@ -19,6 +19,7 @@ Work Log:
 Stage Summary:
 - The corpus: lint 0/0 · tsc 0 · unit 2797/2797 · build GREEN · smoke 14/14 (the 05 identity check re-anchored to the Oasis title) · e2e 193/193 (the full confirmation run on the fresh build — the Radix keyboard-contract check included) · probe:ref STANDING at the Oasis reference
 - The deliverables: the remediated menu (Radix), the captures, the distilled skill, the re-anchored docs (the count ladder + the heads), the plan with its execution record
+- CONTINUATION LEG (the same round's second pass): the R6 deferral closed — the Oasis public quartet (services/gallery/faq/booking) joined the sweep PAGES map (TDD: the 18-page pin RED first, then the map + all four width-table baselines derived from the maiden Oasis-reference sweeps at 1440/390/768/1024 — the two-chrome genus at every share, the s146 headroom precedent), all four --fail-on-drift gates clean, the fail-fast doctrine re-proven 68/68, the full unit gate re-run GREEN 2797/2797 (lint 0/0 · tsc 0; the PAD smoke-row 160->163 followed the s200 identity check), the plan's R5 checkbox flipped + the interim counts annotated, this worklog addendum
 - Everything committed to main and pushed via the SSH wrapper
 
 Task ID: 199 (the continuation leg — the post-cutoff completion round)

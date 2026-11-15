@@ -12922,6 +12922,22 @@ public-site battery 13/13 with the Radix keyboard contract born this
 round + the standing suites at their re-verified counts) · probe:ref STANDING
 · the four-doc count ladder pinned at the live census.
 
+**THE CONTINUATION LEG (the same round's second pass, 2026-11-15)**:
+the R6 deferral closed — the OASIS PUBLIC QUARTET (services/gallery/
+faq/booking) joined the sweep map (the PAGES pin 14 -> 18, TDD: RED
+first then the map), the maiden baselines derived against the Oasis
+reference at ALL FOUR widths (1440: 42.57/36.20/66.41/77.74 · 390:
+40.86/30.35/52.54/59.71 · 768: 37.25/31.60/54.78/58.43 · 1024:
+43.54/32.65/56.66/72.25 — the TWO-CHROME genus at every share,
+structural not defect; the tables carry the measured floors + ~2.5
+headroom, the s146 volatile-genus precedent), all four drift gates
+verified clean (`--fail-on-drift` at every width), the fail-fast
+doctrine re-proven (every PAGES name carries a baseline in every
+width table), the PAD smoke-row re-anchor (163 lines — the s200
+identity check's 3 lines), and the plan's R5 checkbox flipped (the
+SKILL was created + verified + committed; the checkbox alone had been
+left behind).
+
 ### Session-200 — THE A11Y REGISTER'S PAGE-SURFACE COVERAGE AUDIT (the three un-registered page surfaces + the spec's own stale anon-family claim) (2026-10-30)
 
 The post-199 audit rotation. Its rotation trigger THE OWNER'S NEWEST

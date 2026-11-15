@@ -52,21 +52,21 @@ Distilled per `skills/to-distill-project-into-skill` + `skills/distill-codebase-
 
 - **login 0.59%** — the floor genus (the reference hotlinks its logo screenshot; ours draws the shape — the s7 note, now on the Oasis card).
 - **about 55.43% / contact 38.70%** — the STRUCTURAL genus, adjudicated: our /about + /contact are the OASIS public pages inside OUR site chrome, swept logged-in on both apps; the Oasis reference renders its own pages inside its own platform chrome. The two renderings are both faithful to their own chrome contracts (the pages' CONTENT is byte-pinned by the e2e battery + the unit content pins — the sweep measures chrome composition, not content parity). The CRM pages (/dashboard & co.) are OURS-ONLY supersets (the Oasis reference 404s every CRM route — recon leg 3): they keep their sweep baselines against the neo-crm reference's anatomy frozen at the s148 floor notes.
-- The Oasis-only pages (services/gallery/faq/booking) join the sweep map at the next standing-baseline derivation round (their content is pinned by the probe's content census + the e2e battery; the pixel floor derivation needs its own maiden pass).
+- The Oasis-only pages (services/gallery/faq/booking) joined the sweep map at the continuation round (2026-11-15, the same session's second leg): the PAGES pin extended 14 -> 18 (TDD: RED first), the maiden baselines derived against the Oasis reference at ALL FOUR widths (1440: services 42.57 · gallery 36.20 · faq 66.41 · booking 77.74 / 390: 40.86 · 30.35 · 52.54 · 59.71 / 768: 37.25 · 31.60 · 54.78 · 58.43 / 1024: 43.54 · 32.65 · 56.66 · 72.25 — the same TWO-CHROME genus as about/contact, structural not defect; the tables carry the measured floors + ~2.5 headroom per the s146 volatile-genus precedent), and all four drift gates verified clean (--fail-on-drift at every width).
 
 ### R7 — The docs lockstep tail
 
-The worklog entry, the plan's execution record, the AGENTS session-200 section, and the README/CLAUDE/PAD faces — all at the final counts (2797 / 192 / 2989 / 139).
+The worklog entry, the plan's execution record, the AGENTS session-200 section, and the README/CLAUDE/PAD faces — all at the final counts (2797 / 193 / 2990 / 139 — the Radix keyboard-contract check born at R1 raised the e2e 192 -> 193 and the badge 2989 -> 2990).
 
 ## 4. The execution record (filled as the round lands)
 
 - [x] The refresh (a35a754 pulled; the session logs read) + the alignment validation.
-- [x] The baseline gate cured: the asset pin (A7), the 7 probe/404 stragglers, the FULL count ladder (~45 live-tense sites re-anchored across README/AGENTS/CLAUDE/PAD/SKILL: 2797 unit · 192 e2e · 2989 badge · 139 suites), the SKILL head surgery (A6, v1.208.0 + the live session-200 layer) — **unit 2797/2797 GREEN, lint 0/0, tsc 0**.
+- [x] The baseline gate cured: the asset pin (A7), the 7 probe/404 stragglers, the FULL count ladder (~45 live-tense sites re-anchored across README/AGENTS/CLAUDE/PAD/SKILL: 2797 unit · 192 e2e · 2989 badge · 139 suites (the interim truth at this step; the R1 keyboard check then raised e2e -> 193 / badge -> 2990 and the ladder was walked again)), the SKILL head surgery (A6, v1.208.0 + the live session-200 layer) — **unit 2797/2797 GREEN, lint 0/0, tsc 0**.
 - [x] The audit (§2).
 - [x] R1 the mobile-menu Radix remediation (TDD) — RED birth (the Esc/focus-return pin), the cure (DialogPrimitive composed, the trigger named, the reference's top-sheet anatomy), GREEN 12/12 (one stale-build false alarm root-caused on the way).
 - [x] R2 `.env.example` — the s170 file re-verified against the six-knob contract + the identity touch-up (committed).
 - [x] R3 the captures — 15 PNGs in docs/screenshots/ (9 desktop surfaces + 3 phone + the Radix menu open + the booking step-2 + the CRM dashboard), all machine-verified non-blank.
 - [x] R4 the docs heads — AGENTS/README/CLAUDE/PAD re-titled at the Oasis identity (the PAD companion row names the new skill; the historical records untouched).
-- [ ] R5 the SKILL creation.
-- [x] R6 the sweeps — the maiden Oasis-reference run (see above) + probe:ref STANDING.
+- [x] R5 the SKILL creation — property-maintenance_SKILL.md v1.0.0 (10 sections, 0 placeholders; committed at 835fddd).
+- [x] R6 the sweeps — the maiden Oasis-reference run (see above) + probe:ref STANDING + the continuation leg: the quartet mapped + the four-width baselines derived + the drift gates clean (see the R6 note).
 - [x] R7 the lockstep tail + the full gate + the push — the worklog entry (Task ID 200) + this record + the AGENTS property-maintenance Session-200 section; THE FINAL GATE: lint 0/0 · tsc 0 · **139/2797 unit · build · smoke 14/14 (the 05 identity check re-anchored to the Oasis title — the retired 'neo' grep followed its landing) · e2e 193/193** (the full confirmation run on the fresh build) · probe:ref STANDING on every layer.
