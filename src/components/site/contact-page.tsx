@@ -356,7 +356,6 @@ export function ContactPage({
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted map asset */}
               <img
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200"
                 alt="Service area map"

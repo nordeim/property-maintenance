@@ -40,7 +40,6 @@ export function GalleryPage() {
                       <div className="relative h-80 overflow-hidden">
                         <div className="absolute inset-0 flex">
                           <div className="w-1/2 relative overflow-hidden">
-                            {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted assets */}
                             <img
                               src={pair.before}
                               alt="Before"
@@ -51,7 +50,6 @@ export function GalleryPage() {
                             </div>
                           </div>
                           <div className="w-1/2 relative overflow-hidden">
-                            {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted assets */}
                             <img
                               src={pair.after}
                               alt="After"

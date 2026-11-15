@@ -192,14 +192,14 @@ describe("session-169 (WP-1b): the CLAUDE.md doctrine + facts pins (F-169a/b/c/d
 
   it("the sitemap claim carries the LIVE route count (F-169b)", () => {
     const routes = (read("src/app/sitemap.xml/route.ts").match(/\{ path: "/g) ?? []).length;
-    expect(routes).toBe(11); // the s142 surface
-    expect(claude).toContain("the eleven-route sitemap.xml");
+    expect(routes).toBe(16); // the session-199 surface (the Oasis public routes joined)
+    expect(claude).toContain("the sixteen-route sitemap.xml");
     expect(claude).not.toContain("the nine-route sitemap.xml");
   });
 
   it("the models list carries the LIVE model census + Opportunity (F-169c)", () => {
     const models = (read("prisma/schema.prisma").match(/^model /gm) ?? []).length;
-    expect(models).toBe(9); // the tree census
+    expect(models).toBe(11); // the tree census (session-199: + Booking + QuoteRequest)
     expect(claude).toContain("Event, Opportunity,");
     expect(claude).toContain(`Setting (singleton row) — ${models} models.`);
     expect(claude).not.toContain("Event, SavedReport,\n  Setting (singleton row).");
@@ -301,9 +301,9 @@ describe("session-169 (WP-1c): the PAD doctrine + tree pins (F-169k/l/m/s)", () 
 describe("session-169 (WP-1d): the DEPLOYMENT build-line live-census (F-9)", () => {
   it("the build line carries the LIVE route-file census", () => {
     const routes = walk("src/app/api").filter((f) => f.endsWith("route.ts")).length;
-    expect(routes).toBe(29); // the tree census (the three SEO handlers excluded)
+    expect(routes).toBe(31); // the tree census (the three SEO handlers excluded; session-199: + bookings + quote-requests)
     const deployment = read("docs/DEPLOYMENT.md");
-    expect(deployment).toContain(`the ${routes} API route files (41 verb handlers)`);
+    expect(deployment).toContain(`the ${routes} API route files (45 verb handlers)`);
     expect(deployment).not.toContain("the 27 API route handlers");
   });
 });
@@ -424,10 +424,10 @@ describe("session-169 (WP-1f): the README tree + Quick Start + gate pins (F-169h
     for (const f of files) {
       total += (noComments(readFileSync(f, "utf8")).match(/space-y-/g) ?? []).length;
     }
-    expect(files.length).toBe(23); // the dialog-geometry census (s170: the boundary family +2)
-    // session-187 re-anchor: 123 -> 122 (the walk60 D-187a3 listBody
-    // retirement — the README's Tested row flipped in the same commit)
-    expect(total).toBe(122);
+    expect(files.length).toBe(26); // the dialog-geometry census (session-199: + the Oasis site layer)
+    // session-199 re-anchor: 122 -> 133 (the Oasis site layer's eleven
+    // occurrences across its three joining files)
+    expect(total).toBe(133);
     expect(readme).toContain(`the space-y census at ${files.length} files / ${total} occurrences`);
     expect(readme).not.toContain("the space-y census re-anchored 110/18");
   });
@@ -443,8 +443,8 @@ describe("session-169 (WP-1g): the AGENTS.md straggler pins (F-1/F-11/F-12/F-13)
 
   it("the sitemap line carries the eleven-URL form (F-1)", () => {
     const routes = (read("src/app/sitemap.xml/route.ts").match(/\{ path: "/g) ?? []).length;
-    expect(routes).toBe(11);
-    expect(agentsNorm).toContain("an eleven-URL `/sitemap.xml`");
+    expect(routes).toBe(16);
+    expect(agentsNorm).toContain("a sixteen-URL `/sitemap.xml`");
     expect(agentsNorm).not.toContain("a nine-URL `/sitemap.xml`");
   });
 
@@ -458,9 +458,9 @@ describe("session-169 (WP-1g): the AGENTS.md straggler pins (F-1/F-11/F-12/F-13)
     const aliases = walk("src/app").filter(
       (f) => f.endsWith("page.jsx") && read(f).includes("pageMetadata("),
     ).length;
-    expect(primaryPages.length).toBe(15); // the inventory-census surface
-    expect(consumers).toBe(13); // 8 inner + login + signup + marketing pair + reset-password
-    expect(aliases).toBe(10); // the capitalized RENDER aliases (Dashboard inherits root)
+    expect(primaryPages.length).toBe(20); // the inventory-census surface (session-199: the (site) group)
+    expect(consumers).toBe(19); // the (site) 8 + login + signup + reset-password + the 8 CRM wrappers
+    expect(aliases).toBe(15); // the capitalized RENDER aliases (Dashboard inherits root)
     expect(agents).toContain(`(the ${consumers} primary pages consume it`);
     // the SITE-FORM anchor (the full wrapped clause): the session records
     // quote the retired fragment by name — only the original site's own

@@ -608,28 +608,28 @@ test("tabs ship the reference's Radix ARIA contract + keyboard model (session-23
   expect(activitiesWiring.emptyPanels).toBe(3);
 });
 
-test("per-page document titles follow the Page | NEO CRM scheme", async ({ page }) => {
+test("per-page document titles follow the Page | Oasis Property Maintenance scheme (the session-199 SITE_TITLE seam)", async ({ page }) => {
   // Session-10 (S10-10): the reference titles every non-dashboard page
   // "X | NEO CRM"; the dashboard + login stay "NEO CRM" (document.title
   // probes on all 10 routes of the live reference).
   await page.goto("/dashboard");
   await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
-  await expect(page).toHaveTitle("NEO CRM");
+  await expect(page).toHaveTitle("Oasis Property Maintenance");
   for (const [path, title] of [
-    ["/accounts", "Accounts | NEO CRM"],
-    ["/contacts", "Contacts | NEO CRM"],
-    ["/leads", "Leads | NEO CRM"],
-    ["/calendar", "Calendar | NEO CRM"],
-    ["/activities", "Activities | NEO CRM"],
-    ["/reports", "Reports | NEO CRM"],
-    ["/settings", "Settings | NEO CRM"],
-    ["/profile", "Profile | NEO CRM"],
+    ["/accounts", "Accounts | Oasis Property Maintenance"],
+    ["/contacts", "Contacts | Oasis Property Maintenance"],
+    ["/leads", "Leads | Oasis Property Maintenance"],
+    ["/calendar", "Calendar | Oasis Property Maintenance"],
+    ["/activities", "Activities | Oasis Property Maintenance"],
+    ["/reports", "Reports | Oasis Property Maintenance"],
+    ["/settings", "Settings | Oasis Property Maintenance"],
+    ["/profile", "Profile | Oasis Property Maintenance"],
   ] as const) {
     await page.goto(path);
     await expect(page).toHaveTitle(title);
   }
   await page.goto("/login");
-  await expect(page).toHaveTitle("NEO CRM");
+  await expect(page).toHaveTitle("Oasis Property Maintenance");
 });
 
 test("profile page shows the reference Personal Information layout", async ({ page }) => {
@@ -964,9 +964,12 @@ test("unknown routes render the reference's custom 404 page (S12-P2)", async ({ 
 
   const goHome = page.getByRole("link", { name: "Go Home" });
   await expect(goHome).toBeVisible();
+  // Session-199: the Oasis 404 rides the SITE chrome and its Go Home
+  // targets the reference's canonical /home (the Oasis home's hero, not
+  // the retired neo-crm landing's Dashboard-mock copy)
   await goHome.click();
-  await page.waitForURL("**/");
-  await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
+  await page.waitForURL("**/home");
+  await expect(page.locator("h1")).toContainText("perfectly maintained.");
 });
 
 test("the topbar account menu is a real role=menu with Profile/Logout (S13-P4)", async ({ page }) => {
@@ -1391,7 +1394,8 @@ test("the blue primary buttons carry the bare shadow scale (S17-P4)", async ({ p
 
 // ---------------------------------------------------------------------------
 // Session-18: the document metadata layer (S18-P1..P4). The reference ships
-// a 405-char meta description, the full OG/Twitter card set, a PNG favicon,
+// the reference's own meta description (the 177-char Oasis bytes,
+// live-fetched session-199), the full OG/Twitter card set, a PNG favicon,
 // /sitemap.xml (9 URLs) and a robots.txt with a Sitemap line — all probed
 // live on 2026-10-01. These run against the standalone build's SSR <head>.
 // ---------------------------------------------------------------------------
@@ -1402,7 +1406,7 @@ test("the head ships the reference meta description (S18-P1)", async ({ page }) 
     .locator('meta[name="description"]')
     .getAttribute("content");
   expect(description).toBe(
-    "NEO CRM is a clean, intuitive customer relationship management platform designed to help teams manage accounts, contacts, and leads in one centralized dashboard. With powerful search, clear account tracking, activity monitoring, and built-in reporting, NEO CRM keeps your client data organized, accessible, and actionable—so you can focus on building stronger relationships and closing more opportunities.",
+    "Your go-to service for reliable lawn mowing, garden care, and property maintenance across Gold Coast, Logan, and South Brisbane. We keep your home looking its best, hassle-free.",
   );
 });
 
@@ -1410,7 +1414,7 @@ test("the head ships the OpenGraph + Twitter card family (S18-P2)", async ({ pag
   await page.goto("/dashboard");
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
     "content",
-    "NEO CRM",
+    "Oasis Property Maintenance",
   );
   await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
     "content",
@@ -1418,7 +1422,7 @@ test("the head ships the OpenGraph + Twitter card family (S18-P2)", async ({ pag
   );
   await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute(
     "content",
-    "NEO CRM",
+    "Oasis Property Maintenance",
   );
   const ogImage = await page
     .locator('meta[property="og:image"]')
@@ -1430,7 +1434,7 @@ test("the head ships the OpenGraph + Twitter card family (S18-P2)", async ({ pag
   );
   await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
     "content",
-    "NEO CRM",
+    "Oasis Property Maintenance",
   );
   const twitterUrl = await page
     .locator('meta[name="twitter:url"]')
@@ -1488,7 +1492,7 @@ test("sitemap.xml serves the nine real routes (S18-P4)", async ({ page }) => {
 // Session-19: the PWA/installable + per-route metadata layer (S19-P1..P8).
 // The reference ships a web app manifest, the #000000 theme-color, the
 // apple/mobile-web-app meta family + apple-touch-icon, PER-ROUTE
-// canonical/OG/Twitter (og:title "X | NEO CRM", og:url origin+route,
+// canonical/OG/Twitter (og:title "X | Oasis Property Maintenance", og:url origin+route,
 // og:description "<Page> on NEO CRM. " + the 405-char paragraph), a
 // type=tel Contact phone field, zero datalists, and the specific avatar
 // accept list — all probed live on 2026-10-01.
@@ -1500,8 +1504,8 @@ test("manifest.json serves the reference's installable manifest (S19-P1)", async
   const res = await page.request.get("/manifest.json");
   expect(res.status()).toBe(200);
   const manifest = (await res.json()) as Record<string, unknown>;
-  expect(manifest.name).toBe("NEO CRM");
-  expect(manifest.short_name).toBe("NEO CRM");
+  expect(manifest.name).toBe("Oasis Property Maintenance");
+  expect(manifest.short_name).toBe("Oasis");
   expect(manifest.display).toBe("standalone");
   expect(manifest.theme_color).toBe("#000000");
   expect(manifest.background_color).toBe("#ffffff");
@@ -1545,7 +1549,7 @@ test("inner pages ship PER-ROUTE canonical + OG/Twitter (S19-P4, S19-P5)", async
   await page.goto("/accounts");
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
     "content",
-    "Accounts | NEO CRM",
+    "Accounts | Oasis Property Maintenance",
   );
   const ogUrl = await page
     .locator('meta[property="og:url"]')
@@ -1554,7 +1558,7 @@ test("inner pages ship PER-ROUTE canonical + OG/Twitter (S19-P4, S19-P5)", async
   const ogDesc = await page
     .locator('meta[property="og:description"]')
     .getAttribute("content");
-  expect(ogDesc?.startsWith("Accounts on NEO CRM. ")).toBe(true);
+  expect(ogDesc?.startsWith("Accounts on Oasis Property Maintenance. ")).toBe(true);
   expect(ogDesc).toContain("customer relationship management platform");
   const twitterUrl = await page
     .locator('meta[name="twitter:url"]')
@@ -1562,7 +1566,7 @@ test("inner pages ship PER-ROUTE canonical + OG/Twitter (S19-P4, S19-P5)", async
   expect(twitterUrl).toMatch(/\/accounts$/);
   await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute(
     "content",
-    "Accounts | NEO CRM",
+    "Accounts | Oasis Property Maintenance",
   );
   const canonical = await page
     .locator('link[rel="canonical"]')
@@ -1574,12 +1578,12 @@ test("the dashboard keeps the unprefixed root metadata family (S19-P4)", async (
   await page.goto("/dashboard");
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
     "content",
-    "NEO CRM",
+    "Oasis Property Maintenance",
   );
   const ogDesc = await page
     .locator('meta[property="og:description"]')
     .getAttribute("content");
-  expect(ogDesc?.startsWith("NEO CRM is a clean")).toBe(true);
+  expect(ogDesc?.startsWith("Your go-to service for reliable lawn mowing")).toBe(true);
   // Next's URL resolution strips the root's trailing slash (the
   // reference's canonical is origin/ WITH the slash — verified live that
   // Next emits the slashless form either way; the s18 "viewport 1 vs
@@ -3025,7 +3029,7 @@ test("the logout round-trip: the menu Logout clears the session + protects the a
   // The reference's own flow: the logout clears the session cookie and
   // lands on /login.
   await page.waitForURL("**/login");
-  await expect(page.getByRole("heading", { name: "Welcome to NEO CRM" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Welcome to Oasis Property Maintenance" })).toBeVisible();
   // The session is CLEARED server-side: a protected route now redirects
   // (the storageState's cookie no longer authorizes). Session-147: the
   // (app) guard's wall carries ?from_url= — the glob widens.

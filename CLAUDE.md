@@ -692,7 +692,7 @@ Demo login: `sepnetflix2023@outlook.com` / `$Abcd1234`.
   with the dark #171717 checked fill + Check indicator, the blue
   primaries' bare shadow scale), session-18's document-metadata
   layer (the reference meta description, the OG/Twitter card family, the
-  favicon link, robots.txt's Sitemap line, the eleven-route sitemap.xml),
+  favicon link, robots.txt's Sitemap line, the sixteen-route sitemap.xml),
   and session-19's PWA + per-route metadata layer (the installable
   manifest.json, the #000000 theme-color + the apple/PWA metas, the
   resolving apple-touch-icon, per-route canonical/OG/Twitter on
@@ -843,7 +843,8 @@ React-hooks rules that matter here (violations are errors):
   the `scripts/prisma-env.ts` wrapper so the CLI lands on the same
   `<repo>/db/custom.db` file.
 - Models: User, Account, Contact, Lead, Activity, Event, Opportunity,
-  SavedReport, Setting (singleton row) — 9 models.
+  SavedReport, Booking, QuoteRequest, Setting (singleton row) — 11 models.
+  (session-199: + the Oasis public-form pair Booking + QuoteRequest.)
 
 ### Environment Variables
 

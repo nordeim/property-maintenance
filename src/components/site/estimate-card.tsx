@@ -77,27 +77,36 @@ export function EstimateCard({
         })}
       </div>
 
-      <div className="flex justify-between items-baseline mb-3">
-        <p className="text-sm font-medium text-[#1F2933]">How big is your yard?</p>
-        <span className="text-sm font-bold text-[#2E7D5F]">{formatYardSize(yardSize)}</span>
-      </div>
-
-      <Slider.Root
-        dir="ltr"
-        orientation="horizontal"
-        className="relative flex w-full touch-none select-none items-center mb-2"
-        value={[yardSize]}
-        min={YARD_MIN}
-        max={YARD_MAX}
-        step={10}
-        aria-label="Yard size in square metres"
-        onValueChange={(value) => onYardSizeChange(value[0] ?? YARD_DEFAULT)}
-      >
+      {/* the LABEL ancestry names the role=slider thumb (the s199 axe
+          two-gate catch — the s178-c1 form: the visible text is the
+          accessible name) */}
+      <label className="block">
+        <span className="flex justify-between items-baseline mb-3">
+          <span className="text-sm font-medium text-[#1F2933]">How big is your yard?</span>
+          <span className="text-sm font-bold text-[#2E7D5F]">{formatYardSize(yardSize)}</span>
+        </span>
+        <Slider.Root
+          dir="ltr"
+          orientation="horizontal"
+          className="relative flex w-full touch-none select-none items-center mb-2"
+          value={[yardSize]}
+          min={YARD_MIN}
+          max={YARD_MAX}
+          step={10}
+          onValueChange={(value) => onYardSizeChange(value[0] ?? YARD_DEFAULT)}
+        >
         <Slider.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-[#2E7D5F]/20">
           <Slider.Range className="absolute h-full bg-[#2E7D5F]" />
         </Slider.Track>
-        <Slider.Thumb className="block h-4 w-4 rounded-full border border-[#2E7D5F]/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
-      </Slider.Root>
+        {/* the accessible name rides the THUMB (role="slider") — a
+            Root-level label never reaches it (the s199 axe two-gate
+            catch: aria-input-field-name) */}
+        <Slider.Thumb
+          aria-label="Yard size in square metres"
+          className="block h-4 w-4 rounded-full border border-[#2E7D5F]/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        />
+        </Slider.Root>
+      </label>
 
       <div className="flex justify-between text-xs text-gray-400 mb-6">
         <span>Small (100m²)</span>

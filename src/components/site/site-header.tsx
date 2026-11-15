@@ -28,7 +28,6 @@ export function SiteHeader() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link href="/home" className="flex items-center group">
-            {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted asset; next/image would rewrite the URL and break the shared-source parity */}
             <img
               src={SITE_LOGO_SRC}
               alt="Green Cut Lawn Care"

@@ -1,96 +1,70 @@
 import { expect, test } from "@playwright/test";
 
-// Session-150 (walk40, D-150a2): the marketing phone-state walk — the
-// full-page axis extended past the landing (the only PUBLIC long-scroll
-// surface) to the two remaining marketing pages. walk40's L-150c1
-// decode: at phone width the /About + /Contact content scrolls INSIDE
-// the shell's `main.overflow-auto` (the h-screen flex-shell contract)
-// — the DOCUMENT never grows (scrollH === the viewport), so a fullPage
-// capture structurally cannot see these surfaces' below-the-fold. The
-// walk's full-geometry census (every element's top+height on BOTH
-// apps) verified the interiors byte-equal (about main.scrollHeight
-// 1731 = both · contact 897 = both · 0 geometry diffs) — this spec
-// freezes the SCROLL MODEL + the census so a future construction
-// regression REDs here exactly.
+// Session-199 (the Oasis re-anchor): the marketing PHONE contract — the
+// (site) public pages at 390. The walk40 internal-scroller model retired
+// with the neo-crm marketing layer (its h-screen app-shell quirk); the
+// OASIS reference's public pages scroll the DOCUMENT (recon-verified at
+// 390: scrollW exactly 390, no horizontal overflow, the natural
+// below-the-fold). This spec freezes THAT model + the censused copy on
+// the two richest surfaces (about + contact), plus the standing no-390-
+// overflow contract on every public route.
 //
-// This runs with the shared storageState (the pages are login-gated
-// for guests — the s147 F-147c2 posture; the e2e user is signed in).
-// The pinned values are CLASS-DERIVED (the h-screen shell, the
-// overflow-auto main) or COUNT-DERIVED (the s142 censused copy) —
-// never text-rasterized pixel sums (the s106 idiom: a layout-value pin
-// must not depend on font metrics).
-test("the marketing pages hold the 390px phone contract (the walk40 internal-scroller model + census)", async ({ page }) => {
+// The pinned values are COUNT-DERIVED (the recon-leg-8/11 censused copy)
+// or LAYOUT-DERIVED (the scrollWidth contract) — never text-rasterized
+// pixel sums (the s106 idiom).
+
+const PUBLIC_ROUTES = ["/", "/home", "/services", "/gallery", "/faq", "/about", "/contact", "/booking"] as const;
+
+test("the public pages hold the 390px phone contract (no horizontal overflow, the document scrolls)", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
-  // ---- /About -----------------------------------------------------------
+  for (const route of PUBLIC_ROUTES) {
+    await page.goto(route);
+    await page.waitForLoadState("domcontentloaded");
+    await page.waitForTimeout(600);
+    const scrollW = await page.evaluate(() => document.documentElement.scrollWidth);
+    // (a) the frame contract: nothing overflows the 390px viewport
+    expect(scrollW, `${route} scrollWidth`).toBe(390);
+  }
+
+  // (b) the scroll model: the DOCUMENT carries the below-the-fold (the
+  // natural page scroll — the opposite of the retired neo-crm shell's
+  // internal main scroller)
+  const aboutScrollH = await page.evaluate(() => document.documentElement.scrollHeight);
+  expect(aboutScrollH).toBeGreaterThan(844);
+});
+
+test("the about + contact surfaces carry their censused copy at the phone axis", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  // ---- /about -----------------------------------------------------------
   await page.goto("/about");
   await page.waitForLoadState("domcontentloaded");
-  await expect(page.getByRole("heading", { name: "About NEO CRM" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "About Green Cut" })).toBeVisible();
 
   const about = await page.evaluate(() => {
-    const main = document.querySelector("main");
-    const intro = Array.from(document.querySelectorAll("main .space-y-4 > p"));
-    const cards = Array.from(document.querySelectorAll("main .bg-white.border.rounded-xl"));
-    const link = document.querySelector('main a[href="/Contact"]');
-    return {
-      docScrollW: document.documentElement.scrollWidth,
-      docScrollH: document.documentElement.scrollHeight,
-      mainScrollH: main?.scrollHeight ?? 0,
-      introCount: intro.length,
-      cardCount: cards.length,
-      hasGetInTouch: (link?.textContent ?? "").includes("Get in touch with us"),
-    };
+    const regions = Array.from(document.querySelectorAll("main h3"))
+      .map((h) => (h.textContent ?? "").trim())
+      .filter(Boolean);
+    return { regions };
   });
+  for (const region of ["Reliable & Punctual", "Professional & Insured", "Local & Trusted", "Customer Focused", "Gold Coast", "Logan", "South Brisbane"]) {
+    expect(about.regions, `the ${region} h3`).toContain(region);
+  }
 
-  // (a) the frame contract: nothing overflows the 390px viewport
-  expect(about.docScrollW).toBe(390);
-  // (b) the walk40 scroll model: the DOCUMENT never scrolls (the
-  // h-screen shell) — the below-fold content lives INSIDE main's
-  // scroller, the surface a fullPage capture cannot see
-  expect(about.docScrollH).toBe(844);
-  expect(about.mainScrollH).toBeGreaterThan(844);
-  // (c) the s142 censused census: 3 intro paragraphs + 4 icon cards +
-  // the get-in-touch link (the walk40 PASS 2 verified every element's
-  // geometry byte-equal on both apps)
-  expect(about.introCount).toBe(3);
-  expect(about.cardCount).toBe(4);
-  expect(about.hasGetInTouch).toBe(true);
-
-  // ---- /Contact ---------------------------------------------------------
+  // ---- /contact ---------------------------------------------------------
   await page.goto("/contact");
   await page.waitForLoadState("domcontentloaded");
-  await expect(page.getByRole("heading", { name: "Contact Us" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Get Your Free Quote" })).toBeVisible();
 
   const contact = await page.evaluate(() => {
-    const main = document.querySelector("main");
-    const socials = Array.from(document.querySelectorAll('main a[target="_blank"][rel="noopener noreferrer"]'));
-    const email = document.querySelector('main a[href="mailto:hello@example.com"]');
-    const cards = Array.from(document.querySelectorAll("main .bg-white.border.rounded-xl"));
-    return {
-      docScrollW: document.documentElement.scrollWidth,
-      docScrollH: document.documentElement.scrollHeight,
-      mainScrollH: main?.scrollHeight ?? 0,
-      socialCount: socials.length,
-      socialHrefs: socials.map((a) => (a as HTMLAnchorElement).href),
-      hasEmail: email !== null,
-      cardCount: cards.length,
-    };
+    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    const suburbs = Array.from(document.querySelectorAll("select option"))
+      .map((o) => (o.textContent ?? "").trim())
+      .filter((t) => t !== "Select your suburb");
+    return { checkboxCount: checkboxes.length, suburbCount: suburbs.length };
   });
-
-  // (a) the frame contract
-  expect(contact.docScrollW).toBe(390);
-  // (b) the walk40 scroll model (contact main.scrollHeight 897 at the
-  // walk — the content scrolls internally here too)
-  expect(contact.docScrollH).toBe(844);
-  expect(contact.mainScrollH).toBeGreaterThan(844);
-  // (c) the s142 censused census: the Email card + the Follow-us card
-  // with the three socials
-  expect(contact.cardCount).toBe(2);
-  expect(contact.hasEmail).toBe(true);
-  expect(contact.socialCount).toBe(3);
-  expect(contact.socialHrefs).toEqual([
-    "https://www.linkedin.com/",
-    "https://x.com/",
-    "https://github.com/",
-  ]);
+  // the recon-leg-9 census: 15 service checkboxes + the 19-suburb select
+  expect(contact.checkboxCount).toBe(15);
+  expect(contact.suburbCount).toBe(19);
 });

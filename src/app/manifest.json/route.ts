@@ -1,8 +1,10 @@
-import { SITE_DESCRIPTION, siteUrl } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_TITLE, siteUrl } from "@/lib/site";
 
 // Session-19 (S19-P1): /manifest.json — the reference's installable web
 // app manifest, fetched byte-for-byte on 2026-10-01:
-//   {name, short_name} "NEO CRM", the same 405-char description, TWO icon
+//   {name "Oasis Property Maintenance", short_name "Oasis"} (the session-199
+//   SITE_TITLE seam; the Oasis reference ships no manifest — ours is the
+//   superset), the reference's own 177-char description, TWO icon
 //   entries (192x192 + 512x512 — the SAME src on both, their platform
 //   screenshot; the self-hosted expression is our /icon.png BrandMark
 //   tile), start_url + scope at the origin, display "standalone",
@@ -18,8 +20,8 @@ export const dynamic = "force-static";
 export function GET(): Response {
   const origin = siteUrl();
   const manifest = {
-    name: "NEO CRM",
-    short_name: "NEO CRM",
+    name: SITE_TITLE, // session-199: the Oasis identity (the reference ships no manifest — ours is the superset)
+    short_name: "Oasis",
     description: SITE_DESCRIPTION,
     icons: [
       {

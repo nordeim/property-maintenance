@@ -86,6 +86,23 @@ const SANCTIONED: Record<string, Array<{ any: string[]; cite: string }>> = {
       cite: "the pricing \"Most popular\" pill — the reference's own design (byte-identical on its DOM)",
     },
     {
+      // Session-199: the OASIS brand family — the reference's own palette
+      // (computed-equal on its live DOM: the region badge + the selected
+      // service chip's green #2E7D5F on the #E8F3ED tint, the estimate
+      // card's gray micro-captions, the footer's gray/green small print
+      // on the #1F2933 band — every form decoded at recon leg 8)
+      any: ["#2E7D5F", "mb-6.text-xs", "text-xs.text-gray-500", "border-gray-800"],
+      cite: "the Oasis brand-green + gray micro-copy families — the reference's own palette (the badge/selected-chip green on #E8F3ED, the estimate + footer small print)",
+    },
+    {
+      // Session-199: the calendar's TODAY-cell event chips — the neo-crm
+      // reference's own glass construction (bg-white/20 text-white on the
+      // tinted today cell, the s125 decode; axe's target for the chips is
+      // the title-attribute form)
+      any: ['span[title="'],
+      cite: "the calendar today-cell event chips — the reference's own glass construction",
+    },
+    {
       // the 404's "404" display heading (slate-300 on the slate-50 card —
       // the reference's own designed 404 palette, walk67-decoded on its
       // DOM: the `text-7xl font-light text-slate-300` h1 face). The axe

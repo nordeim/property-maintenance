@@ -37,7 +37,9 @@ import { describe, expect, it } from "vitest";
 // so the red state fails check-by-check instead of erroring the file.
 
 const REFERENCE_DESCRIPTION =
-  "NEO CRM is a clean, intuitive customer relationship management platform designed to help teams manage accounts, contacts, and leads in one centralized dashboard. With powerful search, clear account tracking, activity monitoring, and built-in reporting, NEO CRM keeps your client data organized, accessible, and actionable—so you can focus on building stronger relationships and closing more opportunities.";
+  // Session-199 re-anchor: the OASIS reference's own <head> bytes
+  // (live-fetched 2026-11-15, byte-verified).
+  "Your go-to service for reliable lawn mowing, garden care, and property maintenance across Gold Coast, Logan, and South Brisbane. We keep your home looking its best, hassle-free.";
 
 const repoFile = (rel: string) =>
   path.resolve(import.meta.dirname, "..", rel);
@@ -66,7 +68,9 @@ describe("session-19: the web app manifest (S19-P1)", () => {
     const src = manifestSrc();
     // Key order: name, short_name, description, icons, start_url,
     // display, theme_color, background_color, scope.
-    expect(src).toMatch(/name:\s*"NEO CRM",\s*short_name:\s*"NEO CRM",/);
+    expect(src).toMatch(/name: SITE_TITLE/);
+    expect(src).toContain('short_name: "Oasis",');
+    expect(src).not.toContain('"NEO CRM"');
     expect(src).toContain("description: SITE_DESCRIPTION");
     expect(src).toContain('sizes: "192x192"');
     expect(src).toContain('sizes: "512x512"');
@@ -105,9 +109,9 @@ describe("session-19: theme-color + the apple/PWA meta family (S19-P2, S19-P3)",
     const { PWA_META } = await import("@/lib/site");
     expect(PWA_META["mobile-web-app-capable"]).toBe("yes");
     expect(PWA_META["apple-mobile-web-app-status-bar-style"]).toBe("black");
-    expect(PWA_META["apple-mobile-web-app-title"]).toBe("NEO CRM");
+    expect(PWA_META["apple-mobile-web-app-title"]).toBe("Oasis Property Maintenance");
     const src = layoutSrc();
-    expect(src).toContain('PWA_META, SITE_DESCRIPTION, siteUrl');
+    expect(src).toContain('PWA_META, SITE_DESCRIPTION, SITE_TITLE, siteUrl');
     expect(src).toContain("...PWA_META");
   });
 
@@ -125,38 +129,38 @@ describe("session-19: theme-color + the apple/PWA meta family (S19-P2, S19-P3)",
 
 describe("session-19: the per-route metadata seam (S19-P4, S19-P5)", () => {
   it("builds the reference's prefixed og description", async () => {
-    const { pageOgDescription, SITE_DESCRIPTION } = await import("@/lib/site");
+    const { pageOgDescription, SITE_DESCRIPTION, SITE_TITLE } = await import("@/lib/site");
     expect(pageOgDescription("Accounts")).toBe(
-      `Accounts on NEO CRM. ${SITE_DESCRIPTION}`,
+      `Accounts on ${SITE_TITLE}. ${SITE_DESCRIPTION}`,
     );
     expect(SITE_DESCRIPTION).toBe(REFERENCE_DESCRIPTION);
   });
 
   it("builds the full inner-page metadata set", async () => {
-    const { pageMetadata } = await import("@/lib/site");
+    const { pageMetadata, SITE_TITLE } = await import("@/lib/site");
     const m = pageMetadata({ page: "Accounts", route: "/accounts" });
-    expect(m.title).toBe("Accounts"); // rides the root "%s | NEO CRM" template
+    expect(m.title).toBe("Accounts"); // rides the root "%s | Oasis Property Maintenance" template
     expect(m.alternates?.canonical).toBe("/accounts");
     const og = m.openGraph as Record<string, unknown>;
-    expect(og.title).toBe("Accounts | NEO CRM");
-    expect(og.description).toBe(`Accounts on NEO CRM. ${REFERENCE_DESCRIPTION}`);
+    expect(og.title).toBe("Accounts | Oasis Property Maintenance");
+    expect(og.description).toBe(`Accounts on ${SITE_TITLE}. ${REFERENCE_DESCRIPTION}`);
     expect(og.url).toBe("/accounts");
     const tw = m.twitter as Record<string, unknown>;
-    expect(tw.title).toBe("Accounts | NEO CRM");
+    expect(tw.title).toBe("Accounts | Oasis Property Maintenance");
     expect(tw.card).toBe("summary_large_image");
     const other = m.other as Record<string, string>;
     expect(other["twitter:url"]).toMatch(/\/accounts$/);
     expect(other["mobile-web-app-capable"]).toBe("yes");
-    expect(other["apple-mobile-web-app-title"]).toBe("NEO CRM");
+    expect(other["apple-mobile-web-app-title"]).toBe("Oasis Property Maintenance");
   });
 
   it("builds the unprefixed root/login family with an ABSOLUTE title", async () => {
     const { pageMetadata } = await import("@/lib/site");
     const m = pageMetadata({ page: null, route: "/login" });
     const title = m.title as { absolute?: string };
-    expect(title.absolute).toBe("NEO CRM"); // the s13 anti-doubling pin
+    expect(title.absolute).toBe("Oasis Property Maintenance"); // the s13 anti-doubling pin (the session-199 SITE_TITLE seam)
     const og = m.openGraph as Record<string, unknown>;
-    expect(og.title).toBe("NEO CRM");
+    expect(og.title).toBe("Oasis Property Maintenance");
     expect(og.description).toBe(REFERENCE_DESCRIPTION);
     expect(og.url).toBe("/login");
     expect(m.alternates?.canonical).toBe("/login");
@@ -185,7 +189,7 @@ describe("session-19: the per-route metadata seam (S19-P4, S19-P5)", () => {
       'pageMetadata({ page: null, route: "/login" })',
     );
     expect(readOr("src/app/signup/page.tsx")).toContain(
-      'pageMetadata({ page: null, route: "/signup", title: "Sign up | NEO CRM" })',
+      'pageMetadata({ page: null, route: "/signup", title: "Sign up | Oasis Property Maintenance" })',
     );
     // The dashboard inherits the root layout's metadata (og:url = the
     // origin root — the reference's unprefixed family): NO wrapper

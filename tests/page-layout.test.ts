@@ -300,17 +300,27 @@ describe("session-144 → session-147: the guest chrome + the marketing group (F
     // chain (user?.name || user?.email || "Guest") stays as null-safety.
     const pageLayout = read("src/lib/page-layout.ts");
     expect(pageLayout).not.toContain("APP_GUEST_USER");
-    const marketing = read("src/app/(marketing)/layout.tsx");
-    expect(marketing).not.toContain("APP_GUEST_USER");
+    // Session-199: the (marketing) group retired WITH its surface (the
+    // Oasis reference serves its marketing pages to GUESTS — recon-
+    // verified on every public page; the F-147c2 login-wall mirror was
+    // the NEO-CRM reference's own posture, not this one's). The public
+    // layer lives in the (site) group — PUBLIC, no session reads.
+    const site = read("src/app/(site)/layout.tsx");
+    expect(site).not.toContain("APP_GUEST_USER");
+    expect(site).not.toContain("getSessionUser");
   });
 
-  it("the (marketing) layout GUARDS — the GuestLoginRedirect shim (the F-147c2 mirror; the s144 no-redirect contract retired)", () => {
-    const src = read("src/app/(marketing)/layout.tsx");
-    expect(src).toContain("getSessionUser()");
-    expect(src).toContain("GuestLoginRedirect");
-    // THE F-147c2 CONTRACT: guests get the shim, never the shell
-    expect(src).toMatch(/if \(!user\)\s*return\s*<GuestLoginRedirect \/>/);
-    expect(src).not.toMatch(/user \?\? APP_GUEST_USER/);
+  it("the (site) layout is PUBLIC — the Oasis posture (the F-147c2 login-wall mirror retired with the neo-crm reference's own surface)", () => {
+    // Session-199: the OASIS reference serves /, /services, /gallery,
+    // /about, /faq, /contact, /booking to GUESTS (recon legs 1-8,
+    // live-verified logged-out — no redirect, no wall). The (site)
+    // group mirrors THAT: no session resolution, no shim, the site
+    // chrome for everyone.
+    const src = read("src/app/(site)/layout.tsx");
+    expect(src).not.toContain("getSessionUser");
+    expect(src).not.toContain("GuestLoginRedirect");
+    expect(src).toContain("SiteHeader");
+    expect(src).toContain("SiteFooter");
   });
 
   it("the (app) group's guard — the SAME shim (the from_url mirror on both groups; the 307 retired)", () => {
@@ -2782,16 +2792,16 @@ describe("session-177: the drawer interior re-walk (walk50 — the header rhythm
 });
 
 describe("session-147: F-147c2 — the guest re-gating + the from_url round-trip (the s144 posture REVERSED)", () => {
-  it("the (marketing) group now GUARDS guests — the GuestLoginRedirect shim replaces the APP_GUEST_USER feed", () => {
-    const src = read("src/app/(marketing)/layout.tsx");
-    // the reference's new bundle login-walls /About + /Contact (walk37:
-    // guest /About → /login?from_url=<abs> → post-login → /About). The
-    // s144 session-optional posture is RETIRED — the layout renders the
-    // shim INSTEAD of the shell for guests (the decision stays
-    // SERVER-side: the marketing content never reaches a guest).
-    expect(src).toContain("GuestLoginRedirect");
-    expect(src).toMatch(/if \(!user\)/);
-    // the s144 feed retired
+  it("the marketing guard retired with the neo-crm reference's surface — the Oasis (site) group is public (session-199)", () => {
+    // The F-147c2 login-wall mirror pinned the NEO-CRM reference's own
+    // posture. The OASIS reference has no marketing wall at all (every
+    // public page serves guests, recon-verified); the (marketing) group
+    // retired with its surface, and the (site) group that replaces it
+    // resolves NO session. The guard duty now lives on the CRM ((app))
+    // alone — pinned in the sibling it below.
+    const src = read("src/app/(site)/layout.tsx");
+    expect(src).not.toContain("GuestLoginRedirect");
+    expect(src).not.toContain("getSessionUser");
     expect(src).not.toContain("APP_GUEST_USER");
   });
 
@@ -4652,7 +4662,9 @@ describe("session-192: the login anon-surface + landing marketing-arms walk (wal
     const src = read("src/components/layout/login-card.tsx");
     // the signin view: the h1/subtitle pair + the google button + the
     // footer link pair (the in-place view machine)
-    expect(src).toContain('<h1 className={LOGIN_LAYOUT.title}>Welcome to NEO CRM</h1>');
+    expect(src).toContain('<h1 className={LOGIN_LAYOUT.title}>Welcome to Oasis Property Maintenance</h1>');
+    // session-199 (the Oasis re-skin): the retired neo-crm title never returns
+    expect(src).not.toContain('Welcome to NEO CRM');
     expect(src).toContain('<p className={LOGIN_LAYOUT.subtitle}>Sign in to continue</p>');
     expect(src).toContain("Continue with Google");
     expect(src).toContain('onClick={() => goto("forgot")}');
@@ -4676,30 +4688,28 @@ describe("session-192: the login anon-surface + landing marketing-arms walk (wal
     expect(src).toContain('onClick={() => goto("back")}');
   });
 
-  it("the LANDING marketing-arms construction freeze — the FAQ single-open accordion chain + the mobile disclosure menu chain (the genuine battery gap: the s142 pins hold the component-level regexes, never the call-site chains; the walk proves the FAQ section byte-equal at 1440x677 with Q1 open by default + the menu panel byte-equal at 0,64 390x229 with the 6-link vocabulary on both apps)", () => {
-    const src = read("src/components/landing/landing-page.tsx");
-    // the FAQ single-open machine: Q1 (index 0) open by default, the
-    // click flips open→-1 (close) or→index (single-open)
-    expect(src).toContain("const [openIndex, setOpenIndex] = React.useState(0);");
-    expect(src).toContain("onClick={() => setOpenIndex(open ? -1 : index)}");
-    // the a11y superset (the reference's toggles carry NO aria — the
-    // standing s142 DEVIATION pin, KEPT)
-    expect(src).toContain("aria-expanded={open}");
-    expect(src).toContain('aria-controls={`faq-answer-${index}`}');
-    // the answer mounts/unmounts with the open item (the walk65
-    // visibleAnswers=1 evidence: exactly ONE answer on any ride)
-    expect(src).toContain("{open && (");
-    expect(src).toContain('id={`faq-answer-${index}`}');
-    // the chevron gains rotate-180 on the open item
-    expect(src).toContain('open && "rotate-180"');
-    // the mobile disclosure menu: the mount/unmount in-flow panel +
-    // the menu↔x icon swap + the in-panel close
-    expect(src).toContain("const [menuOpen, setMenuOpen] = React.useState(false);");
-    expect(src).toContain("{menuOpen && (");
-    expect(src).toContain("{menuOpen ? <X className=\"w-6 h-6\" /> : <Menu className=\"w-6 h-6\" />}");
-    expect(src).toContain('onClick={() => setMenuOpen((v) => !v)}');
-    expect(src).toContain("onClick={() => setMenuOpen(false)}");
-    expect(src).toContain('className="md:hidden text-gray-700 p-1"');
+  it("the MARKETING-ARMS construction freeze (the session-199 Oasis re-anchor) — the FAQ's Radix single-open accordion chain + the site header's mobile menu chain (the walk65's landing pins retired with the neo-crm landing's own surface; the Oasis arms are the (site) group's constructions, decoded at recon legs 8 + 11 — the reference's own shadcn accordion + its icon-only-button dialog menu)", () => {
+    // the FAQ single-open machine: the Radix accordion (single +
+    // collapsible — exactly one answer open at a time), fed by the
+    // extracted reference content
+    const faq = read("src/components/site/faq-page.tsx");
+    expect(faq).toContain('<Accordion.Root type="single" collapsible');
+    expect(faq).toContain("FAQ_ITEMS.filter((item) => item.group === group)");
+    expect(faq).toContain("<Accordion.Item");
+    expect(faq).toContain("<Accordion.Trigger");
+    // the rotating chevron (the reference's own
+    // [&[data-state=open]>svg]:rotate-180 idiom)
+    expect(faq).toContain("[&[data-state=open]>svg]:rotate-180");
+    // the mobile menu: the mount/unmount dialog + the icon-only button
+    // + the in-panel close (the reference's aria-haspopup="dialog"
+    // construction)
+    const header = read("src/components/site/site-header.tsx");
+    expect(header).toContain("const [open, setOpen] = useState(false);");
+    expect(header).toContain("{open ? (");
+    expect(header).toContain('aria-haspopup="dialog"');
+    expect(header).toContain('aria-label="Open menu"');
+    expect(header).toContain('onClick={() => setOpen(false)}');
+    expect(header).toContain("lg:hidden");
   });
 
   it("D-192a1 the SIGNUP view's confirm input LITERAL id — the reference's confirm carries id=\"confirmPassword\" + for=\"confirmPassword\" (live-walked byte-equal on the reference's DOM: the walk65 signup id-map decode); ours shipped the kebab-case id=\"confirm-password\" (the D-114a2/D-187a1/D-190a1/D-191a1/a2 ids-are-construction-parity doctrine; the cure: the literal id restored at the call site — matching the reset-password page's own confirmPassword family)", () => {
@@ -4814,22 +4824,24 @@ describe("session-193: the marketing-interior arms walk (walk66 — the /About +
     expect(src).toContain("focusDelta");
   });
 
-  it("the MARKETING open-interior construction freeze — the about page's h1 + the Get-in-touch anchor chain + the contact page's h1 + the mailto + the three social anchors (the genuine battery gap: the s142 landing-page pins hold the LANDING page's strings, never the about/contact call-site chains; the walk proves every anchor href/target/rel byte-equal on both apps, the rides byte-equal, the phone axes byte-equal)", () => {
-    const about = read("src/app/(marketing)/about/page.tsx");
-    const contact = read("src/app/(marketing)/contact/page.tsx");
-    // the about page chains
-    expect(about).toContain('<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">About NEO CRM</h1>');
-    expect(about).toContain('className="text-blue-600 font-medium hover:underline" href="/Contact"');
-    expect(about).toContain("Get in touch with us →");
-    // the contact page chains — the mailto + the three social anchors
-    // (the walk66 Phase E census: href/target/rel byte-equal both apps)
-    expect(contact).toContain('<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Contact Us</h1>');
-    expect(contact).toContain('href="mailto:hello@example.com"');
-    expect(contact).toContain('href="https://www.linkedin.com"');
-    expect(contact).toContain('href="https://x.com"');
-    expect(contact).toContain('href="https://github.com"');
-    expect(contact).toContain('target="_blank"');
-    expect(contact).toContain('rel="noopener noreferrer"');
+  it("the MARKETING open-interior construction freeze (the session-199 Oasis re-anchor) — the about page's h1 + the regions band + the contact page's h1 + the phone/mailto anchors + the superset quote submit (the neo-crm (marketing) pages retired with their surface; the Oasis about/contact live in the (site) group — the reference's own copy, decoded at recon leg 8)", () => {
+    const about = read("src/components/site/about-page.tsx");
+    const contact = read("src/components/site/contact-page.tsx");
+    // the about page chains — the reference's own construction
+    expect(about).toContain("About Green Cut</h1>");
+    expect(about).toContain("Local, reliable, not a random Facebook guy.");
+    expect(about).toContain("Started to help busy families, investors and NDIS participants");
+    // the regions band (the Gold Coast / Logan / South Brisbane trio)
+    expect(about).toContain("Servicing SE Queensland");
+    // the contact page chains — the phone + mailto anchors (the
+    // recon-decoded hrefs, byte-equal on both apps)
+    expect(contact).toContain("Get Your Free Quote");
+    expect(contact).toContain("href={SITE_PHONE_HREF}");
+    expect(contact).toContain("href={SITE_EMAIL_HREF}");
+    expect(contact).toContain("Proudly Servicing SE Queensland");
+    // the SUPERSET submit — the quote form posts to the persisted
+    // QuoteRequest boundary
+    expect(contact).toContain('"/api/quote-requests"');
   });
 
   it("D-193a2 the SIDEBAR links' focus-visible ring — the KEPT SUPERSET, pinned (OURS paints focus-visible:ring-2 ring-white/50 at every sidebar stop, walk-proven at the REAL keyboard face: the oklab white/50 2px shadow carrier vs the reference's bare UA outline 1px auto rgba(10,10,10,0.5); the reference ships NO authored focus face on its sidebar links — its own keyboard-focus-gap family, the D-112a2 doctrine, never mirrored; the construction dates to session-7, re-verified invisible at the s177 walk50 RESTING face, and carried ZERO test teeth until this pin — both navs stay in lockstep)", () => {
@@ -5007,9 +5019,13 @@ describe("session-194: the 404 interior's interactive arms (walk67 — the desig
     expect(body).toContain("className={NOT_FOUND_LAYOUT.homeIcon}");
     // the client seam (the only way to read the unmatched pathname)
     expect(body).toContain("usePathname");
-    // the wrapper renders the body — no metadata, no session check
+    // the wrapper renders the body inside the SITE CHROME (session-199:
+    // the Oasis reference's own 404 rides its header + footer — recon-
+    // verified on its 404 page; Go Home points at /home, its canonical)
     expect(wrapper).toContain('import { NotFoundBody } from "./not-found-body"');
-    expect(wrapper).toContain("return <NotFoundBody />;");
+    expect(wrapper).toContain("<SiteHeader />");
+    expect(wrapper).toContain("<NotFoundBody />");
+    expect(wrapper).toContain("<SiteFooter />");
   });
 
   it("D-194a5 the ANON unknown-route posture — the PLATFORM GENUS, pinned (the 404 is SESSION-INDEPENDENT by design: no session resolution, no redirect — the reference's auth-first client-router guard walls every anon URL at /login?from_url=<absolute-url>, its designed 404 appearing only PAST the guard, and its SPA never ships a real HTTP 404 status; OURS adjudicates routability first and renders the designed 404 with the true 404 status for anon and authenticated visitors alike — the s149 platform family, never mirrored)", () => {

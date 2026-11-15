@@ -1750,10 +1750,10 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       const src = read(f);
       return n + (src.match(/export async function (?:GET|POST|PUT|PATCH|DELETE)\(/g) ?? []).length;
     }, 0);
-    expect(routeFiles.length, "the live route-file census").toBe(29);
-    expect(handlerCount, "the live verb-handler census").toBe(41);
-    expect(pad).toContain("grep-verified across the 29 route files");
-    expect(pad).toContain("All 41 API handlers respond with");
+    expect(routeFiles.length, "the live route-file census").toBe(31); // session-199: + bookings + quote-requests
+    expect(handlerCount, "the live verb-handler census").toBe(45); // session-199: + the 2 public-form routes' 4 handlers
+    expect(pad).toContain("grep-verified across the 31 route files");
+    expect(pad).toContain("All 45 API handlers respond with");
     // the retired carriers never return
     expect(pad).not.toContain("across all 27 files");
     expect(pad).not.toContain("All 39 API handlers");
@@ -2056,11 +2056,11 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
     })
       .map((f) => String(f))
       .filter((f) => f.endsWith("route.ts")).length;
-    expect(apiRouteFiles).toBe(29); // the tree census (the three SEO handlers are not API routes)
+    expect(apiRouteFiles).toBe(31); // the tree census (the three SEO handlers are not API routes; session-199: + bookings + quote-requests)
     expect(
       deployment,
       "the build line must carry the live route-file census (F-108a4 + F-169's re-anchor)",
-    ).toContain(`the ${apiRouteFiles} API route files (41 verb handlers)`);
+    ).toContain(`the ${apiRouteFiles} API route files (45 verb handlers)`);
     expect(deployment).not.toContain("the 27 API route handlers");
     expect(deployment).not.toContain("the 16 API route handlers");
     // the deleted smoke-test.sh reference must stay gone (deleted at

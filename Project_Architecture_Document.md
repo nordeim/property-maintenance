@@ -125,7 +125,7 @@ E2E regression suite.
 
 **ADR-003: Hand-rolled scrypt + HMAC cookie sessions (no auth library)**
 
-- **Context:** Two authenticated surfaces exist (login page + 29 route
+- **Context:** Two authenticated surfaces exist (login page + 31 route
   handler files). NextAuth/Better-Auth pull provider abstractions, adapters
   and their own DB schema for what is, here, a single email/password flow.
   The scaffold family already standardizes a minimal hand-rolled pattern.
@@ -167,9 +167,10 @@ E2E regression suite.
 - **Decision:** `src/stores/crm-store.ts` — a single store with a `call()`
   fetch client that understands the envelope, `hydrate()` bootstrapping every
   slice after `/api/auth/me`, and per-entity CRUD actions that refresh the
-  affected slices. All 41 API handlers respond with `ok()`/`fail()` from
-  `src/lib/api.ts` (session-68 F-68b1: the stale "22" carrier refreshed —
-  29 route files / 41 verb handlers, the count the audit censuses carry).
+  affected slices. All 45 API handlers respond with `ok()`/`fail()` from
+  `src/lib/api.ts` (session-68 F-68b1: the stale "22" carrier refreshed;
+  session-199 re-anchored — 31 route files / 45 verb handlers, the count
+  the audit censuses carry).
 - **Rationale:** One place to reason about client cache; mutations always
   leave the store internally consistent (action → API → refetch slice);
   envelope gives uniform error UX via toasts.
@@ -621,7 +622,7 @@ flowchart TB
   subgraph App["Application Layer — one Next.js process (:3000)"]
     RSC["(app) RSC pages<br/>server-side session guard"]
     Public["/login · /signup"]
-    API["/api/* route handlers ×29<br/>force-dynamic · requireSession"]
+    API["/api/* route handlers ×31<br/>force-dynamic · requireSession"]
     Shell["AppShell client island<br/>Zustand hydrate()"]
   end
 
@@ -658,9 +659,9 @@ Layer 1: RSC pages + (app) layout — resolve the session server-side,
          redirect unauthenticated visits, render client islands with props.
          Rule: no data fetching happens here beyond the session; pages own
          their data through the store.
-Layer 2: API route handlers — 29 files / 41 handlers (incl. `PATCH
+Layer 2: API route handlers — 31 files / 45 handlers (incl. `PATCH
          /api/users` for the profile Full-Name edit), all `force-dynamic`,
-         19 gated via `requireSession()` (the 10 ungated: the public
+         21 gated via `requireSession()` (the 10 ungated: the public
          auth family's 7 verbs [rate-limited instead] + `me` [the
          by-design logged-out data:null face, session-41] + `health`
          + the regex-pinned `uploads/[name]` serving — search IS
@@ -703,7 +704,8 @@ neo-crm/
 │   │   │                       # accounts contacts leads
 │   │   │                       # activities events opportunities dashboard
 │   │   │                       # reports settings search export upload
-│   │   │                       # uploads/[name] reset health — 29 route files
+│   │   │                       # uploads/[name] reset health — 31 route files
+│   │   │                       # (s199: + bookings + quote-requests)
 │   │   ├── login/ signup/       # public auth pages (redirect away when signed in)
 │   │   ├── not-found.tsx        # server 404 wrapper (NO metadata — the root title default, s194) — session-12
 │   │   ├── not-found-body.tsx   # client 404 body (usePathname, quoted-path msg)
@@ -995,7 +997,7 @@ all animations to 0.01ms via a global media rule.
 
 | # | Rule | Enforcement |
 | - | ---- | ----------- |
-| 1 | Every gated API handler requires a valid session | `requireSession()` first statement; call-form grep-verified across the 29 route files (19 gated; the 10 ungated: the public auth family's 7 verbs [rate-limited instead] + `me` [the data:null face, session-41] + `health` + the regex-pinned `uploads/[name]` serving) |
+| 1 | Every gated API handler requires a valid session | `requireSession()` first statement; call-form grep-verified across the 31 route files (21 gated; the 10 ungated: the public auth family's 7 verbs [rate-limited instead] + `me` [the data:null face, session-41] + `health` + the regex-pinned `uploads/[name]` serving) |
 | 2 | Authenticated page group unreachable without a session | `(app)/layout.tsx` server redirect |
 | 3 | Passwords stored as `scrypt:salt:hash` (64-byte derived key) | `hashPassword()` only; no plaintext paths exist |
 | 4 | Session tokens HMAC-SHA256 signed, `timingSafeEqual` compared, 7-day TTL | `signSession` / `verifySessionToken` (unit-tested) |
@@ -1861,7 +1863,7 @@ files. Push via the SSH wrapper (§8.4).
 | `src/components/shared/entity-dialogs.tsx` | 1250 | Five entity forms, remount-via-key pattern |
 | `src/app/globals.css` | 442 | Tailwind v4 `@theme` tokens + `@utility` definitions |
 | `src/app/(app)/layout.tsx` | 22 | Session guard for every authenticated page (session-142's optional-session form) |
-| `prisma/schema.prisma` | 262 | 9 models, SQLite datasource, indexes, the session-21 verification columns + the session-163 reset/revocation columns |
+| `prisma/schema.prisma` | 305 | 9 models, SQLite datasource, indexes, the session-21 verification columns + the session-163 reset/revocation columns |
 | `prisma/seed.ts` | 540 | Idempotent in-place demo workspace (hashing via the pure `src/lib/password.ts` seam) |
 | `tests/e2e/mobile-navigation.spec.ts` | 364 | 11-check mobile drawer regression suite |
 | `tests/e2e/reports-mobile.spec.ts` | 110 | the s105 seeded-state reports-tabs guard at 390 |

@@ -23,17 +23,16 @@ import type { Metadata } from "next";
 export const DEFAULT_SITE_URL = "http://localhost:3000";
 
 /**
- * Session-199: the OASIS site identity. The title is the reference's
- * own document.title (recon-verified on every public surface); the
- * description is the reference's hero paragraph (its own copy — the
- * exact <meta name="description"> bytes are re-derived at the
- * measurement pass and re-pinned if they differ).
+ * Session-199: the OASIS site identity. The title AND the description
+ * are the reference's own <head> bytes (live-fetched 2026-11-15,
+ * /tmp/oasis-home.html — the title "Oasis Property Maintenance" and the
+ * 199-char description, byte-verified).
  */
 export const SITE_TITLE = "Oasis Property Maintenance";
 
 /** The reference's meta description, mirrored verbatim (405 chars). */
 export const SITE_DESCRIPTION =
-  "Lawns, gardens, pressure washing and property care — booked online in under a minute, with instant price estimates. Green Cut Lawn Care services the Gold Coast, Logan and South Brisbane.";
+  "Your go-to service for reliable lawn mowing, garden care, and property maintenance across Gold Coast, Logan, and South Brisbane. We keep your home looking its best, hassle-free.";
 
 /**
  * Canonical public origin: NEXT_PUBLIC_SITE_URL when set (trailing slashes
@@ -51,7 +50,7 @@ export function siteUrl(
 /**
  * Session-19: the reference's per-route OG description prefix — every
  * inner page's og/twitter description is
- * `"<Page> on NEO CRM. " + <the 405-char root paragraph>`
+ * `"<Page> on ${SITE_TITLE}. " + <the root paragraph>`
  * (live-verified on /Accounts, /Contacts, /Leads, /Calendar, /Activities,
  * /Reports, /Settings, /Profile; the root and /login stay unprefixed).
  */
@@ -97,7 +96,7 @@ export function pageMetadata(opts: {
   title?: string;
 }): Metadata {
   const page = opts.page;
-  const fullTitle = page !== null ? `${page} | NEO CRM` : "NEO CRM";
+  const fullTitle = page !== null ? `${page} | ${SITE_TITLE}` : SITE_TITLE;
   const description = page !== null ? pageOgDescription(page) : SITE_DESCRIPTION;
   return {
     title:
@@ -105,14 +104,14 @@ export function pageMetadata(opts: {
         ? { absolute: opts.title }
         : page !== null
           ? page
-          : { absolute: "NEO CRM" },
+          : { absolute: SITE_TITLE },
     alternates: { canonical: opts.route },
     openGraph: {
       title: fullTitle,
       description,
       url: opts.route,
       type: "website",
-      siteName: "NEO CRM",
+      siteName: SITE_TITLE,
       images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     },
     twitter: {

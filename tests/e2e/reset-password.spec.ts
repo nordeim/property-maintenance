@@ -28,7 +28,7 @@ test.describe("reset-password landing (no token → the invalid-link card)", () 
 
     await page.getByRole("button", { name: "Back to login" }).click();
     await expect(page).toHaveURL(/\/login$/);
-    await expect(page.getByRole("heading", { name: "Welcome to NEO CRM" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Welcome to Oasis Property Maintenance" })).toBeVisible();
   });
 
   test("an empty token and a differently-named param both render the invalid card", async ({ page }) => {
@@ -76,7 +76,7 @@ test.describe("reset-password form (a non-empty token)", () => {
     await page.goto("/reset-password?token=e2e-shape-probe");
     await page.getByRole("button", { name: "Back to login" }).first().click();
     await expect(page).toHaveURL(/\/login$/);
-    await expect(page.getByRole("heading", { name: "Welcome to NEO CRM" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Welcome to Oasis Property Maintenance" })).toBeVisible();
   });
 });
 
@@ -158,7 +158,9 @@ test.describe("the full reset round-trip (the in-app delivery)", () => {
 
     await page.getByLabel("Password").fill("Reset1234!");
     await page.getByRole("button", { name: "Sign in", exact: true }).click();
-    await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible({ timeout: 15_000 });
+    // Session-199: the post-signin landing is the OASIS home (the retired
+    // neo-crm landing carried the Dashboard-mock hero)
+    await expect(page.locator("h1")).toContainText("perfectly maintained.", { timeout: 15_000 });
 
     // 7. The new session is live: /api/auth/me answers with the scratch
     //    user (the me route answers 200 with data:null when signed out,

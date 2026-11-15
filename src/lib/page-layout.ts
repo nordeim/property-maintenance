@@ -1499,7 +1499,7 @@ export const NOT_FOUND_LAYOUT = {
   homeButton:
     "inline-flex items-center px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-slate-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500",
   homeIcon: "w-4 h-4 mr-2",
-  homeHref: "/",
+  homeHref: "/home", // session-199: the Oasis 404 Go Home target (the reference's canonical home)
 } as const;
 
 /** Session-12 (S12-P4): the tab strips' stock-Radix anatomy, DOM-verified

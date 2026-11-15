@@ -101,7 +101,7 @@ describe("session-168 (WP-1b): the SKILL inventory live-census — the tree read
   // F-168f: the models count — read live from the schema.
   it("§3.1's schema row carries the LIVE model count (F-168f)", () => {
     const models = (read("prisma/schema.prisma").match(/^model /gm) ?? []).length;
-    expect(models).toBe(9); // the tree census (the drift guard's own anchor)
+    expect(models).toBe(11); // the tree census (session-199: + Booking + QuoteRequest)
     expect(skill).toContain(`\`prisma/schema.prisma\` | ${models} models;`);
     expect(skill).not.toContain("`prisma/schema.prisma` | 8 models;");
   });
@@ -117,8 +117,8 @@ describe("session-168 (WP-1b): the SKILL inventory live-census — the tree read
     // the API route census: src/app/api/** only — the three SEO route
     // handlers (sitemap.xml/robots.txt/manifest.json) are not API routes.
     const routes = walk("src/app/api").filter((f) => f.endsWith("route.ts")).length;
-    expect(pages).toBe(15); // the tree census
-    expect(routes).toBe(29); // the tree census
+    expect(pages).toBe(20); // the tree census (session-199: the (site) group)
+    expect(routes).toBe(31); // the tree census (session-199: + bookings + quote-requests)
     expect(skill).toContain(`pages (${pages}) + API route handlers (${routes}) + layouts`);
     expect(skill).not.toContain("pages (11) + API route handlers (27)");
   });
@@ -129,8 +129,8 @@ describe("session-168 (WP-1b): the SKILL inventory live-census — the tree read
     const client = components.filter((f) =>
       read(f).trimStart().startsWith('"use client"'),
     );
-    expect(components.length).toBe(28); // the tree census
-    expect(client.length).toBe(22); // the tree census
+    expect(components.length).toBe(37); // the tree census (session-199: + the site layer)
+    expect(client.length).toBe(27); // the tree census
     expect(skill).toContain(
       `- ${components.length} \`.tsx\` files under \`src/components/\`; ${client.length} start with \`"use client"\`.`,
     );
@@ -221,13 +221,14 @@ describe("session-168 (WP-1d): the README sitemap-route pins (F-168i)", () => {
     11: "eleven",
     12: "twelve",
     13: "thirteen",
+    16: "sixteen",
   };
   const src = read("src/app/sitemap.xml/route.ts");
   const routes = (src.match(/\{ path: "/g) ?? []).length;
   const word = NUM_TO_WORD[routes];
 
   it(`the live sitemap ROUTES census (reads the source: ${routes} routes)`, () => {
-    expect(routes).toBe(11); // the s142 surface: 9 + /about + /contact
+    expect(routes).toBe(16); // the session-199 surface: the s142 eleven + the Oasis /home /services /gallery /faq /booking
     expect(word).toBeDefined();
   });
 

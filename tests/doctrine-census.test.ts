@@ -72,9 +72,12 @@ const installed = (p: string) =>
   JSON.parse(readFileSync(join(root, "node_modules", p, "package.json"), "utf8")).version as string;
 
 // The LIVE session-gating census: the ACTUAL CALL form
-// (`await requireSession(`) over the 29 route files — 19 gated, 10
+// (`await requireSession(`) over the 31 route files — 21 gated, 10
 // ungated (the 7 public auth verbs + me [the by-design data:null face,
-// session-41] + health + uploads/[name]). The bare-name grep OVERCOUNTS:
+// session-41] + health + uploads/[name]). Session-199: the Oasis
+// superset's two public-form routes join the GATED side (their GET
+// back-office reads call requireSession; their POSTs are the public
+// rate-limited submit legs) — 19 → 21 gated, the ungated ten unmoved. The bare-name grep OVERCOUNTS:
 // me/route.ts mentions requireSession in its "NOT gated by design"
 // comment — the L-168c2 lesson (a census definition must match the
 // claim's semantics, not its string shape) caught live at birth.
@@ -238,26 +241,30 @@ describe("session-170 (d): the session-gating doctrine counts vs the LIVE route 
   const pad = norm(read("Project_Architecture_Document.md"));
   const skill = norm(read("neo-crm_SKILL.md"));
 
-  it(`the live census: ${SESSIONED_COUNT} requireSession-gated route files (of 29) — the CALL form is the truth`, () => {
-    expect(SESSIONED_COUNT).toBe(19); // 19 gated / 10 ungated (me is the data:null face)
+  it(`the live census: ${SESSIONED_COUNT} requireSession-gated route files (of 31) — the CALL form is the truth`, () => {
+    // Session-199: 19 -> 21 (bookings + quote-requests join the gated
+    // side via their sessioned GET reads); the ungated ten unmoved.
+    expect(SESSIONED_COUNT).toBe(21); // 21 gated / 10 ungated (me is the data:null face)
   });
 
-  it("PAD §6.1 carries the 19/10 form; the 19-with-8-verbs form retired (F-170g)", () => {
-    expect(pad).toContain("19 gated; the 10 ungated: the public auth family's 7 verbs");
+  it("PAD §6.1 carries the 21/10 form; the 19-with-8-verbs form retired (F-170g; the session-199 re-anchor)", () => {
+    expect(pad).toContain("21 gated; the 10 ungated: the public auth family's 7 verbs");
     expect(pad).not.toContain("19 sessioned; the 10 sessionless: the public auth family's 8 verbs");
+    // the retired 19-gated form never returns to the live-tense sites
+    expect(pad).not.toContain("19 gated; the 10 ungated: the public auth family's 7 verbs");
   });
 
   it("PAD §3.1's exception list carries the live 10-file form; the phantom search shell retired (F-170g)", () => {
     expect(pad).not.toContain("search's public shell");
     expect(pad).toContain(
-      "19 gated via `requireSession()` (the 10 ungated: the public auth family's 7 verbs [rate-limited instead] + `me` [the by-design logged-out data:null face, session-41] + `health` + the regex-pinned `uploads/[name]` serving — search IS gated)",
+      "21 gated via `requireSession()` (the 10 ungated: the public auth family's 7 verbs [rate-limited instead] + `me` [the by-design logged-out data:null face, session-41] + `health` + the regex-pinned `uploads/[name]` serving — search IS gated)",
     );
   });
 
   it("SKILL §5.2 carries the 10-ungated form; the blanket claim retired (F-170g)", () => {
     expect(skill).not.toContain("All `force-dynamic`, all session-gated via `requireSession()`.");
     expect(skill).toContain(
-      "19 gated via `requireSession()` (the 10 ungated: the public auth family's 7 verbs",
+      "21 gated via `requireSession()` (the 10 ungated: the public auth family's 7 verbs",
     );
   });
 });
@@ -320,17 +327,24 @@ describe("session-170 (e): the wire-type + palette + ADR-007 + table-header pins
 describe("session-170 (f): the README/SKILL small carriers (F-170l/s/t/u + radix)", () => {
   const readme = read("README.md");
   const skill = norm(read("neo-crm_SKILL.md"));
-  const landing = read("src/components/landing/landing-page.tsx");
+  // Session-199: the landing component read retired WITH its surface (the
+  // neo-crm landing is gone; the Oasis public layer lives in
+  // src/components/site/*). The pricing-tier pins retired with it — the
+  // Oasis reference has no SaaS pricing tiers; its analog is the booking
+  // seam's per-service estimate matrix, live-read below.
+  const bookingSeam = read("src/lib/booking.ts");
   const pkg = JSON.parse(read("package.json")) as {
     dependencies: Record<string, string>;
   };
 
-  it("README's pricing row matches the LIVE landing tiers (F-170l)", () => {
-    // the live tiers, live-read from the price fields
-    expect(landing).toContain('price: "$8"');
-    expect(landing).toContain('price: "$14"');
-    expect(landing).toContain('price: "$20"');
-    expect(readme).toContain("$8/$14/$20 pricing tiers");
+  it("README's estimate row matches the LIVE booking-seam matrix (F-170l, the session-199 re-anchor)", () => {
+    // the live matrix, live-read from the seam's catalog
+    expect(bookingSeam).toContain('label: "Lawn Mowing & Edging", priceMin: 60, priceMax: 80');
+    expect(bookingSeam).toContain('label: "Full Property Tidy-Up", priceMin: 145, priceMax: 195');
+    expect(readme).toContain("the instant-estimate widget (the 5-service matrix, $60–$80 lawn … $145–$195 full tidy-up");
+    // the retired neo-crm pricing-tier forms never return (the negatives
+    // ladder — $8/$14/$20 was the RETIRED landing's construction)
+    expect(readme).not.toContain("$8/$14/$20 pricing tiers");
     expect(readme).not.toContain("$9/$19/$39");
   });
 

@@ -268,6 +268,10 @@ describe("session-167 (F-167k): the schema field-inventory live census — the d
       "leadUpdateSchema",
       "settingsUpdateSchema",
       "profileUpdateSchema",
+      // session-199: the Oasis public-form boundaries join the census
+      // (appended in source order — the seam's own tail)
+      "bookingCreateSchema",
+      "quoteRequestCreateSchema",
     ]);
   });
 

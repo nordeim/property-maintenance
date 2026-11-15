@@ -627,7 +627,6 @@ export function LoginCard({ mode = "signin" }: { mode?: Mode }) {
                 {/* Session-199 (the Oasis re-skin): the reference's own
                     logo asset (media.base44.com, its /v1/fit webp
                     transform) inside the same ringed avatar. */}
-                {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted asset; the raw URL keeps the shared-source parity */}
                 <img
                   src="https://media.base44.com/images/public/6907475d81a975154143174e/1f56b6773_logo.png/v1/fit/w_192,h_192/1f56b6773_logo.webp"
                   alt="Oasis Property Maintenance logo"

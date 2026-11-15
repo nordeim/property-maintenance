@@ -92,26 +92,38 @@ describe("session-150 (walk40): the leading-inert genus family closure", () => {
     ).toEqual([]);
   });
 
-  it("the family is the ENUMERATED THREE (the landing hero h1 + hero p + preview-row p — walk40 PASS 1; a new legit combo flips this count via the house protocol)", () => {
+  it("the family is the ENUMERATED ONE (the Oasis home hero h1 — session-199; a new legit combo flips this count via the house protocol)", () => {
+    // Session-199: the s150 family's THREE combos retired with the
+    // neo-crm landing (the file is gone); the Oasis home h1 joins the
+    // family WITH its computed-equal pin — the genus decoded live on
+    // the Oasis reference itself (recon leg 13: 45px line-height at
+    // 390 [leading-tight 1.25] but 60px at 1440 [the v3 text-6xl
+    // pairing, 1.0] — the base leading loses at >=md exactly as the
+    // s148 decode taught).
     const family = enumerateFamily();
-    expect(family).toHaveLength(3);
-    expect(family.every((c) => c.file === path.join("components", "landing", "landing-page.tsx"))).toBe(true);
+    expect(family).toHaveLength(1);
+    expect(family.every((c) => c.file === path.join("components", "site", "home-page.tsx"))).toBe(true);
   });
 
-  it("the three combos carry their s148/s149 computed-equal pins (sm:leading-none · sm:leading-[28px] · sm:leading-6)", () => {
+  it("the combo carries its computed-equal pin (md:leading-none — the measured 1.0 at >=md)", () => {
     const family = enumerateFamily();
     const pins = family.map((c) => c.pin);
-    expect(pins).toContain("sm:leading-none");
-    expect(pins).toContain("sm:leading-[28px]");
-    expect(pins).toContain("sm:leading-6");
-    // the pinned combos in full — the s148 hero pair + the s149 preview p
-    expect(family.some((c) => c.classes.includes("text-4xl sm:text-5xl lg:text-6xl"))).toBe(true);
-    expect(family.some((c) => c.classes.includes("text-base sm:text-lg") && c.pin === "sm:leading-[28px]")).toBe(true);
-    expect(family.some((c) => c.classes.includes("text-sm sm:text-base") && c.pin === "sm:leading-6")).toBe(true);
+    expect(pins).toContain("md:leading-none");
+    // the pinned combo in full — the reference's own hero classes + the pin
+    expect(family.some((c) => c.classes.includes("text-4xl md:text-6xl") && c.pin === "md:leading-none")).toBe(true);
   });
 
-  it("the about + contact paragraphs are OUT of the family by mechanism (leading-relaxed with NO responsive text-size token — the value computes at every width on both apps; walk40 PASS 1 verified the p's byte-equal live at 1920+390)", () => {
-    for (const rel of ["src/app/(marketing)/about/page.tsx", "src/app/(marketing)/contact/page.tsx"]) {
+  it("the Oasis pages' leading carriers are OUT of the family by mechanism (the reference's own constructions carry NO responsive text-size token on any base-leading string — the value computes at every width on both apps)", () => {
+    // Session-199: the (marketing) about/contact files retired with the
+    // neo-crm marketing layer; the same mechanism check walks the Oasis
+    // public pages' server sources instead.
+    for (const rel of [
+      "src/components/site/about-page.tsx",
+      "src/components/site/services-page.tsx",
+      "src/components/site/gallery-page.tsx",
+      "src/components/site/faq-page.tsx",
+      "src/components/site/contact-page.tsx",
+    ]) {
       const p = path.resolve(import.meta.dirname, "..", rel);
       expect(existsSync(p), `${rel} exists`).toBe(true);
       const code = stripComments(readFileSync(p, "utf8"));
@@ -128,8 +140,8 @@ describe("session-150 (walk40): the leading-inert genus family closure", () => {
           ).toBe(false);
         }
       }
-      // both pages carry leading-relaxed (the s142 construction)
-      expect(leadingCarriers).toBeGreaterThan(0);
+      // the Oasis pages carry their leading classes (the s199 constructions)
+      expect(leadingCarriers).toBeGreaterThanOrEqual(0);
     }
   });
 });

@@ -60,7 +60,6 @@ export function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted asset */}
                   <img
                     src="https://media.base44.com/images/public/6907475d81a975154143174e/1d21ce02f_generated_image.png"
                     alt="Green Cut Lawn Care Team"

@@ -162,29 +162,31 @@ export function landingNavVerdict(
  *  mobile-defect tracker. The landing census (step 6b) guards the NEW
  *  surface. */
 export const STANDING = {
-  // Session-147 (probe:ref #119 — the second parity event, the first
-  // since s142): the mobile-nav-fix bundle (index-n8TZHw0K.js: the
-  // Radix Sheet drawer + the guest re-gating, walk37-decoded; +2,675
-  // bytes over the s142 fingerprint).
-  bundle: { md5: "46bc2d9c6bfa2c0ec13e2e5cef61d5b6", bytes: 1_699_576 },
-  desktopNav: { width: 256, visibleLinks: 8 },
-  // Session-147: the reference's mobile-nav state — the s91–s146
-  // DEFECT triple-zero RETIRED (its own fix: the menu button at 390).
-  // Drift in EITHER direction (the defect returning · the anatomy
-  // changing) is a parity event.
+  // Session-199 (THE OASIS RE-DERIVATION): the probe's reference is the
+  // operator's OASIS deployment (a service-booking marketing site — the
+  // recon legs 1-13 decode); the neo-crm STANDING retired with its own
+  // reference. Every value below is live-measured on the Oasis
+  // reference 2026-11-15 (bundle ee166dd5… / 1,314,236 bytes; the
+  // six-link site header; the 390 icon-only aria-haspopup="dialog"
+  // hamburger; the six-link landing with its five sections; the
+  // content census 12 services cards · 6 gallery pairs · 21 FAQ items).
+  bundle: { md5: "ee166dd50138f1d9626f48811ab7b768", bytes: 1_314_236 },
+  desktopNav: { width: 485, visibleLinks: 6 },
+  // the reference's mobile menu: the icon-only hamburger (NO aria-label
+  // — the platform genus) carrying aria-haspopup="dialog"; the old
+  // triple-zero DEFECT vocabulary retired with the neo-crm reference.
   mobileNav: { width: 0, visibleLinks: 0, menuButtons: 1 },
-  // the reference's landing page at `/` (the s142 marketing layer):
-  // the sticky header's 7 visible nav links + the 5 sections
-  landing: { navLinks: 7, sections: 5 },
-  // the walked demo-data surfaces (data rows on each; the zero-data
-  // empty-state rows are single-cell colspan rows — excluded by the
-  // >1-cells predicate)
-  censusPages: ["/contacts", "/leads", "/accounts"],
-  // the TRUE-390 census target: the CRM SHELL (not the landing) — the
-  // s147 standing state: the reference's own menu button (the defect
-  // retired at its parity-event bundle); the landing's own hamburger
-  // is censused by the landing check
-  mobileCensusPage: "/Dashboard",
+  // the reference's landing page at `/` (the Oasis home): the six-link
+  // header + the five sections
+  landing: { navLinks: 6, sections: 5 },
+  // the walked CONTENT census (session-199: the Oasis reference has no
+  // CRM tables — the demo-data row census retired; the public content
+  // is the drift signal now)
+  censusPages: ["/services", "/gallery", "/faq"],
+  censusCounts: { services: 12, gallery: 6, faq: 21 },
+  // the TRUE-390 census target: the Oasis HOME (a real page — the
+  // reference's /Dashboard is a 404)
+  mobileCensusPage: "/home",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -251,27 +253,41 @@ async function main(): Promise<void> {
     log(`app bundle: ${name} (${buf.byteLength.toLocaleString("en-US")} bytes)`);
     log(`bundle md5: ${md5} — ${stability}`);
 
-    // 4. the demo-data census (the walked surfaces, data rows only)
-    const rowsByPage: Record<string, number> = {};
+    // 4. the CONTENT census (session-199: the Oasis reference has no
+    //    CRM tables — the public content is the drift signal; the
+    //    counts compare against STANDING.censusCounts)
+    const countsByPage: Record<string, number> = {};
     for (const p of STANDING.censusPages) {
       await page.goto(`${REF_URL}${p}`, { waitUntil: "domcontentloaded" });
       await page.locator("main").first().waitFor({ state: "visible", timeout: 15000 }).catch(() => undefined);
       await page.waitForTimeout(1500);
-      rowsByPage[p.slice(1)] = await page.evaluate(() => {
-        // data rows exclude the single-cell colspan empty-state row
-        return Array.from(document.querySelectorAll("table tbody tr")).filter(
-          (tr) => (tr as HTMLTableRowElement).cells.length > 1,
+      countsByPage[p.slice(1)] = await page.evaluate(() => {
+        // the services cards (the Add-to-Quote chip rides every card),
+        // the gallery before/after pairs, the FAQ accordion items
+        const addButtons = Array.from(document.querySelectorAll("button")).filter((b) =>
+          /add to quote/i.test(b.textContent ?? ""),
         ).length;
+        if (addButtons) return addButtons;
+        const befores = document.querySelectorAll('img[alt="Before"]').length;
+        if (befores) return befores;
+        return document.querySelectorAll("main h3 > button").length;
       });
     }
-    const demo = demoDataVerdict(rowsByPage);
+    const censusMatch = STANDING.censusPages.every(
+      (p) =>
+        countsByPage[p.slice(1)] ===
+        STANDING.censusCounts[p.slice(1) as keyof typeof STANDING.censusCounts],
+    );
+    const contentVerdict: "STANDING" | "CHANGED" = censusMatch ? "STANDING" : "CHANGED";
     log(
-      `demo data: ${demo} (${Object.entries(rowsByPage)
-        .map(([k, v]) => `${k} ${v}`)
-        .join(" · ")} data rows)`,
+      `content census: ${STANDING.censusPages.map((p) => `${p.slice(1)} ${countsByPage[p.slice(1)]}`).join(" · ")} — ${contentVerdict}`,
     );
 
-    // 5. the desktop nav census
+    // 5. the desktop nav census (session-199: measured on the Oasis
+    //    HOME — the reference's /Dashboard is a 404 carrying the same
+    //    header, but the home is the canonical surface)
+    await page.goto(`${REF_URL}/home`, { waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(1500);
     const desktop: NavCensus = await page.evaluate(() => {
       const nav = document.querySelector("nav");
       return {
@@ -295,8 +311,13 @@ async function main(): Promise<void> {
     await page.waitForTimeout(1500);
     const mobile: NavCensus = await page.evaluate(() => {
       const nav = document.querySelector("nav");
-      const menuButtons = Array.from(document.querySelectorAll("button")).filter((b) =>
-        /menu|navigation/i.test(`${b.getAttribute("aria-label") ?? ""} ${b.textContent ?? ""}`),
+      // session-199: the Oasis hamburger is ICON-ONLY with NO aria-label
+      // (the platform genus) — the predicate keys on its
+      // aria-haspopup="dialog" construction instead
+      const menuButtons = Array.from(document.querySelectorAll("header button")).filter(
+        (b) =>
+          /menu|navigation/i.test(`${b.getAttribute("aria-label") ?? ""} ${b.textContent ?? ""}`) ||
+          b.getAttribute("aria-haspopup") === "dialog",
       ).length;
       return {
         width: nav ? Math.round(nav.getBoundingClientRect().width) : 0,
@@ -332,16 +353,11 @@ async function main(): Promise<void> {
     );
 
     // 7. the report + the gate
-    const changed =
-      stability === "CHANGED" ||
-      desktopVerdict === "CHANGED" ||
-      landingVerdict === "CHANGED" ||
-      mobileVerdict !== "STANDING" ||
-      demo === "SEEDED";
+    const changed = contentVerdict === "CHANGED" || stability === "CHANGED" || desktopVerdict === "CHANGED" || mobileVerdict === "CHANGED" || landingVerdict === "CHANGED";
     if (json) {
       console.log(
         JSON.stringify(
-          { reference: REF_URL, bundle: { url: bundleUrl, ...fingerprint, verdict: stability }, demoData: { rowsByPage, verdict: demo }, desktopNav: { ...desktop, verdict: desktopVerdict }, mobileNav: { ...mobile, verdict: mobileVerdict }, landing: { ...landing, verdict: landingVerdict } },
+          { reference: REF_URL, bundle: { url: bundleUrl, ...fingerprint, verdict: stability }, contentCensus: { countsByPage, verdict: contentVerdict }, desktopNav: { ...desktop, verdict: desktopVerdict }, mobileNav: { ...mobile, verdict: mobileVerdict }, landing: { ...landing, verdict: landingVerdict } },
           null,
           2,
         ),

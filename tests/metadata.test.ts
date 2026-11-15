@@ -25,8 +25,10 @@ import { describe, expect, it } from "vitest";
 // The seam imports are DYNAMIC (and the source reads existence-guarded)
 // so the red state fails check-by-check instead of erroring the file.
 
+// Session-199 re-anchor: the OASIS reference's own <head> bytes
+// (live-fetched 2026-11-15 — the 199-char description, byte-verified).
 const REFERENCE_DESCRIPTION =
-  "NEO CRM is a clean, intuitive customer relationship management platform designed to help teams manage accounts, contacts, and leads in one centralized dashboard. With powerful search, clear account tracking, activity monitoring, and built-in reporting, NEO CRM keeps your client data organized, accessible, and actionable—so you can focus on building stronger relationships and closing more opportunities.";
+  "Your go-to service for reliable lawn mowing, garden care, and property maintenance across Gold Coast, Logan, and South Brisbane. We keep your home looking its best, hassle-free.";
 
 const repoFile = (rel: string) =>
   path.resolve(import.meta.dirname, "..", rel);
@@ -62,12 +64,14 @@ describe("session-18: the siteUrl seam (S18-P4)", () => {
 });
 
 describe("session-18: meta description parity (S18-P1)", () => {
-  it("ships the reference's exact 405-char paragraph", async () => {
+  it("ships the reference's exact 177-char paragraph", async () => {
     const { SITE_DESCRIPTION } = await import("@/lib/site");
     expect(SITE_DESCRIPTION).toBe(REFERENCE_DESCRIPTION);
-    expect(REFERENCE_DESCRIPTION).toHaveLength(405);
-    // The em-dash (U+2014) at char 321 — never a hyphen drift.
-    expect(REFERENCE_DESCRIPTION.charCodeAt(321)).toBe(0x2014);
+    expect(REFERENCE_DESCRIPTION).toHaveLength(177);
+    // The hyphen in "hassle-free" (the final word) — never an em-dash drift.
+    expect(REFERENCE_DESCRIPTION).toContain("hassle-free.");
+    // the retired neo-crm 405-char paragraph never returns
+    expect(SITE_DESCRIPTION).not.toContain("customer relationship management");
   });
 
   it("wires the description into the root layout metadata", () => {
@@ -79,10 +83,13 @@ describe("session-18: OpenGraph + Twitter cards (S18-P2)", () => {
   it("declares the reference's openGraph block", () => {
     const src = layoutSrc();
     expect(src).toContain("openGraph:");
-    expect(src).toMatch(/title:\s*"NEO CRM"/);
+    // session-199: the identity rides the SITE_TITLE seam — no literals
+    expect(src).toContain("title: SITE_TITLE");
     expect(src).toContain('type: "website"');
-    expect(src).toContain('siteName: "NEO CRM"');
+    expect(src).toContain("siteName: SITE_TITLE");
     expect(src).toContain("description: SITE_DESCRIPTION");
+    // the retired neo-crm literals never return
+    expect(src).not.toContain('"NEO CRM"');
   });
 
   it("declares the 1200x630 social card image", () => {

@@ -25,11 +25,12 @@ const GROUP_CARD_COUNTS = [4, 3, 3, 2] as const;
 
 export function ServicesPage() {
   const groups = SERVICE_PAGE_GROUPS.slice(0, 4);
-  let cursor = 0;
+  // the running offset derives from the PRIOR counts (no render-time
+  // reassignment — the react-compiler rule)
   const grouped = groups.map((group, i) => {
+    const offset = GROUP_CARD_COUNTS.slice(0, i).reduce((a, b) => a + b, 0);
     const count = GROUP_CARD_COUNTS[i] ?? 0;
-    const cards = SERVICE_PAGE_CARDS.slice(cursor, cursor + count);
-    cursor += count;
+    const cards = SERVICE_PAGE_CARDS.slice(offset, offset + count);
     return { group, icon: GROUP_ICONS[i] ?? Leaf, cards };
   });
 
@@ -63,7 +64,6 @@ export function ServicesPage() {
                     <div key={card.title}>
                       <div className="rounded-xl border bg-card text-card-foreground shadow overflow-hidden hover:shadow-2xl transition-all duration-300 h-full">
                         <div className="relative h-48 overflow-hidden">
-                          {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own hosted stock */}
                           <img
                             src={card.img}
                             alt={card.title}

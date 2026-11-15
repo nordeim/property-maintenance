@@ -20,13 +20,14 @@ describe("session-13: auth page absolute titles (S13-P1)", () => {
     expect(title).toBeDefined();
     // A plain string would ride the template ("NEO CRM | NEO CRM").
     expect(typeof title).toBe("object");
-    expect((title as { absolute?: string }).absolute).toBe("NEO CRM");
+    // session-199: the SITE_TITLE seam — the Oasis identity
+    expect((title as { absolute?: string }).absolute).toBe("Oasis Property Maintenance");
   });
 
   it("signup declares an ABSOLUTE title with the suffix exactly once", () => {
     const title = signupMetadata.title;
     expect(title).toBeDefined();
     expect(typeof title).toBe("object");
-    expect((title as { absolute?: string }).absolute).toBe("Sign up | NEO CRM");
+    expect((title as { absolute?: string }).absolute).toBe("Sign up | Oasis Property Maintenance");
   });
 });

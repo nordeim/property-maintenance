@@ -16,7 +16,10 @@ test("authenticate demo user", async ({ page }) => {
   await page.getByRole("button", { name: "Sign in" }).click();
 
   await page.waitForURL("/");
-  await expect(page.getByRole("heading", { name: "Dashboard" })).toBeVisible();
+  // Session-199: the public root is the OASIS home (the neo-crm landing
+  // retired with its surface) — the post-login landing proof is the
+  // Oasis hero.
+  await expect(page.locator("h1")).toContainText("perfectly maintained.");
 
   await page.context().storageState({ path: STORAGE });
 });

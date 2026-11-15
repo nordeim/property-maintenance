@@ -111,7 +111,7 @@ export function HomePage() {
                 <MapPin className="w-3.5 h-3.5 text-[#2E7D5F]" aria-hidden="true" />
                 <span className="text-xs font-semibold text-[#2E7D5F]">{SITE_REGIONS}</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-[#1F2933] leading-tight mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-[#1F2933] leading-tight md:leading-none mb-6">
                 Your property,
                 <span className="block text-[#2E7D5F]">perfectly maintained.</span>
               </h1>
@@ -171,7 +171,6 @@ export function HomePage() {
                 className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow"
               >
                 <div className="h-44 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own Unsplash-hosted stock (the shared-source genus) */}
                   <img
                     src={card.img}
                     alt={card.title}
@@ -259,7 +258,6 @@ export function HomePage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#2E7D5F]/95 to-[#1d5942]/95 backdrop-blur-md border border-white/20 shadow-xl px-8 py-16 text-center">
             <div className="absolute inset-0 opacity-10">
-              {/* eslint-disable-next-line @next/next/no-img-element -- the reference's own Unsplash-hosted stock */}
               <img
                 src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=60"
                 alt=""

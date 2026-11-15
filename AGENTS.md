@@ -800,8 +800,9 @@ bun run db:seed && bun run dev`. Demo login: `sepnetflix2023@outlook.com` /
   char 321 — mirrored verbatim as `SITE_DESCRIPTION` in
   `src/lib/site.ts`), it ships the full OG set (og:title/description/
   image/url/type/site_name) + `twitter:card summary_large_image` with
-  title/description/image AND `twitter:url`, a PNG favicon, an eleven-URL
-  `/sitemap.xml` (weekly, 1.0/0.8) and a robots.txt with a Sitemap line.
+  title/description/image AND `twitter:url`, a PNG favicon, a sixteen-URL
+  `/sitemap.xml` (weekly, 1.0/0.8 — session-199: the Oasis public
+  layer's /home /services /gallery /faq /booking join the surface) and a robots.txt with a Sitemap line.
   Ours: `src/lib/site.ts` (`siteUrl()` reading NEXT_PUBLIC_SITE_URL with
   the localhost fallback — the variable was documented in
   .env.example/README/CLAUDE since the scaffold but consumed NOWHERE
@@ -846,10 +847,10 @@ bun run db:seed && bun run dev`. Demo login: `sepnetflix2023@outlook.com` /
   twitter:title/url/description likewise, `<link rel=canonical>` per
   route (root + /login stay unprefixed). All of it is built by the
   `pageMetadata({ page, route, title? })` factory in `src/lib/site.ts`
-  (the 13 primary pages consume it — the 8 inner wrappers + login +
-  signup + the marketing about/contact pair + reset-password; the 10
-  capitalized aliases re-derive their own; the dashboard alone inherits
-  the root layout). THREE serializer hazards gate-caught: (a)
+  (the 19 primary pages consume it — session-199's (site) group of 8
+  public pages + login + signup + reset-password + the 8 inner CRM
+  wrappers; the 15 capitalized aliases re-derive their own; the
+  dashboard alone inherits the root layout). THREE serializer hazards gate-caught: (a)
   **declaring `metadata.icons` REPLACES the file-convention
   `link[rel=icon]`** — the s18 favicon test failed the moment `icons:
   { apple }` appeared, so BOTH icons ship as file conventions

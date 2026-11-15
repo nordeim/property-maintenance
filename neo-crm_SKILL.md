@@ -539,7 +539,7 @@ Demo login (mirrors the reference app): `sepnetflix2023@outlook.com` /
 | `eslint.config.mjs` | next/core-web-vitals + next/typescript; `skills/`, build dirs ignored; react-hooks purity rules enforced |
 | `vitest.config.ts` | `include: ["src/**/*.test.ts", "tests/**/*.test.ts"]`, node env, `@` alias |
 | `playwright.config.ts` | 2 projects (setup + chromium), `globalSetup` reseeds `db/e2e.db` in place, webServer boots the standalone build on :3100 with `DATABASE_URL=file:../db/e2e.db` |
-| `prisma/schema.prisma` | 9 models; `datasource db { provider = "sqlite"; url = env("DATABASE_URL") }` |
+| `prisma/schema.prisma` | 11 models; `datasource db { provider = "sqlite"; url = env("DATABASE_URL") }` |
 | `scripts/prisma-env.ts` | `db:push` wrapper — injects the schema-rule URL into the Prisma CLI's env (§9 bug #8) |
 
 ### 3.3 Environment variables (6 — count them, 6)
@@ -688,7 +688,7 @@ map when you extend a vocabulary.
 ### 5.1 Layer model (the Golden Rule: imports point DOWN only)
 
 ```
-Layer 1  src/app/**            pages (15) + API route handlers (29) + layouts
+Layer 1  src/app/**            pages (20) + API route handlers (31) + layouts
 Layer 2  src/components/**     UI kit (13 files) + layout chrome + shared dialogs
 Layer 3  src/lib/**            pure seams: auth, api envelope, db, db-path,
                                format, csv, rate-limit, constants, download
@@ -702,14 +702,17 @@ HTTP client for server state (its `call()` helper unwraps the envelope).
 
 ### 5.2 Inventory (verified counts)
 
-- 28 `.tsx` files under `src/components/`; 22 start with `"use client"`.
-- 15 pages (`src/app/**/page.tsx`): landing (/), about, contact, login,
-  signup, reset-password, dashboard, accounts, contacts, leads,
-  calendar, activities, reports, settings, profile.
-- 29 API route files: auth (login/signup/logout/me/verify/resend/forgot-password/reset-password), users,
+- 37 `.tsx` files under `src/components/`; 27 start with `"use client"`.
+- 20 pages (`src/app/**/page.tsx`): session-199's public (site) group
+  (home /, /home, services, gallery, faq, about, contact, booking) +
+  login, signup, reset-password + dashboard, accounts, contacts, leads,
+  calendar, activities, reports, settings, profile (the kept CRM
+  superset).
+- 31 API route files: auth (login/signup/logout/me/verify/resend/forgot-password/reset-password), users,
   accounts±id, contacts±id, leads±id, activities±id, events±id,
   opportunities, dashboard, reports, settings, search, export, upload,
-  uploads/[name], reset, health. All `force-dynamic` — 19 gated via
+  uploads/[name], reset, health + session-199's bookings +
+  quote-requests (the Oasis public forms). All `force-dynamic` — 21 gated via
   `requireSession()` (the 10 ungated: the public auth family's 7
   verbs [rate-limited instead] + `me` [the by-design logged-out
   data:null face, session-41] + `health` + the regex-pinned
@@ -935,7 +938,7 @@ lint-clean under React 19.
 
 ## 7. Data Layer & Domain Model
 
-### 7.1 Prisma models (9) — `prisma/schema.prisma` (262 lines)
+### 7.1 Prisma models (9) — `prisma/schema.prisma` (305 lines)
 
 | Model | Key fields | Notes |
 |---|---|---|
@@ -977,7 +980,7 @@ Exported API (all unit-tested in `tests/db-path.test.ts`, 20 checks):
   the `.env` at cwd; the one function `db.ts`, `seed.ts` and the
   `scripts/prisma-env.ts` wrapper all call.
 
-### 7.4 Auth — `src/lib/auth.ts` (184 lines) + `src/lib/password.ts` (67 lines) + `src/lib/schemas.ts` (716 lines)
+### 7.4 Auth — `src/lib/auth.ts` (184 lines) + `src/lib/password.ts` (67 lines) + `src/lib/schemas.ts` (784 lines)
 
 scrypt password hashes (`scrypt:salt:hash` — the PURE `password.ts` seam,
 node:crypto-only, shared with the seed script), HMAC-SHA256 signed
@@ -1248,7 +1251,7 @@ Manual additions:
 
 ## 15. Coding Patterns
 
-### 15.1 Route handler (every one of the 29 follows this — session-68 F-68b1, the idiom re-anchored session-167)
+### 15.1 Route handler (every one of the 31 follows this — session-68 F-68b1, the idiom re-anchored session-167)
 
 ```ts
 // src/app/api/accounts/route.ts (shape)
