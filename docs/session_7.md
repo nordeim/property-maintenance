@@ -182,3 +182,4 @@ The captures verified. The final commit + push (the captures belong in the repo 
 **Full battery before push:** lint 0 · tsc 0 · 2800/2800 unit · build green · all four drift gates green · **e2e 193/193** (CI=1 fresh boot, zero failures) · captures 29-31 machine-verified · all ports clean at close (the s203 doctrine held).
 
 **Files:** the repo is on GitHub at `e7a3955` (two commits: the cure + the evidence tail); local copies of the plan and the three new screenshots are under `download/session-204-artifacts/`. The SSH key was shredded after both pushes. A follow-up message can pick up the deferred terracotta-mass work directly from the s204 plan's §4 ledger.
+
