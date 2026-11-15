@@ -121,7 +121,7 @@ export function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/booking" className="w-full sm:w-auto">
-                  <Button className="w-full sm:w-auto bg-[#2E7D5F] hover:bg-[#236B4F] text-white text-base px-8 h-13 shadow-lg">
+                  <Button className="w-full sm:w-auto bg-[#2E7D5F] hover:bg-[#236B4F] text-white text-base px-8 h-auto py-0 shadow-lg">
                     <CalendarCheck className="w-5 h-5 mr-2" aria-hidden="true" />
                     Book a Service
                   </Button>
@@ -129,7 +129,7 @@ export function HomePage() {
                 <a href="#estimate" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="w-full sm:w-auto bg-white border-gray-200 text-[#1F2933] hover:bg-gray-50 text-base px-8 h-13"
+                    className="w-full sm:w-auto bg-white border-gray-200 text-[#1F2933] hover:bg-gray-50 text-base px-8 h-auto py-0"
                   >
                     Get Instant Estimate
                     <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />

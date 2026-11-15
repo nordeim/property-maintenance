@@ -363,7 +363,7 @@ describe("session-169 (WP-1e): the SKILL color + facts mirror (F-5/F-3/F-4/F-6/F
 
   it("§4.1's census note carries the LIVE --color token count (F-5)", () => {
     const colorTokens = (css.match(/^\s*--color-/gm) ?? []).length;
-    expect(colorTokens).toBe(127); // the s88 V3-PALETTE families included
+    expect(colorTokens).toBe(129); // the s88 V3-PALETTE families + the s201 F-201f card tokens
     expect(skill).toContain(`carries ${colorTokens} \`--color-*\` tokens`);
   });
 

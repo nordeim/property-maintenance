@@ -58,6 +58,13 @@
   /* Neutrals */
   --color-background: #f9fafb;
   --color-surface: #ffffff;
+  /* Session-201 (F-201f): the shadcn-standard CARD tokens — never
+     defined by this corpus's own vocabulary, so the s199 site pages'
+     `bg-card` classes computed rgba(0,0,0,0) (a no-op) for the whole
+     Oasis era. The reference's own cards compute opaque white (its
+     contact card, live-probed) with the stock #0a0a0a foreground. */
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
   /* Session-13 (S13-P9): the reference's default foreground (body +
      card-foreground) is #0a0a0a — computed probes on its body, stock
      cards, KPI values, the More... button and dialog text. Ours shipped

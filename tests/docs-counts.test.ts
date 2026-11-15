@@ -911,7 +911,7 @@ const SUITES = 139; // session-199: + the booking seam suite (138 -> 139)
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2797; // session-199: the landing suite's shrink + the public-site battery (2817 -> 2797)
+const UNIT = 2800; // session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1414,14 +1414,50 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-200 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-201 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s199 layer now beneath the s200 head)",
+      "the head's SECOND layer must be the previous session's — the F-108a1 face (the s200 layer now beneath the s201 head)",
     ).toContain(
-      "+ beneath it 2797 unit checks + 192 e2e checks green; the session-199 layer (THE OASIS RE-POINTING",
+      "+ beneath it 2797 unit checks + 193 e2e checks green; the session-200 layer (THE OASIS PARITY SHIP",
     );
+  });
+
+  // ------------------------------------------------------------------
+  // Session-201 (F-201b): the property-maintenance SKILL lockstep. The
+  // s200-c audit found the NEW document entirely unpinned — its live
+  // e2e sites had already drifted to the stale 192 (the corpus's own
+  // count had moved to 193 at the Radix keyboard-contract check's
+  // birth, and the s200 count-ladder sweep missed the SKILL because
+  // no pin read it). This family holds the SKILL's live forms the way
+  // the neo-crm SKILL pin does: the version lockstep + every
+  // live-tense count site, derived from the same constants.
+  // ------------------------------------------------------------------
+  it("the property-maintenance SKILL carries the live corpus counts at every live-tense site + the version lockstep (the F-201b lockstep)", () => {
+    const skill = read("property-maintenance_SKILL.md");
+    const version = skill.match(/^version:\s*(\S+)/m)?.[1];
+    expect(version, "the SKILL frontmatter must carry a version").toBeTruthy();
+    expect(
+      skill,
+      "the H1 must carry the frontmatter version (the F-106a1 idiom)",
+    ).toContain(`# property-maintenance — Engineering Skill (SKILL.md v${version})`);
+    expect(
+      skill,
+      "the description's corpus form must carry the live counts",
+    ).toContain(`${UNIT}-check Vitest / ${E2E}-check Playwright corpus`);
+    expect(
+      skill,
+      "the §2 unit row must carry the live suite + check counts",
+    ).toContain(`| Unit | Vitest 5 (${SUITES} suites / ${UNIT} checks) |`);
+    expect(
+      skill,
+      "the §2 e2e row must carry the live check count — the exact site that drifted to the stale 192",
+    ).toContain(`(11 specs + setup / ${E2E})`);
+    expect(
+      skill,
+      "the §7 heading must carry the live counts",
+    ).toContain(`## 7. The Test Corpus (${UNIT} unit / ${E2E} e2e)`);
   });
 
   // ------------------------------------------------------------------

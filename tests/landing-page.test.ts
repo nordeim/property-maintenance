@@ -53,6 +53,51 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(layout).not.toContain("AppShell");
   });
 
+  it("F-201e the OASIS public background canvas — the reference's own full-viewport painter, mirrored (the sky-to-lawn gradient + the sun band + the foliage blobs)", () => {
+    // ------------------------------------------------------------------
+    // Session-201 (F-201e): the full-map drift gate's landing
+    // adjudication — the reference paints its public pages' backdrop
+    // with a fixed inset-0 CANVAS (a stylized sky-over-lawn scene:
+    // the flat sky #AEE2FF -> the lawn #8BC687, a
+    // warm sun band at ~62-74%, the darker-green foliage blobs at
+    // both edges + the bottom-right; ~static — 0.47% frame drift over
+    // 4s). Our clone rendered NOTHING there (the plain gray-50 body)
+    // — the dominant genus of every public page's standing diff (the
+    // landing 76.66 · about 55.41 · contact 38.67 · services 42.57 ·
+    // gallery 36.23 · faq 66.37 · booking 77.66). The canvas rides
+    // the reference's SEVEN public pages ONLY — its login + its 404
+    // render white (the not-found pair sits at the 0.02% floor
+    // proving it) — so the mount rides the (site) layout (the auth
+    // routes + the root 404 live OUTSIDE the group).
+    // ------------------------------------------------------------------
+    const layout = read("src/app/(site)/layout.tsx");
+    expect(layout).toContain("SiteBackgroundCanvas");
+    expect(
+      layout.indexOf("SiteBackgroundCanvas"),
+      "the canvas mounts BEFORE the chrome (the backdrop, not the content)",
+    ).toBeLessThan(layout.indexOf("<SiteHeader />"));
+    const src = read("src/components/site/background-canvas.tsx");
+    // the decoded palette (sampled at the uncovered right edge of the
+    // reference's own landing capture)
+    expect(src).toContain("#AEE2FF"); // the flat sky (0-28%)
+    expect(src).not.toContain("#E7F6FF"); // the retired crest misread (the white/70 header over the sky decodes as 231,246,255)
+    expect(src).toContain("#8BC687"); // the lawn
+    expect(src).toContain("216, 209, 189"); // the warm sun band
+    expect(src).toContain("44, 147, 64"); // the left horizon bush
+    expect(src).toContain("46, 152, 67"); // the right horizon bush
+    expect(src).toContain("87, 93, 99"); // the sun-band rocks
+    expect(src).toContain("16, 96, 28"); // the corner's deep green
+    // the painter is a fixed, aria-hidden, pointer-events-none canvas
+    // below the content (the reference's own construction)
+    expect(src).toContain("fixed inset-0");
+    expect(src).toContain('aria-hidden="true"');
+    expect(src).toContain("pointer-events-none");
+    // the negatives: the canvas never rides the 404 or the auth pages
+    // (the reference's own posture — both render white)
+    expect(read("src/app/not-found.tsx")).not.toContain("SiteBackgroundCanvas");
+    expect(read("src/app/login/page.tsx")).not.toContain("SiteBackgroundCanvas");
+  });
+
   it("the retired neo-crm landing forms never return (the negatives ladder)", () => {
     for (const form of RETIRED_LANDING_FORMS) {
       expect(read("src/app/(site)/page.tsx")).not.toContain(form);
@@ -100,6 +145,28 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     expect(src).toContain('id="estimate"');
     expect(src).toContain("EstimateCard");
     expect(src).toContain("Trusted by homeowners across SE Queensland");
+    // ------------------------------------------------------------------
+    // Session-201 (F-201d): the hero buttons' METRICS pin — decoded live
+    // from the reference (the landing drift adjudication): its hero CTAs
+    // render py-0 px-8 at the natural content height (24px, pad=0px 32px
+    // computed) while OURS forced h-13 + the base py-2 (52px) — the 25px
+    // overflow pushed the hero past its 86vh floor (801 vs the
+    // reference's 776), rescaling the full-bleed cover photo and
+    // shifting every row below: the landing's 77.28% drift, uniform
+    // across every band. The cure: the reference's compact form.
+    // ------------------------------------------------------------------
+    expect(
+      src,
+      "the primary hero CTA must carry the reference's compact metrics (px-8 h-auto py-0)",
+    ).toContain("text-base px-8 h-auto py-0 shadow-lg");
+    expect(
+      src,
+      "the secondary hero CTA must carry the same compact metrics",
+    ).toContain("text-base px-8 h-auto py-0");
+    expect(
+      src,
+      "the retired h-13 tall-button form must be gone (the 52px overflow genus)",
+    ).not.toContain("h-13");
   });
 
   it("the services page: the five groups + the extracted card catalog + the Add to Quote superset", () => {

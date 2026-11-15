@@ -23,7 +23,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2797 checks)      | `bun run test`                         |
+|  Unit tests (2800 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
 |  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
@@ -39,7 +39,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2797) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2800) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
 `bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
@@ -12937,6 +12937,46 @@ width table), the PAD smoke-row re-anchor (163 lines — the s200
 identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
+
+### Session-201 — THE CANVAS PARITY SHIP + THE SKILL LOCKSTEP (2026-11-15)
+
+The post-200 audit round (the rotation trigger: the owner's 157e592 — the
+session_3.md archive). THE /Dashboard PROBE settled the brief's named
+target: the reference's CRM family censused live at BOTH casings — every
+route renders its soft-404; the reference has NO CRM at any casing, and
+the superset doctrine stands (our capital aliases render where it 404s).
+
+**THE PARITY CURES (TDD, all RED-first):**
+- **F-201d** the hero CTAs re-metriced to the reference's decoded
+  py-0/px-8 compact form (the 52px h-13 overflow retired — the hero
+  geometry now pixel-identical: 776/24-26px buttons).
+- **F-201e** THE PUBLIC BACKGROUND CANVAS — the reference's own fixed
+  inset-0 full-viewport painter (the sky-over-lawn gradient #AEE2FF ->
+  #8BC687 + the warm sun band + the edge spots; ~static, 0.47% drift/4s)
+  mirrored as `SiteBackgroundCanvas` in the (site) layout: all 7 public
+  pages, never the login/404 (the reference's own posture — its 404 pair
+  sits at the 0.02% floor proving it). The painter evaded every
+  element-level census (no img/video/background-image/pseudo) — found
+  via the point-stack census (a DIV.fixed.inset-0 hosting CANVAS 1440x900
+  beneath MAIN.z-10). The landing drift 77.28 -> 19.61.
+- **F-201f** THE SHADCN CARD TOKENS — the site pages' `bg-card` classes
+  were NO-OPS since s199 (the @theme never defined them; every card
+  computed rgba(0,0,0,0)). `--color-card: #ffffff` +
+  `--color-card-foreground: #0a0a0a` landed (the reference's own
+  computed values). about 55.41 -> 8.61 · services 42.57 -> 8.81 ·
+  gallery 36.23 -> 9.78 · contact 38.67 -> 15.23.
+
+**THE FINDINGS:** F-201a (the property-maintenance SKILL's three stale
+e2e sites) + F-201b (the document was entirely unpinned — the lockstep
+pin family born, stash-proven) + F-201g RECORDED (the faq layout
+offsets: the ref's hero 332 vs our 272 + its item spacing; the booking
+opaque inner form card) — the decoded follow-up ledger.
+
+**THE VERIFICATION:** lint 0/0 · tsc 0 · **139/2800 unit** (+3 its:
+F-201b/e/f) · badge 2993 · smoke 14/14 · db census MATCH · SEO
+live-curled (the 16-route sitemap · robots · manifest · the OG head) ·
+e2e 193/193 (the pre-cure tree; the post-cure re-run is the next
+session's item with the drift-baseline re-derivation).
 
 ### Session-200 — THE A11Y REGISTER'S PAGE-SURFACE COVERAGE AUDIT (the three un-registered page surfaces + the spec's own stale anon-family claim) (2026-10-30)
 

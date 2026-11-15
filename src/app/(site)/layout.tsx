@@ -1,3 +1,4 @@
+import { SiteBackgroundCanvas } from "@/components/site/background-canvas";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 
@@ -15,6 +16,11 @@ import { SiteHeader } from "@/components/site/site-header";
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* Session-201 (F-201e): the reference's own full-viewport
+          backdrop painter — the seven public pages' canvas (the sky-
+          over-lawn scene); the auth routes + the root 404 render
+          white and live OUTSIDE this group, mirroring it. */}
+      <SiteBackgroundCanvas />
       <SiteHeader />
       {children}
       <SiteFooter />

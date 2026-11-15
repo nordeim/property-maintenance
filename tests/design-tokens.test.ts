@@ -20,6 +20,24 @@ const css = readFileSync(
   "utf8",
 );
 
+// --------------------------------------------------------------------
+// Session-201 (F-201f): the shadcn CARD tokens — the no-op genus. The
+// s199 site pages' cards carry the shadcn-standard `bg-card` /
+// `text-card-foreground` classes, but this corpus's @theme never
+// defined them (its own vocabulary: --color-surface etc.) — so every
+// `bg-card` computed rgba(0,0,0,0), a NO-OP. Invisible while the
+// pages rode the plain gray-50 body; exposed the moment the s201
+// canvas arrived (transparent cards over the sky-lawn scene) and
+// disproven by the reference itself: its own bg-card computes OPAQUE
+// WHITE rgb(255,255,255) (live-probed on its contact card), its
+// card-foreground the stock #0a0a0a. The tokens land in @theme as
+// LITERAL hex values (the v4 doctrine, line 25-26 of globals.css).
+// --------------------------------------------------------------------
+it("F-201f the shadcn card tokens are DEFINED — opaque white card + the #0a0a0a foreground (the reference's own computed values)", () => {
+  expect(themeToken("color-card"), "bg-card must compute opaque white like the reference's own cards").toBe("#ffffff");
+  expect(themeToken("color-card-foreground"), "text-card-foreground must carry the stock ink").toBe("#0a0a0a");
+});
+
 function themeToken(name: string): string | undefined {
   const m = css.match(new RegExp(`--${name}:\\s*([^;]+);`));
   return m?.[1]?.trim();

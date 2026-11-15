@@ -11,9 +11,9 @@ description: >
   mobile-navigation menu, auth, testing strategy, anti-patterns and
   the full debugging playbook. Use it to extend, debug, onboard, or
   replicate this architecture.
-version: 1.208.0
+version: 1.209.0
 last_updated: 2026-11-15
-project_state: 2797 unit checks + 193 e2e checks green; the session-200 layer (THE OASIS PARITY SHIP — the post-199 audit round [the rotation trigger THE OWNER'S a35a754: the session logs + the dashboard-asset delete; the baseline: lint 0/0 · tsc 0 · 2790/2797 unit with 7 doc-truth stragglers from the s199 probe/404 surgery · build GREEN · probe:ref STABLE at the Oasis bundle ee166dd5 (the s199 re-derivation: the content census 12 services · 6 gallery pairs · 21 FAQ items STANDING; the 485px/6-link site header; the TRUE-390 icon-only aria-haspopup=dialog hamburger; the landing 6/5)] — THE COUNT LADDER + THE LOCKSTEP [the docs re-anchored at the live truth: the unit 2817 -> 2797 · e2e 195 -> 192 (the landing battery retired -14, public-site +10, marketing-mobile rewritten 1 -> 2) · badge 3012 -> 2989 · suites 138 -> 139 · the SKILL head restored from its VACUOUS state (every layer was comment-demoted; the s198-form pin matched a demoted block — the F-166f single-key form now real again: THIS line) · the Appendix B rows re-anchored (the landing row -> the public-site row 10; marketing-mobile 1 -> 2; the PAD a11y row 453) · the probe pins re-anchored to the Oasis STANDING + the 404 Go-Home /home + the owner-deleted dashboard asset followed] + THE E2E RE-VERIFICATION [the 11 s199 fixes re-run green] + THE REMAINING s199 FOLLOW-UPS [the screenshots to docs/screenshots/ · the .env.example · the count ladder completion · the docs heads at the Oasis identity]); + beneath it 2797 unit checks + 192 e2e checks green; the session-199 layer (THE OASIS RE-POINTING + THE E2E BATTERY RE-ANCHOR — the reference discovery [oasis-property-maintenance.base44.app is a service-booking marketing site, Green Cut Lawn Care — the neo-crm reference's CRM routes all 404 there] + the doc-truth cure [all 23 red pins: 32 count sites, the audit ledger at the live 10-advisory census, mutation-proven] + the Oasis public layer [the site chrome + the 8 public routes + the 7 capital aliases + the login/404 re-skins + the SITE_TITLE seam + the sitemap 16 routes] + the booking superset [the TDD seam 12/12 + the Booking/QuoteRequest models + both rate-limited API routes] + the e2e battery [landing.spec retired -> public-site.spec 10 checks; marketing-mobile rewritten; the a11y register + the slider LABEL-ancestry name fix] — the full unit gate 139/2797 GREEN, lint 0/0, tsc 0, build GREEN);
+project_state: 2800 unit checks + 193 e2e checks green; the session-201 layer (THE CANVAS PARITY SHIP + THE SKILL LOCKSTEP — the post-200 audit round [the rotation trigger THE OWNER'S 157e592: the session_3.md archive]; the /Dashboard PROBE [the reference's CRM family censused live at BOTH casings — every route its soft-404; the superset doctrine stands — scripts/probe-201-crm-routes.ts]; THE PARITY CURES [F-201d the hero CTAs re-metriced to the reference's decoded py-0/px-8 compact form (the 52px h-13 overflow retired — the hero geometry now pixel-identical); F-201e THE PUBLIC BACKGROUND CANVAS — the reference's own fixed inset-0 full-viewport painter (the sky-over-lawn gradient + the warm sun band + the edge spots; ~static, 0.47% drift/4s) mirrored as SiteBackgroundCanvas in the (site) layout, all 7 public pages, NEVER the login/404 — found via the point-stack census after surviving every element-level census; F-201f THE SHADCN CARD TOKENS — the site pages' bg-card classes were NO-OPS (the @theme never defined them); --color-card #ffffff + --color-card-foreground #0a0a0a landed, the reference's own computed values]; THE LANDING DRIFT 77.28 -> 19.61 · about 55.41 -> 8.61 · services 42.57 -> 8.81 · gallery 36.23 -> 9.78 · contact 38.67 -> 15.23 (faq 42.71 + booking 41.98 carry the decoded follow-up ledger: the faq layout offsets [the ref's hero 332 vs our 272 + its item spacing] + the booking opaque inner form card); THE FINDINGS [F-201a: the property-maintenance SKILL's three live e2e sites lagged (192 vs 193) — cured; F-201b: the document was UNPINNED — the lockstep pin family born, stash-proven; +3 its: F-201b + F-201e + F-201f]; THE CAPTURES [the s201 set 16-21: the /Dashboard superset proof-pair + the mobile menu closed/open at 390 + the home desktop/390, re-captured post-cure]); + beneath it 2797 unit checks + 193 e2e checks green; the session-200 layer (THE OASIS PARITY SHIP — the post-199 audit round [the rotation trigger THE OWNER'S a35a754: the session logs + the dashboard-asset delete; the baseline: lint 0/0 · tsc 0 · 2790/2797 unit with 7 doc-truth stragglers from the s199 probe/404 surgery · build GREEN · probe:ref STABLE at the Oasis bundle ee166dd5 (the s199 re-derivation: the content census 12 services · 6 gallery pairs · 21 FAQ items STANDING; the 485px/6-link site header; the TRUE-390 icon-only aria-haspopup=dialog hamburger; the landing 6/5)] — THE COUNT LADDER + THE LOCKSTEP [the docs re-anchored at the live truth: the unit 2817 -> 2797 · e2e 195 -> 192 (the landing battery retired -14, public-site +10, marketing-mobile rewritten 1 -> 2) · badge 3012 -> 2989 · suites 138 -> 139 · the SKILL head restored from its VACUOUS state (every layer was comment-demoted; the s198-form pin matched a demoted block — the F-166f single-key form now real again: THIS line) · the Appendix B rows re-anchored (the landing row -> the public-site row 10; marketing-mobile 1 -> 2; the PAD a11y row 453) · the probe pins re-anchored to the Oasis STANDING + the 404 Go-Home /home + the owner-deleted dashboard asset followed] + THE E2E RE-VERIFICATION [the 11 s199 fixes re-run green] + THE REMAINING s199 FOLLOW-UPS [the screenshots to docs/screenshots/ · the .env.example · the count ladder completion · the docs heads at the Oasis identity]); + beneath it 2797 unit checks + 192 e2e checks green; the session-199 layer (THE OASIS RE-POINTING + THE E2E BATTERY RE-ANCHOR — the reference discovery [oasis-property-maintenance.base44.app is a service-booking marketing site, Green Cut Lawn Care — the neo-crm reference's CRM routes all 404 there] + the doc-truth cure [all 23 red pins: 32 count sites, the audit ledger at the live 10-advisory census, mutation-proven] + the Oasis public layer [the site chrome + the 8 public routes + the 7 capital aliases + the login/404 re-skins + the SITE_TITLE seam + the sitemap 16 routes] + the booking superset [the TDD seam 12/12 + the Booking/QuoteRequest models + both rate-limited API routes] + the e2e battery [landing.spec retired -> public-site.spec 10 checks; marketing-mobile rewritten; the a11y register + the slider LABEL-ancestry name fix] — the full unit gate 139/2797 GREEN, lint 0/0, tsc 0, build GREEN);
 
 <!-- retired session-141 layer (the DUPLICATE project_state key this file carried
      since the s165 head bump — comment-demoted at session-166, the F-166f cure;
@@ -392,7 +392,7 @@ project_state: 2559 unit checks + 161 e2e checks green; the session-169 layer (T
 
 ---
 
-# NEO CRM — Engineering Skill (SKILL.md v1.208.0)
+# NEO CRM — Engineering Skill (SKILL.md v1.209.0)
 
 > **How to use this document:** §1–§3 give you the mental model and a
 > working environment. §4–§8 describe what the code actually does (every
@@ -574,13 +574,13 @@ derives through the same seam).
 
 ## 4. The Design System (Code-First)
 
-All tokens live in the `@theme` block of `src/app/globals.css` (442 lines)
+All tokens live in the `@theme` block of `src/app/globals.css` (449 lines)
 as LITERAL hex values — no `var()` chains inside `@theme`, no
 `tailwind.config.js`. Measured from the reference app.
 
 ### 4.1 The `@theme` core (the semantic subset)
 
-The full block carries 127 `--color-*` tokens — the s88 V3-PALETTE
+The full block carries 129 `--color-*` tokens — the s88 V3-PALETTE
 re-pin pinned the literal-hex Tailwind scale families (amber/blue/
 cyan/emerald/gray/green… 50-900, byte-exact hexes) alongside this
 semantic core; the census reads live in `tests/facts-census.test.ts`.
@@ -707,7 +707,7 @@ HTTP client for server state (its `call()` helper unwraps the envelope).
 
 ### 5.2 Inventory (verified counts)
 
-- 37 `.tsx` files under `src/components/`; 27 start with `"use client"`.
+- 38 `.tsx` files under `src/components/`; 28 start with `"use client"`.
 - 20 pages (`src/app/**/page.tsx`): session-199's public (site) group
   (home /, /home, services, gallery, faq, about, contact, booking) +
   login, signup, reset-password + dashboard, accounts, contacts, leads,
@@ -1155,7 +1155,7 @@ and `curl` against the envelope (`{"ok":true,"data":…}`) for API truth.
 ```bash
 bun run lint         # 0 errors, 0 warnings
 bun run typecheck    # clean (the REAL type gate — build ignores errors)
-bun run test         # 2797/2797
+bun run test         # 2800/2800
 bun run build        # standalone build succeeds
 bun run test:e2e     # 193/193 (build first; boots :3100 with db/e2e.db)
 ```
@@ -6956,7 +6956,7 @@ Full ADRs with context/decision/rationale/consequences/alternatives live in
 | login-reset (session-11) | `tests/login-reset.test.ts` | 14 | ~6 ms |
 | seeded-dashboard-kpis (session-110) | `tests/seeded-dashboard-kpis.test.ts` | 4 | ~12 ms |
 | leading-inert-genus (session-150) | `tests/leading-inert-genus.test.ts` | 4 | ~10 s (the src scan) |
-| **unit total** | 139 files | **2797** | **~21 s** (one worker per file) |
+| **unit total** | 139 files | **2800** | **~21 s** (one worker per file) |
 | e2e public-site (the OASIS battery, s199+s200 — the pages/estimate/booking/390-menu + the Radix keyboard contract/404/login) | `tests/e2e/public-site.spec.ts` | 11 | — |
 | e2e auth (logged out + reset flow) | `tests/e2e/auth.spec.ts` | 11 | — |
 | e2e setup (login) | `tests/e2e/auth.setup.ts` | 1 | — |
