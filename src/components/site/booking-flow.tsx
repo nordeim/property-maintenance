@@ -183,7 +183,7 @@ export function BookingFlow() {
                   the reference's own anatomy (decoded live: 638x542 at
                   401,374, pad-32, radius-16, the 1px gray-100 border);
                   the step FIELDS ride it, the nav rows stay below. */}
-              <div className="bg-white rounded-2xl border border-gray-100 p-8">
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8">
                 <EstimateCard
                   serviceId={serviceId}
                   onServiceChange={setServiceId}
@@ -206,7 +206,7 @@ export function BookingFlow() {
           {/* ---- step 2: date + time -------------------------------- */}
           {step === 2 ? (
             <div>
-              <div className="bg-white rounded-2xl border border-gray-100 p-8">
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <div className="flex items-center gap-2 mb-4">
@@ -272,7 +272,7 @@ export function BookingFlow() {
           {/* ---- step 3: your details ------------------------------- */}
           {step === 3 ? (
             <div>
-              <div className="bg-white rounded-2xl border border-gray-100 p-8">
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8">
               <div className="flex items-center gap-2 mb-4">
                 <House className="w-5 h-5 text-[#2E7D5F]" aria-hidden="true" />
                 <h3 className="font-bold text-[#1F2933]">Your details</h3>

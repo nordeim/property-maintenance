@@ -129,8 +129,8 @@ describe("session-168 (WP-1b): the SKILL inventory live-census — the tree read
     const client = components.filter((f) =>
       read(f).trimStart().startsWith('"use client"'),
     );
-    expect(components.length).toBe(38); // the tree census (session-201: + the SiteBackgroundCanvas)
-    expect(client.length).toBe(28); // the tree census (s201: + the SiteBackgroundCanvas)
+    expect(components.length).toBe(39); // the tree census (session-212: + the CallFab)
+    expect(client.length).toBe(28); // the tree census (s201; s212: the CallFab is server-rendered)
     expect(skill).toContain(
       `- ${components.length} \`.tsx\` files under \`src/components/\`; ${client.length} start with \`"use client"\`.`,
     );

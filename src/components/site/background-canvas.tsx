@@ -550,16 +550,35 @@ function terracottaWedge(ctx: CanvasRenderingContext2D, w: number, h: number) {
 export function SiteBackgroundCanvas() {
   const ref = useRef<HTMLCanvasElement>(null);
 
+  // Session-212 (F-212c): the reference's MOBILE brown tip — the
+  // decoded right-edge wedge (x384-390, y314-335 @390, live
+  // pixel-probed 2026-11-16: solid rgb(62,48,23)), painted below the
+  // mobile mini-descent gradient. In 390/844 fractions.
+  const MOBILE_BROWN_TIP: Array<[number, number]> = [
+    [0.9974, 0.372], // the top tip (389,314)
+    [1.0, 0.372], // the corner (390,314)
+    [1.0, 0.397], // down the right edge (390,335)
+    [0.9846, 0.397], // the bottom-left knee (384,335)
+  ];
+
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
+    // Session-212 (F-212e): the offscreen static buffer — the static
+    // scene renders ONCE per resize into staticCanvas; the RAF frame
+    // blits it and draws the two sprites on top (the s209
+    // full-repaint-per-frame posture retired: the per-frame
+    // canvas.width reset cleared + reallocated the backing store and
+    // repainted the ~40-shape scene at display refresh rate for two
+    // moving sprites).
+    const staticCanvas = document.createElement("canvas");
     const paint = () => {
       const dpr = window.devicePixelRatio || 1;
       const w = window.innerWidth;
       const h = window.innerHeight;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      const ctx = canvas.getContext("2d");
+      staticCanvas.width = Math.round(w * dpr);
+      staticCanvas.height = Math.round(h * dpr);
+      const ctx = staticCanvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
@@ -764,6 +783,12 @@ export function SiteBackgroundCanvas() {
         ctx.fillStyle = miniGrad;
         ctx.fill();
         ctx.restore();
+        // Session-212 (F-212c): the mobile brown tip — the decoded
+        // wedge the s211 comment documented but never painted (the
+        // live probe shows it at x384-390, y314-335, solid
+        // rgb(62,48,23) — the s211 note's "y310-318" was the
+        // pre-measurement guess; this is the measured extent).
+        polygon(ctx, w, h, MOBILE_BROWN_TIP, "rgba(62, 48, 23, 1)");
       }
       // the descent's lower lobe + the brown tip (desktop-only too)
       if (w >= 1024) {
@@ -1095,7 +1120,27 @@ export function SiteBackgroundCanvas() {
         MID_BLUE,
       );
     };
-    window.addEventListener("resize", paint);
+    // the blit: a 1:1 device-pixel copy of the static buffer onto the
+    // visible canvas, restoring the dpr transform for the sprites.
+    // The buffer fills the canvas opaquely, so it doubles as the
+    // per-frame clear (old sprite positions are covered).
+    const blit = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      if (canvas.width !== Math.round(w * dpr)) canvas.width = Math.round(w * dpr);
+      if (canvas.height !== Math.round(h * dpr)) canvas.height = Math.round(h * dpr);
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.drawImage(staticCanvas, 0, 0);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    const render = () => {
+      paint();
+      blit();
+    };
+    window.addEventListener("resize", render);
 
     // Session-209 (the ANIMATION PORT): the two sprites run as a RAF
     // loop over the static paint — each frame repaints the full scene
@@ -1108,13 +1153,14 @@ export function SiteBackgroundCanvas() {
     const start = performance.now();
     let raf = 0;
     const frame = () => {
-      // repaint the full static scene each frame (no trails), then
-      // the animated sprites on top
-      paint();
+      // blit the static buffer (covering the previous frame's
+      // sprites), then the animated sprites on top
+      blit();
       const canvasEl = ref.current;
       const ctx2 = canvasEl?.getContext("2d");
       if (ctx2) {
         const t = performance.now() - start;
+        const w = window.innerWidth;
 
         // ---- the bird cycle ----------------------------------------
         // each pass gets half the cycle; within a pass the bird
@@ -1132,8 +1178,12 @@ export function SiteBackgroundCanvas() {
         }
 
         // ---- the strip cycle ---------------------------------------
+        // Session-212 (the audit's F-05 rider): the strip is
+        // desktop-space geometry (x1080-1435) — now explicitly gated
+        // like the descent family instead of implicitly off-canvas
+        // on phones.
         const ts = t % STRIP_CYCLE_MS;
-        if (ts < STRIP_GROW_MS + STRIP_HOLD_MS) {
+        if (w >= 1024 && ts < STRIP_GROW_MS + STRIP_HOLD_MS) {
           // growing (or at full): the growth fraction 0 -> 1
           const growFrac = Math.min(1, ts / STRIP_GROW_MS);
           drawBushStrip(ctx2, growFrac);
@@ -1141,14 +1191,33 @@ export function SiteBackgroundCanvas() {
       }
       raf = requestAnimationFrame(frame);
     };
-    // the first static paint immediately (the t=0 state), then the
-    // RAF loop takes over (repainting the scene + the sprites)
-    paint();
-    raf = requestAnimationFrame(frame);
+    // the first static render immediately (the t=0 state), then the
+    // RAF loop takes over (blitting the buffer + the sprites)
+    render();
+    // Session-212 (F-212d): the reduced-motion gate — the birds/bush
+    // simply hold their first-frame state when the visitor prefers
+    // reduced motion (the globals.css reduce block freezes CSS
+    // animations only; the canvas loop is this gate's own
+    // responsibility). A live preference change starts/stops the loop
+    // without a remount.
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const startLoop = () => {
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+    const stopLoop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+    const onMotionChange = () => (motionQuery.matches ? stopLoop() : startLoop());
+    motionQuery.addEventListener("change", onMotionChange);
+    if (!motionQuery.matches) startLoop();
 
     return () => {
-      window.removeEventListener("resize", paint);
-      cancelAnimationFrame(raf);
+      motionQuery.removeEventListener("change", onMotionChange);
+      window.removeEventListener("resize", render);
+      stopLoop();
     };
   }, []);
 

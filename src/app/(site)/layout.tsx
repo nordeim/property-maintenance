@@ -1,3 +1,4 @@
+import { CallFab } from "@/components/site/call-fab";
 import { SiteBackgroundCanvas } from "@/components/site/background-canvas";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -24,6 +25,11 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <SiteHeader />
       {children}
       <SiteFooter />
+      {/* Session-212 (F-212a): the reference's mobile-only floating
+          call button — one mount serves all seven public pages
+          exactly like its own layout (lg:hidden, so desktop never
+          sees it). */}
+      <CallFab />
     </>
   );
 }

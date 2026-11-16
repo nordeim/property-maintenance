@@ -714,7 +714,7 @@ HTTP client for server state (its `call()` helper unwraps the envelope).
 
 ### 5.2 Inventory (verified counts)
 
-- 38 `.tsx` files under `src/components/`; 28 start with `"use client"`.
+- 39 `.tsx` files under `src/components/`; 28 start with `"use client"`.
 - 20 pages (`src/app/**/page.tsx`): session-199's public (site) group
   (home /, /home, services, gallery, faq, about, contact, booking) +
   login, signup, reset-password + dashboard, accounts, contacts, leads,

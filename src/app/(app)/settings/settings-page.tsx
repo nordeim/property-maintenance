@@ -563,7 +563,14 @@ function DefaultsEditor({ settings }: { settings: Settings | null }) {
           inputs persist RAW keystrokes (the reference's onChange wires
           the value verbatim; our route's server-side uppercase + caps
           own the guard) and carry the reference's placeholders. */}
-      <Card>
+      {/* Session-212 (R-06): the epoch marker — the S72-P2 e2e's
+          value-wait cannot discriminate the PENDING editor (whose
+          fallback IS "AED") from the RESOLVED one, so the hydrate
+          wave's settings GET could still land after it and remount
+          the editor underneath the fill (reproduced 2/2 on the
+          fresh-clone gate). The marker makes the epoch
+          machine-readable; the test gates on it before filling. */}
+      <Card data-epoch={settings ? "resolved" : "pending"}>
         <CardHeader>
           <CardTitle>Default Values</CardTitle>
           {/* Session-81 (N-81c6): the reference's CardDescription slot

@@ -2994,6 +2994,14 @@ test("the settings defaults persist via the debounce WITHOUT losing focus (S72-P
   // 4/4 by the audit, incl. unloaded — NOT parallel workers, NOT
   // wall-clock). Waiting for the RESOLVED value BEFORE the fill retires
   // the 9-session flake lineage.
+  // Session-212 (R-06): the EPOCH GATE, v2 — the value-wait above
+  // passes on the PENDING editor too (its fallback IS "AED"), so the
+  // hydrate wave's settings GET could still land after it and remount
+  // the editor underneath the fill (reproduced 2/2 on the fresh-clone
+  // gate — the s164 lineage's true shape). The DefaultsEditor's root
+  // now carries data-epoch; the marker is the deterministic gate the
+  // value-wait could never be.
+  await page.locator('[data-epoch="resolved"]').waitFor();
   await expect(input).toHaveValue("AED");
   await input.fill("USD");
 

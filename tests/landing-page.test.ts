@@ -417,6 +417,80 @@ describe("session-199: the site chrome construction (the recon-decoded anatomy)"
     // the retired top-sheet classes never return
     expect(src).not.toContain("inset-x-0 top-0");
   });
+
+  it("session-212 (F-212a): the floating call FAB — the reference's mobile-only tel: button on every public page (lg:hidden fixed bottom-6 right-6, the 64px green circle with the 4px white ring)", () => {
+    // ------------------------------------------------------------------
+    // Session-212 (F-212a): the reference carries a floating call button
+    // on ALL SEVEN public pages (live-verified 2026-11-16 at 390: /,
+    // /services, /gallery, /about, /faq, /contact, /booking — absent on
+    // /login, which lives outside the site chrome): the container
+    // `lg:hidden fixed bottom-6 right-6 z-40` wrapping
+    // `<a href="tel:+61400000000"><button class="… px-8 rounded-full
+    // w-16 h-16 shadow-2xl bg-[#2E7D5F] hover:bg-[#236B4F] border-4
+    // border-white text-primary-foreground">` with `lucide-phone w-6
+    // h-6`. Computed @390: 64×64 at (294,756), bg rgb(46,125,95), the
+    // 4px solid white border. The reference ships it with NO accessible
+    // name and with a <button> NESTED inside the <a> (interactive
+    // inside interactive — invalid HTML); ours renders the anchor AS
+    // the button (the defect fixed, the computed styles identical) and
+    // carries the icon-only aria-label (the standing a11y superset).
+    // ------------------------------------------------------------------
+    const layout = read("src/app/(site)/layout.tsx");
+    expect(layout).toContain("CallFab");
+    const fab = read("src/components/site/call-fab.tsx");
+    // the container anatomy (the reference's own classes, verbatim)
+    expect(fab).toContain("lg:hidden fixed bottom-6 right-6 z-40");
+    // the button: the reference's own construction (the 64px circle)
+    expect(fab).toContain("rounded-full w-16 h-16 shadow-2xl");
+    expect(fab).toContain("bg-[#2E7D5F] hover:bg-[#236B4F]");
+    expect(fab).toContain("border-4 border-white");
+    // the tel: link rides the extracted phone constant, the icon is
+    // decorative (the visible affordance is the phone glyph itself)
+    expect(fab).toContain("SITE_PHONE_HREF");
+    expect(fab).toContain('aria-hidden="true"');
+    // our two documented supersets over the reference's own FAB
+    expect(fab).toContain('aria-label="Call us"');
+    expect(fab).not.toContain("<button");
+  });
+});
+
+describe("session-212: the standing audit remediation pins", () => {
+  it("F-212b (the F-211e cure): the three booking step cards use the reference's responsive padding (p-6 md:p-8 — 24px at the phone axis, 32px at md+), not the pinned p-8", () => {
+    // Live-decoded 2026-11-16 @390: the reference's inner white card
+    // computes padding 24px (and 32px @1440 per the s202 decode) — its
+    // own responsive form. Ours pinned p-8 at every width: card 666 vs
+    // 650, main 1080 vs 1064, footerTop 1161 vs 1145, docHeight 2090
+    // vs 2070 — the exact F-211e signature (+16px above the footer).
+    const src = read("src/components/site/booking-flow.tsx");
+    expect(src.match(/bg-white rounded-2xl border border-gray-100 p-6 md:p-8/g)?.length).toBe(3);
+    expect(src).not.toContain("border-gray-100 p-8");
+  });
+
+  it("F-212c (the mobile brown tip): the reference's 390 canvas carries a brown wedge at the right edge below the mini-descent — painted, not just documented", () => {
+    // Live pixel-probe of the reference @390 (2026-11-16): a solid
+    // rgb(62,48,23) wedge at x384-390, y314-335 — below the mobile
+    // mini-descent gradient (which ends y~310). The s211 comment
+    // documented "the brown tip y310-318" as part of the decode but
+    // the w<1024 branch painted only the gradient quad.
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain("MOBILE_BROWN_TIP");
+    expect(src).toContain('"rgba(62, 48, 23, 1)"');
+  });
+
+  it("F-212d/F-212e (the canvas posture): the reduced-motion gate + the offscreen static buffer + the explicit bush-strip gate", () => {
+    // F-212d: the birds/bush RAF must respect prefers-reduced-motion
+    // (the globals.css reduce block freezes CSS animations only — the
+    // canvas loop ran regardless). F-212e: the static scene renders
+    // ONCE per resize into an offscreen canvas; the RAF frame blits it
+    // + draws the two sprites (no full-scene repaint per frame, no
+    // canvas.width reset per frame). The bush strip (absolute
+    // 1440-space geometry) gains its explicit w >= 1024 gate.
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain('(prefers-reduced-motion: reduce)');
+    expect(src).toContain("createElement(\"canvas\")");
+    expect(src).toContain("drawImage");
+    expect(src).not.toContain("paint();\n      const canvasEl");
+  });
 });
 
 describe("session-199: the Oasis surfaces' content wiring", () => {
@@ -530,11 +604,11 @@ describe("session-199: the Oasis surfaces' content wiring", () => {
     expect(
       src,
       "every step's fields ride the opaque inner card (the reference's own construction)",
-    ).toContain('className="bg-white rounded-2xl border border-gray-100 p-8"');
-    const wraps = src.split('className="bg-white rounded-2xl border border-gray-100 p-8"').length - 1;
+    ).toContain('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"');
+    const wraps = src.split('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"').length - 1;
     expect(wraps, "all THREE steps carry the inner card").toBe(3);
     expect(
-      src.indexOf('className="bg-white rounded-2xl border border-gray-100 p-8"'),
+      src.indexOf('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"'),
       "the inner card wraps the EstimateCard (step 1), not the nav row",
     ).toBeLessThan(src.indexOf("Confirm Booking"));
     // ------------------------------------------------------------------

@@ -1,7 +1,7 @@
 {
-  "name": "neo-crm",
+  "name": "property-maintenance",
   "version": "1.0.0",
-  "description": "NEO CRM — Next.js 16 + React 19 + Prisma/SQLite CRM application",
+  "description": "property-maintenance — the Oasis clone: Next.js 16 + React 19 + Prisma/SQLite service-booking site + CRM superset",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
