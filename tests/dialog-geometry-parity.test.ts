@@ -664,7 +664,7 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("Unit (Vitest, 2813 checks)"); // session-198: the retired form joins the negatives
     expect(claude).not.toContain("Unit (Vitest, 2813 checks)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
     expect(claude).not.toContain("Unit (Vitest, 2800 checks)"); // session-205: the retired form joins the negatives ladder (the F-205g +1)
-    expect(claude).toContain("Unit (Vitest, 2801 checks)"); // session-205: the count ladder (the F-205g side-sheet pin +1)
+    expect(claude).toContain("Unit (Vitest, 2805 checks)"); // session-212: the count ladder (+the FAB/padding/brown-tip/canvas pins)
     // session-145 lockstep carry-forward: the coverage line 2108 ->
     // 2112 (the walk35 transition pins); s146: 2112 -> 2115.
     expect(claude).not.toContain("(currently 2108)");
@@ -708,7 +708,7 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("(currently 2813)"); // session-198: the retired form joins the negatives ladder
     expect(claude).not.toContain("(currently 2813)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
     expect(claude).not.toContain("(currently 2800)"); // session-205: the retired form joins the negatives
-    expect(claude).toContain("(currently 2801)"); // session-205: the F-205g count ladder
+    expect(claude).toContain("(currently 2805)"); // session-212: the count ladder
     expect(claude).not.toContain("Vitest unit suites (2108 checks)");
     expect(claude).not.toContain("Vitest unit suites (2112 checks)");
     expect(claude).not.toContain("Vitest unit suites (2167 checks)");
@@ -753,7 +753,7 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("Vitest unit suites (2813 checks)"); // session-198: the retired form joins the neg
     expect(claude).not.toContain("Vitest unit suites (2813 checks)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
     expect(claude).not.toContain("Vitest unit suites (2800 checks)"); // session-205: the retired form
-    expect(claude).toContain("Vitest unit suites (2801 checks)"); // session-205
+    expect(claude).toContain("Vitest unit suites (2805 checks)"); // session-212
     expect(claude).not.toContain("`bun run test` (2108)");
     expect(claude).not.toContain("`bun run test` (2112)");
     expect(claude).not.toContain("`bun run test` (2115)");
@@ -803,7 +803,7 @@ describe("session-92 (F-92a2 + B-92a5 + B-92a4): the audit nanos", () => {
     expect(claude).not.toContain("`bun run test` (2813)"); // session-198: the retired form joins the negatives ladd
     expect(claude).not.toContain("`bun run test` (2813)"); // session-198: the retired form joins the negatives ladder (the D-197a1 sweep-tool +2)
     expect(claude).not.toContain("`bun run test` (2800)"); // session-205: the retired form
-    expect(claude).toContain("`bun run test` (2801)"); // session-205
+    expect(claude).toContain("`bun run test` (2805)"); // session-212
     expect(claude).not.toContain("Unit (Vitest, 2060 checks)");
     expect(claude).not.toContain("Vitest unit suites (2060 checks)");
     expect(claude).not.toContain("(currently 2101)");

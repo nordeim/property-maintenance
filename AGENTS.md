@@ -23,7 +23,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2801 checks)      | `bun run test`                         |
+|  Unit tests (2805 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
 |  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
@@ -39,7 +39,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2801) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2805) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
 `bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
@@ -3155,7 +3155,7 @@ operations under env -u DATABASE_URL).
 - Never commit `.env`, `*.key`, `db/*.db`, or `node_modules/` (all gitignored;
   `.env` was untracked from the scaffold's initial commit deliberately).
 - Push through the SSH wrapper from the repo root:
-  `PATH="/path/to/ssh-shim-dir:$PATH" python3 docs/ssh_git_wrapper_v3.py --key-file <key outside repo> --remote git@github.com:nordeim/neo-crm.git`
+  `PATH="/path/to/ssh-shim-dir:$PATH" python3 docs/ssh_git_wrapper_v3.py --key-file <key outside repo> --remote git@github.com:nordeim/property-maintenance.git`
   — runbook: `docs/how-to-git-push-using-ssh-wrapper_SKILL.md` (the wrapper
   preflights for an `ssh` binary; sandboxes without one deploy the Appendix A
   paramiko shim on PATH first).

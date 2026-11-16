@@ -388,13 +388,17 @@ describe("session-169 (WP-1e): the SKILL color + facts mirror (F-5/F-3/F-4/F-6/F
 describe("session-169 (WP-1f): the README tree + Quick Start + gate pins (F-169h/i/j/n)", () => {
   const readme = read("README.md");
 
-  it("the file tree carries the s142 reality (F-169h)", () => {
-    // the dashboard is (app)/dashboard/; / is the public landing; the
-    // marketing pair + reset-password joined at s142/s163
-    expect(readme).toContain("📄 page.tsx               # public landing (/ — the s142 marketing surface)");
+  it("the file tree carries the s199/s212 reality (F-169h, re-anchored session-212)", () => {
+    // the dashboard is (app)/dashboard/; the (site) group has owned the
+    // public layer since s199 (the landing page.tsx lives IN the group —
+    // the s142-era (marketing) pair retired with the surface it
+    // described; session-212's docs re-anchor caught the tree still
+    // describing the pre-s199 layout)
+    expect(readme).toContain("📂 (site)/                # the OASIS public layer (s199)");
     expect(readme).toContain("📂 dashboard/         # Dashboard (/dashboard)");
-    expect(readme).toContain("📂 (marketing)/");
     expect(readme).toContain("📂 reset-password/");
+    expect(readme).not.toContain("📂 (marketing)/");
+    expect(readme).not.toContain("📄 page.tsx               # public landing (/ — the s142 marketing surface)");
     expect(readme).not.toContain("├── 📄 page.tsx           # Dashboard (/)");
   });
 

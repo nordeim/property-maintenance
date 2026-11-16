@@ -911,7 +911,7 @@ const SUITES = 139; // session-199: + the booking seam suite (138 -> 139)
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2801; // session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
+const UNIT = 2805; // session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147

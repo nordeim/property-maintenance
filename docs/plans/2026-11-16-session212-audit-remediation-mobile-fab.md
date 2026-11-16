@@ -200,9 +200,9 @@ counts before the push.
 - [x] R-05 the offscreen static buffer + the bush gate
 - [x] R-06 the S72-P2 epoch marker (e2e green in isolation)
 - [x] R-07 the identity/config hygiene
-- [x] R-08 the docs re-anchor (four remotes + counts + the s211 disposition)
-- [x] R-09 the verification battery (unit 139/2805 · build · S72-P2 · live probes; the full e2e + sweep battery re-runs on the next rotation)
-- [x] R-10 the captures + the docs lockstep (62-65, this ledger, session_15, the SKILL v1.9.0)
+- [x] R-08 the docs re-anchor (four remotes + the README/PAD file-tree/model/build-gate re-anchor + the count ladder 2801 -> 2805 at every live-tense site + the F-92a3/F-169h ladder re-anchors + the s211 disposition)
+- [x] R-09 the verification battery (unit 139/2805 · build · lint 0/0 · tsc 0 · the FULL e2e battery 193/193 GREEN in 8.3m — the S72-P2 fix held through the whole battery · live probes)
+- [x] R-10 the captures + the docs lockstep (62-65, this ledger, session_15, the SKILL v1.9.0 via the distill-codebase-skill method — frontmatter/H1/date + §5 the CallFab + the canvas posture + §7 the s212 pins + §9 the no-new-traps re-verification)
 
 ## §4 Acceptance
 

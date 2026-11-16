@@ -83,8 +83,34 @@ credentials posture (the public demo login is the app's own fixture), the
 animation floor (the traveling wave), and the reference-side quirks per
 the s211 §4 ledger.
 
-## The verification
+## The verification (completed)
 
 lint 0/0 · tsc 0 · **139 suites / 2805 unit GREEN** · build GREEN · the
-S72-P2 e2e leg GREEN · live re-probes all matching · captures 62-65 under
-`docs/screenshots/`. Pushed to `main` via the SSH wrapper.
+**FULL e2e battery 193/193 GREEN** (8.3m, CI=1 fresh boot — the S72-P2
+epoch fix held through the whole battery) · live re-probes all matching ·
+captures 62-65 under `docs/screenshots/`.
+
+## The completion pass (the docs re-anchor, finished)
+
+- The README file tree re-anchored to the s199/s212 reality (the `(site)`
+  group + `components/site/` + `call-fab.tsx`, `instrumentation.ts` at
+  `src/`, 11 models, the `property-maintenance/` root name) — and the
+  F-169h pin re-anchored with it (the s142-era `(marketing)` tree form
+  retired to the negatives).
+- The PAD §3.2 tree (the `(site)` group, `dashboard/` at its s142 home,
+  the site chrome), §4.1 (+ Booking + QuoteRequest on the ER diagram),
+  §8.1 (the ADR-019 build-is-the-type-gate posture).
+- The count ladder 2801 → 2805 at EVERY live-tense site (the README
+  badge/tree/Tested/commands, AGENTS ×2, CLAUDE ×4, PAD ×4, both SKILLs)
+  with the docs-counts UNIT constant + the F-92a3/F-169h ladder pins —
+  and the D-188a1 doctrine honored: the retired session blocks keep
+  their OWN ship counts (the s192 block restored after the first pass
+  over-replaced).
+- `property-maintenance_SKILL.md` v1.8.0 → **v1.9.0** (the
+  distill-codebase-skill method): the CallFab + the canvas posture in
+  §5, the s212 pins in §7, the no-new-traps re-verification in §9.
+- The four wrapper-`--remote` push sites (AGENTS/CLAUDE/PAD) + the README
+  clone URL — the two-line form the first pass missed — all point at
+  `nordeim/property-maintenance.git`.
+
+Pushed to `main` via the SSH wrapper.

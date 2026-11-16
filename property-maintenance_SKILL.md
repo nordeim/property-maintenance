@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2801-check Vitest / 193-check Playwright corpus and a single-command
+  2805-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.8.0
-last_updated: 2026-11-15
+version: 1.9.0
+last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.8.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.9.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (139 suites / 2801 checks) | |
+| Unit | Vitest 5 (139 suites / 2805 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -192,7 +192,15 @@ src/app/
   `bg-[#E8F3ED]` phone pill + the anchor-wrapped Book Now — the
   reference redesigned its menu from the s200 top-sheet; live-verified
   byte-identical geometry at 390), `site-footer.tsx` (the dark band,
-  the region links, the emergency line).
+  the region links, the emergency line), and `call-fab.tsx` (session-212's
+  F-212a: the reference's mobile-only floating call button on ALL SEVEN
+  public pages — `lg:hidden fixed bottom-6 right-6 z-40`, the 64px green
+  circle `bg-[#2E7D5F] hover:bg-[#236B4F] border-4 border-white
+  rounded-full w-16 h-16 shadow-2xl` with the lucide-phone glyph, the
+  `tel:` anchor. Two documented supersets over the reference's own FAB:
+  the anchor renders AS the button — its button-inside-anchor nesting is
+  invalid interactive HTML — and the icon-only control carries
+  `aria-label="Call us"`, which the reference omits).
 - **The pages** compose `src/lib/site-content.ts` (the reference's own
   copy, extracted programmatically) — never inline the copy.
 - **The estimate card** (`estimate-card.tsx`) is shared between the
@@ -203,9 +211,22 @@ src/app/
 - **The booking flow** (`booking-flow.tsx`): step 1 service + estimate
   → step 2 the react-day-picker calendar (past days disabled, Sunday
   starts) + the five time slots → step 3 details + the summary → the
-  SUPERSET confirmation (a persisted Booking row).
+  SUPERSET confirmation (a persisted Booking row). Session-212's F-212b:
+  the three step cards use the reference's responsive padding
+  `p-6 md:p-8` (24px at the phone axis, 32px at md+ — NOT a pinned p-8:
+  that was the F-211e +16px footer-cascade root cause, footerTop 1161
+  vs the reference's 1145, cured to 1145 exact).
 - **The CRM** is the scaffold's, untouched: see `neo-crm_SKILL.md`
   (the engineering log) for its full contracts.
+
+- **The background canvas** (`background-canvas.tsx`): the static scene
+  renders ONCE per resize into an offscreen canvas; the RAF frame blits
+  it + draws the two sprites (the birds + the growing bush — session-209's
+  port). Session-212's posture cures: `prefers-reduced-motion` freezes the
+  scene to its static state (live start/stop on preference change), the
+  bush strip is explicitly `w >= 1024`-gated, and the mobile scene carries
+  its own `MOBILE_BROWN_TIP` (x384-390, y314-335 @390, rgb(62,48,23) —
+  live pixel-probed) under the mini-descent gradient.
 
 ## 6. The API Contracts
 
@@ -228,14 +249,20 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2801 unit / 193 e2e)
+## 7. The Test Corpus (2805 unit / 193 e2e)
 
 - **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
   leading-inert genus scanner, the doctrine/inventory/facts censuses,
-  the whole scaffold battery.
+  the whole scaffold battery, and session-212's remediation pins (the FAB
+  construction + the (site)-layout mount, the booking cards' `p-6 md:p-8`
+  foot cure, the `MOBILE_BROWN_TIP`, the canvas posture — the
+  reduced-motion gate + the offscreen buffer — all in
+  `landing-page.test.ts`; plus the S72-P2 e2e's `data-epoch` marker in
+  settings-page.tsx, the deterministic gate for the settings-debounce
+  focus contract the value-wait could never provide).
 - **E2E (Playwright, 11 specs + the setup project):**
   `public-site.spec.ts` (the Oasis battery: the 8 routes' h1s, the
   estimate flip, the services 12-cards + Add-to-Quote carry, the quote
@@ -279,6 +306,15 @@ Gate order is the contract; no push without green. Kill any leftover
 5. **An icon-only Radix trigger** still needs its accessible name
    (`aria-label="Open menu"`) — Radix wires the `aria-haspopup`, never
    the name.
+
+- **Session-212's re-verification (no new traps):** the whole v4 trap
+  surface re-verified live against the reference — the `@custom-variant
+  hover` unwrap, the shadow/blur re-pins, the space-y flip, the
+  cursor:pointer base, and the vendored `tw-animate.css` chain: the
+  mobile menu's `data-[state=open]:animate-in
+  data-[state=open]:slide-in-from-right` classes compute
+  `animationName: enter, 0.5s` on the running site — the sheet animation
+  fires, byte-identical to the reference's computed styles.
 
 ## 10. Anti-Patterns
 
