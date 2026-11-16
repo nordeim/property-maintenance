@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
 """Session-215 count ladder: 2816 -> 2822 (+6 the F-216a/b/c pins) ·
-badge 3009 -> 3015 · SUITES 139 HELD (the session-215 pins ride a NEW
-suite file — the 140th) · E2E 193 HELD. Assert-first and idempotent:
-every re-anchor is preceded by an existence check; a second run is a
-verified 0-flip no-op. The retired 2816 site-forms join the negatives
-ladder (the s192/F-218 doctrine); the badge is pinned BOTH ways by
-tests/docs-counts.test.ts.
-
-Wait — SUITES: the session-215 pins live in tests/session-215-audit.test.ts,
-a NEW suite file, so the suite count is 139 -> 140.
+badge 3009 -> 3015 · SUITES 139 -> 140 (the session-215 pins ride a NEW
+suite file, tests/session-215-audit.test.ts — the 140th) · E2E 193 HELD.
+Assert-first and idempotent: every re-anchor is preceded by an
+existence check; a second run is a verified 0-flip no-op. The retired
+2816 site-forms join the negatives ladder (the s192/F-218 doctrine);
+the badge is pinned BOTH ways by tests/docs-counts.test.ts.
 
 Sites walked (live-tense only; history rows quote counts in arrow/gate
 phrasing and stay untouched):
   README.md      badge (3009->3015) · Tested row (2816->2822) · file-tree
-                 (139 suites 2816 -> 140 suites 2822) · the gate line
-  AGENTS.md      commands table + gate paragraph
+                 (139 suites 2816 -> 140 suites 2822) · the gate line ·
+                 the gate line's suite list (+session-215-audit)
+  AGENTS.md      commands table + gate paragraph + the file-tree row
+                 ("140 Vitest suites — 2822 checks", re-anchored
+                 out-of-band at s215 — session-216/F-217d notes it here
+                 so the documented inventory matches what shipped)
   CLAUDE.md      gate paragraph · the commands table · the Unit row · the
                  seam line (currently 2816) · the dialog-geometry carriers
   PAD            file-tree · the totals row · the HEAD note · the pre-ship
                  checklist · the scripts table
   pm-SKILL.md    frontmatter description · stack table · §7 heading
   docs-counts.test.ts   UNIT constant + the badge pair (3009 positive ->
-                 3015; 2816 joins no negatives because the live corpus has
-                 never been 2816 elsewhere... it HAS (s214) — the retired
-                 forms join the negatives)
+                 3015, the retired 3009 joins the negatives) + the
+                 SUITES constant (139 -> 140)
   dialog-geometry-parity.test.ts  the four CLAUDE carriers
 """
 import re

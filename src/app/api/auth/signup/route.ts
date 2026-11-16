@@ -74,6 +74,10 @@ export async function POST(req: Request) {
     // expiry; a self-hosted deployment has no mail transport, so the code
     // is logged to the SERVER console for the demo workflow (never shipped
     // to the client, never committed).
+    // Session-216 (F-217c): "logged" now means INSIDE the demo-mode gate —
+    // under NEO_DISABLE_IN_APP_OTP=1 nothing is logged at all (the F-216a
+    // note below carries the valve's full story; the two comments tell
+    // one story now).
     const code = generateVerifyCode();
     const user = await db.user.create({
       data: {

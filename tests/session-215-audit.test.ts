@@ -44,14 +44,49 @@ const bookingsRoute = () => stripComments(read("src/app/api/bookings/route.ts") 
 const quoteRequestsRoute = () =>
   stripComments(read("src/app/api/quote-requests/route.ts") ?? "");
 
+// session-216 (F-217b): brace-matching extractor — finds the line that
+// declares the inAppOtpEnabled gate, then walks the source forward from
+// that line's first `{` counting depth until its matching `}`; the
+// returned slice is the gate's full if-block (the containment window
+// the code-log must ride inside).
+function extractGateBlock(src: string): { gateLine: string; gateBlock: string } {
+  const lines = src.split("\n");
+  const gateLineIdx = lines.findIndex((l) =>
+    l.includes('process.env.NEO_DISABLE_IN_APP_OTP !== "1"'),
+  );
+  if (gateLineIdx < 0) return { gateLine: "", gateBlock: "" };
+  // the declaration's own line ends in `{` (the house form:
+  // `const inAppOtpEnabled = ...;` then `if (inAppOtpEnabled) {`)
+  let start = -1;
+  for (let i = gateLineIdx; i < lines.length; i++) {
+    const open = lines[i].indexOf("{");
+    if (open >= 0) {
+      start = i;
+      break;
+    }
+  }
+  if (start < 0) return { gateLine: lines[gateLineIdx], gateBlock: "" };
+  let depth = 0;
+  let block = "";
+  for (let i = start; i < lines.length; i++) {
+    for (const ch of lines[i]) {
+      if (ch === "{") depth++;
+      if (ch === "}") depth--;
+    }
+    block += lines[i] + "\n";
+    if (depth <= 0) break;
+  }
+  return { gateLine: lines[gateLineIdx], gateBlock: block };
+}
+
 describe("session-215: the OTP log valve + the bucket sweep + the past-date gate", () => {
-  it("F-216a: the resend route's code log rides INSIDE the in-app delivery gate (the kill-switch silences the log too)", () => {
+  it("F-216a/F-217b: the resend route's code log rides INSIDE the gate's brace window (containment, not ordering)", () => {
     const src = resendRoute();
     // the gate + the log both present…
     expect(src).toContain('process.env.NEO_DISABLE_IN_APP_OTP !== "1"');
     expect(src).toContain("[verification] code for");
     // …and the log line sits AFTER the gate's declaration (inside its
-    // branch), never before it — the ordering IS the valve
+    // branch), never before it — the ordering face
     const gateAt = src.indexOf('process.env.NEO_DISABLE_IN_APP_OTP !== "1"');
     const logAt = src.indexOf("[verification] code for");
     expect(gateAt).toBeGreaterThanOrEqual(0);
@@ -60,9 +95,22 @@ describe("session-215: the OTP log valve + the bucket sweep + the past-date gate
     // OUTSIDE any gate (the pre-215 shape) must not return
     const preGate = src.slice(0, gateAt);
     expect(preGate).not.toContain("[verification] code for");
+    // session-216 (F-217b — the CONTAINMENT face): ordering alone passes a
+    // log hoisted BELOW the gate's closing brace (outside the branch); the
+    // brace window is the contract. Extract the if-block by brace matching
+    // from the gate's line and assert the log sits inside it, and that the
+    // source after the block carries no code-log either.
+    const { gateBlock } = extractGateBlock(src);
+    expect(gateBlock, "the console.info must sit inside the if (inAppOtpEnabled) block").toContain(
+      "[verification] code for",
+    );
+    const afterBlock = src.slice(src.indexOf(gateBlock) + gateBlock.length);
+    expect(afterBlock, "no code-log may ride outside the gate's block (the hoist genus F-217b)").not.toContain(
+      "[verification] code for",
+    );
   });
 
-  it("F-216a: the signup route's code log rides INSIDE the in-app delivery gate", () => {
+  it("F-216a/F-217b: the signup route's code log rides INSIDE the gate's brace window (containment, not ordering)", () => {
     const src = signupRoute();
     expect(src).toContain('process.env.NEO_DISABLE_IN_APP_OTP !== "1"');
     expect(src).toContain("[verification] code for");
@@ -72,19 +120,44 @@ describe("session-215: the OTP log valve + the bucket sweep + the past-date gate
     expect(logAt).toBeGreaterThan(gateAt);
     const preGate = src.slice(0, gateAt);
     expect(preGate).not.toContain("[verification] code for");
+    const { gateBlock } = extractGateBlock(src);
+    expect(gateBlock, "the console.info must sit inside the if (inAppOtpEnabled) block").toContain(
+      "[verification] code for",
+    );
+    const afterBlock = src.slice(src.indexOf(gateBlock) + gateBlock.length);
+    expect(afterBlock, "no code-log may ride outside the gate's block (the hoist genus F-217b)").not.toContain(
+      "[verification] code for",
+    );
   });
 
-  it("F-216b: the bookings POST route sweeps its rate buckets (the auth family's own idiom)", () => {
+  it("F-216b/F-217b: the bookings POST route sweeps its rate buckets after the limiter, before the denied return (placement, not existence)", () => {
     const src = bookingsRoute();
     expect(src).toContain("sweepRateLimits()");
     // the sweep import present (the login route's own form)
     expect(src).toMatch(/import \{[^}]*sweepRateLimits[^}]*\} from "@\/lib\/rate-limit"/);
+    // session-216 (F-217b — the PLACEMENT face): the sweep sits between
+    // the rateLimit( call and the denied return — the login route's exact
+    // idiom; a sweep moved after the `if (!rl.allowed) return` line would
+    // pass an existence pin while denying the sweep to denied requests
+    // (the genus the audit named).
+    const rlAt = src.indexOf("rateLimit(`bookings:");
+    const sweepAt = src.indexOf("sweepRateLimits()");
+    const deniedAt = src.indexOf("if (!rl.allowed)");
+    expect(rlAt).toBeGreaterThanOrEqual(0);
+    expect(sweepAt).toBeGreaterThan(rlAt);
+    expect(deniedAt).toBeGreaterThan(sweepAt);
   });
 
-  it("F-216b: the quote-requests POST route sweeps its rate buckets", () => {
+  it("F-216b/F-217b: the quote-requests POST route sweeps after the limiter, before the denied return", () => {
     const src = quoteRequestsRoute();
     expect(src).toContain("sweepRateLimits()");
     expect(src).toMatch(/import \{[^}]*sweepRateLimits[^}]*\} from "@\/lib\/rate-limit"/);
+    const rlAt = src.indexOf("rateLimit(`quote-requests:");
+    const sweepAt = src.indexOf("sweepRateLimits()");
+    const deniedAt = src.indexOf("if (!rl.allowed)");
+    expect(rlAt).toBeGreaterThanOrEqual(0);
+    expect(sweepAt).toBeGreaterThan(rlAt);
+    expect(deniedAt).toBeGreaterThan(sweepAt);
   });
 
   it("F-216c: bookingCreateSchema rejects yesterday, accepts today + tomorrow (the day-granularity mirror of the UI's disabled-before-today)", async () => {

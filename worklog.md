@@ -1,3 +1,27 @@
+## Task 216 — The Standing Rotation: The Pin-Containment Debt + The Stale-Narration Hygiene (2026-11-16)
+
+The owner's session_22.md archive (67a0c09) triggered the rotation. The
+workspace had been recycled — the environment rebuilt (bun install · db
+seed · census MATCH · chromium v1248). The baseline GREEN at the exact
+s215 ship state (lint 0/0 · tsc 0 · 140/2822); probe:ref STABLE (bundle
+ee166dd5); the mobile-nav walk at 390 verified live: geometry
+{70,0,320,844} byte-MATCH, animation enter/0.5s (no Tailwind v4 bug),
+8-link vocabulary identical. The audit (the web-application skill
+dimensions over the 5e8f73d collateral) found four findings: F-217a the
+past-date gate's cross-TZ skew (dispositioned — the local-clock mirror
+stays; the honest caveat at the schemas.ts site) · F-217b the
+pin-containment debt (the F-216a ordering proxies → brace-window
+containment pins; the F-216b existence pins → placement pins; teeth
+proven by live plants: each genus made exactly its pin RED, reverted,
+GREEN) · F-217c the signup route's stale block-comment (unified) ·
+F-217d the count-ladder docstring self-contradiction (corrected).
+
+Stage Summary: lint 0/0 · tsc 0 · 140 suites / 2822 unit HELD (comments
++ pins only) · build · smoke 14/14 · e2e 193/193 · the drift-gate
+battery · captures 71; the neo-crm SKILL head surgery v1.218.0 · the
+pm-SKILL v1.12.0 · schemas.ts 814 → 827 lines re-anchored; committed to
+main and pushed via the SSH wrapper.
+
 ## Task 215 — The Standing Rotation: The OTP Log Valve + The Bucket Sweep Debt + The Past-Date Gate (2026-11-16)
 
 The owner's session_20.md archive (f16b339) triggered the rotation. The

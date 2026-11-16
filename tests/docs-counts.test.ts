@@ -1416,13 +1416,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-215 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-216 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous live-layer's — the F-108a1 face (re-anchored at s215: the s211 layer now beneath the s215 head — the s212-214 rounds bumped the head's counts in place without prepending layers, so s211 remains the prior LAYER record)",
+      "the head's SECOND layer must be the previous live-layer's — the F-108a1 face (re-anchored at s216: the s215 layer now beneath the s216 head, at its own ship counts 2822/193 — the count HELD round)",
     ).toContain(
-      "+ beneath it 2816 unit checks + 193 e2e checks green; the session-211 layer",
+      "+ beneath it 2822 unit checks + 193 e2e checks green; the session-215 layer",
     );
   });
 

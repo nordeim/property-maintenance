@@ -13,11 +13,11 @@ description: >
   2822-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.11.0
+version: 1.12.0
 last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.11.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.12.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -368,4 +368,19 @@ Gate order is the contract; no push without green. Kill any leftover
   rejected). The pins: tests/session-215-audit.test.ts (the 140th
   suite, +6 RED-first). SUITES 139 → 140 · unit 2816 → 2822 · badge
   3009 → 3015.
+
+- **Session-216's layers:** the pin-containment debt (F-217b — the
+  F-216a ordering proxies upgraded to brace-window containment pins
+  [extractGateBlock walks the if (inAppOtpEnabled) block by brace
+  matching; the console.info must sit inside it] + the F-216b
+  existence pins upgraded to placement pins [the sweepRateLimits()
+  call between the rateLimit call and the denied return — the login
+  route's exact idiom]; teeth proven the F-174a way: the live plant of
+  each genus made exactly its pin RED, reverted, GREEN) · the
+  past-date gate's cross-TZ skew dispositioned (F-217a — the
+  local-clock mirror stays as-shipped; the honest caveat at the
+  schemas.ts site) · the signup route's stale block-comment unified
+  (F-217c) · the count-ladder docstring truth (F-217d). Counts HELD:
+  140 suites / 2822 unit / 193 e2e (the round is comment + pin
+  upgrades only).
 

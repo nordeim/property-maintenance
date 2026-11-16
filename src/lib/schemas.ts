@@ -736,6 +736,19 @@ const SERVICE_IDS = BOOKING_SERVICES.map((s) => s.id) as [string, ...string[]];
 // form and the comparison use LOCAL calendar days (toDateString), so a
 // booking submitted near midnight in the deployment's own timezone
 // keeps its "today" — the same clock the UI's calendar renders by.
+// Session-216 (F-217a — the honest cross-TZ caveat): the SERVER's local
+// clock and the CLIENT's calendar clock are the same thing only when
+// the deployment TZ matches the audience TZ — the single-TZ
+// self-hosted unit (this repo's documented contract: one deployable
+// unit, the Gold Coast audience) is the designed-for case. Cross-TZ,
+// the skew runs both ways (server-ahead: the client's "today" is the
+// server's yesterday → a false rejection; server-behind: the client's
+// disabled "yesterday" slips the server gate). The standing
+// DISPOSITION: the gate stays local-clock as-shipped — the reference's
+// own booking flow carries NO server validation at all (its submit
+// target is unobserved; ours is the documented SUPERSET), so any
+// tolerance window already exceeds parity, and the honest caveat
+// lives here where the next auditor reads it.
 function isRealCalendarDate(iso: string): boolean {
   const [y, m, d] = iso.split("-").map(Number);
   if (!y || !m || !d) return false;
