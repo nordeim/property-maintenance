@@ -13,11 +13,11 @@ description: >
   2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.7.0
+version: 1.8.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.7.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.8.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -144,9 +144,16 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   (y308@x1080 -> apex y270@x1178 -> y307@x1260) with the deep band's
   top following the SAME shared-V boundary; the right-edge descent
   re-cut as a vertical gradient (EDGE_DARK_SOLID -> EDGE_DARK_DEEP
-  (14,90,20)) + the DESCENT_CAP light wedge — the "AA edges" floor
-  re-diagnosed as band geometry (both canvases render sharp at the
-  device level; verified at deviceScaleFactor 2).
+  (14,90,20)) — the "AA edges" floor re-diagnosed as band geometry
+  (both canvases render sharp at the device level; verified at
+  deviceScaleFactor 2). Session-211's tuning: the descent-top re-cut
+  as the CONCAVE DESCENT_ARC (the s210 cap wedge was a misread; the
+  mean edge matches ±2px), the crown gained its downward CROWN_GRAD
+  gradient + the widened trunk, and the scene is WIDTH-AWARE — the
+  desktop-only families (the descent, the corner mass, the horizon
+  diagonals) gate at w>=1024 while the mobile composition paints its
+  own mini-descent + the left tree sliver (the ref's 390 scene is a
+  different composition, not a scaled desktop).
   `aria-hidden` + `pointer-events-none`; mounted ONLY
   in the (site) layout (the login and 404 render white — the
   reference's own posture).

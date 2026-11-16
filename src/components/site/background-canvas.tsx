@@ -62,11 +62,28 @@ const MASS_DEEP_SOLID = "rgba(75, 124, 38, 0.97)"; // its deeper under-band
 const EDGE_DARK_SOLID = "rgba(21, 103, 39, 0.97)"; // the right-edge descent's dark band
 // Session-210 (F-210c): the descent's dark band is a vertical
 // GRADIENT — (24,106,42) at its top fading to (14,90,20) by y346 (the
-// hi-dpi decode at CSS x1390: y302 (24,106,42) -> y346 (14,90,20)) —
-// plus its LIGHT CAP: the wedge's top carries a (35,117,52)-family
-// band at y286-301 before the dark band begins.
+// hi-dpi decode at CSS x1390: y302 (24,106,42) -> y346 (14,90,20)).
+// Session-211 (F-211a): the s210 "light cap wedge" RETIRED — an 8-
+// frame-averaged hi-dpi decode shows the descent-top is a CONCAVE
+// ARC (1370,306)->(1386,288)->(1402,280)->(1430,280), not a wedge;
+// the (35,117,52) tones were the dark band's gradient top + AA.
 const EDGE_DARK_DEEP = "rgba(14, 90, 20, 0.97)"; // the descent gradient's bottom tone
-const DESCENT_CAP = "rgba(35, 117, 52, 0.97)"; // the descent's light cap
+// Session-211 (F-211a): the DESCENT_ARC — the descent-top's concave
+// curve, decoded from the 8-frame-averaged hi-dpi capture:
+// (1370,306)->(1386,288)->(1402,280)->(1430,280). Painted as two
+// bezier segments in the descent block.
+const DESCENT_ARC: Array<[number, number]> = [
+  [1370, 306],
+  [1386, 288],
+  [1402, 280],
+  [1430, 280],
+];
+// Session-211 (F-211d): the left tree's crown darkens downward —
+// (50,159,72) at its top (y278) to (13,93,21) at its foot (y338) —
+// decoded on the tree's axis (x43); the s206 flat HEDGE_SOLID crown
+// retired. The trunk widens: x54-78, y334-363.
+const CROWN_GRAD_TOP = "rgba(50, 159, 72, 0.97)";
+const CROWN_GRAD_BOTTOM = "rgba(13, 93, 21, 0.97)";
 const HEDGE_SOLID = "rgba(47, 151, 68, 0.97)"; // the bottom-left hedge's core
 // Session-207 (F-207c — the right side's underlayer band): the G band
 // + its teal top-edge patches + the stable blue slab, all decoded from
@@ -564,40 +581,48 @@ export function SiteBackgroundCanvas() {
       // 231 from x80). A sky-colored polygon paints the corner back:
       // the boundary runs (0,278)->(20,266)->(40,253)->(60,241)->
       // (80,231), closing along the top.
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.0, 0.0], // the top-left corner
-          [0.055, 0.0], // along the top (x80)
-          [0.055, 0.257], // down to the flat horizon (80,231)
-          [0.042, 0.268], // (60,241)
-          [0.028, 0.281], // (40,253)
-          [0.014, 0.296], // (20,266)
-          [0.0, 0.309], // (0,278)
-        ],
-        HORIZON_DIAGONAL,
-      );
+      // Session-211 (F-211c): the diagonals are DESKTOP-ONLY — the
+      // ref's 390 scene has a flat horizon at ~y215 (844-fraction
+      // 0.254) with no corner diagonals.
+      if (w >= 1024) {
+        polygon(
+          ctx,
+          w,
+          h,
+          [
+            [0.0, 0.0], // the top-left corner
+            [0.055, 0.0], // along the top (x80)
+            [0.055, 0.257], // down to the flat horizon (80,231)
+            [0.042, 0.268], // (60,241)
+            [0.028, 0.281], // (40,253)
+            [0.014, 0.296], // (20,266)
+            [0.0, 0.309], // (0,278)
+          ],
+          HORIZON_DIAGONAL,
+        );
+      }
       // the far-RIGHT horizon diagonal (the same genus, mirrored):
       // flat 231 to x~1370 then descending (1370,235)->(1390,248)->
       // (1410,260)->(1430,273) — the sky patch closes the top-right
-      // corner (page-shared: booking + landing agree).
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [1.0, 0.0], // the top-right corner
-          [0.952, 0.0], // along the top (x1370)
-          [0.952, 0.261], // down to the boundary's start (1370,235)
-          [0.965, 0.269], // (1390,242)
-          [0.979, 0.276], // (1410,248)
-          [0.993, 0.283], // (1430,255)
-          [1.0, 0.287], // (1440,258)
-        ],
-        HORIZON_DIAGONAL,
-      );
+      // corner (page-shared: booking + landing agree). Session-211
+      // (F-211c): DESKTOP-ONLY (the ref's 390 scene: no diagonal).
+      if (w >= 1024) {
+        polygon(
+          ctx,
+          w,
+          h,
+          [
+            [1.0, 0.0], // the top-right corner
+            [0.952, 0.0], // along the top (x1370)
+            [0.952, 0.261], // down to the boundary's start (1370,235)
+            [0.965, 0.269], // (1390,242)
+            [0.979, 0.276], // (1410,248)
+            [0.993, 0.283], // (1430,255)
+            [1.0, 0.287], // (1440,258)
+          ],
+          HORIZON_DIAGONAL,
+        );
+      }
       // the warm glow zone (~56-75% of the height — softer and wider
       // than the first-pass band: the reference's glow sandwiches the
       // rock stratum, visible above it and through its gaps)
@@ -692,61 +717,81 @@ export function SiteBackgroundCanvas() {
       // to the lobe (1384-1418)@360, then the BROWN tip (1380-1398,
       // y365-378, (71,54,27)); the s206 version ran to y364 full-width.
       // Session-210 (F-210c): the band re-cut as a vertical GRADIENT —
-      // (24,106,42) at the top fading to (14,90,20) by y346 — plus the
-      // LIGHT CAP ((35,117,52) family) on the wedge's top y286-301.
-      const descentGrad = ctx.createLinearGradient(0, 277, 0, 346);
-      descentGrad.addColorStop(0, EDGE_DARK_SOLID);
-      descentGrad.addColorStop(1, EDGE_DARK_DEEP);
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(1411, 277); // the top tip
-      ctx.lineTo(w, 283); // the top edge out to the corner
-      ctx.lineTo(w, 355); // down the right edge to y~355
-      ctx.lineTo(1375, 355); // the wide bottom-left
-      ctx.lineTo(1366, 335); // the left edge's mid knee
-      ctx.lineTo(1390, 302); // the inner edge top
-      ctx.closePath();
-      ctx.fillStyle = descentGrad;
-      ctx.fill();
-      ctx.restore();
-      // the descent's LIGHT CAP — the (35,117,52) band on the wedge's
-      // top (x1370-1410, y286-301; the ref's cap before the dark band)
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.951, 0.318], // the cap's top (1369,286)
-          [0.98, 0.315], // (1411,284)
-          [0.971, 0.331], // the cap's bottom-right (1398,298)
-          [0.956, 0.334], // (1377,301)
-        ],
-        DESCENT_CAP,
-      );
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.958, 0.394], // the lobe's left (1380,355)
-          [0.993, 0.394], // its right (1430,355)
-          [0.985, 0.406], // the lobe's bottom-right (1418,365)
-          [0.958, 0.402], // the lobe's bottom-left (1381,362)
-        ],
-        EDGE_DARK_SOLID,
-      );
-      polygon(
-        ctx,
-        w,
-        h,
-        [
-          [0.958, 0.402], // the brown tip's top-left (1380,362)
-          [0.972, 0.402], // (1400,362)
-          [0.972, 0.42], // the tip's bottom (1400,378)
-          [0.958, 0.42], // (1380,378)
-        ],
-        "rgba(71, 54, 27, 0.97)",
-      );
+      // (24,106,42) at the top fading to (14,90,20) by y346.
+      // Session-211 (F-211a): the top edge re-cut as the CONCAVE ARC
+      // (the 8-frame-averaged decode: (1370,306)->(1386,288)->
+      // (1402,280)->(1430,280)); the s210 cap wedge RETIRED.
+      // Session-211 (F-211c): the whole right-edge descent family is
+      // DESKTOP-ONLY — the ref's 390 scene omits it entirely (lawn
+      // holds at the right edge below 1024; the ref's mobile scene is
+      // a different composition, not a scaled desktop).
+      if (w >= 1024) {
+        const descentGrad = ctx.createLinearGradient(0, 277, 0, 346);
+        descentGrad.addColorStop(0, EDGE_DARK_SOLID);
+        descentGrad.addColorStop(1, EDGE_DARK_DEEP);
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(DESCENT_ARC[3][0], DESCENT_ARC[3][1]); // the arc's right end (1430,280)
+        ctx.lineTo(w, 283); // the top edge out to the corner
+        ctx.lineTo(w, 355); // down the right edge to y~355
+        ctx.lineTo(1375, 355); // the wide bottom-left
+        ctx.lineTo(1366, 335); // the left edge's mid knee
+        // the CONCAVE ARC back up the top (DESCENT_ARC's decoded
+        // points): (1370,306)->(1386,288)->(1402,280)
+        ctx.bezierCurveTo(DESCENT_ARC[0][0], DESCENT_ARC[0][1] + 14, DESCENT_ARC[0][0] + 2, DESCENT_ARC[0][1] - 6, DESCENT_ARC[1][0], DESCENT_ARC[1][1]);
+        ctx.bezierCurveTo(DESCENT_ARC[1][0] + 8, DESCENT_ARC[1][1] - 6, DESCENT_ARC[2][0] - 4, DESCENT_ARC[2][1], DESCENT_ARC[2][0], DESCENT_ARC[2][1]);
+        ctx.closePath();
+        ctx.fillStyle = descentGrad;
+        ctx.fill();
+        ctx.restore();
+      }
+      // Session-211 (F-211c): the ref's MOBILE mini-descent — its own
+      // smaller element at the right edge (x374-390, y256-310 @390:
+      // the gradient (41,136,61)->(15,95,26) + the brown tip y310-318).
+      if (w < 1024) {
+        // in 844-tall fractions: the top tip y0.303, the bottom y0.367
+        const miniGrad = ctx.createLinearGradient(0, h * 0.303, 0, h * 0.367);
+        miniGrad.addColorStop(0, "rgba(41, 136, 61, 0.97)");
+        miniGrad.addColorStop(1, "rgba(15, 95, 26, 0.97)");
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(w * 0.995, h * 0.303); // the top tip (388,256 @390)
+        ctx.lineTo(w, h * 0.308); // out to the corner
+        ctx.lineTo(w, h * 0.367); // down the right edge (y310)
+        ctx.lineTo(w * 0.956, h * 0.362); // the inner edge's knee (374,306)
+        ctx.lineTo(w * 0.949, h * 0.324); // the inner edge, upper (370,274)
+        ctx.closePath();
+        ctx.fillStyle = miniGrad;
+        ctx.fill();
+        ctx.restore();
+      }
+      // the descent's lower lobe + the brown tip (desktop-only too)
+      if (w >= 1024) {
+        polygon(
+          ctx,
+          w,
+          h,
+          [
+            [0.958, 0.394], // the lobe's left (1380,355)
+            [0.993, 0.394], // its right (1430,355)
+            [0.985, 0.406], // the lobe's bottom-right (1418,365)
+            [0.958, 0.402], // the lobe's bottom-left (1381,362)
+          ],
+          EDGE_DARK_SOLID,
+        );
+        polygon(
+          ctx,
+          w,
+          h,
+          [
+            [0.958, 0.402], // the brown tip's top-left (1380,362)
+            [0.972, 0.402], // (1400,362)
+            [0.972, 0.42], // the tip's bottom (1400,378)
+            [0.958, 0.42], // (1380,378)
+          ],
+          "rgba(71, 54, 27, 0.97)",
+        );
+      }
       // Session-207 (F-207c): the right side's UNDERLAYER BAND — the
       // gray-green G band (x1080-1255 -> x1080-1240, y318-370) with
       // TEAL patches along its top edge + the stable BLUE slab
@@ -839,10 +884,13 @@ export function SiteBackgroundCanvas() {
       blob(ctx, w, h, 0.135, 0.565, 0.024, BUSH_DEEP);
       // the left TREE + the hedges + the corners (Session-206 F-206e: the
       // SOLID re-derivation — the ref's tree is a crisp oval crown
-      // (x12-82, y278-335) darkening downward + a brown trunk base
-      // (x58-74, y345-365); the hedge a solid band x0-116 y678-790;
-      // the right-corner mass x1352-1439 y676-800)
-      polygon(
+      // (x12-82, y278-335) + a brown trunk base; the hedge a solid
+      // band x0-116 y678-790; the right-corner mass x1352-1439 y676-800)
+      // Session-211 (F-211d): the crown re-painted as a VERTICAL
+      // GRADIENT — (50,159,72)@y278 darkening to (13,93,21)@y338 (the
+      // axis decode at x43); the s206 flat HEDGE_SOLID crown retired.
+      // The trunk widens: x54-78, y334-363 (was x55-75, y344-366).
+      polygonGradient(
         ctx,
         w,
         h,
@@ -854,17 +902,58 @@ export function SiteBackgroundCanvas() {
           [0.03, 0.376], // the bottom (43,338)
           [0.008, 0.35], // the left edge (12,315)
         ],
-        HEDGE_SOLID,
+        [
+          [0.316, CROWN_GRAD_TOP], // the crown's top (y~284)
+          [0.376, CROWN_GRAD_BOTTOM], // the foot (y~338)
+        ],
       );
+      // Session-211 (F-211c): at narrow widths the ref's tree renders
+      // as a SLIM DARK COLUMN hugging the left edge (x0-14 at 390,
+      // green y240-330 + the brown base) — the crown's left edge
+      // extends to x0 below 1024 (the mobile composition).
+      if (w < 1024) {
+        // the sliver uses the crown's own gradient (the ref's mobile
+        // tree column runs (50,159,72)@top -> (13,93,21)@foot, the
+        // same family as the desktop crown)
+        polygonGradient(
+          ctx,
+          w,
+          h,
+          [
+            [0.0, 0.272], // the sliver's left, top (the canvas edge, y~230 @390)
+            [0.014, 0.302], // its top-right (the crown's top)
+            [0.02, 0.376], // down the inner edge
+            [0.0, 0.393], // the sliver's bottom-left (the brown base's left)
+          ],
+          [
+            [0.272, CROWN_GRAD_TOP], // the sliver's top
+            [0.393, CROWN_GRAD_BOTTOM], // its foot
+          ],
+        );
+        // the sliver's brown foot (the ref's mobile tree carries its
+        // trunk base at the left edge — brown (96,71,39), y328-333 @390)
+        polygon(
+          ctx,
+          w,
+          h,
+          [
+            [0.0, 0.388], // the foot's left, top (the canvas edge, y~328 @390)
+            [0.016, 0.386], // its top-right (the trunk's top)
+            [0.016, 0.397], // down the inner edge (y~335)
+            [0.0, 0.398], // the foot's bottom-left (y~336)
+          ],
+          SOIL_BROWN,
+        );
+      }
       polygon(
         ctx,
         w,
         h,
         [
-          [0.041, 0.382], // the brown base's top (59,344)
-          [0.052, 0.382], // (75,344)
-          [0.052, 0.407], // the bottom (75,366)
-          [0.038, 0.407], // (55,366)
+          [0.0375, 0.371], // the brown base's top-left (54,334)
+          [0.054, 0.371], // the top-right (78,334)
+          [0.054, 0.403], // the bottom (78,363)
+          [0.0375, 0.403], // (54,363)
         ],
         SOIL_BROWN,
       );
@@ -922,50 +1011,55 @@ export function SiteBackgroundCanvas() {
       // bottom toe (1396,795)). Session-208 (decoded mid-round): the
       // ref LIGHTENS toward the right edge — (19,100,33) at the inner
       // edge -> (44,144,65) at x1438 — the horizontal gradient.
-      polygonHGradient(
-        ctx,
-        w,
-        h,
-        [
-          [0.956, 0.749], // (1376,674) — the top tip
-          [1.0, 0.742], // the top-right corner
-          [1.0, 0.888], // the bottom-right (y800)
-          [0.972, 0.882], // the bottom toe (1396,794)
-          [0.95, 0.822], // (1368,740) the inner bulge's lower leg
-          [0.939, 0.792], // the inner bulge (1352,713)
-          [0.939, 0.756], // the inner edge, upper (1352,680)
-        ],
-        "rgba(24, 107, 43, 1)", // the TOP tones' left (x1352)
-        "rgba(43, 143, 65, 1)", // the TOP tones' right (x1438)
-        0.939, // the gradient's left
-        1.0, // the gradient's right
-      );
-      // the VERTICAL DARKENING VEIL over the same shape — the ref's
-      // field declines convexly to (16,96) at the bottom (the fitted
-      // alpha profile: 0@y676 -> 0.22@y724 -> 0.44@y756 -> 0.89@y788)
-      polygonGradient(
-        ctx,
-        w,
-        h,
-        [
-          [0.956, 0.749], // (1376,674) — the top tip
-          [1.0, 0.742], // the top-right corner
-          [1.0, 0.888], // the bottom-right (y800)
-          [0.972, 0.882], // the bottom toe (1396,794)
-          [0.95, 0.822], // (1368,740) the inner bulge's lower leg
-          [0.939, 0.792], // the inner bulge (1352,713)
-          [0.939, 0.756], // the inner edge, upper (1352,680)
-        ],
-        [
-          [0.751, "rgba(16, 96, 32, 0)"], // the top (y676) — the base shows
-          [0.805, "rgba(16, 96, 32, 0.22)"], // y724
-          [0.84, "rgba(16, 96, 32, 0.44)"], // y756
-          [0.858, "rgba(16, 96, 32, 0.59)"], // y772
-          [0.876, "rgba(16, 96, 32, 0.89)"], // y788
-          [0.883, "rgba(16, 96, 32, 0.95)"], // the bottom (y795)
-        ],
-      );
-      blob(ctx, w, h, 0.958, 0.872, 0.024, SOIL_BROWN); // the bottom-right soil
+      // Session-211 (F-211c): DESKTOP-ONLY — the ref's 390 scene
+      // shows plain lawn through the whole corner zone (verified:
+      // x380, y680-800 all lawn-family tones).
+      if (w >= 1024) {
+        polygonHGradient(
+          ctx,
+          w,
+          h,
+          [
+            [0.956, 0.749], // (1376,674) — the top tip
+            [1.0, 0.742], // the top-right corner
+            [1.0, 0.888], // the bottom-right (y800)
+            [0.972, 0.882], // the bottom toe (1396,794)
+            [0.95, 0.822], // (1368,740) the inner bulge's lower leg
+            [0.939, 0.792], // the inner bulge (1352,713)
+            [0.939, 0.756], // the inner edge, upper (1352,680)
+          ],
+          "rgba(24, 107, 43, 1)", // the TOP tones' left (x1352)
+          "rgba(43, 143, 65, 1)", // the TOP tones' right (x1438)
+          0.939, // the gradient's left
+          1.0, // the gradient's right
+        );
+        // the VERTICAL DARKENING VEIL over the same shape — the ref's
+        // field declines convexly to (16,96) at the bottom (the fitted
+        // alpha profile: 0@y676 -> 0.22@y724 -> 0.44@y756 -> 0.89@y788)
+        polygonGradient(
+          ctx,
+          w,
+          h,
+          [
+            [0.956, 0.749], // (1376,674) — the top tip
+            [1.0, 0.742], // the top-right corner
+            [1.0, 0.888], // the bottom-right (y800)
+            [0.972, 0.882], // the bottom toe (1396,794)
+            [0.95, 0.822], // (1368,740) the inner bulge's lower leg
+            [0.939, 0.792], // the inner bulge (1352,713)
+            [0.939, 0.756], // the inner edge, upper (1352,680)
+          ],
+          [
+            [0.751, "rgba(16, 96, 32, 0)"], // the top (y676) — the base shows
+            [0.805, "rgba(16, 96, 32, 0.22)"], // y724
+            [0.84, "rgba(16, 96, 32, 0.44)"], // y756
+            [0.858, "rgba(16, 96, 32, 0.59)"], // y772
+            [0.876, "rgba(16, 96, 32, 0.89)"], // y788
+            [0.883, "rgba(16, 96, 32, 0.95)"], // the bottom (y795)
+          ],
+        );
+        blob(ctx, w, h, 0.958, 0.872, 0.024, SOIL_BROWN); // the bottom-right soil
+      }
       // Session-209 (F-209b): the static bush RETIRED — the strip is
       // now ANIMATED (the RAF loop below): it grows from the right
       // edge leftward, holds, vanishes, regrows. The s208 static

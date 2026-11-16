@@ -151,7 +151,7 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     // — the ref's crown is a crisp shape, not a radial fade).
     // ------------------------------------------------------------------
     expect(src).toContain("[0.014, 0.316]"); // the crown's top-left (the solid oval)
-    expect(src).toContain("[0.041, 0.382]"); // the trunk base's top
+    expect(src).toContain("[0.0375, 0.371]"); // the trunk base's top (54,334 — widened s211)
     // ------------------------------------------------------------------
     // Session-206 (the F-204d deferral retired — the terracotta mass,
     // decoded fresh at fine granularity from the ref's booking): a crisp
@@ -215,8 +215,19 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).toContain("270"); // the V's apex y
     expect(src).toContain("EDGE_DARK_DEEP"); // the descent gradient's bottom tone
     expect(src).toContain("14, 90, 20"); // the deep tone's value
-    expect(src).toContain("35, 117, 52"); // the descent's light cap
-    expect(src).toContain("DESCENT_CAP"); // the cap constant
+    // ------------------------------------------------------------------
+    // Session-211 (F-211a/c/d): the descent-top is a CONCAVE CURVE (the
+    // s210 cap wedge was a misread of the dark band's gradient top +
+    // AA — RETIRED); the right-edge descent family is DESKTOP-ONLY
+    // (the ref's 390 scene omits it entirely — lawn holds below 1024);
+    // the left tree's trunk widens + the crown gains its downward
+    // gradient (50,159,72)->(13,93,21).
+    // ------------------------------------------------------------------
+    expect(src).toContain("DESCENT_ARC"); // the concave-arc painter
+    expect(src).not.toContain("DESCENT_CAP"); // the misread wedge retired
+    expect(src).toContain("w < 1024"); // the mobile scene gate
+    expect(src).toContain("CROWN_GRAD_TOP"); // the tree crown's gradient
+    expect(src).toContain("CROWN_GRAD_BOTTOM"); // (13,93,21)
     // ------------------------------------------------------------------
     // Session-207 (F-207b — the hedge's vertical gradient): the ref's
     // hedge darkens (49,160,72)@y698 -> (15,95,26)@y788 — a smooth

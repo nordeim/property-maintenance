@@ -12938,6 +12938,44 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-211 — THE CONCAVE DESCENT-TOP + THE MOBILE SCENE DIVERGENCE (2026-11-16)
+
+The post-210 rotation — two decode families this round. **First: the
+s210 cap-wedge was a MISREAD.** The 8-frame-averaged hi-dpi decode
+shows the ref's descent-top is a smooth CONCAVE ARC —
+(1370,306)→(1386,288)→(1402,280)→(1430,280) — and the "light cap
+wedge" tones were the dark band's gradient top + AA. The DESCENT_CAP
+retired; the dark band's top re-cut as the DESCENT_ARC bezier pair
+(the mean edge now matches ±2px across x1382-1430). The F-209c
+"shimmer" finally decoded: a ±1.2px TRAVELING WAVE along that edge
+(~1px/frame, leftward) — a genuine animation the static captures
+alias differently every time; the documented animation floor.
+
+**Second: the maiden 390 canvas decode — the ref's mobile scene is a
+DIFFERENT COMPOSITION, not a scaled desktop.** It omits the
+right-edge descent family, the right-corner mass family, and both
+horizon diagonals (plain lawn; a flat horizon at ~y215), and carries
+its own elements: a MOBILE MINI-DESCENT (x374-390, y256-310,
+gradient (41,136,61)→(15,95,26)) and the left tree as a slim dark
+SLIVER (x0-14, y230-330, crown-gradient column + the brown foot).
+The cure: the desktop families gated `w >= 1024`; the mobile elements
+painted fraction-mapped — verified tone-for-tone (the mini-descent
+y260: ref 39,132,59 vs ours 41,133,59).
+
+**The tree cure (desktop):** the ref's trunk is x54-78 y334-363
+(wider/taller than ours) + the crown DARKENS downward —
+(50,159,72)@y284 → (13,93,21)@y338 (ours was flat). The CROWN_GRAD
+vertical gradient + the widened trunk box.
+
+**The mobile nav re-verified** (the round's named attention): the 390
+menu-OPEN state ref-vs-ours **3.60%** with byte-matching link sets;
+both toggles work. **The measure:** desktop booking **5.38** ·
+landing **4.44** · faq **3.28** (all at/below the s210 floors); the
+390 booking closed 13.92 → **12.90** (the footer +16px cascade
+F-211e deferred — a content-height delta in the booking hero stack).
+The corpus held: lint 0/0 · tsc 0 · 139/2801 · build · smoke 14/14 ·
+e2e 193/193.
+
 ### Session-210 — THE V-BOTTOM EDGE + THE DESCENT GRADIENT (2026-11-16)
 
 The post-209 rotation — the residual ledger's top floor (the "AA

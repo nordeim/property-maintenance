@@ -1,3 +1,26 @@
+Task ID: 211 (the concave descent-top + the mobile scene divergence; VERIFIED green)
+Agent: main (Z.ai)
+Task: The post-210 rotation: the workspace pulled (the owner's session_13.md archive at d07d9a1), the sandbox-recycled env rebuilt (census MATCH, chromium v1248, paramiko), the baseline gate re-proven (lint 0/0 · tsc 0 · 139/2801), the residual ledger re-walked (the picklist/login-logo/CRM/faq floors re-confirmed as ref-side or working-superset non-curables — the s137 walk), the one real curable — the descent-top shimmer (F-209c) — re-decoded with an 8-frame hi-dpi probe (a mis-painted static edge + a genuine ±1.2px traveling wave), the round widened to the NEVER-DECODED mobile 390 canvas (the mobile scene divergence family), four findings decoded + cured (TDD), the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: the sandbox recycled — the full rebuild (.env, db:push/seed — census MATCH, chromium v1248, paramiko reinstall); the baseline gate GREEN at the s210 ship state: lint 0/0 · tsc 0 · 139/2801
+- THE DRIFT RE-MEASURE (pre-cure): booking 5.47 · landing 4.52 · faq 3.27 — at/below the s210 floors
+- THE MOBILE NAV RE-VERIFY (the round's named attention): the 390 menu-OPEN state ref-vs-ours 3.60% with byte-matching link sets (the ref carries one extra empty-text tel: icon link); both toggles work (the ref's own second toggle leaves its drawer open — a ref-side quirk)
+- F-211a THE CONCAVE DESCENT-TOP decoded + cured: the 8-frame-averaged hi-dpi decode shows the ref's edge is a smooth concave arc (1370,306)->(1386,288)->(1402,280)->(1430,280) — the s210 DESCENT_CAP "wedge" was a MISREAD (the dark band's gradient top + AA); ours was flat y284-286. THE CURE (TDD): the DESCENT_CAP retired, the dark band's top re-cut as the DESCENT_ARC bezier pair — the mean edge now matches ±2px across x1382-1430
+- F-211b THE TRAVELING WAVE: the shimmer's true content — a ±1.2px vertical oscillation moving along the descent-top (~1px/frame, leftward). A genuine animation the static captures alias differently every time; left as the documented animation floor (with the birds + the strip dither)
+- F-211c THE MOBILE SCENE DIVERGENCE decoded + cured (the maiden 390 canvas decode): the ref's mobile scene is a DIFFERENT COMPOSITION, not a scaled desktop — it OMITS the right-edge descent family + the right-corner mass family + BOTH horizon diagonals (plain lawn + a flat horizon at ~y215), and it carries its OWN elements: a MOBILE MINI-DESCENT (x374-390, y256-310, gradient (41,136,61)->(15,95,26)) + the left tree as a SLIM DARK SLIVER (x0-14, y230-330, the crown-gradient column + the brown foot y328-336). THE CURE (TDD): the desktop families gated to w>=1024; the mobile elements painted fraction-mapped — verified tone-for-tone at both edges (the mini-descent y260: 39,132,59 vs 41,133,59)
+- F-211d THE LEFT TREE trunk + crown decoded + cured (desktop): the ref's trunk x54-78 y334-363 (ours was x55-75 y344-366) + the crown DARKENS downward (50,159,72)@y284 -> (13,93,21)@y338 (ours was flat (50,152,70)). THE CURE (TDD): the CROWN_GRAD vertical gradient + the widened trunk box
+- F-211e THE FOOTER +16px (docHeight 2090 vs 2070 @390): DEFERRED — a content-height delta in the booking hero stack that aliases with the canvas zones; recorded in the residual ledger
+- THE MEASURE (post-cure): the desktop drift booking 5.38 · landing 4.44 · faq 3.28 (all at/below the s210 floors); the mobile 390 booking closed 13.92 -> 12.90 (the footer cascade + the card-interior text remain)
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 (the CI=1 fresh boot)
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-211 section + the plan (docs/plans/2026-11-16-session211-concave-descent-mobile.md) + the SKILL head surgery (v1.215.0 -> v1.216.0) + the pm-SKILL canvas section re-anchored (v1.7.0 -> v1.8.0) + the docs-counts pin
+- THE CAPTURES: 59-61 (the concave descent-top zoom + the mobile 390 cured closed-state + the desktop booking page) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the desktop drifts booking 5.38 / landing 4.44 / faq 3.28 · the mobile 390 booking 12.90
+- The deliverables: the concave DESCENT_ARC (the cap-wedge misread retired) + the mobile scene divergence cure (the desktop families gated + the mobile mini-descent + the tree sliver) + the crown gradient + the widened trunk, the captures 59-61, the docs lockstep, the probe-211 family
+- Everything committed to main and pushed via the SSH wrapper
+
 Task ID: 210 (the V-bottom edge + the descent gradient; VERIFIED green)
 Agent: main (Z.ai)
 Task: The post-209 rotation: the workspace pulled (the owner's session_12.md archive at 8f71b6c), the env rebuilt (census MATCH, chromium v1248), the baseline gate re-proven (lint 0/0 · tsc 0 · 139/2801), the "AA edges" residual floor RE-AUDITED with hi-dpi (deviceScaleFactor 2) zoom captures and RE-DIAGNOSED as band geometry (both canvases render sharp at the device level — no anti-aliasing gap), the two real findings decoded + cured (TDD), the docs lockstep, and the push.
