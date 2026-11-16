@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { ok, ERR, parseBody, isGuarded, requireSession } from "@/lib/api";
 import { quoteRequestCreateSchema } from "@/lib/schemas";
-import { clientKey, rateLimit } from "@/lib/rate-limit";
+import { clientKey, rateLimit, sweepRateLimits } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +22,11 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const rl = rateLimit(`quote-requests:${clientKey(req)}`, 8, 15 * 60_000);
+  // Session-215 (F-216b — the bucket sweep debt): the same cure as the
+  // bookings twin — the public POSTs join the sweep idiom (the login
+  // route's own placement: after the limiter, so denied requests sweep
+  // too; the auth family's 7 routes already do this).
+  sweepRateLimits();
   if (!rl.allowed) {
     return ERR.RATE_LIMITED(rl.retryAfterSec);
   }

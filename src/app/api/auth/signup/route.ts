@@ -88,14 +88,21 @@ export async function POST(req: Request) {
       },
     });
 
-    console.info(`[verification] code for ${email}: ${code} (expires in 15 minutes)`);
-
     // Session-163 (the digma ADR-014 port): the SELF-HOSTED in-app OTP
     // delivery — the code rides the response for existing demo workflows
     // (and the e2e scratch-account funnel) exactly as digma's register
     // carries it. NEO_DISABLE_IN_APP_OTP=1 nulls it for production (an
-    // email service owns the delivery); the console log stays either way.
+    // email service owns the delivery).
+    // Session-215 (F-216a — the OTP LOG VALVE): the console.info rides
+    // INSIDE the gate — the kill-switch that nulls the response payload
+    // must also silence the log line (the pre-215 shape's own comment
+    // said "the console log stays either way" — that was the defect: a
+    // production deployment with a real mail transport still wrote every
+    // 6-digit code to stdout).
     const inAppOtpEnabled = process.env.NEO_DISABLE_IN_APP_OTP !== "1";
+    if (inAppOtpEnabled) {
+      console.info(`[verification] code for ${email}: ${code} (expires in 15 minutes)`);
+    }
     return ok({
       id: user.id,
       email: user.email,

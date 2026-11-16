@@ -1,3 +1,28 @@
+## Task 215 — The Standing Rotation: The OTP Log Valve + The Bucket Sweep Debt + The Past-Date Gate (2026-11-16)
+
+The owner's session_20.md archive (f16b339) triggered the rotation. The
+baseline GREEN at the s214 ship state (lint 0/0 · tsc 0 · 139/2816 · db
+census MATCH); probe:ref STABLE vs the Oasis reference (bundle ee166dd5
+— no parity event); the mobile-nav walk at 390 verified live at entry:
+geometry {70,0,320,844} byte-MATCH, animation enter/0.5s (no Tailwind v4
+bug), 8-link vocabulary identical. The audit (the web-application skill
+dimensions) found five findings (2 Medium, 3 Low): F-216a the OTP
+verification code's console.info logged UNCONDITIONALLY (the
+NEO_DISABLE_IN_APP_OTP kill-switch nulled the response payload but the
+log line still wrote every code to stdout) · F-216b the two PUBLIC POST
+routes (bookings + quote-requests) never swept their rate buckets ·
+F-216c bookingCreateSchema.date validated format only (yesterday
+persisted server-side) · F-216d the parity tools' REF_EMAIL/REF_PASSWORD
+fallbacks (recorded — the documented demo pair) · F-216e booking.ts's
+serviceIdByLabel/calendarGrid (recorded — test-pinned seams).
+
+Stage Summary: lint 0/0 · tsc 0 · 140 suites / 2822 unit (+6 RED-first
+pins in tests/session-215-audit.test.ts, the 140th suite) · build ·
+smoke 14/14 · e2e 193/193 · the drift-gate battery · the count ladder
+2816 → 2822 (badge 3009 → 3015) at every live-tense site · the neo-crm
+SKILL head surgery v1.217.0 · the pm-SKILL v1.11.0 · captures 69;
+committed to main and pushed via the SSH wrapper.
+
 ## Task 214 — The Standing Rotation: The Poll-Gate Repairs + The Ladder Doctrine Debt (2026-11-16)
 
 The owner's session_18.md archive (a1b40d2) triggered the rotation. The

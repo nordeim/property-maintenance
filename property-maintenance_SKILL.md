@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2816-check Vitest / 193-check Playwright corpus and a single-command
+  2822-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.10.1
+version: 1.11.0
 last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.10.1)
+# property-maintenance — Engineering Skill (SKILL.md v1.11.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (139 suites / 2816 checks) | |
+| Unit | Vitest 5 (140 suites / 2822 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,7 +249,7 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2816 unit / 193 e2e)
+## 7. The Test Corpus (2822 unit / 193 e2e)
 
 - **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
@@ -354,3 +354,18 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-215's layers:** the OTP log valve (F-216a — the verification
+  code's console.info rides INSIDE the NEO_DISABLE_IN_APP_OTP gate in
+  signup + resend; the kill-switch that nulls the response payload now
+  silences the log line too) · the bucket sweep debt (F-216b — the two
+  PUBLIC POST routes /api/bookings + /api/quote-requests call
+  sweepRateLimits() like the auth family's 7 routes; the most
+  stranger-exposed endpoints no longer grow the buckets Map unbounded)
+  · the past-date gate (F-216c — bookingCreateSchema.date gains the
+  real-calendar refinement [regex alone accepts 2026-02-30] + the
+  not-in-the-past check at day granularity, the server-side mirror of
+  the UI's disabled={{ before: new Date() }}; today bookable, yesterday
+  rejected). The pins: tests/session-215-audit.test.ts (the 140th
+  suite, +6 RED-first). SUITES 139 → 140 · unit 2816 → 2822 · badge
+  3009 → 3015.
+

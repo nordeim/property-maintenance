@@ -727,6 +727,34 @@ import { BOOKING_SERVICES, TIME_SLOTS } from "@/lib/booking";
 
 const SERVICE_IDS = BOOKING_SERVICES.map((s) => s.id) as [string, ...string[]];
 
+// Session-215 (F-216c): the booking date's REAL-CALENDAR + NOT-IN-THE-PAST
+// refinements — the web-application skill §7 doctrine (regex alone
+// accepts rollovers like "2026-02-30"; Date.parse accepts them too), and
+// the server-side mirror of the UI's own react-day-picker
+// disabled={{ before: new Date() }} semantics at DAY granularity: today
+// is bookable, yesterday is not. The UTC-avoidance note: both the wire
+// form and the comparison use LOCAL calendar days (toDateString), so a
+// booking submitted near midnight in the deployment's own timezone
+// keeps its "today" — the same clock the UI's calendar renders by.
+function isRealCalendarDate(iso: string): boolean {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return false;
+  const probe = new Date(y, m - 1, d);
+  return probe.getFullYear() === y && probe.getMonth() === m - 1 && probe.getDate() === d;
+}
+
+function isNotPastDate(iso: string): boolean {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return false;
+  const today = new Date();
+  return (
+    y > today.getFullYear() ||
+    (y === today.getFullYear() &&
+      (m > today.getMonth() + 1 ||
+        (m === today.getMonth() + 1 && d >= today.getDate())))
+  );
+}
+
 export const bookingCreateSchema = z.object({
   serviceId: z
     .string()
@@ -740,7 +768,9 @@ export const bookingCreateSchema = z.object({
     .max(2000, "Yard size must be at most 2000 m²"),
   date: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Please pick a date"),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Please pick a date")
+    .refine(isRealCalendarDate, { message: "Please pick a valid date" })
+    .refine(isNotPastDate, { message: "Please pick today or a later date" }),
   slot: z
     .string()
     .refine((s) => (TIME_SLOTS as readonly string[]).includes(s), {

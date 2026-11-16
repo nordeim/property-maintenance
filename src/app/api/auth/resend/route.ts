@@ -52,12 +52,19 @@ export async function POST(req: Request) {
       },
     });
 
-    console.info(`[verification] code for ${email}: ${code} (expires in 15 minutes)`);
-
     // Session-163 (the digma ADR-014 port): the in-app OTP delivery —
     // the fresh code rides the response for the demo workflow (and the
     // e2e resend funnel), NEO_DISABLE_IN_APP_OTP=1 gated.
+    // Session-215 (F-216a — the OTP LOG VALVE): the console.info rides
+    // INSIDE the gate — the kill-switch that nulls the response payload
+    // must also silence the log line, or a production deployment with a
+    // real mail transport still writes every 6-digit code to stdout
+    // (the pre-215 shape logged unconditionally, defeating the
+    // kill-switch's own purpose).
     const inAppOtpEnabled = process.env.NEO_DISABLE_IN_APP_OTP !== "1";
+    if (inAppOtpEnabled) {
+      console.info(`[verification] code for ${email}: ${code} (expires in 15 minutes)`);
+    }
     return ok({
       resent: true,
       message: verificationResentMessage(),

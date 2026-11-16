@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { ok, ERR, parseBody, isGuarded, requireSession } from "@/lib/api";
 import { bookingCreateSchema } from "@/lib/schemas";
-import { clientKey, rateLimit } from "@/lib/rate-limit";
+import { clientKey, rateLimit, sweepRateLimits } from "@/lib/rate-limit";
 import { bookingServiceById } from "@/lib/booking";
 
 export const dynamic = "force-dynamic";
@@ -29,6 +29,13 @@ export async function POST(req: Request) {
   // 8 bookings / 15 min / IP — the public-form posture (tighter than
   // the auth family's 10: a booking is a heavier write).
   const rl = rateLimit(`bookings:${clientKey(req)}`, 8, 15 * 60_000);
+  // Session-215 (F-216b — the bucket sweep debt): the auth family's 7
+  // routes sweep on every request; these two public POSTs are the MOST
+  // stranger-exposed endpoints on a public marketing site (rotating-IP
+  // bursts mint one never-reaccessed bucket per IP) — the sweep joins
+  // the idiom (the login route's own placement: after the limiter, so
+  // denied requests sweep too).
+  sweepRateLimits();
   if (!rl.allowed) {
     return ERR.RATE_LIMITED(rl.retryAfterSec);
   }
