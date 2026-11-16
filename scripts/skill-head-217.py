@@ -75,7 +75,8 @@ S217_LAYER = (
     "closure, RED-first at birth) · F-218b THE LINE-BOUNDED SPLICE REPAIR (both "
     "head-surgery scripts demote the prior head LINE's own extent with the marker "
     "stripped IN THE SCRIPT; THE REPLAY TEETH-PROOF: tests/session-217-audit.test.ts "
-    "runs the script's arithmetic against git history (32c3ea7^) and asserts the "
+    "runs the script's arithmetic against git history (32c3ea7 — the s216 ship state, "
+    "where the demoted head line lives) and asserts the "
     "produced demoted line == the shipped line BYTE-FOR-BYTE — the script is now "
     "the record of the artifact; MUTATION-PROVEN: the old unbounded splice "
     "re-planted makes the pin RED exactly at the replay face) · F-218c the census "
@@ -105,6 +106,21 @@ must_replace(
     "~21 s (140 suites, one worker per file)",
     "~21 s (141 suites, one worker per file)",
     "the Appendix B wall-clock phrase",
+)
+
+# 4. session-218 (F-220d): the two re-anchors that rode unrecorded
+# manual steps in the s217 round — recorded in-script now so the
+# script's replay == the shipped artifact at EVERY site it touched
+# (the F-218b genus closed inside the F-218b cure session).
+must_replace(
+    "bun run test         # 2822/2822",
+    "bun run test         # 2826/2826",
+    "the §11 gate block (the unit count)",
+)
+must_replace(
+    "| **unit total** | 140 files | **2822** |",
+    "| **unit total** | 141 files | **2826** |",
+    "the Appendix B unit-total row",
 )
 
 SKILL.write_text(src, encoding="utf-8")

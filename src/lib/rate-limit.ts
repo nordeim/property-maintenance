@@ -9,8 +9,9 @@
 // Session-173 (F-173a): rateLimit takes `now = Date.now()` — the
 // session-164 sweepRateLimits form extended to the rateLimit path, the
 // module's own injectable precedent. PURELY ADDITIVE: the default is the
-// wall clock, every call site (the 7 rate-limited routes) rides
-// unchanged, and the fixed-window arithmetic became property-testable
+// wall clock, every call site (the 9 rate-limited routes — the six
+// auth routes + the two public POSTs + upload, the s217 F-218c census)
+// rides unchanged, and the fixed-window arithmetic became property-testable
 // (tests/property.test.ts P-n…P-q — the crossing, the retryAfter
 // ceiling, and the remaining monotonicity over a generated space).
 

@@ -31,9 +31,11 @@ describe("session-217: the doc-truth stragglers + the head-script reproducibilit
     );
 
     // THE REPLAY: the script's demotion arithmetic run against the
-    // pre-surgery file (git: 32c3ea7^) must produce the SHIPPED
-    // demoted line byte-for-byte. (maxBuffer: the SKILL file is ~7MB —
-    // the default 1MB pipe would ENOBUFS.)
+    // pre-surgery file (git: 32c3ea7 — the s216 ship state, where the
+    // demoted head line lives; session-218 F-220f trued the narration —
+    // the caret form would name the pre-s216 tree) must produce the
+    // SHIPPED demoted line byte-for-byte. (maxBuffer: the SKILL file is
+    // ~7MB — the default 1MB pipe would ENOBUFS.)
     const pre = execSync("git show 32c3ea7:neo-crm_SKILL.md", {
       cwd: join(import.meta.dirname, ".."),
       encoding: "utf8",

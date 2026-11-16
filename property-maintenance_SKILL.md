@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2826-check Vitest / 193-check Playwright corpus and a single-command
+  2834-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.13.0
+version: 1.14.0
 last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.13.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.14.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (141 suites / 2826 checks) | |
+| Unit | Vitest 5 (142 suites / 2834 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2826 unit / 193 e2e)
+## 7. The Test Corpus (2834 unit / 193 e2e)
 
-- **Unit (Vitest, 141 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 142 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the

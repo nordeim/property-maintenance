@@ -118,7 +118,9 @@ describe("clientKey (session-163: last-hop trust + declared depth)", () => {
 
 // ---- session-164: the amortized sweep (the digma S76-G port) --------------
 // The pre-164 posture: sweepRateLimits() ran the FULL O(n) walk on every
-// call — and every auth route calls it on every request (13+ call sites),
+// call — and every limiter'd route calls it on every request (the
+// 9 call sites: the six auth routes + the two public POSTs + upload —
+// the s217 F-218c census),
 // so rotated-key traffic cost O(n^2) across the burst. The digma S76-G
 // cure (its WP-7 stretch, deferred at s163 without the note — landed
 // here): a module-level WATERMARK (the earliest live resetAt seen at the

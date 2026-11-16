@@ -115,7 +115,11 @@ walk(
     "property-maintenance_SKILL.md",
     [
         ("## 7. The Test Corpus (2822 unit / 193 e2e)", "## 7. The Test Corpus (2826 unit / 193 e2e)"),
-        ("- **Unit (Vitest, 140 suites):**", "- **Unit (Vitest, 141 suites):**"),
+        # session-218 (F-220c): the REAL pre-s217 form was the stale 139
+        # (F-218a's own defect) — the 139 -> 141 flip is the transition
+        # that actually happened at this site (the phantom 140 anchor
+        # made the replay exit 1 over the historical tree).
+        ("- **Unit (Vitest, 139 suites):**", "- **Unit (Vitest, 141 suites):**"),
         ("| Unit | Vitest 5 (140 suites / 2822 checks) |", "| Unit | Vitest 5 (141 suites / 2826 checks) |"),
         ("2822-check Vitest", "2826-check Vitest"),
         ("(2822 unit / 193 e2e)", "(2826 unit / 193 e2e)"),

@@ -92,8 +92,12 @@ describe("session-92 (S92-P5): the sweep tool — the one-command regression", (
     // site chrome over the canvas — the genus measured 0.02/1.25/
     // 0.53/0.03 (the desktop pair byte-close, the bands carrying
     // the canvas/404-content shares)
+    // s217 (the reference-side shift): the phone 404 interior moved —
+    // 2 -> 2.9 re-anchored per the s148 precedent (measured 2.86,
+    // stable across two invocations, comment-only src/ delta,
+    // probe:ref STABLE)
     expect(standingBaseline(1440)["not-found"]).toBe(0.4);
-    expect(standingBaseline(390)["not-found"]).toBe(2);
+    expect(standingBaseline(390)["not-found"]).toBe(2.9);
     expect(standingBaseline(768)["not-found"]).toBe(1.5);
     expect(standingBaseline(1024)["not-found"]).toBe(0.5);
   });
@@ -639,7 +643,10 @@ describe("session-146: the re-anchored standing baselines (the quarterly re-deri
     expect(landscape.settings).toBe(33.5);
     // the login genus (the Oasis logo share, the widest at phone)
     expect(desktop.login).toBe(1);
-    expect(phone.login).toBe(3);
+    // s217 (the reference-side shift): the phone login interior
+    // moved — 3 -> 3.8 re-anchored per the s148 precedent (measured
+    // 3.71, stable across two invocations, probe:ref STABLE)
+    expect(phone.login).toBe(3.8);
     // the phone public pages at their canvas floors
     // s204: about 8 -> 6 · contact 22 -> 18 (the re-derived floors)
     expect(phone.about).toBe(6);

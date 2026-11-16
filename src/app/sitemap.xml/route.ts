@@ -2,15 +2,22 @@ import { siteUrl } from "@/lib/site";
 
 // Session-18 (S18-P4): /sitemap.xml — the reference's exact format
 // (byte-verified 2026-10-01: LF-only, no trailing newline, 4-space URL
-// indent, changefreq weekly on every entry, priority "1.0" for the
-// dashboard and "0.8" for the rest). Served through an explicit route
-// handler because Next's sitemap.ts serializer DROPS the number
-// formatting ("1.0" serializes as "1") — and its MetadataRoute type
-// spells the field changeFrequency, easy to mis-pin. One deliberate fix:
-// the reference's locs are CAPITALIZED (/Accounts…) — its platform routes
-// case-insensitively; our router is case-sensitive (the documented s14
-// decision, /Profile as the one aliased casing), so this sitemap lists
-// the real lowercase routes the router actually serves.
+// indent, changefreq weekly on every entry, priority "1.0" for the root
+// and "0.8" for the rest — the s142 repurposing made `/` the public
+// landing page; the retired neo-crm "1.0 for the dashboard" scheme died
+// with it). Served through an explicit route handler because Next's
+// sitemap.ts serializer DROPS the number formatting ("1.0" serializes
+// as "1") — and its MetadataRoute type spells the field changeFrequency,
+// easy to mis-pin. One deliberate fix: the reference's locs are
+// CAPITALIZED (/Accounts…) — its platform routes case-insensitively;
+// our router is case-sensitive (the documented s14 decision, /Profile
+// as the one aliased casing), so this sitemap lists the real lowercase
+// routes the router actually serves.
+// Session-218 (F-220g): the /dashboard omission is the parity-mirroring
+// decision — the reference's own sitemap lists its 8 app pages + root
+// with no dashboard entry (its root IS the app), so ours mirrors that
+// crawl surface; the CRM routes below ride the 0.8 family as the
+// superset back-office.
 // Session-142 (D-142a3): + /about + /contact (the reference's two new
 // marketing-layer app pages — its URL surface now includes them; ours
 // mirrors at the lowercase canonicals). `/` stays 1.0 — it is now the

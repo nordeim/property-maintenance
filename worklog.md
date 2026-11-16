@@ -1,3 +1,26 @@
+## Task 218 — The Standing Rotation: The Twin-Pin Debt + The Replay Completion (2026-11-16)
+
+The owner's session_26.md archive (7438dcd) triggered the rotation. The
+workspace was re-cloned and rebuilt. The baseline gate opened RED — the
+shipped s217 tree failed 2/2826 (F-219a: the s217 phone-baseline
+re-anchor moved scripts/sweep.ts without its test twins). The audit (the
+web-application skill dimensions over the 6236cb6 collateral) found eight
+findings (1 High, 4 Medium, 2 Low, 1 Info): the F-218c narration cure
+missed two sites (F-220a/b) · the s217 ladder anchored a phantom
+pm-SKILL form (F-220c — replay repaired) · two neo-crm_SKILL re-anchors
+rode unrecorded manual steps (F-220d — the F-218b genus reborn; both
+pairs recorded in-script) · .env.example gained HEADLESS (F-220e) · the
+replay caret misname trued at three sites (F-220f) · the sitemap head
+comment reworded to the live root-1.0 scheme (F-220g).
+
+Stage Summary: lint 0/0 · tsc 0 · 142 suites / 2834 unit (+8 pins,
+tests/session-218-audit.test.ts the 142nd suite) · build · smoke 14/14 ·
+the mobile-nav walk at 390 byte-MATCH (no Tailwind v4 bug) · probe:ref
+STABLE (bundle ee166dd5) · captures 73-75; the count ladder 2826 → 2834,
+suites 141 → 142, badge 3019 → 3027 (count-ladder-218.py) · the neo-crm
+SKILL s218 head layer · the pm-SKILL v1.14.0; committed to main and
+pushed via the SSH wrapper.
+
 ## Task 217 — The Standing Rotation: The Doc-Truth Stragglers + The Head-Script Reproducibility Debt (2026-11-16)
 
 The owner's session_24.md archive (a0ee91f) triggered the rotation. The
