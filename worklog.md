@@ -1,3 +1,24 @@
+Task ID: 210 (the V-bottom edge + the descent gradient; VERIFIED green)
+Agent: main (Z.ai)
+Task: The post-209 rotation: the workspace pulled (the owner's session_12.md archive at 8f71b6c), the env rebuilt (census MATCH, chromium v1248), the baseline gate re-proven (lint 0/0 · tsc 0 · 139/2801), the "AA edges" residual floor RE-AUDITED with hi-dpi (deviceScaleFactor 2) zoom captures and RE-DIAGNOSED as band geometry (both canvases render sharp at the device level — no anti-aliasing gap), the two real findings decoded + cured (TDD), the docs lockstep, and the push.
+
+Work Log:
+- THE INTAKE: the workspace persisted — the pull brought 8f71b6c (the owner's session_12.md archive, the s209 transcript = the rotation trigger); the env rebuilt (.env, db:push/seed — census MATCH, chromium v1248 reinstall); the baseline gate GREEN at the s209 ship state: lint 0/0 · tsc 0 · 139/2801
+- THE DRIFT RE-MEASURE (pre-cure): booking 5.70 · landing 4.73 · faq 3.37 — at the s209 floors (5.68/4.72/3.26 + capture noise)
+- F-210a THE MISDIAGNOSIS: the "AA edges" floor re-audited with hi-dpi zooms (deviceScaleFactor 2 clips at the hedge boundary + the G band edge + the left hedge) — BOTH canvases render sharp 1-device-px transitions (the ref's hedge-top: lawn (139,198,135) -> hedge (108,162,59) between dy70->72 at 2x; both canvases 1440x900 @ dpr 1, no internal 2x render). The 1x "softness" was the ref's BAND GEOMETRY, not anti-aliasing. The floor re-scoped
+- F-210b THE V-BOTTOM EDGE decoded + cured: the light band's bottom edge is a V — descending y308@x1080 -> apex y270@x~1178 -> rising y307@x1260 (the top edge follows the dome, apex y218@x1128); ours was a flat y310 foot. THE CURE (TDD): the core polygon's bottom re-cut as the V + the deep band's top edge follows the SAME V (the two bands share the boundary — the ref's dark band is 7px thin at x1090 where the light band is thick, thick from y286 at x1140 where the light band is thin); the V-zone drift 40% -> 10.5%
+- F-210c THE DESCENT GRADIENT decoded + cured: the ref's right-edge descent is a vertical gradient (24,106,42)@y302 -> (14,90,20)@y346 + its LIGHT CAP ((35,117,52) family) on the wedge's top y286-301; ours was flat EDGE_DARK_SOLID. THE CURE (TDD): a createLinearGradient fill (EDGE_DARK_SOLID -> the new EDGE_DARK_DEEP) + the DESCENT_CAP polygon
+- F-210d VERIFIED MATCHING: the G band (y314-369), the dark band's flat bottom (y312), the white chip (x1142-1170 y368-375 — ours at 48 vs the ref's 52 px, a 3px delta) — no cure needed
+- THE MEASURE (post-cure): the standing drift booking 5.49 · landing 4.52 — BOTH below the s209 floors; faq 3.37 unchanged (its content covers the zone)
+- THE VERIFICATION: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 (the CI=1 fresh boot)
+- THE DOCS LOCKSTEP: this worklog + the AGENTS Session-210 section + the plan (docs/plans/2026-11-16-session210-vbottom-descent.md) + the SKILL head surgery (v1.214.0 -> v1.215.0) + the pm-SKILL canvas section re-anchored (v1.6.0 -> v1.7.0) + the docs-counts pin
+- THE CAPTURES: 56-58 (the hi-dpi hedge zoom + the descent zone + the full booking page) — machine-verified non-blank
+
+Stage Summary:
+- The corpus: lint 0/0 · tsc 0 · 139/2801 unit · build GREEN · smoke 14/14 · e2e 193/193 · db census MATCH · the standing drifts booking 5.49 / landing 4.52 / faq 3.37 (both exposed pages below the s209 floors)
+- The deliverables: the shared-V band edge + the descent gradient + the descent cap, the AA-floor re-diagnosis, the captures 56-58, the docs lockstep, the probe-210 family (ref canvas + canvas-scale + our-zoom)
+- Everything committed to main and pushed via the SSH wrapper
+
 Task ID: 209 (the animation port: the flying birds + the growing bush; VERIFIED green)
 Agent: main (Z.ai)
 Task: The post-208 rotation: the sandbox recycled again (the fresh clone + env rebuild + census MATCH), the owner's session_11.md archive reviewed (c35d5b9), the baseline gate re-proven, the reference re-captured (STABLE), the standing ANIMATION FLOOR retired — the two sprites decoded by the 22-frame rapid-fire tracker and ported as real requestAnimationFrame animations (TDD), the docs lockstep, and the push.

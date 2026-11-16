@@ -12938,6 +12938,38 @@ identity check's 3 lines), and the plan's R5 checkbox flipped (the
 SKILL was created + verified + committed; the checkbox alone had been
 left behind).
 
+### Session-210 — THE V-BOTTOM EDGE + THE DESCENT GRADIENT (2026-11-16)
+
+The post-209 rotation — the residual ledger's top floor (the "AA
+edges") RE-AUDITED with hi-dpi zoom captures and **re-diagnosed**:
+not anti-aliasing at all. Both canvases render sharp 1-device-px
+transitions (verified at deviceScaleFactor 2: the ref's hedge-top
+lawn→hedge step between dy70→72; both canvases 1440×900 @ dpr 1,
+no internal 2x render). The 1x "softness" was the ref's BAND
+GEOMETRY. Two real findings underneath, both cured:
+
+**F-210b — THE V-BOTTOM EDGE.** The light band's bottom edge is a
+V: descending y308@x1080 → apex y270@x~1178 → rising y307@x1260
+(the top edge follows the dome, apex y218@x1128). Ours was a flat
+y310 foot — the whole y270-308 wedge under the dome's right slope
+rendered as the dark under-band. The cure: the core polygon's bottom
+re-cut as the V **and** the deep band's top edge follows the SAME V
+(the two bands share the boundary — the ref's dark band is 7px thin
+at x1090 where the light band is thick, and thick from y286 at x1140
+where the light band is thin). The V-zone drift dropped 40% → 10.5%.
+
+**F-210c — THE DESCENT GRADIENT.** The ref's right-edge descent is a
+vertical gradient — (24,106,42)@y302 fading to (14,90,20)@y346 —
+plus a LIGHT CAP ((35,117,52) family) on the wedge's top y286-301.
+Ours was flat EDGE_DARK_SOLID. The cure: a `createLinearGradient`
+fill (EDGE_DARK_SOLID → the new EDGE_DARK_DEEP) + the DESCENT_CAP
+polygon.
+
+**THE MEASURE:** the standing drift booking **5.49** · landing
+**4.52** — both below the s209 floors (5.68/4.72); faq 3.37
+unchanged (its content covers the zone). The corpus held: lint 0/0 ·
+tsc 0 · 139/2801 · build · smoke 14/14 · e2e 193/193.
+
 ### Session-209 — THE ANIMATION PORT: THE FLYING BIRDS + THE GROWING BUSH (2026-11-16)
 
 The post-208 rotation — the standing ANIMATION FLOOR retired. The

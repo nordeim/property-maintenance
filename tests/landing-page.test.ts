@@ -202,6 +202,22 @@ describe("session-199: the (site) group — the Oasis public layer's routes", ()
     expect(src).toContain("G_BAND"); // the band constant
     expect(src).toContain("SUNLIT_RIM"); // the rim constant
     // ------------------------------------------------------------------
+    // Session-210 (F-210b/c — the hi-dpi re-audit of the "AA edges"):
+    // the floor was a MISDIAGNOSIS (both canvases render sharp at the
+    // device level); the real gaps are band geometry. F-210b: the
+    // light band's bottom edge is a V — descending y308@x1080 ->
+    // apex y270@x~1178 -> rising y307@x1260 (ours was flat y310).
+    // F-210c: the descent's dark band is a vertical GRADIENT
+    // (24,106,42)@y302 -> (14,90,20)@y346 (ours was flat) + its light
+    // cap (35,117,52) family at x1370-1410, y286-301.
+    // ------------------------------------------------------------------
+    expect(src).toContain("1178"); // the V's apex x
+    expect(src).toContain("270"); // the V's apex y
+    expect(src).toContain("EDGE_DARK_DEEP"); // the descent gradient's bottom tone
+    expect(src).toContain("14, 90, 20"); // the deep tone's value
+    expect(src).toContain("35, 117, 52"); // the descent's light cap
+    expect(src).toContain("DESCENT_CAP"); // the cap constant
+    // ------------------------------------------------------------------
     // Session-207 (F-207b — the hedge's vertical gradient): the ref's
     // hedge darkens (49,160,72)@y698 -> (15,95,26)@y788 — a smooth
     // linear gradient inside the dome, NOT the flat fill + the hard

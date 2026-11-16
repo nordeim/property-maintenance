@@ -13,11 +13,11 @@ description: >
   2801-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.6.0
+version: 1.7.0
 last_updated: 2026-11-15
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.6.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.7.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -140,6 +140,13 @@ The reference's own tokens (recon-decoded from its DOM, 2026-11-15):
   bush + the left lobe growing x1317→x1080 over 5s with its blossom
   cluster riding the tip; hold 3s; vanish 8s; a 16s cycle — the s208
   static bush retired INTO it). The cleanup cancels the RAF handle.
+  Session-210's tuning: the light band's bottom edge re-cut as the V
+  (y308@x1080 -> apex y270@x1178 -> y307@x1260) with the deep band's
+  top following the SAME shared-V boundary; the right-edge descent
+  re-cut as a vertical gradient (EDGE_DARK_SOLID -> EDGE_DARK_DEEP
+  (14,90,20)) + the DESCENT_CAP light wedge — the "AA edges" floor
+  re-diagnosed as band geometry (both canvases render sharp at the
+  device level; verified at deviceScaleFactor 2).
   `aria-hidden` + `pointer-events-none`; mounted ONLY
   in the (site) layout (the login and 404 render white — the
   reference's own posture).

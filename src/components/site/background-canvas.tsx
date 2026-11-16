@@ -60,6 +60,13 @@ const UNDERMASS_DEEP = "rgba(130, 166, 153, 0.9)"; // its darker patches
 const MASS_CORE_SOLID = "rgba(95, 143, 51, 0.97)"; // the right mass's flat core
 const MASS_DEEP_SOLID = "rgba(75, 124, 38, 0.97)"; // its deeper under-band
 const EDGE_DARK_SOLID = "rgba(21, 103, 39, 0.97)"; // the right-edge descent's dark band
+// Session-210 (F-210c): the descent's dark band is a vertical
+// GRADIENT — (24,106,42) at its top fading to (14,90,20) by y346 (the
+// hi-dpi decode at CSS x1390: y302 (24,106,42) -> y346 (14,90,20)) —
+// plus its LIGHT CAP: the wedge's top carries a (35,117,52)-family
+// band at y286-301 before the dark band begins.
+const EDGE_DARK_DEEP = "rgba(14, 90, 20, 0.97)"; // the descent gradient's bottom tone
+const DESCENT_CAP = "rgba(35, 117, 52, 0.97)"; // the descent's light cap
 const HEDGE_SOLID = "rgba(47, 151, 68, 0.97)"; // the bottom-left hedge's core
 // Session-207 (F-207c — the right side's underlayer band): the G band
 // + its teal top-edge patches + the stable blue slab, all decoded from
@@ -620,6 +627,11 @@ export function SiteBackgroundCanvas() {
       // a flat (95,143,51) core over a (75,124,38) under-band — not a
       // radial fade. The descent: the dark band hugging the right edge
       // (x~1392-1440) from y~284 down, plus the lower lobe at y~680-800.
+      // Session-210 (F-210b): the bottom edge re-cut as the V — the
+      // hi-dpi decode shows the core's bottom DESCENDS from (1080,308)
+      // to the apex (1178,270) then RISES to (1262,307); the old flat
+      // y310 foot lost the whole y270-308 wedge under the dome's
+      // right slope to the dark under-band.
       polygon(
         ctx,
         w,
@@ -630,8 +642,9 @@ export function SiteBackgroundCanvas() {
           [0.828, 0.278], // (1192,250)
           [0.849, 0.302], // (1223,272) — the slope bends flatter here
           [0.876, 0.336], // (1262,302)
-          [0.876, 0.345], // the foot (1262,310)
-          [0.75, 0.345], // the bottom edge, left (1080,310 — the card's boundary)
+          [0.876, 0.34], // the foot's right (1262,307) — the V's right rise
+          [0.818, 0.3], // the V's apex (1178,270)
+          [0.75, 0.342], // the V's left rise (1080,308)
           [0.75, 0.269], // straight up the left edge to (1080,242)
           [0.763, 0.256], // the left slope's knee (1099,230)
         ],
@@ -659,10 +672,16 @@ export function SiteBackgroundCanvas() {
         w,
         h,
         [
-          [0.75, 0.31], // the under-band's left top (1080,279) — confined below y~275
-          [0.879, 0.31], // its right top (1265,279)
-          [0.879, 0.342], // the foot
-          [0.75, 0.342],
+          // Session-210 (F-210b): the under-band's top edge follows the
+          // SAME V as the core's bottom — the ref's dark band is thin
+          // (7px) at x1090 where the light band is thick, thick from
+          // y286 at x1140 where the light band is thin; the two bands
+          // share the V boundary (1080,308)->(1178,270)->(1262,306).
+          [0.75, 0.342], // the V's left end (1080,308)
+          [0.818, 0.3], // the V's apex (1178,270)
+          [0.876, 0.34], // the V's right rise (1262,306)
+          [0.879, 0.347], // the foot's right (1265,312)
+          [0.75, 0.347], // the foot's left (1080,312)
         ],
         MASS_DEEP_SOLID,
       );
@@ -672,19 +691,37 @@ export function SiteBackgroundCanvas() {
       // (x1365@335 -> 1374@350, right edge 1439 -> 1435), narrowing
       // to the lobe (1384-1418)@360, then the BROWN tip (1380-1398,
       // y365-378, (71,54,27)); the s206 version ran to y364 full-width.
+      // Session-210 (F-210c): the band re-cut as a vertical GRADIENT —
+      // (24,106,42) at the top fading to (14,90,20) by y346 — plus the
+      // LIGHT CAP ((35,117,52) family) on the wedge's top y286-301.
+      const descentGrad = ctx.createLinearGradient(0, 277, 0, 346);
+      descentGrad.addColorStop(0, EDGE_DARK_SOLID);
+      descentGrad.addColorStop(1, EDGE_DARK_DEEP);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1411, 277); // the top tip
+      ctx.lineTo(w, 283); // the top edge out to the corner
+      ctx.lineTo(w, 355); // down the right edge to y~355
+      ctx.lineTo(1375, 355); // the wide bottom-left
+      ctx.lineTo(1366, 335); // the left edge's mid knee
+      ctx.lineTo(1390, 302); // the inner edge top
+      ctx.closePath();
+      ctx.fillStyle = descentGrad;
+      ctx.fill();
+      ctx.restore();
+      // the descent's LIGHT CAP — the (35,117,52) band on the wedge's
+      // top (x1370-1410, y286-301; the ref's cap before the dark band)
       polygon(
         ctx,
         w,
         h,
         [
-          [0.98, 0.308], // (1411,277) — the top tip
-          [1.0, 0.315], // the top edge out to the corner
-          [1.0, 0.394], // down the right edge to y~355
-          [0.955, 0.394], // the wide bottom-left (1375,355)
-          [0.951, 0.372], // the left edge's mid knee (1366,335)
-          [0.965, 0.336], // the inner edge top (1390,302)
+          [0.951, 0.318], // the cap's top (1369,286)
+          [0.98, 0.315], // (1411,284)
+          [0.971, 0.331], // the cap's bottom-right (1398,298)
+          [0.956, 0.334], // (1377,301)
         ],
-        EDGE_DARK_SOLID,
+        DESCENT_CAP,
       );
       polygon(
         ctx,
