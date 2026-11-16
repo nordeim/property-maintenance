@@ -1,4 +1,8 @@
 // scripts/settings-rhythm.ts — THE SETTINGS INTRADAY-RHYTHM MAP (the
+// Session-214 (F-222): the s213 census re-scope RETIRED this
+// instrument's mission (the settings-rhythm decode belongs to the
+// NEO-CRM lineage reference); kept as the lineage record — not
+// wired into package.json, not part of the standing gates.
 // 159-c rotation: the standing OBSERVATION instrument).
 //
 // The settings page is the ONE censused surface whose reference state

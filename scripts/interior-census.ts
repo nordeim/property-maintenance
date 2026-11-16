@@ -1492,12 +1492,15 @@ export function censusVerdict(results: CensusPageResult[]): CensusVerdict {
       );
     }
     if (r.page !== "settings" && r.mainHDelta !== null && r.mainHDelta !== 0) {
-      // Session-213 (the landing's standing phone floor): the reference's
-      // own raster floor — the +4px docH genus the s212 booking cure
-      // measured first (2074 vs 2070) and the landing's phone axis now
-      // carries (6485 vs 6481, desktop byte-equal). |Δ| ≤ 4 is the
-      // floor genus; anything larger still REDs at zero margin.
-      const floorOk = r.page === "landing" && Math.abs(r.mainHDelta) <= 4;
+      // Session-213 (the landing's standing phone floor), scoped at
+      // session-214 (F-217): the reference's own raster floor — the
+      // +4px docH genus the s212 booking cure measured first (2074 vs
+      // 2070) and the landing's PHONE axis carries (6485 vs 6481;
+      // desktop byte-equal). The floor is PHONE-ONLY: a ≤4px docH
+      // delta at tablet/landscape/desktop is a real regression and
+      // REDs; anything larger still REDs at zero margin.
+      const floorOk =
+        r.page === "landing" && r.axis === "phone" && Math.abs(r.mainHDelta) <= 4;
       if (!floorOk) {
         failures.push(`${where}: mainH delta ${r.mainHDelta} ≠ 0 (byte-parity, zero margin)`);
       }
@@ -1559,6 +1562,15 @@ export async function waitQuiescent(page: import("@playwright/test").Page): Prom
           let acc = 0;
           let n = 0;
           for (const el of main.querySelectorAll("*")) {
+            // Session-214 (F-216): the infinite-animation genus never
+            // stabilizes (the hero's bouncing chevron oscillates ~5px
+            // forever) — excluded from the fingerprint, the same genus
+            // the capture skips; the poll can actually settle now
+            // instead of always riding the 12s ceiling.
+            const qcs = getComputedStyle(el);
+            if (qcs.animationName !== "none" && qcs.animationIterationCount === "infinite") {
+              continue;
+            }
             const r = el.getBoundingClientRect();
             acc =
               (acc + Math.round(r.top * 10) + Math.round(r.width * 10) + Math.round(r.height * 10)) %
@@ -1737,9 +1749,16 @@ async function censusPublicPage(
       () => {
         const main = document.querySelector("main");
         if (!main) return false;
+        // Session-214 (F-215): OPACITY ONLY — the reveal genus is
+        // translateY(20px) + opacity:0; un-revealed and mid-transition
+        // states both fail opacity === "1", while the landing's own
+        // static translates (the hero pill's -translate-x-1/2, the
+        // step badge) and the bouncing chevron carry opacity 1 and
+        // pass. The s213 transform conjunct could NEVER hold — the
+        // gate burned its full 10s cap on every walk without ever
+        // engaging.
         return [...main.querySelectorAll("*")].every(
-          (el) =>
-            getComputedStyle(el).opacity === "1" && getComputedStyle(el).transform === "none",
+          (el) => getComputedStyle(el).opacity === "1",
         );
       },
       { timeout: 10000, polling: 500 },
@@ -2008,15 +2027,24 @@ async function run() {
   try {
     // 2. the ZERO-DATA state on OUR side (users + settings kept; the
     //    same F-A env guard — Prisma rejects an empty URL).
-    log("zeroing our domain data (scripts/zero-data.ts)…");
-    const zEnv = { ...process.env };
-    delete zEnv.DATABASE_URL;
-    const z = spawnSync("bun", ["scripts/zero-data.ts"], {
-      cwd: REPO,
-      env: zEnv,
-      stdio: "inherit",
-    });
-    if (z.status !== 0) throw new Error("zero-data.ts failed");
+    // Session-214 (F-220): the phase is GUARDED — under the empty
+    // interior list the census walks only the static landing (no DB
+    // reads), so the zero/re-seed cycle ran for nothing and opened the
+    // never-zeroed risk window (a SIGKILL between zero and the FINALLY
+    // leaves the workspace zeroed).
+    if (pages.length > 0) {
+      log("zeroing our domain data (scripts/zero-data.ts)…");
+      const zEnv = { ...process.env };
+      delete zEnv.DATABASE_URL;
+      const z = spawnSync("bun", ["scripts/zero-data.ts"], {
+        cwd: REPO,
+        env: zEnv,
+        stdio: "inherit",
+      });
+      if (z.status !== 0) throw new Error("zero-data.ts failed");
+    } else {
+      log("no interior pages selected — the zero-data phase skipped (the static landing reads no DB)");
+    }
 
     // 3. the AXES in BATCHES (the 158-c parallel option): one zero-data
     //    + one browser per invocation; a fresh state-reused context per
@@ -2124,13 +2152,17 @@ async function run() {
     // the never-zeroed doctrine: the seed restore rides the FINALLY —
     // the workspace is never left zeroed, even when the census throws
     // (sweep.ts restores inside the try; this gate closes that gap).
-    const sEnv = { ...process.env };
-    delete sEnv.DATABASE_URL;
-    const s = spawnSync("bun", ["run", "db:seed"], { cwd: REPO, env: sEnv, stdio: "inherit" });
-    if (s.status !== 0) {
-      console.error("[census] db:seed failed — run it manually: bun run db:seed");
-    } else {
-      log("seed restored (verify: bun run db:census)");
+    // Session-214 (F-220): the restore is GUARDED to match the zero —
+    // no interior pages means nothing was zeroed, nothing to restore.
+    if (pages.length > 0) {
+      const sEnv = { ...process.env };
+      delete sEnv.DATABASE_URL;
+      const s = spawnSync("bun", ["run", "db:seed"], { cwd: REPO, env: sEnv, stdio: "inherit" });
+      if (s.status !== 0) {
+        console.error("[census] db:seed failed — run it manually: bun run db:seed");
+      } else {
+        log("seed restored (verify: bun run db:census)");
+      }
     }
     if (spawned?.pid) {
       try {

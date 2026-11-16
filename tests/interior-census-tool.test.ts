@@ -1039,7 +1039,7 @@ describe("session-155: the census LANDING public leg (the last blind surface —
 });
 
 describe("session-156: the census ABOUT/CONTACT legs (the last two blind interior surfaces — the 156-c rotation)", () => {
-  it("the legs contract: about + contact join INTERIOR_PAGES as the login-walled main-interior class (the (marketing) group renders AppShell — main.overflow-auto, the s150 walk + the 156-c probe agree: /about mainH 1731 phone · 1047 desktop · /contact 897 · 953, byte-equal both apps, els 46/46 + 33/33); the paths lockstep with the sweep's own entries; the tool header's stale 'no main.overflow-auto interior' claim retired (the LANDING alone is the true no-main surface — login joined the interiors at s157)", async () => {
+  it("the legs contract after the s213 re-scope: about + contact RETIRED from the census interior list (the s156-era join narration — AppShell interiors, byte-equal both apps — retired with them); the sweep's own entries are the retirement's safety net", async () => {
     const m = await import("../scripts/interior-census");
     const pages = m.INTERIOR_PAGES as ReadonlyArray<{ name: string; path: string }>;
     // the s213 re-scope: the interior list is EMPTY — about/contact
@@ -1523,5 +1523,76 @@ describe("session-176: the recharts3-restructure genus (the chart-major migratio
     expect(src).toMatch(/recharts3-restructure/);
     expect(src).toMatch(/zIndex-layer/);
     expect(src).toMatch(/tick-label/);
+  });
+});
+
+
+// ---------------------------------------------------------------------------
+// Session-214: the POLL-GATE REPAIRS (F-215/216/217) + the zero-data
+// guard (F-220) — the audit's collateral findings on the s213 census
+// re-scope. The settle gate and the quiescence poll were both silently
+// defeated by the landing's own static translates + the bouncing
+// chevron: the settle predicate required transform === "none" for
+// EVERY element (the hero pill's -translate-x-1/2 alone falsifies it —
+// the 10s cap always burned out), and the quiescence fingerprint
+// oscillated forever on the chevron's ~5px bounce (always at the 12s
+// ceiling). The floor was page-wide where the decode was phone-only.
+// ---------------------------------------------------------------------------
+describe("session-214: the poll-gate repairs + the zero-data guard (F-215/216/217/220)", () => {
+  it("F-215: the settle-gate predicate tests OPACITY, never transform (the reveal genus is translateY(20px) + opacity:0 — static translates and the chevron pass opacity; un-revealed states fail it)", () => {
+    const src = toolSrc();
+    // the opacity conjunct present
+    expect(src).toContain('getComputedStyle(el).opacity === "1"');
+    // the transform conjunct NEVER returns (the hero pill's static
+    // -translate-x-1/2 falsified it at every poll — the gate could
+    // never engage)
+    expect(src).not.toContain(
+      'getComputedStyle(el).opacity === "1" && getComputedStyle(el).transform === "none"',
+    );
+  });
+
+  it("F-216: the quiescence fingerprint EXCLUDES the infinite-animation genus (the bouncing chevron oscillates ~5px forever — the poll always rode the 12s ceiling; the same genus the capture skips)", () => {
+    const src = toolSrc();
+    // the fingerprint's accumulation loop carries the exclusion
+    expect(src).toMatch(/fingerprint = \(\) => \{[\s\S]{0,700}animationIterationCount === "infinite"[\s\S]{0,120}continue;/);
+  });
+
+  it("F-217: the landing docH floor is SCOPED to the phone axis (the decode was phone-only — 6485 vs 6481, desktop byte-equal; a <=4px regression at tablet/landscape/desktop must still RED)", () => {
+    const src = toolSrc();
+    expect(src).toContain(
+      'r.page === "landing" && r.axis === "phone" && Math.abs(r.mainHDelta) <= 4',
+    );
+  });
+
+  it("F-217 (the pure seam): the verdict floors a Δ4 landing at PHONE but REDs the same Δ4 at TABLET (the scope is load-bearing, not narration)", async () => {
+    const m = await import("../scripts/interior-census");
+    const row = (axis: string, mainHDelta: number) =>
+      ({
+        page: "landing",
+        axis,
+        mainHDelta,
+        oursEls: 400,
+        refEls: 400,
+        matches: 400,
+        explained: [],
+        unexplained: [],
+      }) as never;
+    // Δ4 at phone: the standing floor — GREEN
+    const phone = m.censusVerdict([row("phone", 4), row("tablet", 0), row("landscape", 0), row("desktop", 0)]);
+    expect(phone.ok).toBe(true);
+    // the SAME Δ4 at tablet: a real regression — RED with the axis named
+    const tablet = m.censusVerdict([row("phone", 0), row("tablet", 4), row("landscape", 0), row("desktop", 0)]);
+    expect(tablet.ok).toBe(false);
+    expect(tablet.failures.some((f: string) => f.includes("[tablet] landing") && f.includes("4"))).toBe(true);
+    // Δ5 at phone: beyond the floor — still RED
+    const beyond = m.censusVerdict([row("phone", 5), row("tablet", 0), row("landscape", 0), row("desktop", 0)]);
+    expect(beyond.ok).toBe(false);
+  });
+
+  it("F-220: the zero-data phase is GUARDED (the empty interior list walks only the static landing — no DB reads; the zero/re-seed cycle ran for nothing and opened the never-zeroed risk window)", () => {
+    const src = toolSrc();
+    // both spawnSync sites (zero + the FINALLY re-seed) carry the guard
+    const guarded = src.match(/if \(pages\.length > 0\) \{[\s\S]{0,600}spawnSync/g) ?? [];
+    expect(guarded.length).toBeGreaterThanOrEqual(2);
   });
 });

@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2811-check Vitest / 193-check Playwright corpus and a single-command
+  2816-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.10.0
-last_updated: 2026-11-17
+version: 1.10.1
+last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.10.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.10.1)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (139 suites / 2811 checks) | |
+| Unit | Vitest 5 (139 suites / 2816 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,7 +249,7 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2811 unit / 193 e2e)
+## 7. The Test Corpus (2816 unit / 193 e2e)
 
 - **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
@@ -291,6 +291,16 @@ GET  /api/quote-requests  requireSession
   initial state is the head genus); and the stable-4 cures (the estimate
   CTA "Book with this estimate" + the calendar glyph + `px-8`, the
   yard-size header the reference's bare flex row).
+
+- **Session-214's layers:** the poll-gate repairs (F-215/216 — the
+  census's settle gate now predicates on OPACITY alone (the transform
+  conjunct could never hold against the landing's static translates)
+  and the quiescence fingerprint excludes the infinite-animation genus
+  (the bouncing chevron kept both polls at their ceilings forever));
+  the docH floor scoped to the phone axis (F-217); the ladder doctrine
+  debt paid (F-218 — the 2805 negatives + the README badge pinned both
+  ways); the zero-data phase guarded under the empty interior list
+  (F-220); the s213 carry-over e2e debt resolved — **193/193 GREEN**.
 
 ## 8. The Gate (the definition of done)
 

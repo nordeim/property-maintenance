@@ -269,6 +269,14 @@ export const TOLERANCE = 12;
  * fails. PURE by design: pinned in tests/sweep-tool.test.ts beside
  * PAGES/TOLERANCE/diffPixels/parsePagesArg. */
 export const STANDING_BASELINES = {
+  // Session-214 (F-223): the per-entry comments below narrate the
+  // NEO-CRM-era 0.1/0.15 mirror floors — the VALUES were re-derived
+  // against the OASIS reference at s202 (commit 6e15623: 24.5-27 for
+  // the CRM interiors; the quartet floors re-derived again at s204);
+  // the historical narration is kept as the lineage record. The CRM
+  // interiors' real cover is the e2e battery + the unit content pins
+  // (the s213 census retirement note) — these wide floors are the
+  // pixel-delta allowance, never a byte-parity claim.
   desktop: {
     // session-148 (the F-147c3 mirror): re-anchored 0.15 → 0.1 — the
     // reference's KPI delta chips + its Recent-Deals middle select +

@@ -1,3 +1,20 @@
+## Task 214 — The Standing Rotation: The Poll-Gate Repairs + The Ladder Doctrine Debt (2026-11-16)
+
+The owner's session_18.md archive (a1b40d2) triggered the rotation. The
+baseline GREEN at the s213 ship state; probe:ref STABLE vs the Oasis
+reference; the s213 carry-over e2e debt resolved — 193/193 GREEN. The
+audit found nine findings on the s213 collateral: the census's two poll
+gates silently defeated by the landing's own static translates + the
+bouncing chevron (F-215/216), the phone floor unscoped (F-217), the
+s192 ladder doctrine skipped (F-218), and five hygiene gaps.
+
+Stage Summary: lint 0/0 · tsc 0 · 139 suites / 2816 unit (+5 RED-first
+pins) · the drift-gate battery re-run (the census faster + db-untouched
+under the static landing) · the mobile-nav walk byte-MATCH at 390 (no
+Tailwind v4 bug) · SEO standing verified · capture 68; the poll-gate
+repairs + the ladder doctrine + the hygiene cures committed to main and
+pushed via the SSH wrapper.
+
 ## Task 213 — The Standing Rotation: The Reference-Contract Re-Anchor + The Reduced-Motion Bush + The Stable-4 Cures (2026-11-16)
 
 The owner's session_16.md archive (57e2acd) triggered the rotation. The

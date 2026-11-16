@@ -911,7 +911,7 @@ const SUITES = 139; // session-199: + the booking seam suite (138 -> 139)
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2811; // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
+const UNIT = 2816; // session-214: +the F-215/216/217/220 pins (2811 -> 2816) // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1339,13 +1339,25 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
     expect(skill).not.toContain("| **unit total** | 125 files | **2382**");
     expect(skill).not.toContain("| **unit total** | 127 files | **2454**");
     // -----------------------------------------------------------------
-    // Session-197 (D-197a1): the retired 2811 site-forms join the
-    // ladder (the s166 form — SITE-FORM anchors: history rows quote
-    // the counts in arrow/gate phrasing only, never the bare site
-    // constructions; the demoted SKILL s196 block keeps its ship
-    // line under the unit gate, untouched by design).
+    // Session-197 (D-197a1) — the 2811 negatives RETIRED at s213
+    // (the third historical-count coincidence: 2811 was the lineage's
+    // own s194 count, and the live corpus reached it again — the
+    // forms returned to live use). This block keeps the badge
+    // negative (the tests-3006 class) + the ladder's later forms.
     // -----------------------------------------------------------------
     expect(readme).not.toMatch(/tests-3006%20checks/);
+    // Session-214 (D-214a): the retired 2805 site-forms join the
+    // negatives (the s192 doctrine — the s213 ladder skipped this),
+    // + the BADGE PAIR: the README badge is pinned BOTH ways (the
+    // live arithmetic form positively — 2811 + 193 = 3004 — and the
+    // retired 2998 badge negatively) so a future count bump that
+    // updates every ${UNIT} site but forgets the badge fails here
+    // (the exact class tests-3006%20checks was caught by).
+    expect(readme).not.toMatch(/# 2805 Vitest unit checks/);
+    expect(readme).not.toMatch(/# 138 Vitest suites \(2805 checks\)/);
+    expect(readme).not.toMatch(/\| 🧪 Tested \| 2805 Vitest unit checks/);
+    expect(readme).not.toMatch(/tests-2998%20checks/);
+    expect(readme).toContain("tests-3009%20checks");
     // Session-198 (D-198a1/a2): the retired 2813 site-forms join the
     // negatives (the s192 doctrine: the OLD live form joins the negatives)
     expect(readme).not.toMatch(/# 2813 Vitest unit checks/);
