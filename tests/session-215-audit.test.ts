@@ -17,8 +17,10 @@ import { describe, expect, it } from "vitest";
 //   log line, or a production deployment with a real mail transport
 //   still writes every 6-digit code to stdout.
 // - F-216b: the two PUBLIC POST routes (bookings + quote-requests) call
-//   sweepRateLimits() — the auth family's 7 routes sweep on every
-//   request; the two most stranger-exposed endpoints on a public
+//   sweepRateLimits() — the auth family's 6 routes sweep on every
+//   request (the s217 F-218c census: 6 auth + the 2 public POSTs +
+//   upload = 9 limiter'd sites); the two most stranger-exposed
+//   endpoints on a public
 //   marketing site must not be the ones that never sweep (an unbounded
 //   buckets Map under rotating-IP bursts).
 // - F-216c: bookingCreateSchema.date rejects PAST dates — the UI's

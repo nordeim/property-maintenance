@@ -93,9 +93,15 @@ if "the session-215 layer" in src:
 else:
     idx = src.index(HEAD_ANCHOR)
     # the s211 layer line becomes the "beneath it" continuation
-    src = src[:idx] + S215_LAYER + "\n + + beneath it " + src[idx:]
+    # Session-217 (F-218b): the marker strip rides IN THE SCRIPT now —
+    # LINE-BOUNDED to the head line's own extent (never the rest of the
+    # file) — the replay == the shipped artifact, the s216 repair's
+    # latent twin.
+    end = src.index("\n", idx)
+    demoted_line = src[idx:end].replace("project_state: ", "", 1)
+    src = src[:idx] + S215_LAYER + "\n + + beneath it " + demoted_line + src[end:]
     n_flips += 1
-    print("FLIP  the head layer prepended (the s211 line demoted to beneath-it)")
+    print("FLIP  the head layer prepended (the s211 line demoted to beneath-it, marker stripped in-script)")
 
 # 3. Appendix B totals
 must_replace(

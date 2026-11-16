@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2822-check Vitest / 193-check Playwright corpus and a single-command
+  2826-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.12.0
+version: 1.13.0
 last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.12.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.13.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (140 suites / 2822 checks) | |
+| Unit | Vitest 5 (141 suites / 2826 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2822 unit / 193 e2e)
+## 7. The Test Corpus (2826 unit / 193 e2e)
 
-- **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 141 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -369,6 +369,25 @@ Gate order is the contract; no push without green. Kill any leftover
   suite, +6 RED-first). SUITES 139 → 140 · unit 2816 → 2822 · badge
   3009 → 3015.
 
+- **Session-217's layers:** the doc-truth stragglers + the
+  head-script reproducibility debt (F-218a — the pm-SKILL's own §7
+  test-corpus bullet shipped "139 suites" through the whole s216
+  round, a live-tense site disagreeing with its own heading's 2822;
+  the pin gap closed: the lockstep family now pins the §7 Unit
+  bullet itself · F-218b — the skill-head-216.py splice demoted the
+  prior head WITH its project_state marker (the shipped line was
+  marker-less only via an unrecorded manual strip; the committed
+  script was not the record of the committed artifact); THE
+  LINE-BOUNDED SPLICE REPAIR landed in both head-surgery scripts +
+  THE REPLAY TEETH-PROOF (tests/session-217-audit.test.ts runs the
+  script's arithmetic against git history and asserts the produced
+  demoted line == the shipped line byte-for-byte; mutation-proven:
+  the old unbounded splice re-planted makes the pin RED) · F-218c —
+  the sweep call-site census trued at all four sites (9 limiter'd
+  routes: 6 auth + 2 public POSTs + upload; the "13+"/"7 routes"
+  narration retired)). The count ladder: 2822 -> 2826 (+4 pins,
+  tests/session-217-audit.test.ts the 141st suite) · badge 3015 ->
+  3019.
 - **Session-216's layers:** the pin-containment debt (F-217b — the
   F-216a ordering proxies upgraded to brace-window containment pins
   [extractGateBlock walks the if (inAppOtpEnabled) block by brace

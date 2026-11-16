@@ -82,9 +82,23 @@ if "the session-216 layer" in src:
     print("NOOP  the head layer (already prepended)")
 else:
     idx = src.index(HEAD_ANCHOR)
-    src = src[:idx] + S216_LAYER + "\n + + beneath it " + src[idx:]
+    # Session-217 (F-218b): the demotion strips the prior head LINE's
+    # `project_state: ` marker IN THE SCRIPT — the s215/s216 surgeries
+    # relied on an unrecorded manual strip step after the splice, so a
+    # from-scratch replay produced ` + + beneath it project_state:
+    # 2822 …` (the stray-marker genus) instead of the shipped
+    # marker-less line. The strip is LINE-BOUNDED (the head line's own
+    # extent, up to its newline — never the rest of the file, which
+    # carries its own later `project_state:` occurrences in the
+    # retired history blocks). The committed script is now the record
+    # of the committed artifact (tests/session-217-audit.test.ts
+    # replays this arithmetic against git history and asserts the
+    # byte-for-byte equality).
+    end = src.index("\n", idx)
+    demoted_line = src[idx:end].replace("project_state: ", "", 1)
+    src = src[:idx] + S216_LAYER + "\n + + beneath it " + demoted_line + src[end:]
     n_flips += 1
-    print("FLIP  the head layer prepended (the s215 line demoted to beneath-it)")
+    print("FLIP  the head layer prepended (the s215 line demoted to beneath-it, marker stripped in-script)")
 
 SKILL.write_text(src, encoding="utf-8")
 print(f"\n{n_flips} flip(s); {len(S216_LAYER)} chars of s216 layer")

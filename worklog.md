@@ -1,3 +1,33 @@
+## Task 217 — The Standing Rotation: The Doc-Truth Stragglers + The Head-Script Reproducibility Debt (2026-11-16)
+
+The owner's session_24.md archive (a0ee91f) triggered the rotation. The
+workspace had been recycled — the environment rebuilt (bun install · db
+seed · census MATCH · chromium v1248). The baseline GREEN at the exact
+s216 ship state (lint 0/0 · tsc 0 · 140/2822); probe:ref STABLE (bundle
+ee166dd5); the mobile-nav walk at 390 verified live: geometry
+{70,0,320,844} byte-MATCH, animation enter/0.5s (no Tailwind v4 bug),
+8-link vocabulary identical. The audit (the web-application skill
+dimensions over the 32c3ea7 collateral) found three findings: F-218a
+the pm-SKILL §7 Unit bullet's stale "139 suites" (a live-tense site
+disagreeing with its own heading — the pin-gap closed with a
+RED-first pin) · F-218b the head-surgery scripts' splice demoted the
+prior head WITH its project_state marker (the shipped line was
+marker-less only via an unrecorded manual strip — the script was not
+the record of the artifact; CURED with the line-bounded splice repair
+in both scripts + the replay teeth-proof: the new pin replays the
+script's arithmetic against git history and asserts the produced
+line == the shipped line byte-for-byte; mutation-proven RED) · F-218c
+the sweep census narration trued at all four sites (9 limiter'd
+routes: 6 auth + 2 public POSTs + upload).
+
+Stage Summary: lint 0/0 · tsc 0 · 141 suites / 2826 unit (+4 pins,
+the 141st suite) · build · smoke 14/14 · e2e 193/193 · the drift-gate
+battery · captures 72; the count ladder 2822 → 2826, suites 140 → 141,
+badge 3015 → 3019, every live-tense site re-anchored; the neo-crm
+SKILL head surgery v1.219.0 (the s216 head demoted marker-less by the
+repaired script itself) · the pm-SKILL v1.13.0; committed to main and
+pushed via the SSH wrapper.
+
 ## Task 216 — The Standing Rotation: The Pin-Containment Debt + The Stale-Narration Hygiene (2026-11-16)
 
 The owner's session_22.md archive (67a0c09) triggered the rotation. The

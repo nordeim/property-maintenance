@@ -22,8 +22,10 @@ interface Bucket {
 const buckets = new Map<string, Bucket>();
 
 // Session-164 (the digma S76-G port): the sweep WATERMARK — the earliest
-// live resetAt seen at the last sweep. Every auth route calls
-// sweepRateLimits() on every request (13+ call sites), so the pre-164
+// live resetAt seen at the last sweep. Every limiter'd route calls
+// sweepRateLimits() on every request (9 call sites: the six auth
+// routes + the two public POSTs + upload — the s217 F-218c census),
+// so the pre-164
 // always-full O(n) walk cost O(n^2) across rotated-key bursts. Calls
 // before the watermark crossing are O(1) no-ops; an expired key still
 // resets LAZILY at its own access (the rateLimit path); only the memory

@@ -25,7 +25,8 @@ export async function POST(req: Request) {
   // Session-215 (F-216b — the bucket sweep debt): the same cure as the
   // bookings twin — the public POSTs join the sweep idiom (the login
   // route's own placement: after the limiter, so denied requests sweep
-  // too; the auth family's 7 routes already do this).
+  // too; the auth family's 6 routes already do this — the s217 F-218c
+  // census).
   sweepRateLimits();
   if (!rl.allowed) {
     return ERR.RATE_LIMITED(rl.retryAfterSec);

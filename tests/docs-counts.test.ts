@@ -165,7 +165,7 @@ const E2E = 193; // session-200: +the Radix keyboard-contract check (192 -> 193)
 // Session-174: SUITES 137 -> 138 (the type-gate file — the
 // config source-pin battery: the toolchain layer joins the
 // doctrine-census family).
-const SUITES = 140; // session-215: + the session-215 audit suite (139 -> 140) // session-199: + the booking seam suite (138 -> 139)
+const SUITES = 141; // session-215: + the session-215 audit suite (139 -> 140) // session-199: + the booking seam suite (138 -> 139)
 // Session-115: 1948 → 1950 (+2 — the s115 Defaults-tab + insights-dialog
 // family walk's two freeze its: the Defaults label htmlFor/id association
 // superset pin [settings-defaults-parity.test.ts — ours the a11y superset
@@ -911,7 +911,7 @@ const SUITES = 140; // session-215: + the session-215 audit suite (139 -> 140) /
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2822; // session-215: +the F-216a/b/c pins (2816 -> 2822) // session-214: +the F-215/216/217/220 pins (2811 -> 2816) // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
+const UNIT = 2826; // session-215: +the F-216a/b/c pins (2816 -> 2822) // session-214: +the F-215/216/217/220 pins (2811 -> 2816) // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1359,7 +1359,21 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
     expect(readme).not.toMatch(/tests-2998%20checks/);
     // session-215 (D-215a): the retired 3009 badge joins the negatives
     expect(readme).not.toMatch(/tests-3009%20checks/);
-    expect(readme).toContain("tests-3015%20checks");
+    // Session-217 (F-218a family): the retired 2822/140/3015 site-forms
+    // join the negatives (the s192 doctrine: the OLD live form joins the
+    // negatives)
+    expect(readme).not.toMatch(/# 2822 Vitest unit checks/);
+    expect(readme).not.toMatch(/# 140 Vitest suites \(2822 checks\)/);
+    expect(readme).not.toMatch(/tests-3015%20checks/);
+    expect(readme).toContain("tests-3019%20checks");
+    expect(pad).not.toMatch(/# 140 Vitest suites — 2822 checks/);
+    expect(pad).not.toMatch(/— 2822\/2822/);
+    expect(pad).not.toMatch(/\| \*\*Total\*\* \| \*\*140\*\* \| \*\*2822 unit/);
+    expect(claude).not.toContain("Unit (Vitest, 2822 checks)");
+    expect(claude).not.toContain("(currently 2822)");
+    expect(claude).not.toContain("Vitest unit suites (2822 checks)");
+    expect(claude).not.toContain("`bun run test` (2822)");
+    expect(agents).not.toContain("|  Unit tests (2822 checks)");
     // Session-198 (D-198a1/a2): the retired 2813 site-forms join the
     // negatives (the s192 doctrine: the OLD live form joins the negatives)
     expect(readme).not.toMatch(/# 2813 Vitest unit checks/);
@@ -1416,13 +1430,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-216 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-217 layer`,
     );
     expect(
       skill,
-      "the head's SECOND layer must be the previous live-layer's — the F-108a1 face (re-anchored at s216: the s215 layer now beneath the s216 head, at its own ship counts 2822/193 — the count HELD round)",
+      "the head's SECOND layer must be the previous live-layer's — the F-108a1 face (re-anchored at s217: the s216 layer now beneath the s217 head, at its own ship counts 2822/193 — its count HELD round)",
     ).toContain(
-      "+ beneath it 2822 unit checks + 193 e2e checks green; the session-215 layer",
+      "+ beneath it 2822 unit checks + 193 e2e checks green; the session-216 layer",
     );
   });
 
@@ -1460,6 +1474,13 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the §7 heading must carry the live counts",
     ).toContain(`## 7. The Test Corpus (${UNIT} unit / ${E2E} e2e)`);
+    // Session-217 (F-218a): the §7 Unit bullet's suite count — the site
+    // that shipped "139 suites" through the whole s216 round (the pin
+    // gap: the family pinned the heading, never the bullet beneath it).
+    expect(
+      skill,
+      "the §7 Unit bullet must carry the live suite count (the F-218a pin-gap closure)",
+    ).toContain(`- **Unit (Vitest, ${SUITES} suites):**`);
   });
 
   // ------------------------------------------------------------------

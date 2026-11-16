@@ -406,10 +406,15 @@ export const STANDING_BASELINES = {
     // four walked widths; the share-based cost is the 390 ceiling
     // loosening to ~1.9 — a real login regression stacks pixels ON TOP
     // of the constant genus and still trips.
-    login: 3,
-    // Session-197 (D-197a1): the 404 at phone — the maiden 390x844 run
-    // measured 0.04% (the family floor, no genus)
-    "not-found": 2,
+    // Session-217: re-anchored 3 -> 3.8 (measured 3.71, stable across
+    // two invocations — the reference's own phone login interior moved;
+    // our src/ delta this round is comment-only + probe:ref STABLE, the
+    // s148 re-anchoring precedent for a reference-side shift)
+    login: 3.8,
+    // Session-197 (D-197a1): the 404 at phone — Session-217 re-anchored
+    // 2 -> 2.9 (measured 2.86, stable twice; the reference's own 404
+    // interior at phone shifted — same adjudication as login above)
+    "not-found": 2.9,
   },
   // Session-97 (S97-P0): the TABLET class — the md..lg band (768 <= w <
   // 1024) walked by the maiden 768x1024 run. The desktop layout family

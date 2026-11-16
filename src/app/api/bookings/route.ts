@@ -29,8 +29,8 @@ export async function POST(req: Request) {
   // 8 bookings / 15 min / IP — the public-form posture (tighter than
   // the auth family's 10: a booking is a heavier write).
   const rl = rateLimit(`bookings:${clientKey(req)}`, 8, 15 * 60_000);
-  // Session-215 (F-216b — the bucket sweep debt): the auth family's 7
-  // routes sweep on every request; these two public POSTs are the MOST
+  // Session-215 (F-216b — the bucket sweep debt): the auth family's 6
+  // routes sweep on every request (the s217 F-218c census); these two public POSTs are the MOST
   // stranger-exposed endpoints on a public marketing site (rotating-IP
   // bursts mint one never-reaccessed bucket per IP) — the sweep joins
   // the idiom (the login route's own placement: after the limiter, so
