@@ -60,7 +60,7 @@ export const SWEEP_STATE_FILE = path.join(REPO, "scripts", ".sweep-auth-state.js
 export const SWEEP_STATE_TTL_MS = 15 * 60 * 1000;
 
 const OUR_URL = process.env.OUR_URL ?? "http://localhost:3000";
-const REF_URL = process.env.REF_URL ?? "https://neo-crm-8ab2c17c.base44.app";
+const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 
 const log = (s: string) => console.log(`[sweep-state] ${s}`);
 

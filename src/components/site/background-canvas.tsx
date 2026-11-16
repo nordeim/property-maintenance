@@ -1140,7 +1140,34 @@ export function SiteBackgroundCanvas() {
       paint();
       blit();
     };
-    window.addEventListener("resize", render);
+    // Session-213 (F-214): the SEED-STATE paint — the bush strip's base
+    // (a standing scene element, visible even at growFrac 0) drawn once
+    // over the blitted static buffer. Under the reduced-motion gate the
+    // RAF loop never runs, and the strip painted ONLY inside the loop —
+    // the s212 F-212d gate therefore dropped it entirely, contradicting
+    // its own contract ("the sprites hold their first-frame state"; the
+    // first frame paints drawBushStrip(ctx, 0)). The birds are
+    // legitimately absent (t=0 starts them offscreen).
+    const drawSeedSprites = () => {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      if (window.innerWidth >= 1024) drawBushStrip(ctx, 0);
+    };
+    // the mid-session stop lands the frozen scene on the seed posture:
+    // a FRESH blit first (never an overlay — a mid-grown frame would
+    // silhouette through), then the seed sprites.
+    const landSeedState = () => {
+      blit();
+      drawSeedSprites();
+    };
+    // the resize re-render keeps the seed posture under the gate (the
+    // live matchMedia read — this registers before the motionQuery
+    // const below)
+    const onResize = () => {
+      render();
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) drawSeedSprites();
+    };
+    window.addEventListener("resize", onResize);
 
     // Session-209 (the ANIMATION PORT): the two sprites run as a RAF
     // loop over the static paint — each frame repaints the full scene
@@ -1208,15 +1235,19 @@ export function SiteBackgroundCanvas() {
       if (raf) {
         cancelAnimationFrame(raf);
         raf = 0;
+        // F-214: land on the seed posture, not the frozen mid-flight
+        // frame (the gate's documented first-frame contract)
+        landSeedState();
       }
     };
     const onMotionChange = () => (motionQuery.matches ? stopLoop() : startLoop());
     motionQuery.addEventListener("change", onMotionChange);
-    if (!motionQuery.matches) startLoop();
+    if (motionQuery.matches) drawSeedSprites();
+    else startLoop();
 
     return () => {
       motionQuery.removeEventListener("change", onMotionChange);
-      window.removeEventListener("resize", render);
+      window.removeEventListener("resize", onResize);
       stopLoop();
     };
   }, []);

@@ -54,33 +54,18 @@ describe("session-152: the interior-census tool (the dead-zone standing gate)", 
     expect(gate.indexOf("census:interior")).toBeGreaterThan(gate.indexOf("sweep:fullpage"));
   });
 
-  it("the 12-page census list: the shell surfaces + the login-walled marketing interiors + the login wall (the 156-c about/contact pair + the 157-c login leg — about/contact: the (marketing) group renders AppShell, main.overflow-auto interiors, byte-equal both apps; login: main on both apps, the 157-c probe byte-equal, GUEST and LOGGED-IN identical; the landing stays the PUBLIC leg below)", async () => {
+  it("the s213 Oasis-era re-scope: the interior leg RETIRED — INTERIOR_PAGES is empty by design (the 12 CRM/marketing interiors were the NEO-CRM lineage's byte-parity mission; the OASIS reference's app area is a different product iteration — the maiden decode: the phone-band slate-50 zero-data shells, the desktop product-iteration mainH deltas on 9/12, the login's 14 unexplained tag-vocabulary events; the Oasis parity mission is the PUBLIC site — the landing public leg is the census's standing gate; the retired surfaces stay covered by the sweep baselines + the e2e battery + the unit content pins)", async () => {
     const m = await import("../scripts/interior-census");
     const pages = m.INTERIOR_PAGES as ReadonlyArray<{ name: string; path: string }>;
-    expect(pages.map((p) => p.name)).toEqual([
-      "dashboard",
-      "accounts",
-      "contacts",
-      "leads",
-      "calendar",
-      "activities",
-      "reports",
-      "settings",
-      "profile",
-      "about",
-      "contact",
-      "login",
-    ]);
-    // lockstep with the sweep's PAGES: the same paths, so the census
-    // never drifts from the standing page map (the S68-P4 class)
-    const sweep = await import("../scripts/sweep");
-    for (const p of pages) {
-      const s = (sweep.PAGES as ReadonlyArray<{ name: string; path: string }>).find(
-        (x) => x.name === p.name,
-      );
-      expect(s).toBeDefined();
-      expect(s!.path).toBe(p.path);
-    }
+    expect(pages).toHaveLength(0);
+    // the combined list is the landing alone now
+    const all = m.CENSUS_ALL_PAGES as ReadonlyArray<{ name: string }>;
+    expect(all.map((p) => p.name)).toEqual(["landing"]);
+    // the retirement is DOCUMENTED in the tool (the adjudication
+    // comment — a future reader must find the decode inline)
+    const src = toolSrc();
+    expect(src).toMatch(/the Oasis-era re-scope[\s\S]{0,200}RETIRED/);
+    expect(src).toMatch(/no flag runs all 1/);
   });
 
   it("alignCensus: byte-equal twins pair — match / cls-only / text-only (the geometry-byte-equal doctrine)", async () => {
@@ -247,13 +232,14 @@ describe("session-152: the interior-census tool (the dead-zone standing gate)", 
     expect(() => m.parsePagesArg(["--pages", "dashboard,bogus"], m.INTERIOR_PAGES)).toThrow(
       /bogus/,
     );
-    // the happy path: the subset resolves in the INTERIOR_PAGES order
-    // (the deterministic-sequence doctrine — the capture loop shares
-    // one fixed sequence; wanted-order is not preserved, the s95 idiom)
-    const subset = m.parsePagesArg(["--pages", "leads,dashboard"], m.INTERIOR_PAGES) as Array<{
+    // the happy path after the s213 re-scope: the interior list is
+    // EMPTY, so the subset idiom resolves over the combined list (the
+    // landing alone); the interior names are unknown now too
+    expect(() => m.parsePagesArg(["--pages", "leads"], m.CENSUS_ALL_PAGES)).toThrow(/landing/);
+    const subset = m.parsePagesArg(["--pages", "landing"], m.CENSUS_ALL_PAGES) as Array<{
       name: string;
     }>;
-    expect(subset.map((p) => p.name)).toEqual(["dashboard", "leads"]);
+    expect(subset.map((p) => p.name)).toEqual(["landing"]);
   });
 
   it("alignCensus: the PIECEWISE cascade re-anchor (the settings shape — each card boundary shifts the displacement; the decoder re-anchors at the direct top-delta, never loses sync)", async () => {
@@ -875,42 +861,12 @@ describe("session-155: the census LANDING public leg (the last blind surface —
     const m = await import("../scripts/interior-census");
     const pub = m.PUBLIC_PAGES as ReadonlyArray<{ name: string; path: string }>;
     expect(pub.map((p) => [p.name, p.path])).toEqual([["landing", "/"]]);
-    // the 12 interior pages (the 156-c about/contact pair + the 157-c
-    // login leg — the logged-in protocol byte-identical)
-    expect(
-      (m.INTERIOR_PAGES as ReadonlyArray<{ name: string }>).map((p) => p.name),
-    ).toEqual([
-      "dashboard",
-      "accounts",
-      "contacts",
-      "leads",
-      "calendar",
-      "activities",
-      "reports",
-      "settings",
-      "profile",
-      "about",
-      "contact",
-      "login",
-    ]);
-    // the combined filter list: all 13 names, the interior pages first
+    // the s213 Oasis-era re-scope: the interior list is EMPTY (the
+    // retired legs), so the combined filter list is the landing alone
+    expect(m.INTERIOR_PAGES).toHaveLength(0);
     expect(
       (m.CENSUS_ALL_PAGES as ReadonlyArray<{ name: string }>).map((p) => p.name),
-    ).toEqual([
-      "dashboard",
-      "accounts",
-      "contacts",
-      "leads",
-      "calendar",
-      "activities",
-      "reports",
-      "settings",
-      "profile",
-      "about",
-      "contact",
-      "login",
-      "landing",
-    ]);
+    ).toEqual(["landing"]);
     // the landing path lockstep with the sweep's own landing entry
     const sweep = await import("../scripts/sweep");
     const sLanding = (sweep.PAGES as ReadonlyArray<{ name: string; path: string }>).find(
@@ -923,10 +879,15 @@ describe("session-155: the census LANDING public leg (the last blind surface —
     expect(m.isPublicPage({ name: "dashboard" })).toBe(false);
   });
 
-  it("the anchor seam (the walk45 probe decode): the public-leg collector anchors at div.min-h-screen.bg-white (ours id=top at body level; the reference's #root first child — querySelector's first document-order match on BOTH apps) so the guest pill (the body-level div#base44-edit-badge sibling, position:fixed) and the shadcn Toaster portal sit OUTSIDE the anchor and never enter the census; the height seam is documentElement.scrollHeight (the landing scrolls the DOCUMENT — no main.overflow-auto); the public floor is the VIEWPORT column (the s95 discriminator travels with the frame)", () => {
+  it("the anchor seam (the walk45 probe decode, re-anchored s213): the public-leg collector anchors at main.relative.z-10 (BOTH apps' site-chrome main — the probe-213 decode: ours the (site) layout's main at body level, the reference's a #root descendant; the landing scrollHeight byte-equal 3739 on both apps) so the guest pill (the body-level div#base44-edit-badge sibling, position:fixed) and the shadcn Toaster portal sit OUTSIDE the anchor and never enter the census; the height seam is documentElement.scrollHeight (the landing scrolls the DOCUMENT — no main.overflow-auto); the public floor is the VIEWPORT column (the s95 discriminator travels with the frame)", () => {
     const src = toolSrc();
-    // the anchor selector (both apps' landing root)
-    expect(src).toMatch(/div\.min-h-screen\.bg-white/);
+    // the anchor selector (both apps' site-chrome main — the s213
+    // re-anchor: the s155-c landing-root div was the NEO-CRM landing's
+    // anatomy; the Oasis landing carries no such element, and the
+    // maiden census crashed at the anchor until this flip)
+    expect(src).toMatch(/main\.relative\.z-10/);
+    // the retired neo-crm-landing anchor never returns
+    expect(src).not.toMatch(/div\.min-h-screen\.bg-white/);
     // the pill's exclusion is DOCUMENTED in the tool (never censused,
     // never mirrored — the genus stays in the fullpage STANDING_EXPLAINED)
     expect(src).toMatch(/base44-edit-badge/);
@@ -939,26 +900,19 @@ describe("session-155: the census LANDING public leg (the last blind surface —
     expect(src).toMatch(/attributeGenera\(events,\s*p\.name,\s*axis\.width\)/);
   });
 
-  it("the --pages filter composes across BOTH legs (the s95 idiom, the combined list): no flag runs all 13 (the 12 interior + the landing); '--pages landing' selects ONLY the public leg (the mutation-proof idiom); '--pages about,contact' selects the 156-c marketing legs; '--pages login' selects the 157-c login leg (the logged-in phase); mixed selections compose; unknown names fail-fast listing the 13 valid names", async () => {
+  it("the --pages filter after the s213 re-scope: no flag runs all 1 (the landing public leg alone); '--pages landing' selects it; the retired interior names (login/about/contact/dashboard) now FAIL-FAST as unknown — the retirement is enforced by the filter, not just the list", async () => {
     const m = await import("../scripts/interior-census");
     const all = m.parsePagesArg([], m.CENSUS_ALL_PAGES) as ReadonlyArray<{ name: string }>;
-    expect(all).toHaveLength(13);
-    const loginLeg = m.parsePagesArg(["--pages", "login"], m.CENSUS_ALL_PAGES) as ReadonlyArray<{
-      name: string;
-    }>;
-    expect(loginLeg.map((p) => p.name)).toEqual(["login"]);
+    expect(all).toHaveLength(1);
     const landing = m.parsePagesArg(["--pages", "landing"], m.CENSUS_ALL_PAGES) as ReadonlyArray<{
       name: string;
     }>;
     expect(landing.map((p) => p.name)).toEqual(["landing"]);
-    const legs = m.parsePagesArg(["--pages", "contact,about"], m.CENSUS_ALL_PAGES) as ReadonlyArray<{
-      name: string;
-    }>;
-    expect(legs.map((p) => p.name)).toEqual(["about", "contact"]);
-    const mixed = m.parsePagesArg(["--pages", "dashboard,landing"], m.CENSUS_ALL_PAGES) as ReadonlyArray<{
-      name: string;
-    }>;
-    expect(mixed.map((p) => p.name)).toEqual(["dashboard", "landing"]);
+    // the retired names fail-fast (unknown) — the interior legs are
+    // gone from the combined list entirely
+    for (const retired of ["login", "about", "contact", "dashboard"]) {
+      expect(() => m.parsePagesArg(["--pages", retired], m.CENSUS_ALL_PAGES)).toThrow(/landing/);
+    }
     expect(() => m.parsePagesArg(["--pages", "nope"], m.CENSUS_ALL_PAGES)).toThrow(/landing/);
   });
 
@@ -1088,32 +1042,18 @@ describe("session-156: the census ABOUT/CONTACT legs (the last two blind interio
   it("the legs contract: about + contact join INTERIOR_PAGES as the login-walled main-interior class (the (marketing) group renders AppShell — main.overflow-auto, the s150 walk + the 156-c probe agree: /about mainH 1731 phone · 1047 desktop · /contact 897 · 953, byte-equal both apps, els 46/46 + 33/33); the paths lockstep with the sweep's own entries; the tool header's stale 'no main.overflow-auto interior' claim retired (the LANDING alone is the true no-main surface — login joined the interiors at s157)", async () => {
     const m = await import("../scripts/interior-census");
     const pages = m.INTERIOR_PAGES as ReadonlyArray<{ name: string; path: string }>;
-    // the two legs land after profile (the interior order; login lands
-    // after them — the 157-c leg, re-anchored here)
-    expect(pages.slice(-3).map((p) => [p.name, p.path])).toEqual([
-      ["about", "/about"],
-      ["contact", "/contact"],
-      ["login", "/login"],
-    ]);
-    // the sweep lockstep (both entries are standing sweep PAGES — the
-    // s144 pair, now censused too)
+    // the s213 re-scope: the interior list is EMPTY — about/contact
+    // (and every other interior leg) RETIRED from the census
+    expect(pages).toHaveLength(0);
+    // the sweep lockstep is the retirement's safety net: both entries
+    // (and the login) are standing sweep PAGES — still swept
     const sweep = await import("../scripts/sweep");
-    for (const name of ["about", "contact"] as const) {
-      const p = pages.find((x) => x.name === name)!;
+    for (const name of ["about", "contact", "login"] as const) {
       const s = (sweep.PAGES as ReadonlyArray<{ name: string; path: string }>).find(
         (x) => x.name === name,
       );
       expect(s).toBeDefined();
-      expect(s!.path).toBe(p.path);
     }
-    // the header doctrine re-anchored: the 12 shell-interior pages (the
-    // stale "marketing surfaces (landing/about/contact) … no
-    // main.overflow-auto interior" claim RETIRED at s156; the s156
-    // header's own "and login have no main interior" claim RETIRED at
-    // s157 — login IS a main interior)
-    const src = toolSrc();
-    expect(src).toMatch(/12 shell-interior pages/);
-    expect(src).not.toMatch(/landing\/about\/contact/);
   });
 
   it("the scope keys on the POSITIVE DATA class (the 157-c hazard face — L-156c2 taken to the invariant): live-data is a WORKSPACE-SURFACE genus — text-only pairs absorb ONLY on the 9 CENSUS_DATA_PAGES (the reference's intraday workspace data, the standing behavior); every other surface — landing, about, contact, the LOGIN wall, and any future surface — stays RED BY DEFAULT (a changed 'Sign in' headline on /login or a headline on /about is REAL content drift; the s156 NEGATIVE keying — absorb unless on the static list — would have reopened the walk45 hazard on the login leg exactly as !isPublicPage did on about/contact: the DEFAULT is the hazard's next face, so the scope flips to absorb-only-on-members)", async () => {
@@ -1242,12 +1182,14 @@ describe("session-156: the census ABOUT/CONTACT legs (the last two blind interio
     expect(settings.ok).toBe(true);
   });
 
-  it("the about/contact mutation-proof doctrine is part of the tool's documented contract (the planted ghost in about/page.tsx → '--pages about --fail-on-drift' → RED → the revert → GREEN — the F-151c1 class now fails the gate on all TWELVE censused surfaces; the header's --pages examples name the new legs)", () => {
+  it("the about/contact mutation-proof doctrine after the s213 re-scope: the header's --pages example names the retirement (the landing alone); the retired legs' example forms are gone; the run-loop comment carries the one-page census claim", () => {
     const src = toolSrc();
-    // the header's --pages example list carries the new legs
-    expect(src).toMatch(/--pages leads,settings,about/);
-    // the run-loop comment: the combined list is the 13-name census
-    expect(src).toMatch(/no flag runs all 13/);
+    // the header's --pages example: the landing alone (the retired
+    // legs' examples are gone)
+    expect(src).toMatch(/--pages landing/);
+    expect(src).not.toMatch(/--pages leads,settings,about/);
+    // the run-loop comment: the combined list is the 1-name census
+    expect(src).toMatch(/no flag runs all 1/);
   });
 });
 
@@ -1255,27 +1197,27 @@ describe("session-157: the census LOGIN-WALL leg (the last never-censused render
   it("the leg contract: login joins INTERIOR_PAGES as the STATIC-AUTH main-interior class (the 157-c probe: both apps render /login inside main — byte-equal classes 'min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4', mainH 844 phone · 900 desktop byte-equal, els 51/51, GUEST and LOGGED-IN identical — the S23-P2 card-to-authed-visitors evidence re-validated); the path locksteps with the sweep's own login entry (the S96 capture); the censusPage collector works AS-IS (main-anchored)", async () => {
     const m = await import("../scripts/interior-census");
     const pages = m.INTERIOR_PAGES as ReadonlyArray<{ name: string; path: string }>;
-    const leg = pages.find((p) => p.name === "login")!;
-    expect(leg.path).toBe("/login");
-    // the sweep lockstep (login is a standing sweep PAGES path since S96)
+    // the s213 re-scope: login RETIRED from the census (the maiden
+    // decode: mainH Δ0 but 14 unexplained tag-vocabulary events — the
+    // base44 login's internals are a different product iteration)
+    expect(pages.find((p) => p.name === "login")).toBeUndefined();
+    // the sweep lockstep is the retirement's safety net (login is a
+    // standing sweep PAGES path since S96)
     const sweep = await import("../scripts/sweep");
     const s = (sweep.PAGES as ReadonlyArray<{ name: string; path: string }>).find(
       (x) => x.name === "login",
     );
     expect(s).toBeDefined();
-    expect(s!.path).toBe(leg.path);
-    // the login leg is NOT public (the logged-in protocol — the census
-    // login phase already runs; the probe proved the authed card
-    // byte-equal to the guest card)
-    expect(m.isPublicPage({ name: "login" })).toBe(false);
+    expect(s!.path).toBe("/login");
   });
 
   it("the login mutation-proof doctrine is part of the tool's documented contract: the header names '--pages login' (the 157-c mutation-proof idiom — the logged-in phase, no guest contexts); the tool header documents the login leg's protocol (the static-auth surface — no workspace data, the text-only RED default)", () => {
     const src = toolSrc();
-    // the header's --pages docs name the login leg
-    expect(src).toMatch(/--pages login/);
-    // the header names the static-auth class (the scope's newest member)
-    expect(src).toMatch(/login wall/);
+    // the header's --pages docs name the retirement (the s213 re-scope)
+    expect(src).toMatch(/--pages landing/);
+    expect(src).toMatch(/RETIRED the/);
+    // the retired leg's protocol docs are gone from the header
+    expect(src).not.toMatch(/--pages login/);
   });
 
   it("the LOGIN-LOGO-MARK genus (the walk47 decode): our CSS brand mark — the ours-extra SPAN with the h-10/sm:h-12 rounded-full bg-sidebar token family — is the standing face at every axis (the reference's ring loads the WORKSPACE OWNER'S UPLOADED LOGO instead: a Base44-prod storage img, the owner's own 'Screenshot2026-02-05' upload — LIVE BRANDING DATA, the Base44-pill genus class, never mirrored; the ring boxes pair byte-equal as cls-only token-mirrors and the ref img absorbs as the ring's wrapper-twin; only OUR mark is extra); the genus absorbs ONLY the exact standing signature — a different tag, a restyled token set, or the same shape on another page stays RED (the mutation-proof guard)", async () => {

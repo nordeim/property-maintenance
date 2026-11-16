@@ -1,3 +1,24 @@
+## Task 213 — The Standing Rotation: The Reference-Contract Re-Anchor + The Reduced-Motion Bush + The Stable-4 Cures (2026-11-16)
+
+The owner's session_16.md archive (57e2acd) triggered the rotation. The
+baseline GREEN at the s212 ship state; probe:ref STABLE vs the Oasis
+reference (no parity event); the audit found the F-213a-i
+stale-reference genus (five drift tools + gate:full wired to the
+neo-crm reference) + the F-214 reduced-motion bush regression; the
+drift battery re-ran post-s212 (four bands CLEAN; fullpage/census RED
+as predicted).
+
+Stage Summary: lint 0/0 · tsc 0 · 139 suites / 2811 unit · build ·
+smoke 14/14 · the four band sweeps CLEAN · fullpage CLEAN (the
+re-derived 6.5/9.0 floors) · census CLEAN (the re-scoped landing public
+leg: docH Δ0 · unexplained 0 at every axis) · the mobile-nav walk
+byte-MATCH at 390 (no Tailwind v4 bug) · the stable-4 product cures
+(the estimate CTA + the yard header, decoded from the census residue)
+· the F-214 seed bush live-verified under reduced motion · the
+reference-contract flip (five tools + the D-204a1 block born) · the
+census interiors retired with the maiden decode · the docs identity
+re-anchored; committed to main and pushed via the SSH wrapper.
+
 Task ID: 212 (the standing audit remediation: the mobile FAB + the booking card foot + the canvas posture; VERIFIED green)
 Agent: main (Z.ai)
 Task: The operator's standing audit rotation — full corpus re-audit (the skills/web-application dimensions), a live-reference comparison pass at 390/1440, and a TDD remediation round. THE FINDINGS: F-212a the reference's floating call FAB was MISSING from our clone entirely (live-verified on all seven public pages: `lg:hidden fixed bottom-6 right-6 z-40`, the 64px green circle `bg-[#2E7D5F] border-4 border-white rounded-full w-16 h-16 shadow-2xl`, the lucide-phone glyph, the tel: anchor — ours now renders it byte-identical with two documented supersets: valid anchor-as-button nesting + the icon-only aria-label); F-212b the F-211e ROOT CAUSE — the booking step cards pinned p-8 at every width while the reference computes 24px at 390 (its own p-6 md:p-8 form), the +16px above the footer (footerTop 1161 vs 1145) CURED to 1145 exact / docHeight 2074 vs 2070 at the floor; F-212c the mobile brown tip (x384-390, y314-335, rgb(62,48,23) — live pixel-probed) painted in the w<1024 branch the s211 comment documented but never rendered; F-212d the prefers-reduced-motion gate for the birds/bush RAF (the CSS reduce block never covered the canvas loop); F-212e the canvas posture — the static scene now renders ONCE per resize into an offscreen canvas, the RAF frame blits it + draws the two sprites (the s209 full-repaint-per-frame + per-frame canvas.width reset retired), the bush strip explicitly w>=1024-gated; R-06 the S72-P2 settings-debounce e2e flake CURED — the value-wait could never discriminate the PENDING editor (its fallback IS "AED") from the RESOLVED one, so the DefaultsEditor root now carries data-epoch and the test gates on the resolved marker (reproduced 2/2 red before, green after); R-07 the identity/config hygiene (package.json neo-crm -> property-maintenance + the lockfile refresh, the eslint ignores pruned of six dead scaffold dirs, .env.example + the E2E_PORT test-only row); R-08 the docs re-anchor (the four live-tense neo-crm.git remotes -> property-maintenance.git in README/AGENTS/CLAUDE/PAD — an agent following any of them pushed to the WRONG repo; the s211 plan's F-211b disposition corrected to the documented floor). THE AUDIT also VERIFIED-CLEAN by live evidence: the booking "today unbookable" claim (react-day-picker v10 compares at day granularity — today enabled + past disabled on BOTH sites), the ABN placeholder (the reference ships the identical string), the footer contact-column gaps (computed parity), and the mobile navigation (byte-identical geometry {x:70,y:0,w:320,h:844} + Esc/focus-return/unmount + the v4 animate-in classes firing — the operator's parity focus, held).

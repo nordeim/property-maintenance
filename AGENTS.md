@@ -23,7 +23,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2805 checks)      | `bun run test`                         |
+|  Unit tests (2811 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
 |  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
@@ -39,7 +39,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2805) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2811) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
 `bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
@@ -13981,7 +13981,7 @@ THE ROUND'S MATERIAL — THE .ENV.EXAMPLE PARITY-TOOLS CONTRACT (the
 F-167e genus on the TOOLING axis): `.env.example` documented the six
 app knobs (the F-167e six-knob contract, pinned at four carriers) but
 NOT the four env vars the repo's own drift-gate tooling consumes with
-baked-in defaults — `scripts/sweep.ts:741-744` (`OUR_URL` · `REF_URL`
+baked-in defaults — `scripts/sweep.ts:785-788` (the s213 re-anchor; the parity-tools contract now lives in THIS fork too — the `.env.example` block + the facts-census pins) (`OUR_URL` · `REF_URL`
 · `REF_EMAIL` · `REF_PASSWORD`; the drift-probe + interior-census
 family riding the same `REF_*` pair) — so an operator running
 `gate:full` against a different port or deployment had no knob.

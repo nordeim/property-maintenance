@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2805-check Vitest / 193-check Playwright corpus and a single-command
+  2811-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.9.0
-last_updated: 2026-11-16
+version: 1.10.0
+last_updated: 2026-11-17
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.9.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.10.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (139 suites / 2805 checks) | |
+| Unit | Vitest 5 (139 suites / 2811 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,7 +249,7 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2805 unit / 193 e2e)
+## 7. The Test Corpus (2811 unit / 193 e2e)
 
 - **Unit (Vitest, 139 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
@@ -277,6 +277,20 @@ GET  /api/quote-requests  requireSession
   smoke ladder (14 checks incl. the artifact hygiene).
 - **The e2e server needs the CURRENT build** — a stale `.next` is the
   classic false alarm (the s199 lesson, live again at s200).
+
+- **Session-213's layers:** the reduced-motion SEED-STATE paint (F-214 —
+  the gate paints `drawBushStrip(ctx, 0)` once under the preference; the
+  s212 gate had dropped the bush entirely); the reference-contract flip
+  (all five live drift tools default to the Oasis reference — the
+  F-213a/b/d/e/f genus; the D-204a1 parity-tools block born in
+  `.env.example`); the census re-scope (the interior legs RETIRED — the
+  reference's app area is a different product iteration; the landing
+  public leg is the standing gate with the scroll-reveal settle pass +
+  the infinite-animation skip + the |docH| ≤ 4 phone floor); the
+  fullpage re-derivation (6.5/9.0 floors — the reference's scroll-reveal
+  initial state is the head genus); and the stable-4 cures (the estimate
+  CTA "Book with this estimate" + the calendar glyph + `px-8`, the
+  yard-size header the reference's bare flex row).
 
 ## 8. The Gate (the definition of done)
 

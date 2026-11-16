@@ -36,7 +36,7 @@
 
 import { chromium } from "@playwright/test";
 
-const REF = "https://neo-crm-8ab2c17c.base44.app";
+const REF = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 const OURS = "http://localhost:3000";
 
 /** The standing classes — the full-page axis at the md-grid layout and
@@ -46,20 +46,27 @@ export const FULLPAGE_CLASSES = [
   { width: 390, height: 844, label: "phone" },
 ] as const;
 
-/** The landing full-page diff floor post-s149: the GUEST platform pill
- *  (desktop ~0.09 · phone ~0.31 — the pill's share of the taller phone
- *  frame) + the raster floor. Anchored from the walk39 post-fix maiden
- *  run; a real below-the-fold drift (this round's pre-fix values:
- *  0.901 desktop · 2.455 phone) clears the margin easily. */
+/** The landing full-page diff floors post-s213 (the OASIS-reference
+ *  re-derivation — the s149 values above were the NEO-CRM landing's):
+ *  the maiden measured 5.83 desktop · 8.34 phone against the OASIS
+ *  reference's own landing, with the heights byte-equal (3891/3891
+ *  desktop · 6481/6485 phone). The head genus: the reference's
+ *  SCROLL-REVEAL initial state — its below-fold marketing elements
+ *  start at translateY(20px) + opacity 0 (an IntersectionObserver lazy
+ *  render; live-decoded: transform matrix(1,0,0,1,0,20)); the captures
+ *  see the un-revealed state, a scrolled visitor the revealed one. Plus
+ *  the canvas animation raster (the birds/bush at different frames) +
+ *  the guest platform pill + the raster floor. The floors + ~0.7
+ *  headroom. */
 export const STANDING_FULLPAGE_BASELINES: Record<string, number> = {
-  desktop: 0.14,
-  phone: 0.49,
+  desktop: 6.5,
+  phone: 9.0,
 };
 
 /** The standing genera the baselines absorb (never for mirroring). */
 export const STANDING_EXPLAINED: Record<string, string> = {
-  desktop: "the guest 'Edit with Base 44' platform pill (~0.09, bottom-right fixed chrome — logged-in captures never see it) + the raster floor",
-  phone: "the guest 'Edit with Base 44' platform pill (~0.31 — the pill's share of the taller phone frame) + the raster floor",
+  desktop: "the reference's scroll-reveal initial state (translateY 20px + opacity 0 below-fold — the s213 live decode) + the canvas animation raster + the guest 'Edit with Base 44' platform pill + the raster floor",
+  phone: "the reference's scroll-reveal initial state + the canvas animation raster + the guest 'Edit with Base 44' platform pill (~its share of the taller phone frame) + the raster floor",
 };
 
 /** The sweep's standing drift margin (pct over the baseline). */

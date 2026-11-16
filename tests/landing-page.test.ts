@@ -491,6 +491,55 @@ describe("session-212: the standing audit remediation pins", () => {
     expect(src).toContain("drawImage");
     expect(src).not.toContain("paint();\n      const canvasEl");
   });
+
+  it("F-214 (the canvas posture, s213): the reduced-motion gate paints the SEED-STATE bush — the gate's own first-frame contract", () => {
+    // The s212 F-212d gate stopped the RAF loop under reduced motion,
+    // but the bush strip paints ONLY inside the loop — so the gate
+    // dropped a STANDING scene element entirely (the base x1323-1410
+    // renders even at growFrac 0). The gate's own contract comment says
+    // the sprites "hold their first-frame state"; the first frame paints
+    // drawBushStrip(ctx, 0). The cure: the seed-state paint at mount +
+    // on every resize re-render under the gate + the mid-session stop
+    // lands the frozen scene on the same seed posture (blit + seed,
+    // never an overlay on a mid-grown frame).
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain("const drawSeedSprites = () => {");
+    expect(src).toContain("if (window.innerWidth >= 1024) drawBushStrip(ctx, 0);");
+    expect(src).toContain("if (motionQuery.matches) drawSeedSprites();");
+    expect(src).toContain("landSeedState();");
+    // the resize re-render keeps the seed posture under the gate (the
+    // live matchMedia read — the listener registers before the const)
+    expect(src).toContain(
+      'if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) drawSeedSprites();',
+    );
+  });
+
+  it("the s213 stable-4 cures: the estimate band's CTA + the yard-size header match the reference's own constructions", () => {
+    // THE DECODE (the census's 4 residual events, stable across every
+    // axis): the estimate band's CTA read "Book a Service" (w136,
+    // iconless) where the reference ships "Book with this estimate"
+    // (w261) with the calendar-check glyph; and the yard-size header
+    // was a label-wrapped block where the reference ships a bare flex
+    // row (div > p + span). Both cured to the reference's constructions.
+    const home = read("src/components/site/home-page.tsx");
+    // the estimate CTA: the text + the glyph (the hero's own idiom)
+    expect(home).toContain("Book with this estimate");
+    expect(
+      (home.match(/Book a Service/g) ?? []).length,
+      "the hero keeps the reference's own Book a Service; the estimate band's copy is the estimate CTA",
+    ).toBe(1);
+    const card = read("src/components/site/estimate-card.tsx");
+    // the yard-size header: the reference's bare flex row
+    expect(card).toContain('<div className="flex justify-between items-baseline mb-3">');
+    expect(card).toContain(
+      '<p className="text-sm font-medium text-[#1F2933]">How big is your yard?</p>',
+    );
+    // the label-wrapped construction never returns
+    expect(card).not.toContain('<label className="block">');
+    // the thumb keeps its accessible name (the a11y superset survives
+    // the label retirement)
+    expect(card).toContain('aria-label="Yard size in square metres"');
+  });
 });
 
 describe("session-199: the Oasis surfaces' content wiring", () => {

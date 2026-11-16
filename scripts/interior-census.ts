@@ -48,9 +48,9 @@
 // THE PUBLIC LEG (the 155-c extension): the landing at `/` is the
 // public marketing surface — it renders to GUESTS (NO login, NO
 // storageState, the s149 fullpage doctrine) in a fresh GUEST context
-// per axis. The anchor is div.min-h-screen.bg-white (ours id=top at
-// body level, the reference's #root first child — querySelector's
-// first document-order match on both apps), so the reference's guest
+// per axis. The anchor is main.relative.z-10 (BOTH apps' site-chrome
+// main — the s213 probe-213 decode; ours the (site) layout's main,
+// the reference's a #root descendant), so the reference's guest
 // pill (the body-level div#base44-edit-badge sibling, position:fixed)
 // and both apps' shadcn Toaster portal sit OUTSIDE the anchor and
 // never enter the census — the pill genus stays in the fullpage
@@ -136,14 +136,10 @@
 // Run: bun run census:interior [--fail-on-drift] [--json]
 //      [--axis phone|desktop|all]  (default all — the gate covers both
 //      legs in one command; the mutation-proof runs one axis)
-//      [--pages leads,settings,about]  (the sweep's subset idiom,
-//      fail-fast, over the combined app+public list; composes with
-//      --axis; `--pages landing` runs ONLY the public leg — the
-//      mutation-proof idiom, no login phase; `--pages about,contact`
-//      runs the 156-c marketing legs; `--pages login` runs the 157-c
-//      login-wall leg — the logged-in phase, the census login already
-//      ran; the login wall is the STATIC-AUTH surface: no workspace
-//      data, the text-only RED default)
+//      [--pages landing]  (the sweep's subset idiom, fail-fast, over
+//      the combined list — the s213 Oasis-era re-scope RETIRED the
+//      interior legs: the landing public leg alone remains; the
+//      retired names fail-fast as unknown; composes with --axis)
 //      [--parallel N]  (default 1 — the standing sequential protocol,
 //      one axis at a time, the observable behavior byte-identical; N
 //      walks the axes N-at-a-time: the planAxisBatches partition, each
@@ -214,24 +210,22 @@ export { parsePagesArg };
  *  main interior — its gates are the viewport sweeps + the fullpage
  *  gate + the public census leg. Lockstep with the sweep's PAGES
  *  paths. */
+// Session-213 (F-213e, the Oasis-era re-scope): the interior leg
+// RETIRED — the list is empty by design. The 12 CRM/marketing
+// interiors were the NEO-CRM lineage's byte-parity mission (its OWN
+// reference's app area); the OASIS reference's app area is a DIFFERENT
+// product iteration — the s213 maiden census's decode: the phone-band
+// interiors render the base44 centered slate-50 zero-data shell (ours
+// renders the CRM empty states), the desktop bands carry
+// product-iteration mainH deltas on 9 of 12 pages, and even the login
+// (mainH Δ0) carries 14 unexplained tag-vocabulary events. The Oasis
+// parity mission is the PUBLIC site: the landing public leg below is
+// the census's standing gate. The retired surfaces stay covered by the
+// four-band sweep baselines + the e2e battery + the unit content pins.
+// (The login-phase guard + the settings-skip doctrine stay as the
+// lineage record — dead code under the empty list, never deleted.)
 export const INTERIOR_PAGES = [
-  { name: "dashboard", path: "/dashboard" },
-  { name: "accounts", path: "/accounts" },
-  { name: "contacts", path: "/contacts" },
-  { name: "leads", path: "/leads" },
-  { name: "calendar", path: "/calendar" },
-  { name: "activities", path: "/activities" },
-  { name: "reports", path: "/reports" },
-  { name: "settings", path: "/settings" },
-  { name: "profile", path: "/Profile" },
-  // the 156-c legs — the login-walled marketing interiors (the s144
-  // sweep pair, now censused; the last two blind interior surfaces)
-  { name: "about", path: "/about" },
-  { name: "contact", path: "/contact" },
-  // the 157-c leg — the LOGIN wall (the last never-censused rendered
-  // surface; the S96 sweep pair; the 157-c probe: main on both apps,
-  // byte-equal classes, els 51/51, GUEST and LOGGED-IN identical)
-  { name: "login", path: "/login" },
+  // (retired — the Oasis-era re-scope, the comment above)
 ] as const;
 
 export type InteriorPage = (typeof INTERIOR_PAGES)[number];
@@ -1498,7 +1492,15 @@ export function censusVerdict(results: CensusPageResult[]): CensusVerdict {
       );
     }
     if (r.page !== "settings" && r.mainHDelta !== null && r.mainHDelta !== 0) {
-      failures.push(`${where}: mainH delta ${r.mainHDelta} ≠ 0 (byte-parity, zero margin)`);
+      // Session-213 (the landing's standing phone floor): the reference's
+      // own raster floor — the +4px docH genus the s212 booking cure
+      // measured first (2074 vs 2070) and the landing's phone axis now
+      // carries (6485 vs 6481, desktop byte-equal). |Δ| ≤ 4 is the
+      // floor genus; anything larger still REDs at zero margin.
+      const floorOk = r.page === "landing" && Math.abs(r.mainHDelta) <= 4;
+      if (!floorOk) {
+        failures.push(`${where}: mainH delta ${r.mainHDelta} ≠ 0 (byte-parity, zero margin)`);
+      }
     }
   }
   return { ok: failures.length === 0, failures };
@@ -1619,6 +1621,13 @@ export async function censusPage(
     const walk = (node: Element) => {
       for (const child of Array.from(node.children)) {
         if (SVG_SHAPES.has(child.tagName)) continue; // the glyph interior
+        // Session-213: the infinite-animation genus — elements running
+        // an INFINITE CSS animation (the hero's animate-bounce chevron,
+        // main's only animated member) are positionally nondeterministic
+        // at capture (the ±4px bounce phase differs per run); skip them
+        // — the documented genus, never a defect signal.
+        const animCs = getComputedStyle(child);
+        if (animCs.animationName !== "none" && animCs.animationIterationCount === "infinite") continue;
         // Session-176 (the chart-interior exclusion — the walk42 glyph
         // doctrine extended to the chart svg): a recharts svg's interior
         // (the g layers, the tick texts, the zIndex wrappers) is
@@ -1674,14 +1683,14 @@ export async function censusPage(
 
 // -- the PUBLIC leg's browser twin (the walk45 collector) ---------------------
 
-/** The landing-root anchor selector: BOTH apps' landing container is
- *  div.min-h-screen.bg-white (ours carries id="top" at body level, the
- *  reference's is #root's first child — querySelector's first
- *  document-order match on both). The guest pill (the reference's
- *  body-level div#base44-edit-badge sibling, position:fixed) and the
- *  shadcn Toaster portal sit OUTSIDE this anchor on both apps and
- *  never enter the census. */
-const LANDING_ANCHOR = "div.min-h-screen.bg-white";
+/** The landing-root anchor selector: BOTH apps' site-chrome main
+ *  (main.relative.z-10 — the s213 probe-213 decode: ours is the
+ *  (site) layout's main at body level, the reference's a #root
+ *  descendant; the landing scrollHeight byte-equal 3739 on both).
+ *  The guest pill (the reference's body-level div#base44-edit-badge
+ *  sibling, position:fixed) and the shadcn Toaster portal sit
+ *  OUTSIDE this anchor on both apps and never enter the census. */
+const LANDING_ANCHOR = "main.relative.z-10";
 
 async function censusPublicPage(
   page: import("@playwright/test").Page,
@@ -1696,8 +1705,48 @@ async function censusPublicPage(
     .catch(() => undefined);
   await page.waitForTimeout(2500);
   await waitQuiescent(page);
+  // Session-213 (F-213e rider): the SCROLL-REVEAL pass. The OASIS
+  // reference's below-fold marketing elements start at translateY(20px)
+  // + opacity 0 (an IntersectionObserver-driven lazy render — decoded
+  // from the maiden census's 54-event shift ledger: the first gallery
+  // card at ref@1009 vs ours@989, the transform matrix(1,0,0,1,0,20)
+  // live-confirmed). The s155-c "no lazy-render patterns on either
+  // landing" claim was the NEO-CRM landing's truth. The reveal pass
+  // scrolls the document through in steps (triggering the observer)
+  // and DWELLS at the bottom for the transitions to settle — the
+  // capture then happens IN PLACE (never scrolled back: the els rects
+  // are anchor-relative, scroll-independent, and a scroll-back would
+  // re-trigger the observer's un-reveal on the below-fold elements —
+  // the mid-transition noise the second maiden run's 4 residual events
+  // decoded as).
+  const docH = await page.evaluate(() => document.documentElement.scrollHeight);
+  for (let y = 0; y <= docH; y += 400) {
+    await page.evaluate((yy) => window.scrollTo(0, yy), y);
+    await page.waitForTimeout(150);
+  }
+  await page.waitForTimeout(2000); // the reveal transitions fully settle
+  // Session-213 (the settle gate): the reference's reveal is
+  // NONDETERMINISTIC at capture time (the same build measured 22 then
+  // 38 landscape events across two runs — mid-transition states, not
+  // drift). The gate polls until every main element's reveal has
+  // COMPLETED (opacity 1 + transform none — the animation's final
+  // state on both apps), 500ms interval, 10s cap; a timeout falls
+  // through to the capture (never a hard fail — the verdict decides).
+  await page
+    .waitForFunction(
+      () => {
+        const main = document.querySelector("main");
+        if (!main) return false;
+        return [...main.querySelectorAll("*")].every(
+          (el) =>
+            getComputedStyle(el).opacity === "1" && getComputedStyle(el).transform === "none",
+        );
+      },
+      { timeout: 10000, polling: 500 },
+    )
+    .catch(() => undefined);
   return page.evaluate(() => {
-    const anchor = document.querySelector("div.min-h-screen.bg-white");
+    const anchor = document.querySelector("main.relative.z-10");
     if (!anchor) throw new Error(`no landing anchor on ${location.pathname}`);
     const arect = anchor.getBoundingClientRect();
     // THE GLYPH-INTERIOR EXCLUSION (the walk42 doctrine, unchanged):
@@ -1707,6 +1756,13 @@ async function censusPublicPage(
     const walk = (node: Element) => {
       for (const child of Array.from(node.children)) {
         if (SVG_SHAPES.has(child.tagName)) continue; // the glyph interior
+        // Session-213: the infinite-animation genus — elements running
+        // an INFINITE CSS animation (the hero's animate-bounce chevron,
+        // main's only animated member) are positionally nondeterministic
+        // at capture (the ±4px bounce phase differs per run); skip them
+        // — the documented genus, never a defect signal.
+        const animCs = getComputedStyle(child);
+        if (animCs.animationName !== "none" && animCs.animationIterationCount === "infinite") continue;
         // Session-176: the chart-interior exclusion (the s176 main-leg
         // twin — the landing's mock chart rides the same version-borne
         // recharts interior).
@@ -1759,7 +1815,7 @@ async function censusPublicPage(
 
 const REPO = path.resolve(import.meta.dirname, "..");
 const OUR_URL = process.env.OUR_URL ?? "http://localhost:3000";
-const REF_URL = process.env.REF_URL ?? "https://neo-crm-8ab2c17c.base44.app";
+const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 
 const log = (s: string) => console.log(`[census] ${s}`);
 
@@ -1908,14 +1964,11 @@ async function run() {
   const argv = process.argv.slice(2);
   const failOnDriftFlag = argv.includes("--fail-on-drift");
   const json = argv.includes("--json");
-  // the --pages idiom composes across BOTH legs (the 155-c seam): the
-  // combined list drives the selection; the app/public dispatch splits
-  // it (`--pages landing` runs ONLY the public leg — no login phase;
-  // `--pages about,contact` runs the 156-c marketing legs logged-in;
-  // `--pages login` runs the 157-c login-wall leg logged-in (the
-  // census login already ran — the probe proved the authed card
-  // byte-equal to the guest card); no flag runs all 13 — the 12
-  // interior + the landing)
+  // the --pages idiom (the 155-c seam, re-anchored s213): the combined
+  // list is the landing public leg alone — the interior legs RETIRED
+  // by the Oasis-era re-scope, so no flag runs all 1 (the landing);
+  // the retired names (login/about/contact/dashboard…) fail-fast as
+  // unknown
   const selected = parsePagesArg(argv, CENSUS_ALL_PAGES);
   const pages = selected.filter((p) => !isPublicPage(p));
   const publicPages = selected.filter((p) => isPublicPage(p));

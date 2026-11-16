@@ -48,14 +48,19 @@ describe("session-149: the fullpage-sweep tool (the below-the-fold gate)", () =>
     expect(Object.keys(baselines).sort()).toEqual(["desktop", "phone"]);
     for (const v of Object.values(baselines)) {
       expect(v).toBeGreaterThan(0);
-      expect(v).toBeLessThan(1); // the pill genus + the raster floor, never a real drift
+      // the s213 Oasis-era scale: the scroll-reveal initial state (the
+      // reference's below-fold translateY 20px + opacity 0) is a ~5.8%
+      // genus on its own — the guard moves to < 10 (a real below-the-
+      // fold drift still clears the margin easily)
+      expect(v).toBeLessThan(10);
     }
     expect(m.FULLPAGE_MARGIN).toBe(0.5);
-    // the maiden anchors (the post-s149 fix measurement — the pill genus
-    // + the raster floor at EQUAL heights; the browser twin and the PIL
-    // cross-check agreed at 0.144/0.487)
-    expect(baselines.desktop).toBe(0.14);
-    expect(baselines.phone).toBe(0.49);
+    // the s213 Oasis-era re-derivation (the maiden measurement: 5.83
+    // desktop · 8.34 phone at byte-equal heights — the scroll-reveal
+    // initial state + the canvas raster + the pill + the floor; the
+    // s149 values 0.14/0.49 were the NEO-CRM landing's)
+    expect(baselines.desktop).toBe(6.5);
+    expect(baselines.phone).toBe(9.0);
   });
 
   it("the standing genera documented: the GUEST platform pill + the raster floor", async () => {
@@ -66,6 +71,8 @@ describe("session-149: the fullpage-sweep tool (the below-the-fold gate)", () =>
     // logged-in captures never see it — the L-149c2 lesson)
     for (const line of Object.values(explained)) {
       expect(line).toMatch(/pill/i);
+      // the s213 head genus: the reference's scroll-reveal initial state
+      expect(line).toMatch(/scroll-reveal/);
     }
   });
 

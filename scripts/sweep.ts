@@ -94,7 +94,7 @@
 //   a gate. The `gate:full` package script chains the standing gate +
 //   all four drift sweeps.
 // Env:  OUR_URL (default http://localhost:3000)
-//       REF_URL (default https://neo-crm-8ab2c17c.base44.app)
+//       REF_URL (default https://oasis-property-maintenance.base44.app)
 //       REF_EMAIL / REF_PASSWORD (the documented demo login defaults)
 //       HEADLESS=0 to watch the captures
 //
@@ -287,8 +287,12 @@ export const STANDING_BASELINES = {
     // (ours: the Oasis pages inside OUR site chrome; the reference:
     // its pages inside ITS platform chrome) — structural, not a
     // defect; the pages' CONTENT is byte-pinned by the e2e battery +
-    // the unit content pins. The entries sit at the measured floors
-    // + ~2.5 headroom (the s146 volatile-genus precedent).
+    // the unit content pins. [session-204 re-derivation — the
+    // two-chrome genus COLLAPSED when the reference's own chrome
+    // redesign landed: the floors re-derived 12.5/13.5/16.5/27 ->
+    // 4.5/8/9/16; the maiden values above are the s200-continuation
+    // history, the entries below are the s204 floors + headroom (the
+    // s146 volatile-genus precedent).]
     services: 4.5,
     gallery: 8,
     faq: 9,
@@ -783,7 +787,7 @@ export function clusterDiff(
 
 const REPO = path.resolve(import.meta.dirname, "..");
 const OUR_URL = process.env.OUR_URL ?? "http://localhost:3000";
-const REF_URL = process.env.REF_URL ?? "https://neo-crm-8ab2c17c.base44.app";
+const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 const REF_EMAIL = process.env.REF_EMAIL ?? "sepnetflix2023@outlook.com";
 const REF_PASSWORD = process.env.REF_PASSWORD ?? "$Abcd1234";
 const SHOTS = path.join(REPO, "scripts", "sweep-shots");

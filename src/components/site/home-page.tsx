@@ -239,8 +239,15 @@ export function HomePage() {
                 honest price range on the spot. Happy with it? Book your date in the next step.
               </p>
               <Link href="/booking">
-                <Button className="shadow h-10 bg-[#2E7D5F] hover:bg-[#236B4F] text-white">
-                  Book a Service
+                <Button className="shadow h-10 px-8 bg-[#2E7D5F] hover:bg-[#236B4F] text-white">
+                  {/* Session-213 (the stable-4 cure): the reference's own
+                      estimate CTA — the calendar-check glyph + the
+                      "Book with this estimate" copy (the hero CTA above
+                      keeps its own s212-verified copy). The px-8 is the
+                      reference's own padding (the census decoded the
+                      w229-vs-w261 delta as the shadcn px-4 default). */}
+                  <CalendarCheck className="w-5 h-5 mr-2" aria-hidden="true" />
+                  Book with this estimate
                 </Button>
               </Link>
             </div>

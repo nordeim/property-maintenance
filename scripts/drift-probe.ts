@@ -32,7 +32,7 @@
 //
 // Run: bun run probe:ref   (or: bun scripts/drift-probe.ts)
 //   --json   machine-readable output (one verdict object per check)
-// Env:  REF_URL (default https://neo-crm-8ab2c17c.base44.app)
+// Env:  REF_URL (default https://oasis-property-maintenance.base44.app)
 //       REF_EMAIL / REF_PASSWORD (the documented demo login defaults)
 //       HEADLESS=0 to watch the drive
 // NOT part of `gate`/`gate:full` — the reference is a NETWORK
@@ -43,7 +43,7 @@
 import { createHash } from "node:crypto";
 import { chromium } from "@playwright/test";
 
-const REF_URL = process.env.REF_URL ?? "https://neo-crm-8ab2c17c.base44.app";
+const REF_URL = process.env.REF_URL ?? "https://oasis-property-maintenance.base44.app";
 const REF_EMAIL = process.env.REF_EMAIL ?? "sepnetflix2023@outlook.com";
 const REF_PASSWORD = process.env.REF_PASSWORD ?? "$Abcd1234";
 

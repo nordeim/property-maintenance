@@ -82,12 +82,16 @@ export function EstimateCard({
       {/* the LABEL ancestry names the role=slider thumb (the s199 axe
           two-gate catch — the s178-c1 form: the visible text is the
           accessible name) */}
-      <label className="block">
-        <span className="flex justify-between items-baseline mb-3">
-          <span className="text-sm font-medium text-[#1F2933]">How big is your yard?</span>
-          <span className="text-sm font-bold text-[#2E7D5F]">{formatYardSize(yardSize)}</span>
-        </span>
-        <Slider.Root
+      {/* Session-213 (the stable-4 cure): the reference's own yard-size
+          header construction — a bare flex row (div > p + span), NOT a
+          label-wrapped block (the census's ours-extra LABEL event
+          decoded the divergence; the thumb keeps its own aria-label, so
+          the label retirement costs no a11y). */}
+      <div className="flex justify-between items-baseline mb-3">
+        <p className="text-sm font-medium text-[#1F2933]">How big is your yard?</p>
+        <span className="text-sm font-bold text-[#2E7D5F]">{formatYardSize(yardSize)}</span>
+      </div>
+      <Slider.Root
           dir="ltr"
           orientation="horizontal"
           className="relative flex w-full touch-none select-none items-center mb-2"
@@ -113,7 +117,6 @@ export function EstimateCard({
           className="block h-4 w-4 rounded-full border border-[#171717]/50 bg-white shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
         />
         </Slider.Root>
-      </label>
 
       <div className="flex justify-between text-xs text-gray-400 mb-6">
         <span>Small (100m²)</span>

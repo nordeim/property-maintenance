@@ -515,3 +515,60 @@ describe("session-169 (WP-1h): the production-secret doc posture (F-169p — the
     expect(pad).toContain("| `AUTH_SECRET` | Prod (≥16 chars — fails hard in production) |");
   });
 });
+
+// ---------------------------------------------------------------------------
+// Session-213 (R-02): the PARITY-TOOLS REFERENCE CONTRACT — the D-204a1
+// contract recreated for the Oasis fork. The five LIVE drift-gate tools
+// (drift-probe · sweep · sweep-state · interior-census · fullpage-sweep)
+// all defaulted to the scaffold lineage's reference
+// (neo-crm-8ab2c17c.base44.app) while every standing expectation and
+// baseline in them is Oasis-derived — the bare `bun run probe:ref` and
+// the `gate:full` sweep legs compared OUR app against the WRONG
+// reference (the F-213a/b/d/e/f genus; the fullpage leg was not even
+// env-overridable — a bare const). The flip: the defaults now name THIS
+// repo's own reference; the lineage decode-freezes (walk53-67, the
+// capture families) keep their historical neo-crm defaults by design —
+// the negative is scoped to the five live tools, never a whole-repo ban.
+// ---------------------------------------------------------------------------
+describe("session-213 (R-02): the parity-tools reference contract (F-213a/b/d/e/f — the D-204a1 contract recreated)", () => {
+  const OASIS = "https://oasis-property-maintenance.base44.app";
+  const LIVE_TOOLS = [
+    "scripts/drift-probe.ts",
+    "scripts/sweep.ts",
+    "scripts/sweep-state.ts",
+    "scripts/interior-census.ts",
+  ] as const;
+
+  it("the four env-overridable live tools default to the Oasis reference", () => {
+    for (const tool of LIVE_TOOLS) {
+      expect(
+        read(tool),
+        `${tool} must default REF_URL to the repo's own reference`,
+      ).toContain(`const REF_URL = process.env.REF_URL ?? "${OASIS}";`);
+    }
+  });
+
+  it("the fullpage sweep is env-overridable and defaults to the Oasis reference (F-213f — it was a bare const)", () => {
+    expect(read("scripts/fullpage-sweep.ts")).toContain(
+      `const REF = process.env.REF_URL ?? "${OASIS}";`,
+    );
+  });
+
+  it("the stale neo-crm default never returns in the five live tools (the scoped negative — the lineage decode-freezes keep theirs)", () => {
+    for (const tool of [...LIVE_TOOLS, "scripts/fullpage-sweep.ts"]) {
+      expect(
+        read(tool),
+        `${tool} must not carry the lineage default`,
+      ).not.toContain('?? "https://neo-crm-8ab2c17c.base44.app"');
+    }
+  });
+
+  it(".env.example documents the parity-gate tooling block (the operator's knob — the D-204a1 block, born here)", () => {
+    const envExampleNorm = read(".env.example")
+      .replace(/\n#\s?/g, " ")
+      .replace(/\s+/g, " ");
+    expect(envExampleNorm).toContain("Parity-gate tooling (optional)");
+    expect(envExampleNorm).toContain("REF_URL");
+    expect(envExampleNorm).toContain(OASIS);
+  });
+});
