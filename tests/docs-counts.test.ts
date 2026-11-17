@@ -165,7 +165,7 @@ const E2E = 193; // session-200: +the Radix keyboard-contract check (192 -> 193)
 // Session-174: SUITES 137 -> 138 (the type-gate file — the
 // config source-pin battery: the toolchain layer joins the
 // doctrine-census family).
-const SUITES = 144; // session-215: + the session-215 audit suite (139 -> 140) // session-199: + the booking seam suite (138 -> 139)
+const SUITES = 145; // session-215: + the session-215 audit suite (139 -> 140) // session-199: + the booking seam suite (138 -> 139)
 // Session-115: 1948 → 1950 (+2 — the s115 Defaults-tab + insights-dialog
 // family walk's two freeze its: the Defaults label htmlFor/id association
 // superset pin [settings-defaults-parity.test.ts — ours the a11y superset
@@ -911,7 +911,7 @@ const SUITES = 144; // session-215: + the session-215 audit suite (139 -> 140) /
 // page-layout.ts +7 lines [the PAD §11 row + the SKILL §5.6 census
 // site re-anchored 1718 -> 1725 / 277 -> 283 checks, the s168
 // line-census doctrine]). SUITES 138 HELD · E2E 192 re-verified.
-const UNIT = 2853; // session-215: +the F-216a/b/c pins (2816 -> 2822) // session-214: +the F-215/216/217/220 pins (2811 -> 2816) // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
+const UNIT = 2859; // session-215: +the F-216a/b/c pins (2816 -> 2822) // session-214: +the F-215/216/217/220 pins (2811 -> 2816) // session-213: +the stable-4 cures pin (2810 -> 2811) // session-213: +the F-214 seed-bush pin + the R-02 reference-contract pins + the census retirement pin (2805 -> 2810); session-212: +the FAB/bookFAB/canvas-posture pins (2801 -> 2805); session-205: +the F-205g side-sheet anatomy pin (2800 -> 2801); session-201: +the F-201b SKILL lockstep pin + the F-201e canvas pin + the F-201f card-tokens pin (2797 -> 2800)
 // S104-P1: the mobile-nav spec's own census (the README Tested-row
 // phrase + the PAD suite line ride it) — 9 → 10 with the drawer-OPEN
 // seeded-state guard. Session-165 (S165-P1): 11 → 10 — the s147
@@ -1365,7 +1365,7 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
     expect(readme).not.toMatch(/# 2822 Vitest unit checks/);
     expect(readme).not.toMatch(/# 140 Vitest suites \(2822 checks\)/);
     expect(readme).not.toMatch(/tests-3015%20checks/);
-    expect(readme).toContain("tests-3046%20checks");
+    expect(readme).toContain("tests-3052%20checks");
     expect(pad).not.toMatch(/# 140 Vitest suites — 2822 checks/);
     expect(pad).not.toMatch(/— 2822\/2822/);
     expect(pad).not.toMatch(/\| \*\*Total\*\* \| \*\*140\*\* \| \*\*2822 unit/);
@@ -1444,7 +1444,7 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
       skill,
       "the project_state head's FIRST layer must be the current session's",
     ).toContain(
-      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-220 layer`,
+      `project_state: ${UNIT} unit checks + ${E2E} e2e checks green; the session-221 layer`,
     );
     expect(
       skill,
@@ -2378,15 +2378,14 @@ describe("session-102 (S102-P1): the secondary-sites lockstep — every live-ten
 describe("session-198: the security ledger's live census (the D-198a2 pins)", () => {
   it("the PAD §10 ledger row carries the live post-cure census + the s198 re-triage clause", () => {
     const pad = read("Project_Architecture_Document.md");
-    // Session-199 (the property-maintenance checkout round) re-anchored
-    // this pin at the LIVE census per the s203 precedent: `bun audit`
-    // run live on this checkout reports 10 (4 high / 5 moderate / 1
-    // low) — the s198-era census was 9; the drift is the NEW moderate
-    // GHSA-g3hv-75wg-m249 on minimatch <11.0.1 (dev-toolchain, the
-    // eslint family's transitive chains — lint-time only, zero runtime
-    // exposure), the exact genus of the other nine. NO cure without a
-    // mid-rotation eslint-family bump (the standing no-mid-rotation
-    // TOOLCHAIN posture); the pin holds the LIVE form.
+    // Session-221 (the audit-census truth round) re-anchored this pin
+    // again: `bun audit` live on this checkout reports 10 (4 high /
+    // 5 moderate / 1 low) POST-CURE — the pre-cure live census was 11
+    // (the drift 10 → 11: the NEW moderate GHSA-mfr8-8qww-v76h on
+    // next@16.4.2, the FIRST advisory on a direct runtime dependency,
+    // DORMANT in our tree, plus the vite family's growth to 3
+    // advisories); cured by the next@16.4.6 patch bump the same round.
+    // The historical s164/s198/s203 clauses below stay as lineage.
     expect(pad).toContain(
       "`bun audit` reports 10 advisories (4 high / 5 moderate / 1 low) — ALL dev-toolchain transitive (zod via eslint-config-next›eslint-plugin-react-hooks",
     );
@@ -2401,6 +2400,11 @@ describe("session-198: the security ledger's live census (the D-198a2 pins)", ()
     expect(pad).toContain("GHSA-g3hv-75wg-m249");
     // the retired s164 composition (braces) never returns to the live row
     expect(pad).not.toContain("braces via eslint-config-next · deepmerge-ts via the prisma CLI config · vite via vitest · source-map-js via postcss");
+    // the session-221 clause — the drift record + the patch cure — is
+    // carried in the live row (the pin above holds the prefix; this
+    // holds the round's own material):
+    expect(pad).toContain("RE-TRIAGED session-221");
+    expect(pad).toContain("GHSA-mfr8-8qww-v76h");
   });
 
   it("the AGENTS gate-order note carries the re-anchored audit clause (the s198 tail)", () => {

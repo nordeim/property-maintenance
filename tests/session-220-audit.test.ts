@@ -113,20 +113,21 @@ describe("session-220: the ship-time truth debt + the history-entry debt (reborn
     expect(skill).toContain("last_updated: 2026-11-17");
   });
 
-  it("F-222a/R-09: the s220 head layer sits at the head of the neo-crm chain with this round's vocabulary", () => {
+  it("F-222a/R-09: the s220 layer keeps its own ship counts in the demoted position (the s221 surgery demoted it — the frozen-record doctrine)", () => {
     const skill = read("neo-crm_SKILL.md");
-    expect(skill).toMatch(
-      /project_state: \d+ unit checks \+ 193 e2e checks green; the session-220 layer/,
-    );
-    const head = skill.split("project_state:")[1] ?? "";
-    expect(head).toContain("F-222a");
-    expect(head).toContain("THE SHIP-TIME TRUTH DEBT");
-    // version 1.221.0 (frontmatter + H1)
-    expect(skill).toContain("version: 1.221.0");
+    // the s220 layer is DEMOTED now (the s221 round's own head surgery);
+    // its counts + vocabulary survive in the beneath-it position
     expect(skill).toContain(
-      "# NEO CRM — Engineering Skill (SKILL.md v1.221.0)",
+      "+ beneath it 2853 unit checks + 193 e2e checks green; the session-220 layer",
     );
-    // the s219 layer keeps its own ship counts in the demoted position
+    const s220line = skill.split("+ beneath it 2853 unit checks")[1] ?? "";
+    expect(s220line).toContain("the session-220 layer");
+    // version 1.222.0 now rides the head (the s221 round's own bump)
+    expect(skill).toContain("version: 1.222.0");
+    expect(skill).toContain(
+      "# NEO CRM — Engineering Skill (SKILL.md v1.222.0)",
+    );
+    // the s219 layer keeps its own ship counts in its own demoted position
     expect(skill).toContain(
       "+ beneath it 2843 unit checks + 193 e2e checks green; the session-219 layer",
     );

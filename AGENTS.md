@@ -23,7 +23,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | Production server               | `bun run start`                        |
 | Lint                            | `bun run lint`                         |
 | Type check                      | `bun run typecheck`                    |
-|  Unit tests (2853 checks)      | `bun run test`                         |
+|  Unit tests (2859 checks)      | `bun run test`                         |
 |  Unit tests (watch mode)        | `bun run test:watch`                   |
 |  Browser E2E (193 checks)        | `bun run test:e2e` (needs build first) |
 | Smoke the standalone artifact   | `bun run smoke` (needs build first)    |
@@ -39,7 +39,7 @@ Zustand client store, and the public Booking/QuoteRequest boundaries
 | The gate + the six drift gates  | `bun run gate:full`                    |
 
 **Gate order before every push:** `bun run lint` → `bun run typecheck` →
-`bun run test` (2853) → `bun run build` → `bun run smoke` (the standalone
+`bun run test` (2859) → `bun run build` → `bun run smoke` (the standalone
 boot + the 14-check ladder, session-170: the web-app-foundation §13.4/§14
 leg — the boot-gate + artifact-hygiene assertions ride it) →
 `bun run test:e2e` (193) — or the one-command `bun run gate` (session-38:
@@ -65,7 +65,14 @@ override, lockfile-pinned + dormancy-pinned + ledger-pinned;
 re-triaged session-203: the standing duty caught the census drift 9 → 10
 — the new moderate GHSA-g3hv-75wg-m249 on minimatch, dev-toolchain via
 the eslint family, lint-time only, no mid-rotation bump — the posture
-held, the pins re-anchored at the live census).
+held, the pins re-anchored at the live census; re-triaged session-221:
+the census drift 10 → 11 — the new moderate GHSA-mfr8-8qww-v76h on
+next@16.4.2, the first advisory on a direct runtime dependency,
+dormant in our tree [zero unstable_cache/'use cache' call sites],
+plus the vite family's growth to 3 advisories — cured by the
+16.4.6 patch bump [a patch-level framework bump inside the caret
+range, the s176 recharts precedent]; post-cure census 10
+[4h/5m/1l], the pins re-anchored at tests/session-221-audit.test.ts).
 
 First-run setup: `bun install && cp .env.example .env && bun run db:push &&
 bun run db:seed && bun run dev`. Demo login: `sepnetflix2023@outlook.com` /

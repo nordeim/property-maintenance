@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2853-check Vitest / 193-check Playwright corpus and a single-command
+  2859-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.16.0
+version: 1.17.0
 last_updated: 2026-11-17
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.16.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.17.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (144 suites / 2853 checks) | |
+| Unit | Vitest 5 (145 suites / 2859 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2853 unit / 193 e2e)
+## 7. The Test Corpus (2859 unit / 193 e2e)
 
-- **Unit (Vitest, 144 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 145 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -354,6 +354,32 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-221's layers:** the audit-census truth round (F-223a —
+  the `bun audit` census drifted 10 → 11: the NEW moderate
+  GHSA-mfr8-8qww-v76h on next@16.4.2, the FIRST advisory on a direct
+  RUNTIME dependency [the framework itself], DORMANT in our tree
+  [zero unstable_cache/'use cache' call sites]; cured by the
+  next@16.4.6 PATCH bump — `bun update next@16.4.6`, a patch-level bump
+  inside the satisfied caret range, the s176 recharts precedent — with
+  the README badge + the PAD stack table + the neo-crm §2 Framework row
+  flipped at the facts-census lockstep · F-223b — the vite advisory
+  family grew 1 → 3 [2 NEW moderates via vitest›@vitest/mocker›vite,
+  dev-toolchain, zero runtime exposure] — the PAD §10 ledger row +
+  the AGENTS gate-order note + the docs-counts D-198a2 pin re-anchored
+  at the post-cure census [10: 4h/5m/1l — the next advisory RETIRED,
+  the 2 new vite moderates absorbed into the dev-toolchain genus] ·
+  F-223c — the owner's fresh-clone TS2307 ['Cannot find module
+  ./tests/e2e/e2e-port' at `next build'] NOT reproducible on the
+  pristine clone [both files tracked + present + un-ignored; two
+  consecutive clean builds; a stale/partial-checkout genus on the
+  operator side] — cured as the README troubleshooting row). The pins:
+  tests/session-221-audit.test.ts (the 145th suite, 6 pins RED-first at
+  birth). The count ladder: 2853 → 2859 (+6) · SUITES 144 → 145 ·
+  badge 3046 → 3052. The verification battery ran to completion
+  (the F-222b/c lesson): lint 0/0 · tsc 0 · 145/2859 · build · smoke
+  14/14 · e2e 193/193 (6.1m) · the drift battery on the cured tree
+  (a runtime dependency changed) EXIT:0 · `bun audit` post-cure
+  10 (4h/5m/1l).
 - **Session-219's layers:** the history-entry debt + the
   guard-recreation round (F-221a — the pm-SKILL v1.14.0 bump shipped
   without its Session-218 history entry [the entries live in §7

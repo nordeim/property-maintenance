@@ -1,3 +1,55 @@
+## Task 221 — The Audit-Census Truth Round: The Owner's Fresh-Clone Report + The Advisory Drift (2026-11-17)
+
+The owner's session_32.md + docs/start_server_error.txt archive
+(f758fb0) triggered the rotation. The workspace was reset — the round
+began with the mandated fresh git clone (the exact environment the
+owner's report describes). THE BASELINE: fully green on the pristine
+tree — lint 0/0 · tsc 0 · 144/2853 unit · build ✓ (the owner's TS2307
+'Cannot find module ./tests/e2e/e2e-port' NOT reproducible — both
+files tracked + present + un-ignored; two consecutive clean builds —
+a stale/partial-checkout genus on the operator side) · smoke 14/14 ·
+e2e 193/193 (6.0m, after npx playwright install chromium) · probe:ref
+STABLE (bundle ee166dd5) · the drift battery (sweep desktop + phone ·
+fullpage · interior census) EXIT:0 · db census MATCH at
+<repo>/db/custom.db (db:push + db:seed pristine from
+cp .env.example .env). The mobile-nav walk at 390 byte-MATCH (sheet
+x=71, the standing {70,0,320,844} record; 8 links; Esc-close +
+focus-return — no Tailwind v4 bug). The sitemap/robots/manifest/OG
+family verified live (16-URL byte-format sitemap, the Sitemap line,
+manifest 200, per-route OG/Twitter/canonical).
+
+The audit (the web-application skill §12/§16/§18 dimensions): every
+security seam verified at line level (the boot gate · the Zod boundary
+[23 route files] · the bounded reader · the rate-limit family · the
+single PrismaClient · force-dynamic discipline [zero misses] ·
+useShallow [zero allocating selectors] · zero dangerouslySetInnerHTML
+· the cursor: pointer base rule · the docs count-lockstep [42 pins
+green]). ONE actionable genus: the `bun audit` census drifted 10 → 11 —
+F-223a the NEW moderate GHSA-mfr8-8qww-v76h on next@16.4.2 (the FIRST
+advisory on a direct RUNTIME dependency — the framework itself;
+DORMANT in our tree: zero unstable_cache/'use cache' call sites) with
+a same-minor patch cure available · F-223b the vite family grew 1 → 3
+(2 NEW moderates via vitest›@vitest/mocker›vite — dev-toolchain, zero
+runtime exposure) · F-223c the owner's TS2307 (not reproducible —
+documented).
+
+Stage Summary: lint 0/0 · tsc 0 · 145 suites / 2859 unit (+6 pins,
+tests/session-221-audit.test.ts the 145th suite) · build · smoke
+14/14 · e2e 193/193 (6.1m) · bun audit post-cure 10 (4 high / 5
+moderate / 1 low — the next advisory RETIRED by the 16.4.6 patch
+bump) · the drift battery re-run on the cured tree (sweep desktop +
+phone, fullpage, census) EXIT:0 · captures 82-84; the count ladder
+2853 → 2859, suites 144 → 145, badge 3046 → 3052
+(count-ladder-221.py, 28 flips) · the neo-crm SKILL v1.222.0 + the
+s221 head layer (skill-head-221.py, replay NOOP-idempotent) · the
+pm-SKILL v1.17.0 + its own Session-221 history entry · the PAD §10
+ledger row + the AGENTS gate-order note + the docs-counts D-198a2 pin
+re-anchored at the post-cure census · the README troubleshooting row
+(the TS2307 stale-checkout genus) · the README badge + the PAD stack
+table + the neo-crm §2 Framework row flipped to the live 16.4.6 (the
+facts-census lockstep) · everything committed to main and pushed via
+the SSH wrapper.
+
 ## Task 220 — The Standing Rotation: The Ship-Time Truth Debt + The History-Entry Debt (Reborn) (2026-11-17)
 
 The owner's session_30.md archive (fa3c4e2) triggered the rotation. The
