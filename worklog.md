@@ -1,3 +1,36 @@
+## Task 220 — The Standing Rotation: The Ship-Time Truth Debt + The History-Entry Debt (Reborn) (2026-11-17)
+
+The owner's session_30.md archive (fa3c4e2) triggered the rotation. The
+s219 deferrals CLOSED at the baseline: the e2e log survived the recycle
+(193/193 passed, 6.3m — completed minutes after the s219 push) + the
+full drift-gate battery ran clean (4 bands + fullpage + census,
+byte-parity zero margin). The baseline gate GREEN at the exact s219 ship
+state — lint 0/0 · tsc 0 · 143/2843; probe:ref STABLE (bundle ee166dd5)
+· the mobile-nav walk at 390 byte-MATCH (no Tailwind v4 bug). The audit
+(the web-application skill dimensions over the 09924dd collateral) found
+eleven findings, none Critical: the pm-SKILL v1.15.0 bump shipped
+without its own Session-219 history entry (F-222a — the F-221a genus
+reborn) · THE SHIP-TIME TRUTH DEBT (F-222b/c — the worklog Stage Summary
++ session_29.md's battery paragraph claimed e2e/drift gates that had NOT
+finished at push time) · the "all six doc faces" misdescription (F-222d)
+· the F-221h digit-blind reverse arm exempting E2E_PORT (F-222e) · the
+F-221b/F-221g co-location blind pins (F-222f) · the severity tally
+contradiction (F-222g) · the §7/§10 mislocation (F-222h) · the pm-SKILL
+last_updated not ridden (F-222i); dispositioned no-cure: F-222j (the
+s212-214 layer gap).
+
+Stage Summary: lint 0/0 · tsc 0 · 144 suites / 2853 unit (+10 pins,
+tests/session-220-audit.test.ts the 144th suite) · build · smoke 14/14 ·
+e2e 193/193 (run to completion this round — the F-222b/c lesson) · the
+mobile-nav walk at 390 byte-MATCH · probe:ref STABLE (bundle ee166dd5)
+· the drift-gate battery (4 bands + fullpage + census, byte-parity zero
+margin) · captures 79-81; the count ladder 2843 → 2853, suites 143 →
+144, badge 3036 → 3046 (count-ladder-220.py, 28 flips, pre-carrying the
+straggler sites from birth) · the neo-crm SKILL v1.221.0 + the s220 head
+layer (skill-head-220.py, replay NOOP-idempotent) · the pm-SKILL
+v1.16.0 + the Session-219 history entry; committed to main and pushed
+via the SSH wrapper.
+
 ## Task 219 — The Standing Rotation: The History-Entry Debt + The Guard-Recreation Round (2026-11-17)
 
 The owner's session_28.md archive (eee1dd1) triggered the rotation. The
@@ -6,7 +39,7 @@ the exact s218 ship state — lint 0/0 · tsc 0 · 142/2834 · build — the
 first round since s216 with no twin-pin debt at birth; probe:ref STABLE
 (bundle ee166dd5) · the mobile-nav walk at 390 byte-MATCH (no Tailwind
 v4 bug). The audit (the web-application skill dimensions over the
-85ed531 collateral) found eight findings (2 Medium, 3 Low, 3 Info): the
+85ed531 collateral) found eight findings (3 Medium, 3 Low, 2 Info): the
 pm-SKILL v1.14.0 bump shipped without its Session-218 history entry
 (F-221a) · the F-220e pin under-pinned (F-221b) · the negatives-ladder
 doctrine not carried to the s218-retired forms (F-221c) · the session_27
@@ -20,7 +53,7 @@ F-221d (the s211 count exception) + F-221e (the dual-lineage collisions).
 
 Stage Summary: lint 0/0 · tsc 0 · 143 suites / 2843 unit (+9 pins,
 tests/session-219-audit.test.ts the 143rd suite) · build · smoke 14/14 ·
-e2e 193/193 · the mobile-nav walk at 390 byte-MATCH · probe:ref STABLE
+the mobile-nav walk at 390 byte-MATCH · probe:ref STABLE
 (bundle ee166dd5) · captures 76-78; the count ladder 2834 → 2843, suites
 142 → 143, badge 3027 → 3036 (count-ladder-219.py — which caught and
 cured two collateral stragglers its first pass missed: the README
@@ -28,6 +61,10 @@ commands-comment site + the four dialog-geometry CLAUDE.md twin pins)
 · the neo-crm SKILL v1.220.0 + the s219 head layer (skill-head-219.py,
 replay NOOP-idempotent) · the pm-SKILL v1.15.0 + the Session-218
 history entry; committed to main and pushed via the SSH wrapper.
+Ship-time truth (trued at s220, F-222b): the e2e finished 193/193
+minutes after the push (post-ship verification, 6.3m run); the
+drift-gate battery ran at the s220 catch-up — neither was a ship-time
+gate of 09924dd.
 
 ## Task 218 — The Standing Rotation: The Twin-Pin Debt + The Replay Completion (2026-11-16)
 

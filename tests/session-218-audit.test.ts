@@ -63,14 +63,21 @@ describe("session-218: the twin-pin debt + the replay completion", () => {
   });
 
   it("F-220e: .env.example documents HEADLESS in the parity-tools block (four tools consume it)", () => {
-    const envExampleNorm = read(".env.example")
+    // Session-220 (F-222f): the whole-file normalization upgraded to a
+    // BLOCK SLICE — the assertions now run against the parity-tools block
+    // itself (between the ---- headers), so moving the knob row to any
+    // other block goes RED (the co-location tooth the s219 form lacked).
+    const env = read(".env.example");
+    const blockStart = env.indexOf("# ---- Parity-gate tooling");
+    expect(blockStart, "the parity-tools block header must exist").toBeGreaterThanOrEqual(0);
+    const lineEnd = env.indexOf("\n", blockStart);
+    const blockEnd = env.indexOf("# ----", lineEnd);
+    const block = env
+      .slice(blockStart, blockEnd < 0 ? undefined : blockEnd)
       .replace(/\n#\s?/g, " ")
       .replace(/\s+/g, " ");
-    // Session-219 (F-221b): the bare HEADLESS token upgraded to the house
-    // idiom — block header + the full knob row (moving the token to any
-    // other block, or gutting the row while keeping the word, goes RED).
-    expect(envExampleNorm).toContain("Parity-gate tooling (optional)");
-    expect(envExampleNorm).toContain(
+    expect(block).toContain("Parity-gate tooling (optional)");
+    expect(block).toContain(
       "HEADLESS=0 watches the browser-driven captures (unset = headless)",
     );
   });

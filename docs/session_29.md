@@ -16,7 +16,8 @@ navigation all verified). Sitemap + robots live-verified.
 The audit (the web-application skill dimensions over the 85ed531
 collateral, run with a read-only subagent sweep) found eight findings,
 none Critical/High: F-221a the pm-SKILL v1.14.0 bump shipped without its
-Session-218 history entry (Medium — §10 carried 213/214/215/217/216; the
+Session-218 history entry (Medium — the entries live in §7 (213/214) and
+§10 (215/217/216); the
 218 round is the first version bump with no record) · F-221b the F-220e
 pin under-pinned (Low — a bare HEADLESS token; upgraded to the house
 idiom) · F-221c the s192/F-218 negatives-ladder doctrine not carried to
@@ -38,9 +39,11 @@ pins RED-first at birth; F-221h teeth-proven the F-174a way (a planted
 undocumented knob made exactly its pin RED, reverted, GREEN — the
 first plant exposed a genuine whole-token weakness in the pin itself,
 fixed before the true proof). The collateral: the Session-218's layers
-history entry landed at the head of the pm-SKILL §10 family · the
+history entry landed at the head of the pm-SKILL §10 family (the s213/s214
+entries live in §7; only 215/217/216 were in §10) · the
 F-220e pin upgraded to block+row form · the negatives ladder extended to
-the s218-retired forms across all six doc faces · the session_27 typo ·
+the s218-retired forms across the four doc faces the s217 block walks ·
+the session_27 typo ·
 the .env.example consumer list trued to the four real readers · the
 env-face totality guard recreated (whole-token, line-anchored, both
 arms) · the sitemap comment trued (nine aliases, F-220g phrases
@@ -55,6 +58,9 @@ guard, now recorded in-script) · pm-SKILL v1.15.0 · the layer-axis pin
 re-anchored to the s219/s218 pair.
 
 The verification battery: lint 0/0 · tsc 0 · 143 suites / 2843 unit ·
-build · smoke 14/14 · e2e 193/193 · probe:ref STABLE · the mobile-nav
-walk byte-MATCH · the drift-gate battery (4 bands + fullpage + census) ·
-captures 76-78. Pushed via the SSH wrapper.
+build · smoke 14/14 · probe:ref STABLE · the mobile-nav
+walk byte-MATCH · captures 76-78. Pushed via the SSH wrapper.
+Ship-time truth (trued at s220, F-222c): the e2e finished 193/193
+minutes after the push (post-ship verification, 6.3m run); the
+drift-gate battery ran at the s220 catch-up — neither was a ship-time
+gate of 09924dd.

@@ -1,8 +1,9 @@
 // Session-219 audit pins: the history-entry debt + the guard-recreation
 // round. The audit (the web-application skill dimensions over the 85ed531
 // collateral) found eight findings, none Critical/High: F-221a the pm-SKILL
-// v1.14.0 bump shipped without its Session-218 history entry (§10 carries
-// 213/214/215/217/216 — the 218 round is the FIRST version bump with no
+// v1.14.0 bump shipped without its Session-218 history entry (the entries
+// live in §7 (213/214) and §10 (215/217/216) — the 218 round is the FIRST
+// version bump with no
 // entry) · F-221b the F-220e pin under-pinned (a bare HEADLESS token, no
 // block scoping) · F-221c the s192/F-218 negatives-ladder doctrine not
 // carried to the s218-retired 2826/141/3019 forms · F-221f the session_27
@@ -66,11 +67,21 @@ describe("session-219: the history-entry debt + the guard-recreation round", () 
 
   it("F-221g: the .env.example parity block names the four REAL HEADLESS consumers (recon-199.ts in; the two non-readers retired from the knob row's list)", () => {
     const env = read(".env.example");
-    expect(env).toContain("recon-199.ts");
+    // Session-220 (F-222f): the block SLICE — the four-reader list must
+    // sit inside the parity-tools block itself (co-located with the
+    // HEADLESS knob row), not merely anywhere in the file.
+    const blockStart = env.indexOf("# ---- Parity-gate tooling");
+    expect(blockStart, "the parity-tools block header must exist").toBeGreaterThanOrEqual(0);
+    const lineEnd = env.indexOf("\n", blockStart);
+    const blockEnd = env.indexOf("# ----", lineEnd);
+    const block = env
+      .slice(blockStart, blockEnd < 0 ? undefined : blockEnd)
+      .replace(/\n#\s?/g, " ")
+      .replace(/\s+/g, " ");
+    expect(block).toContain("recon-199.ts");
     // the knob row's consumer list is the four real readers (normalized —
     // the house F-220e idiom: comment continuation lines join)
-    const envNorm = env.replace(/\n#\s?/g, " ").replace(/\s+/g, " ");
-    expect(envNorm).toContain(
+    expect(block).toContain(
       "drift-probe.ts · sweep.ts · interior-census.ts · recon-199.ts",
     );
     // the retired wrong-listing form never returns (raw: the wrapped
@@ -102,12 +113,22 @@ describe("session-219: the history-entry debt + the guard-recreation round", () 
       ).toMatch(new RegExp(`^#?\\s*${v}\\s*=`, "m"));
     }
     // the reverse arm: every documented app knob is consumed (both the
-    // live assignment lines and the commented example lines count)
+    // live assignment lines and the commented example lines count).
+    // Session-220 (F-222e): the regex is DIGIT-AWARE — the s219 form
+    // ([A-Z_]+) was blind to E2E_PORT, the one knob that falsifies the
+    // "every documented knob is consumed" claim. E2E_PORT is the
+    // documented tests-only knob (consumed in tests/e2e/e2e-port.ts +
+    // playwright.config.ts, never in src/ or scripts/) — the honest
+    // carve-out, matching its "Test-only (not read by the running app)"
+    // block in .env.example.
     const documented = [
-      ...envExample.matchAll(/^#?\s*([A-Z_]+)\s*=/gm),
+      ...envExample.matchAll(/^#?\s*([A-Z_][A-Z0-9_]*)\s*=/gm),
     ].map((m) => m[1]);
-    expect(documented.length).toBeGreaterThanOrEqual(11);
+    expect(documented.length).toBeGreaterThanOrEqual(12);
+    expect(documented).toContain("E2E_PORT"); // the digit-bearing knob the s219 form could not see
+    const testsOnly = new Set(["E2E_PORT"]); // documented + consumed outside the walk's scope, by design
     for (const v of documented) {
+      if (testsOnly.has(v)) continue;
       expect(
         consumers,
         `the documented knob ${v} must be consumed somewhere in src/ or scripts/`,
@@ -124,25 +145,27 @@ describe("session-219: the history-entry debt + the guard-recreation round", () 
     expect(src).toContain("no dashboard entry");
   });
 
-  it("F-221j: the neo-crm SKILL version bumped at the s219 head-layer round (1.219.0 -> 1.220.0, frontmatter + H1)", () => {
+  it("F-221j: the neo-crm SKILL version bump is recorded in the s219 head-surgery script (1.219.0 -> 1.220.0 — the frozen record; re-anchored at s220 when the live frontmatter moved to 1.221.0)", () => {
+    const script = read("scripts/skill-head-219.py");
+    expect(script).toContain('"version: 1.219.0", "version: 1.220.0"');
+    // the demoted s219 layer keeps its ship counts in the chain
     const skill = read("neo-crm_SKILL.md");
-    expect(skill).toContain("version: 1.220.0");
     expect(skill).toContain(
-      "# NEO CRM — Engineering Skill (SKILL.md v1.220.0)",
-    );
-    // the s218 layer keeps its own ship counts in the demoted position
-    expect(skill).toContain(
-      "+ beneath it 2834 unit checks + 193 e2e checks green; the session-218 layer",
+      "+ beneath it 2843 unit checks + 193 e2e checks green; the session-219 layer",
     );
   });
 
-  it("the s219 head layer sits at the head of the neo-crm chain with this round's vocabulary (the layer-axis face re-anchored)", () => {
+  it("the s219 layer sits in the chain (demoted at s220 to beneath the s220 head) with its round's vocabulary intact", () => {
     const skill = read("neo-crm_SKILL.md");
-    expect(skill).toMatch(
-      /project_state: \d+ unit checks \+ 193 e2e checks green; the session-219 layer/,
+    // the layer-axis doctrine: the demoted layer keeps its ship counts and
+    // its own text — the live head is the CURRENT session's (re-anchored
+    // at s220; the s219 face now reads beneath-it)
+    expect(skill).toContain(
+      "the session-219 layer (THE HISTORY-ENTRY DEBT + THE GUARD-RECREATION ROUND",
     );
-    const head = skill.split("project_state:")[1] ?? "";
-    expect(head).toContain("F-221a");
-    expect(head).toContain("THE HISTORY-ENTRY DEBT");
+    const idx = skill.indexOf("the session-219 layer (THE HISTORY-ENTRY DEBT");
+    const layer = skill.slice(idx, idx + 3000);
+    expect(layer).toContain("F-221a");
+    expect(layer).toContain("THE HISTORY-ENTRY DEBT");
   });
 });

@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2843-check Vitest / 193-check Playwright corpus and a single-command
+  2853-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.15.0
-last_updated: 2026-11-16
+version: 1.16.0
+last_updated: 2026-11-17
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.15.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.16.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (143 suites / 2843 checks) | |
+| Unit | Vitest 5 (144 suites / 2853 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2843 unit / 193 e2e)
+## 7. The Test Corpus (2853 unit / 193 e2e)
 
-- **Unit (Vitest, 143 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 144 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -354,6 +354,28 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-219's layers:** the history-entry debt + the
+  guard-recreation round (F-221a — the pm-SKILL v1.14.0 bump shipped
+  without its Session-218 history entry [the entries live in §7
+  (213/214) and §10 (215/217/216) — the 218 round was the first
+  version bump with no record; the entry landed at the head of the §10
+  family] · F-221b — the F-220e HEADLESS pin upgraded from a bare token
+  to the house idiom (block header + full knob row) · F-221c — the
+  s192/F-218 negatives-ladder doctrine carried to the s218-retired
+  2826/141/3019 forms (the four doc faces the s217 block walks:
+  README ×3, PAD ×3, CLAUDE ×4, AGENTS ×1) · F-221f/g — the session_27
+  typo + the .env.example HEADLESS consumer list trued to the four real
+  readers · F-221h — the D-205a2 env-face totality guard RECREATED
+  (every process.env consumer in src/ + scripts/ walked against
+  .env.example, whole-token line-anchored, both arms; teeth proven by
+  live plant) · F-221i — the sitemap comment trued (nine aliases since
+  s24) · F-221j — the neo-crm SKILL version bumped 1.219.0 → 1.220.0
+  after riding un-bumped through s218). The pins:
+  tests/session-219-audit.test.ts (the 143rd suite, 7 of 9 pins
+  RED-first at birth). The count ladder: 2834 → 2843 (+9) ·
+  SUITES 142 → 143 · badge 3027 → 3036. The e2e finished 193/193
+  minutes after the push; the drift-gate battery ran at the s220
+  catch-up.
 - **Session-218's layers:** the twin-pin debt + the replay completion
   (F-219a — the s217 phone-baseline re-anchor moved
   scripts/sweep.ts (login 3→3.8, not-found 2→2.9) without its test
