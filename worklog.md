@@ -1,3 +1,50 @@
+## Task 223 — The Picomatch Advisory Round: The Third Census Drift (2026-11-17)
+
+The owner's session_36.md archive (839b705) triggered the rotation. The
+workspace refreshed from origin; the environment rebuilt (.env at the
+six-knob contract · db:push + db:seed — census MATCH · chromium v1248).
+THE BASELINE (the fresh tree): lint 0/0 · tsc 0 · 146/2863 unit ·
+build · smoke 14/14 · e2e 193/193 (6.1m, CI=1 fresh boot) · probe:ref
+STABLE (bundle ee166dd5) · db census MATCH. THE LIVE PARITY BATTERY:
+the mobile-nav menu-OPEN state walked at 390x844 on BOTH apps —
+byte-identical geometry {70,0,320,844} · the 8-link vocabulary with
+identical hrefs · Esc-close with zero lock residue (ours the
+named-trigger + focus-return a11y supersets) — NO Tailwind v4 bug;
+the compiled stylesheet verified (the brand tokens, the cursor:pointer
+base rule, 4 oklch occurrences only); the SEO family live (the 16-URL
+sitemap at bare application/xml · robots · manifest · the OG head +
+per-route canonical).
+
+The audit (the web-application skill §12/§16/§18 dimensions): the s222
+cures verified all in place (four) + every security seam at line level
+(the Zod boundary — both z.array sites capped — · force-dynamic · zero
+dangerouslySetInnerHTML · the single PrismaClient · the db-path seam).
+THE ROUND'S MATERIAL — F-225a THE THIRD CENSUS DRIFT 10 → 11
+(5h/5m/1l): the NEW high GHSA-fc5q-39xc-vjpf on picomatch <=4.0.7
+(CVE-2026-112366, ReDoS, CVSS 8.7), dev-toolchain via the
+vitest/vite/tinyglobby/micromatch chains, ZERO runtime exposure
+(structurally verified against bun.lock — no runtime dependency's
+chain lists picomatch or any of its five dev-toolchain consumers) and
+NO CURE EXISTS (no patched picomatch release upstream — the
+micromatch/picomatch#194 PR unreleased; the s221 no-cure genus, the
+no-mid-rotation-toolchain-bump posture holds). The same round
+re-decoded the zod advisory GHSA-mrhx-c7xc-m3w5 (the vulnerable 4.6.5
+is the lint transitive; the runtime zod is 4.6.7 — past the 4.6.6
+fix — and both z.array sites carry explicit .max caps). F-225b/F-225c
+recorded (the machine-verify pin's by-design census-independence · the
+skills/ mirror exclusion).
+
+Stage Summary: lint 0/0 · tsc 0 · 147 suites / 2869 unit (+6 pins,
+tests/session-223-audit.test.ts the 147th suite — 4 RED-first at
+birth) · build · smoke 14/14 · e2e 193/193 · the drift battery EXIT:0
+· captures 88-90; the count ladder 2863 → 2869, suites 146 → 147,
+badge 3056 → 3062 (count-ladder-223.py, 28 flips + the 6-check truing) · the neo-crm SKILL
+v1.224.0 + the s223 head layer (skill-head-223.py, replay
+NOOP-idempotent) · the pm-SKILL v1.19.0 + its own Session-223 history
+entry · the PAD §10 ledger row re-anchored at the live census (11:
+5h/5m/1l) + the AGENTS gate-order tail; everything committed to main
+and pushed via the SSH wrapper.
+
 ## Task 222 — The EADDRINUSE Row Round: The Owner's Second Fresh-Clone Report (2026-11-17)
 
 The owner's session_34.md (the s221 execution record) + the updated

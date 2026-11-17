@@ -1,0 +1,34 @@
+# Session-223 Remediation Plan — The Picomatch Advisory Round (The Third Census Drift)
+
+**Date:** 2026-11-17 · **Rotation trigger:** the owner's `839b705` (`docs/session_36.md` — the s222 execution record).
+**Baseline at 839b705 (fresh clone, this sandbox):** lint 0/0 · tsc 0 · **146 suites / 2863 unit GREEN** · build ✓ (5.8s compile) · smoke 14/14 · **e2e 193/193 (6.1m, CI=1 fresh boot)** · probe:ref STABLE (bundle `ee166dd5`, all census layers STANDING) · db census MATCH (15/24/10/23/12 + 4 users at `<repo>/db/custom.db`) · the mobile-nav drawer battery (byte-identical geometry {70,0,320,844} · 8 links · Esc-close + zero lock residue — no Tailwind v4 bug) · the SEO family live-verified (16-URL sitemap `application/xml` · robots · manifest 200 · the OG head).
+
+## The audit (the web-application skill §12/§16/§18 dimensions over the 839b705 tree)
+
+The s222 cures verified still in place (4/4: the README EADDRINUSE row · the session-222 suite · the count ladder 146/2863/3056 · the pm-SKILL v1.18.0 + the neo-crm SKILL v1.223.0). Every security seam verified at line level on this round's live re-check: the Zod boundary (both `z.array` sites capped [.max(40)/.max(20)] + the bounded reader — the new zod advisory's attack requirement of an UNCONSTRAINED array schema is not met in this tree) · force-dynamic discipline · zero dangerouslySetInnerHTML · the single PrismaClient · the db-path seam (census MATCH through the app's own singleton) · the env-knob parity (.env six-knob contract, byte-matched against .env.example).
+
+**THE ROUND'S MATERIAL — F-225a, THE THIRD CENSUS DRIFT (10 → 11, 5h/5m/1l):** the standing pre-ship duty (`bun audit`, the s164 doctrine) caught the drift again. The NEW advisory: **HIGH GHSA-fc5q-39xc-vjpf on picomatch <=4.0.7** (CVE-2026-112366, ReDoS via single-branch repeated extglob patterns `+(*)`, CVSS 8.7) — riding the **DEV-TOOLCHAIN chains only** (`vitest` → picomatch@4.0.7 direct · `vite` → picomatch@4.0.7 · `tinyglobby`/`fdir` peer chains · `micromatch` → picomatch@2.3.1), **zero runtime request-path exposure** (the lockfile closure carries no runtime-dep route to picomatch: next/prisma/recharts/zustand chains are clean). **There is NO patched version upstream** (the micromatch/picomatch#194 fix PR is unreleased) — the same genus as the s221 vite-family moderates: no cure exists without a mid-rotation toolchain-family bump, which the standing posture reserves against (a toolchain bump forces the standing pixel baselines' re-derivation — its own rotation).
+
+The composition re-derivation (5h/5m/1l): high = deepmerge-ts (prisma CLI config) + picomatch (NEW) + source-map-js (postcss) + zod@4.6.5 (eslint-plugin-react-hooks' transitive — NOT our runtime zod: the root resolves 4.6.7, already past the 4.6.6 fix) + vite/launch-editor (vitest chain); moderate = minimatch (eslint family) + the vite family (3: GHSA-9jrq-w75r-8gcw low + GHSA-rq7h-c2jc-7f22 + GHSA-698v-4r3x-3vcv + GHSA-r825-w8mm-5pxw + GHSA-vfpm-58rq-9qcg); low = vite GHSA-9jrq-w75r-8gcw. The runtime posture is UNCHANGED: zero advisories on any runtime request path; the dompurify 3.4.17 override pin + the jspdf dormancy freeze both still hold.
+
+| ID | Severity | Site | Finding |
+|---|---|---|---|
+| F-225a | Medium (docs/ledger truth; the advisory itself is dev-toolchain-only, no runtime exposure) | `Project_Architecture_Document.md` §10 + `AGENTS.md` gate-order tail + `tests/session-221-audit.test.ts` | The advisory census drifted 10 → 11 (4h/5m/1l → 5h/5m/1l): the NEW HIGH GHSA-fc5q-39xc-vjpf on picomatch <=4.0.7 (ReDoS, no upstream fix), dev-toolchain via vitest/vite/tinyglobby chains. The PAD §10 ledger row still carries the s221 post-cure census (10: 4h/5m/1l) verbatim — the standing 33-session-drift genus the s198 round cured, reborn. NO cure available (no patched picomatch release); the honest disposition is the ledger re-anchor at the live census + the dormancy decode + the no-fix caveat, exactly the s221 vite-family precedent. |
+| F-225b | Low | `tests/session-221-audit.test.ts` (the machine-verify pin) | The s221 machine-verify pin asserts only the next-range negative; it does not (and cannot) enumerate the full live census — correct by design (censuses drift; pins must not chase them). The new session-223 pin family carries the re-anchored ledger claim. No cure owed beyond the s223 pins (recorded). |
+| F-225c | Info | `skills/` mirror | The skills-catalog's web-application row cites the four-source distillation; unchanged this round (the operator's own domain, the standing exclusion). No cure owed. |
+
+## The cures (TDD — every pin RED-first at birth)
+
+- **R-01 (F-225a):** the PAD §10 ledger row re-anchored at the live census (11: 5h/5m/1l) with the RE-TRIAGED session-223 clause — the picomatch decode (the chain census: vitest/vite/tinyglobby dev-toolchain, zero runtime exposure), the NO-UPSTREAM-FIX caveat (the unreleased micromatch/picomatch#194), the zod-chain clarification (the vulnerable 4.6.5 is the lint transitive; our runtime zod is 4.6.7 — past the 4.6.6 fix), and the no-mid-rotation-toolchain-bump posture restated. The AGENTS gate-order tail gains the session-223 re-triage clause.
+- **R-02:** `tests/session-223-audit.test.ts` (the 147th suite, 6 checks): the ledger re-anchor pin + the AGENTS tail pin + the runtime-dormancy machine pin (the lockfile closure: no picomatch resolution reachable from a runtime dependency — asserted structurally against `bun.lock`'s chain map, offline-safe) + the session record pin. RED-first at birth.
+- **R-03:** the docs lockstep — `docs/session_37.md` (the round record) · the worklog Task 223 · the plan ledger flip · the pm-SKILL v1.19.0 + its Session-223 history entry · the neo-crm SKILL v1.224.0 + the s223 head layer (LINE-BOUNDED, replay NOOP-idempotent, the F-218b doctrine) · the count ladder 2863 → 2869 (+6 checks) · suites 146 → 147 · badge 3056 → 3062.
+- **R-04:** the verification battery on the cured tree — lint · tsc · the full unit suite (the 147th rides it) · build · smoke · e2e (CI=1) · the drift battery (probe:ref + the four-band sweeps + the fullpage + the interior census) · captures 88-90.
+- **R-05:** the captures 88-90 (the dev-server set: the landing at 1440 · the mobile menu OPEN at 390 — the operator's standing parity focus, re-verified byte-identical this round · the CRM dashboard at 1440), machine-verified non-blank.
+
+## Execution ledger
+
+- [x] R-01 the PAD §10 ledger re-anchor + the AGENTS gate-order tail (F-225a)
+- [x] R-02 `tests/session-223-audit.test.ts` — the 147th suite, RED-first at birth
+- [x] R-03 the docs lockstep (session_37 · worklog Task 223 · the plan ledger · pm-SKILL v1.19.0 · neo-crm SKILL v1.224.0 · the count ladder 2863→2867/146→147/3056→3060)
+- [x] R-04 the verification battery on the cured tree (lint · tsc · unit · build · smoke · e2e CI=1 · the drift battery)
+- [x] R-05 the captures 88-90, machine-verified non-blank

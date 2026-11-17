@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2863-check Vitest / 193-check Playwright corpus and a single-command
+  2869-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.18.0
+version: 1.19.0
 last_updated: 2026-11-17
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.18.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.19.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (146 suites / 2863 checks) | |
+| Unit | Vitest 5 (147 suites / 2869 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2863 unit / 193 e2e)
+## 7. The Test Corpus (2869 unit / 193 e2e)
 
-- **Unit (Vitest, 146 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 147 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -354,6 +354,40 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-223's layers:** the picomatch advisory round (F-225a —
+  the THIRD advisory-census drift: `bun audit` 10 → 11 [5 high /
+  5 moderate / 1 low], the NEW high GHSA-fc5q-39xc-vjpf on picomatch
+  <=4.0.7 [CVE-2026-112366, ReDoS via single-branch repeated extglob
+  patterns like `+(*)`, CVSS 8.7], riding the dev-toolchain chains
+  only [vitest›picomatch@4.0.7 direct · vite›picomatch@4.0.7 · the
+  tinyglobby/fdir family · micromatch›picomatch@2.3.1] — zero runtime
+  request-path exposure, now STRUCTURALLY pinned against `bun.lock`
+  [no runtime dependency's chain lists picomatch or any of its five
+  dev-toolchain consumers], and NO CURE EXISTS [no patched picomatch
+  release upstream — the micromatch/picomatch#194 PR is unreleased;
+  the s221 vite-family no-cure genus, the
+  no-mid-rotation-toolchain-bump posture holds]; the same round
+  re-decoded the zod advisory GHSA-mrhx-c7xc-m3w5 [the vulnerable
+  4.6.5 is eslint-plugin-react-hooks' lint-time transitive — the
+  ROOT zod resolves 4.6.7, past the 4.6.6 fix, and both `z.array`
+  sites in the Zod seam carry explicit `.max` caps, so the
+  unconstrained-array attack requirement is not met in this tree] ·
+  F-225b/F-225c — recorded [the s221 machine-verify pin's
+  by-design census-independence · the skills/ mirror exclusion]).
+  The cures: the PAD §10 ledger row re-anchored at the live census
+  (11: 5h/5m/1l + the RE-TRIAGED session-223 clause + the no-fix
+  caveat) · the AGENTS gate-order tail · the structural + runtime-zod
+  dormancy pins. The pins: tests/session-223-audit.test.ts (the
+  147th suite, 6 checks — 4 RED-first at birth: the ledger row + the
+  AGENTS tail + the session record + the structural pin's first
+  draft; 2 green guards). The count ladder: 2863 → 2869 (+6) ·
+  SUITES 146 → 147 · badge 3056 → 3062. The round's live parity
+  battery: the mobile-nav menu-OPEN state byte-identical at
+  390×844 on both apps (geometry {70,0,320,844}, the 8-link
+  vocabulary, Esc-close, zero lock residue — no Tailwind v4 bug) +
+  the SEO family re-verified live. The verification battery: lint
+  0/0 · tsc 0 · 147/2869 · build · smoke 14/14 · e2e 193/193 · the
+  drift battery EXIT:0 · captures 88-90.
 - **Session-222's layers:** the EADDRINUSE row round (F-224a — the
   owner's live `EADDRINUSE` on their first `bun run start` ["Is port
   3000 in use?" — a lingering :3000 process from the earlier session

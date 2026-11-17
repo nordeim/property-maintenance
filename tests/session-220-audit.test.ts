@@ -122,11 +122,11 @@ describe("session-220: the ship-time truth debt + the history-entry debt (reborn
     );
     const s220line = skill.split("+ beneath it 2853 unit checks")[1] ?? "";
     expect(s220line).toContain("the session-220 layer");
-    // version 1.223.0 now rides the head (the s222 round's own bump;
-    // the s221 round's 1.222.0 was the head when this pin was re-anchored)
-    expect(skill).toContain("version: 1.223.0");
+    // version 1.224.0 now rides the head (the s223 round's own bump;
+    // the s222 round's 1.223.0 was the head when this pin was re-anchored)
+    expect(skill).toContain("version: 1.224.0");
     expect(skill).toContain(
-      "# NEO CRM — Engineering Skill (SKILL.md v1.223.0)",
+      "# NEO CRM — Engineering Skill (SKILL.md v1.224.0)",
     );
     // the s219 layer keeps its own ship counts in its own demoted position
     expect(skill).toContain(

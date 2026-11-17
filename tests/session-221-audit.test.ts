@@ -52,9 +52,12 @@ describe("session-221: the audit-census truth round (the advisory drift + the fr
     // the round's own material change; the row keeps 10 because the
     // next@16.4.6 bump retires the one advisory while the vite family
     // grew by two moderates since the s203 pin (net: 10 -> 11 live
-    // pre-cure -> 10 post-cure)
+    // pre-cure -> 10 post-cure). NOTE: session-223 re-anchored the
+    // live row at the THIRD drift's census (11: 5h/5m/1l — the
+    // picomatch high, no upstream fix); the s221 round's own
+    // post-cure form survives in its demoted history clause.
     expect(pad).toContain(
-      "`bun audit` reports 10 advisories (4 high / 5 moderate / 1 low)",
+      "`bun audit` reports 11 advisories (5 high / 5 moderate / 1 low)",
     );
     // the RE-TRIAGED session-221 clause — the drift record + the cure
     expect(pad).toContain("RE-TRIAGED session-221");
