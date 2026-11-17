@@ -7,7 +7,7 @@
 ## The round
 
 The workspace was re-cloned and rebuilt (bun install · .env from
-.envexample with a fresh AUTH_SECRET · db push+seed · census MATCH
+.env.example with a fresh AUTH_SECRET · db push+seed · census MATCH
 15/24/10/23/12 + 4 users · chromium v1248). The baseline gate opened
 RED — the shipped s217 tree failed `bun run test` 2/2826 (F-219a: the
 phone-baseline re-anchor moved scripts/sweep.ts without its test twins

@@ -10,8 +10,10 @@ import { siteUrl } from "@/lib/site";
 // as "1") — and its MetadataRoute type spells the field changeFrequency,
 // easy to mis-pin. One deliberate fix: the reference's locs are
 // CAPITALIZED (/Accounts…) — its platform routes case-insensitively;
-// our router is case-sensitive (the documented s14 decision, /Profile
-// as the one aliased casing), so this sitemap lists the real lowercase
+// our router is case-sensitive (the documented s14 decision, since
+// the s24 rewrite grown to nine capital-cased aliases — Accounts,
+// Activities, Calendar, Contacts, Dashboard, Leads, Profile, Reports,
+// Settings), so this sitemap lists the real lowercase
 // routes the router actually serves.
 // Session-218 (F-220g): the /dashboard omission is the parity-mirroring
 // decision — the reference's own sitemap lists its 8 app pages + root

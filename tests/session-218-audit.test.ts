@@ -66,7 +66,13 @@ describe("session-218: the twin-pin debt + the replay completion", () => {
     const envExampleNorm = read(".env.example")
       .replace(/\n#\s?/g, " ")
       .replace(/\s+/g, " ");
-    expect(envExampleNorm).toContain("HEADLESS");
+    // Session-219 (F-221b): the bare HEADLESS token upgraded to the house
+    // idiom — block header + the full knob row (moving the token to any
+    // other block, or gutting the row while keeping the word, goes RED).
+    expect(envExampleNorm).toContain("Parity-gate tooling (optional)");
+    expect(envExampleNorm).toContain(
+      "HEADLESS=0 watches the browser-driven captures (unset = headless)",
+    );
   });
 
   it("F-220f: the replay base revision is named WITHOUT the caret at every site (32c3ea7, never 32c3ea7^)", () => {

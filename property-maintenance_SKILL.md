@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2834-check Vitest / 193-check Playwright corpus and a single-command
+  2843-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.14.0
+version: 1.15.0
 last_updated: 2026-11-16
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.14.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.15.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (142 suites / 2834 checks) | |
+| Unit | Vitest 5 (143 suites / 2843 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2834 unit / 193 e2e)
+## 7. The Test Corpus (2843 unit / 193 e2e)
 
-- **Unit (Vitest, 142 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 143 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -354,6 +354,27 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-218's layers:** the twin-pin debt + the replay completion
+  (F-219a — the s217 phone-baseline re-anchor moved
+  scripts/sweep.ts (login 3→3.8, not-found 2→2.9) without its test
+  twins in tests/sweep-tool.test.ts; the shipped s217 tree failed
+  `bun run test` 2/2826 — the F-218a pin-gap genus reborn; cured
+  first, teeth-proven during baseline triage · F-220a/b — the
+  F-218c narration cure missed two sites: the "7 rate-limited"
+  survivor in rate-limit.ts line 12 + the unpinned "13+ call sites"
+  twin in tests/rate-limit.test.ts · F-220c — the s217 ladder
+  anchored a phantom pm-SKILL 140-suites form (the REAL transition
+  was the stale 139 → 141; replay repaired) · F-220d — two of the
+  six neo-crm_SKILL s217 re-anchors rode unrecorded manual steps
+  (the F-218b genus reborn inside the F-218b cure session; both
+  pairs recorded in skill-head-217.py, NOOP-idempotent verified) ·
+  F-220e — .env.example gained HEADLESS in the parity-tools block ·
+  F-220f — the replay base-revision caret misname trued at three
+  sites · F-220g — the sitemap head comment reworded to the live
+  root-1.0 scheme, the /dashboard omission recorded as the
+  parity-mirroring decision). The pins: tests/session-218-audit.test.ts
+  (the 142nd suite, 7 of 8 RED-first at birth). The count ladder:
+  2826 → 2834 (+8 pins) · SUITES 141 → 142 · badge 3019 → 3027.
 - **Session-215's layers:** the OTP log valve (F-216a — the verification
   code's console.info rides INSIDE the NEO_DISABLE_IN_APP_OTP gate in
   signup + resend; the kill-switch that nulls the response payload now

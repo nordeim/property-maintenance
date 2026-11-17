@@ -1,3 +1,34 @@
+## Task 219 — The Standing Rotation: The History-Entry Debt + The Guard-Recreation Round (2026-11-17)
+
+The owner's session_28.md archive (eee1dd1) triggered the rotation. The
+workspace survived the recycle intact. The baseline gate opened GREEN at
+the exact s218 ship state — lint 0/0 · tsc 0 · 142/2834 · build — the
+first round since s216 with no twin-pin debt at birth; probe:ref STABLE
+(bundle ee166dd5) · the mobile-nav walk at 390 byte-MATCH (no Tailwind
+v4 bug). The audit (the web-application skill dimensions over the
+85ed531 collateral) found eight findings (2 Medium, 3 Low, 3 Info): the
+pm-SKILL v1.14.0 bump shipped without its Session-218 history entry
+(F-221a) · the F-220e pin under-pinned (F-221b) · the negatives-ladder
+doctrine not carried to the s218-retired forms (F-221c) · the session_27
+.envexample typo (F-221f) · the .env.example parity block naming the
+wrong HEADLESS consumers (F-221g) · the D-205a2 env-face totality
+contract unenforced since the lineage reset (F-221h — THE GUARD
+RECREATED, teeth-proven by live plant) · the sitemap comment's "the one
+aliased casing" stale since s24 (F-221i) · the neo-crm SKILL version
+not bumped at s218 (F-221j — 1.220.0 now); dispositioned no-cure:
+F-221d (the s211 count exception) + F-221e (the dual-lineage collisions).
+
+Stage Summary: lint 0/0 · tsc 0 · 143 suites / 2843 unit (+9 pins,
+tests/session-219-audit.test.ts the 143rd suite) · build · smoke 14/14 ·
+e2e 193/193 · the mobile-nav walk at 390 byte-MATCH · probe:ref STABLE
+(bundle ee166dd5) · captures 76-78; the count ladder 2834 → 2843, suites
+142 → 143, badge 3027 → 3036 (count-ladder-219.py — which caught and
+cured two collateral stragglers its first pass missed: the README
+commands-comment site + the four dialog-geometry CLAUDE.md twin pins)
+· the neo-crm SKILL v1.220.0 + the s219 head layer (skill-head-219.py,
+replay NOOP-idempotent) · the pm-SKILL v1.15.0 + the Session-218
+history entry; committed to main and pushed via the SSH wrapper.
+
 ## Task 218 — The Standing Rotation: The Twin-Pin Debt + The Replay Completion (2026-11-16)
 
 The owner's session_26.md archive (7438dcd) triggered the rotation. The
