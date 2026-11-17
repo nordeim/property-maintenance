@@ -1,2 +1,80 @@
-skills/
+# dependencies
 node_modules/
+.pnp
+.pnp.*
+
+# testing
+coverage/
+backup/
+
+# next.js
+.next/
+out/
+build/
+
+# misc
+.DS_Store
+*.pem
+*.key
+ssh-key.txt
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dev.log
+server.log
+
+# local env files — never commit secrets
+.env
+.env*.local
+
+# database binaries — recreate with db:push + db:seed
+db/*.db
+db/*.db-journal
+
+# prisma generated client
+node_modules/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# editor
+.idea/
+.vscode/
+tests/e2e/.auth/
+
+# playwright
+test-results/
+playwright-report/
+.vitest/
+
+# session-30: uploaded files (the UploadFile mirror — like db/, never committed).
+# session-35: ANCHORED to the repo root — the unanchored `uploads/` form also
+# matched src/app/api/uploads/ and silently kept the GET route out of git
+# (the fresh-clone broken-photo bug).
+/uploads/
+
+# session-92: the sweep tool's capture artifacts (regenerated per run)
+scripts/sweep-shots/
+
+# session-162: the sweep's cross-process auth state — live session
+# material on disk (the combined pair state); follows the db-binary
+# discipline: git-ignored, 0600, TTL-bounded. NEVER committed.
+scripts/.sweep-auth-state.json
+scripts/walk50/
+scripts/walk51/
+scripts/walk52/
+scripts/walk53/
+scripts/walk54/
+scripts/walk55/
+scripts/walk56/
+scripts/walk57/
+scripts/walk58/
+scripts/walk59/
+scripts/walk60/
+scripts/walk61/
+scripts/walk62/
+scripts/__pycache__/

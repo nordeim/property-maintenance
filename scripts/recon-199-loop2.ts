@@ -1,0 +1,10 @@
+import { chromium } from "@playwright/test";
+const BASE = "http://localhost:3000";
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
+let navs = 0;
+page.on("framenavigated", (f) => { if (f === page.mainFrame()) navs++; });
+await page.goto(`${BASE}/dashboard`, { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(6000);
+console.log("dashboard navs:", navs);
+await browser.close();

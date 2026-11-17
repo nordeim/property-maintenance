@@ -1,0 +1,72 @@
+import { siteUrl } from "@/lib/site";
+
+// Session-18 (S18-P4): /sitemap.xml — the reference's exact format
+// (byte-verified 2026-10-01: LF-only, no trailing newline, 4-space URL
+// indent, changefreq weekly on every entry, priority "1.0" for the root
+// and "0.8" for the rest — the s142 repurposing made `/` the public
+// landing page; the retired neo-crm "1.0 for the dashboard" scheme died
+// with it). Served through an explicit route handler because Next's
+// sitemap.ts serializer DROPS the number formatting ("1.0" serializes
+// as "1") — and its MetadataRoute type spells the field changeFrequency,
+// easy to mis-pin. One deliberate fix: the reference's locs are
+// CAPITALIZED (/Accounts…) — its platform routes case-insensitively;
+// our router is case-sensitive (the documented s14 decision, since
+// the s24 rewrite grown to nine capital-cased aliases — Accounts,
+// Activities, Calendar, Contacts, Dashboard, Leads, Profile, Reports,
+// Settings), so this sitemap lists the real lowercase
+// routes the router actually serves.
+// Session-218 (F-220g): the /dashboard omission is the parity-mirroring
+// decision — the reference's own sitemap lists its 8 app pages + root
+// with no dashboard entry (its root IS the app), so ours mirrors that
+// crawl surface; the CRM routes below ride the 0.8 family as the
+// superset back-office.
+// Session-142 (D-142a3): + /about + /contact (the reference's two new
+// marketing-layer app pages — its URL surface now includes them; ours
+// mirrors at the lowercase canonicals). `/` stays 1.0 — it is now the
+// PUBLIC landing page (the reference's own root), still the highest-
+// priority crawlable route.
+export const dynamic = "force-static";
+
+const ROUTES: Array<{ path: string; priority: string }> = [
+  { path: "/", priority: "1.0" },
+  // Session-199: the Oasis public layer joins the crawlable surface
+  // (/home is the reference's canonical home path; /services, /gallery,
+  // /faq + /booking are its public app pages — the CRM routes below
+  // stay listed as the superset back-office).
+  { path: "/home", priority: "0.8" },
+  { path: "/services", priority: "0.8" },
+  { path: "/gallery", priority: "0.8" },
+  { path: "/faq", priority: "0.8" },
+  { path: "/booking", priority: "0.8" },
+  { path: "/accounts", priority: "0.8" },
+  { path: "/contacts", priority: "0.8" },
+  { path: "/leads", priority: "0.8" },
+  { path: "/calendar", priority: "0.8" },
+  { path: "/activities", priority: "0.8" },
+  { path: "/reports", priority: "0.8" },
+  { path: "/settings", priority: "0.8" },
+  { path: "/profile", priority: "0.8" },
+  { path: "/about", priority: "0.8" },
+  { path: "/contact", priority: "0.8" },
+];
+
+export function GET(): Response {
+  const origin = siteUrl();
+  const urls = ROUTES.map(
+    ({ path, priority }) => `    <url>
+        <loc>${origin}${path}</loc>
+        <changefreq>weekly</changefreq>
+        <priority>${priority}</priority>
+    </url>`,
+  ).join("\n");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+  return new Response(xml, {
+    // Session-20 (S20-P4): bare `application/xml` — the reference's exact
+    // content-type (GET-verified 2026-10-01; ours had shipped a charset
+    // suffix, the s18 "viewport 1 vs 1.0" cosmetic-serialization class).
+    headers: { "content-type": "application/xml" },
+  });
+}

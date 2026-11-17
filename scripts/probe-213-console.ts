@@ -1,0 +1,10 @@
+import { chromium } from "@playwright/test";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+const errors: string[] = [];
+page.on("pageerror", (e) => errors.push(`PAGEERROR: ${e.message}`));
+page.on("console", (m) => { if (m.type() === "error") errors.push(`CONSOLE: ${m.text().slice(0, 200)}`); });
+await page.goto("http://localhost:3000/", { waitUntil: "domcontentloaded" });
+await page.waitForTimeout(4000);
+console.log(JSON.stringify({ errors: errors.slice(0, 6), count: errors.length }, null, 1));
+await browser.close();

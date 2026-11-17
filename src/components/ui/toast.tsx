@@ -1,0 +1,149 @@
+"use client";
+
+// Toast system — a lightweight subscribe/store hook + viewport. Mirrors the
+// @radix-ui/react-toast API shape but with far less ceremony (and no portal
+// key pitfalls). Auto-dismiss with hover-pause.
+// Session-62 (N-62a): the @radix-ui/react-toast PACKAGE was retired — this
+// file never imported it (a from-scratch design since the scaffold); the
+// reference above documents the API contract it mirrors, not a dependency.
+
+import * as React from "react";
+import { AlertCircle, CheckCircle2, Info, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+export type ToastVariant = "success" | "error" | "info";
+
+export interface ToastItem {
+  id: number;
+  title: string;
+  description?: string;
+  variant: ToastVariant;
+}
+
+let toastSeq = 0;
+
+// Module-level store so any component (or plain function via `toast()`) can
+// publish without prop drilling.
+type Listener = (toasts: ToastItem[]) => void;
+const listeners = new Set<Listener>();
+let toasts: ToastItem[] = [];
+
+function emit() {
+  for (const l of listeners) l(toasts);
+}
+
+function dismiss(id: number) {
+  toasts = toasts.filter((t) => t.id !== id);
+  emit();
+}
+
+function push(title: string, variant: ToastVariant = "info", description?: string) {
+  toastSeq += 1;
+  const item: ToastItem = { id: toastSeq, title, description, variant };
+  toasts = [...toasts, item].slice(-4); // keep the viewport tidy
+  emit();
+  return item.id;
+}
+
+/** Imperative helper usable from anywhere client-side. */
+export const toast = {
+  success: (title: string, description?: string) => push(title, "success", description),
+  error: (title: string, description?: string) => push(title, "error", description),
+  info: (title: string, description?: string) => push(title, "info", description),
+  dismiss,
+};
+
+function useToasts(): ToastItem[] {
+  const [state, setState] = React.useState<ToastItem[]>(toasts);
+  React.useEffect(() => {
+    const listener: Listener = (next) => setState(next);
+    listeners.add(listener);
+    return () => listeners.delete(listener) as unknown as void;
+  }, []);
+  return state;
+}
+
+const ICONS: Record<ToastVariant, React.ReactNode> = {
+  success: <CheckCircle2 className="h-4.5 w-4.5 text-success" />,
+  error: <AlertCircle className="h-4.5 w-4.5 text-danger" />,
+  info: <Info className="h-4.5 w-4.5 text-primary" />,
+};
+
+function Toaster() {
+  const items = useToasts();
+  return (
+    <div
+      aria-label="Notifications"
+      role="region"
+      // Session-7 live pin: the reference viewport is top-of-screen on
+      // phones and bottom-right from sm (sonner-style), max-w-[420px] at md.
+      className="pointer-events-none fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse gap-2 p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"
+    >
+      {items.map((t) => (
+        <ToastCard key={t.id} item={t} />
+      ))}
+    </div>
+  );
+}
+
+function ToastCard({ item }: { item: ToastItem }) {
+  // Auto-dismiss (hover-pause via timer reset).
+  const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (paused) return;
+    timer.current = setTimeout(() => dismiss(item.id), 4000);
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [paused, item.id]);
+
+  return (
+    <div
+      role="status"
+      className={cn(
+        "pointer-events-auto flex items-start gap-3 rounded-xl border p-3.5 shadow-lg outline-none",
+        // Session-131 (D-131a1): the scaffold-era data-[state] animation
+        // family RETIRED — the ToastCard never set data-state, so
+        // data-[state=open]:animate-in / animate-out / fade-* /
+        // slide-in-from-bottom-4 NEVER applied (zero animation since the
+        // scaffold — live-censused tc.animName=none at walk22). The
+        // F-131c1 record: the reference's toast system is DOM-DEAD (four
+        // Ix.* calls in its bundle, ZERO rendered elements on any trigger
+        // path) — no reference surface contracts an animation; retired per
+        // the D-124a7 dead-code doctrine. The tw-animate.css vendor import
+        // stays (the Radix dialog family rides it).
+        item.variant === "success" && "border-emerald-200 bg-white",
+        item.variant === "error" && "border-rose-200 bg-white",
+        item.variant === "info" && "border-line bg-white",
+      )}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <span className="mt-0.5 shrink-0">{ICONS[item.variant]}</span>
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-medium text-foreground">{item.title}</p>
+        {item.description && <p className="mt-0.5 text-xs text-muted">{item.description}</p>}
+      </div>
+      <button
+        type="button"
+        onClick={() => dismiss(item.id)}
+        // Session-131 (D-131a0): the hover TEXT arm is the neutral-900
+        // literal (hover:text-foreground #0a0a0a → hover:text-neutral-900
+        // #171717) — the F-128c1 genus's FOURTH arm (s128 menu-item ink ·
+        // s129 outline hover text · s130 ghost hover text; the reference's
+        // stock interactive-hover ink #171717). The reference's toast
+        // surface is DOM-DEAD (F-131c1 — no live face to parity), so the
+        // fix rides OUR superset by the trio precedent + internal
+        // consistency: the LAST live hover:text-foreground ride in src/.
+        className="shrink-0 rounded-md p-1 text-subtle transition-colors hover:bg-line-soft hover:text-neutral-900"
+        aria-label="Dismiss notification"
+      >
+        <X className="h-3.5 w-3.5" />
+      </button>
+    </div>
+  );
+}
+
+export { Toaster };

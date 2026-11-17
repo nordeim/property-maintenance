@@ -1,0 +1,717 @@
+// Session-199 (the property-maintenance checkout round): the MARKETING
+// BATTERY — the Oasis public layer's construction pins. This suite
+// REPLACED the s142 landing battery (the neo-crm landing's DOM pins,
+// retired with the surface it pinned: that landing cloned a DIFFERENT
+// reference's marketing arms; the Oasis build (the plan §2) replaced
+// the pages, so the old pins now assert markup that no longer exists
+// by design — the retirement pattern, their forms joining the
+// negatives ladder below).
+//
+// Every positive pin below is the live-recon ground truth
+// (scripts/recon-199*.ts legs 8-12; the extracted content rides
+// src/lib/site-content.ts).
+import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+
+const read = (p: string): string => {
+  try {
+    return readFileSync(p, "utf-8");
+  } catch {
+    return "";
+  }
+};
+
+// the retired s142 landing forms never return (the negatives ladder —
+// the neo-crm landing's own copy, retired WITH its surface)
+const RETIRED_LANDING_FORMS = [
+  'import { LandingPage } from "@/components/landing/landing-page"',
+  "Open the dashboard",
+  "See pricing",
+] as const;
+
+describe("session-199: the (site) group — the Oasis public layer's routes", () => {
+  it("the eight public routes render their pages under the site chrome", () => {
+    for (const [route, marker] of [
+      ["(site)/page.tsx", "HomePage"],
+      ["(site)/home/page.tsx", "HomePage"],
+      ["(site)/services/page.tsx", "ServicesPage"],
+      ["(site)/gallery/page.tsx", "GalleryPage"],
+      ["(site)/faq/page.tsx", "FaqPage"],
+      ["(site)/about/page.tsx", "AboutPage"],
+      ["(site)/contact/page.tsx", "ContactPage"],
+      ["(site)/booking/page.tsx", "BookingFlow"],
+    ] as const) {
+      expect(read(`src/app/${route}`), route).toContain(marker);
+    }
+  });
+
+  it("the (site) layout is PUBLIC — no session resolution, the site chrome not the AppShell", () => {
+    const layout = read("src/app/(site)/layout.tsx");
+    expect(layout).toContain("SiteHeader");
+    expect(layout).toContain("SiteFooter");
+    expect(layout).not.toContain("getSessionUser");
+    expect(layout).not.toContain("AppShell");
+  });
+
+  it("F-201e the OASIS public background canvas — the reference's own full-viewport painter, mirrored (the sky-to-lawn gradient + the sun band + the foliage blobs)", () => {
+    // ------------------------------------------------------------------
+    // Session-201 (F-201e): the full-map drift gate's landing
+    // adjudication — the reference paints its public pages' backdrop
+    // with a fixed inset-0 CANVAS (a stylized sky-over-lawn scene:
+    // the flat sky #AEE2FF -> the lawn #8BC687, a
+    // warm sun band at ~62-74%, the darker-green foliage blobs at
+    // both edges + the bottom-right; ~static — 0.47% frame drift over
+    // 4s). Our clone rendered NOTHING there (the plain gray-50 body)
+    // — the dominant genus of every public page's standing diff (the
+    // landing 76.66 · about 55.41 · contact 38.67 · services 42.57 ·
+    // gallery 36.23 · faq 66.37 · booking 77.66). The canvas rides
+    // the reference's SEVEN public pages ONLY — its login + its 404
+    // render white (the not-found pair sits at the 0.02% floor
+    // proving it) — so the mount rides the (site) layout (the auth
+    // routes + the root 404 live OUTSIDE the group).
+    // ------------------------------------------------------------------
+    const layout = read("src/app/(site)/layout.tsx");
+    expect(layout).toContain("SiteBackgroundCanvas");
+    expect(
+      layout.indexOf("SiteBackgroundCanvas"),
+      "the canvas mounts BEFORE the chrome (the backdrop, not the content)",
+    ).toBeLessThan(layout.indexOf("<SiteHeader />"));
+    const src = read("src/components/site/background-canvas.tsx");
+    // the decoded palette (sampled at the uncovered right edge of the
+    // reference's own landing capture)
+    expect(src).toContain("#AEE2FF"); // the flat sky (0-28%)
+    expect(src).not.toContain("#E7F6FF"); // the retired crest misread (the white/70 header over the sky decodes as 231,246,255)
+    expect(src).toContain("#8BC687"); // the lawn
+    expect(src).toContain("216, 209, 189"); // the warm sun band
+    // Session-207 (F-207a): the left-bush tone pin re-anchored — the
+    // s201 blob constant BUSH_LEFT (44,147,64) retired with the solid
+    // re-derivation; the tone family lives in the HEDGE_GRAD_TOP stop
+    expect(src).toContain("49, 160, 72"); // the hedge gradient's top (the left-bush tone family)
+    // Session-207 (F-207c): the BUSH_RIGHT (46,152,67) tone pin retired —
+    // the two right-side blobs were PHANTOMS (the ref paints pure lawn
+    // at their zones; the descent polygon owns that structure)
+    expect(src).toContain("87, 93, 99"); // the sun-band rocks
+    // Session-207 (F-207a): the SOIL_GREEN (16,96,28) tone pin retired with
+    // the dead constant — the corner masses paint EDGE_DARK_SOLID (21,103,39)
+    expect(src).toContain("21, 103, 39"); // the corner masses' dark band
+    // ------------------------------------------------------------------
+    // Session-204 (the F-201e refinement — the faq/booking exposure):
+    // the narrow-content pages expose canvas zones the landing's
+    // full-bleed content always covered, so the s201 decode never saw
+    // them. Decoded from the reference's faq margins (grid-sampled,
+    // both edges): a FULL-WIDTH ROCK STRATUM (y~560-650, the 87,93,99
+    // gray — solid across both margins), a WARM GLOW zone sandwiching
+    // it (y~505-675, the 202,193,172/193,185,166 soft tones), a BUSH
+    // HEDGE along the left edge (x0-115, y~690-775), a mid-left bush
+    // (x~135-265, y~510-560), the right-corner dark-green mass +
+    // soil browns at both bottom corners. Our first-pass mirror
+    // painted only small rock blobs + a misplaced left tint there.
+    // The one slowly-moving glow element (the sun's gap position
+    // differs between captures) stays the documented animation-drift
+    // floor — the static scene is what mirrors.
+    // ------------------------------------------------------------------
+    expect(src).toContain("STRATUM"); // the full-width rock stratum
+    expect(src).toContain("0.615"); // its top edge (y~553 of 900)
+    expect(src).toContain("0.725"); // its bottom edge (y~652)
+    expect(src).toContain("193, 185, 166"); // the glow's solid wash (near-opaque — the lawn never shows through)
+    expect(src).toContain("89, 67, 37"); // the bottom-left soil brown
+    expect(src).not.toContain("TINT_LEFT"); // the misplaced left tint, retired
+    expect(src).not.toContain("0.008, 0.665"); // the small rock blobs, retired
+    // ------------------------------------------------------------------
+    // Session-204 (the LANDING half — the reference's canvas updated
+    // TODAY: the horizon sits higher): the lawn now begins ~y250 (the
+    // sky-to-lawn transition ~25.5-28.5% — was 28-36%), a BIG dark
+    // foliage mass rides the horizon at x~1050-1250 ((95,143,51) +
+    // the deeper (75,124,38)) + the right edge descends in dark greens
+    // (x~1380+, y~280-340). The red sprite + the diagonal warm streak
+    // are MOVING elements (they flip between captures) — the
+    // animation-drift floor, not mirrored. The faq/booking hero bands
+    // cover the whole transition zone — insensitive to this cure.
+    // ------------------------------------------------------------------
+    // ------------------------------------------------------------------
+    // Session-206 (F-206c supersedes the s204 stops): the transition
+    // tightened to the ref's SHARP horizon — 1px at y231 (0.257), the
+    // 6px blend band to 0.262. The s204's soft 0.255/0.285 stops are
+    // retired (the ref's edge is CRISP, not a 27px blend).
+    // ------------------------------------------------------------------
+    expect(src).toContain("0.257"); // the sky's last flat stop (the sharp edge, y~231)
+    expect(src).toContain("0.262"); // the lawn's first solid stop (the 6px blend band)
+    expect(src).toContain("95, 143, 51"); // the horizon foliage mass
+    expect(src).toContain("75, 124, 38"); // its deeper lobe
+    // Session-207 (F-207a): the EDGE_GREEN (30,116,48) tone pin re-anchored to
+    // the live EDGE_DARK_SOLID construction (the s206 solid re-derivation)
+    expect(src).toContain("EDGE_DARK_SOLID"); // the descent's live constant
+    // ------------------------------------------------------------------
+    // Session-204 (the left tree — decoded from the ref's booking AND
+    // landing margins, byte-identical on both): a TALL bush darkening
+    // downward into a BROWN base — green (48,147,67)->(24,107,36) over
+    // y~275-340, then the brown (91,67,37)/(77,59,31) y~340-365, then
+    // the lawn. Session-206 (F-206e): the tree re-derived as a SOLID
+    // oval crown + the solid trunk base (the blob construction retired
+    // — the ref's crown is a crisp shape, not a radial fade).
+    // ------------------------------------------------------------------
+    expect(src).toContain("[0.014, 0.316]"); // the crown's top-left (the solid oval)
+    expect(src).toContain("[0.0375, 0.371]"); // the trunk base's top (54,334 — widened s211)
+    // ------------------------------------------------------------------
+    // Session-206 (the F-204d deferral retired — the terracotta mass,
+    // decoded fresh at fine granularity from the ref's booking): a crisp
+    // WEDGE — the apex ~(310,222) at the horizon, the right edge running
+    // under the booking's glass card at x~359 (the warm bleed ~60px
+    // inside), the left edge sloping down to (172,310); the bright core
+    // (214,81,55) on the sunlit right, the darker shade (153,60,35) at
+    // the lower-left. PAGE-SHARED but content-covered on the faq/landing
+    // (their content sits over the zone — verified terracotta=0 there),
+    // so the shared painter's polygon cannot hurt their floors. Below:
+    // the gray-green underlayer (175,180,141)/(130,166,153) at y~316-372
+    // + the small dark-green bush (23,117,67) at its foot.
+    // ------------------------------------------------------------------
+    expect(src).toContain("214, 81, 55"); // the terracotta core
+    expect(src).toContain("153, 60, 35"); // the darker shade
+    expect(src).toContain("175, 180, 141"); // the gray-green underlayer
+    expect(src).toContain("TERRACOTTA"); // the wedge constant
+    expect(src).toContain("TERRACOTTA_SHADE"); // the two-tone construction
+    // ------------------------------------------------------------------
+    // Session-206 (F-206e — the SOLID-FOLIAGE genus): the ref's foliage
+    // structures are CRISP SOLID SHAPES (the right mass's flat
+    // (95,143,51) core, the tree's oval crown (47,151,68), the hedge's
+    // band, the corners' dark masses (21,103,39)) — our radial blobs
+    // washed every edge (the sampled deltas: ref (95,143,51) vs our
+    // faded (133,190,129)). The polygon painter is the cure.
+    // ------------------------------------------------------------------
+    expect(src).toContain("95, 143, 51"); // the right mass's flat core
+    expect(src).toContain("47, 151, 68"); // the left tree's crown / the hedge
+    expect(src).toContain("21, 103, 39"); // the right-edge descent's dark band
+    expect(src).toContain("MASS_CORE_SOLID"); // the solid constants
+    expect(src).toContain("HEDGE_SOLID");
+    expect(src).toContain("EDGE_DARK_SOLID");
+    expect(src).toContain("function polygon("); // the polygon painter
+    // ------------------------------------------------------------------
+    // Session-207 (F-207c — the right side's underlayer band, a whole
+    // genus ours lacked): the gray-green G band (x1080-1255, y318-370,
+    // (173,174,129)) with TEAL patches (130,166,153) along its top +
+    // the stable BLUE slab (30,54,89) at (1143-1173, y334-370) —
+    // verified PAGE-SHARED (booking+landing show it; faq content-
+    // covered). The mass's SUNLIT RIM (108,162,59) — the diagonal band
+    // inside the right slope — + the DEEP band confined below y~275
+    // (ours painted it too high) + the descent's bottom tip at y~375.
+    // ------------------------------------------------------------------
+    expect(src).toContain("173, 174, 129"); // the G band
+    expect(src).toContain("130, 166, 153"); // the teal patches
+    expect(src).toContain("30, 54, 89"); // the blue slab
+    expect(src).toContain("108, 162, 59"); // the sunlit rim
+    expect(src).toContain("G_BAND"); // the band constant
+    expect(src).toContain("SUNLIT_RIM"); // the rim constant
+    // ------------------------------------------------------------------
+    // Session-210 (F-210b/c — the hi-dpi re-audit of the "AA edges"):
+    // the floor was a MISDIAGNOSIS (both canvases render sharp at the
+    // device level); the real gaps are band geometry. F-210b: the
+    // light band's bottom edge is a V — descending y308@x1080 ->
+    // apex y270@x~1178 -> rising y307@x1260 (ours was flat y310).
+    // F-210c: the descent's dark band is a vertical GRADIENT
+    // (24,106,42)@y302 -> (14,90,20)@y346 (ours was flat) + its light
+    // cap (35,117,52) family at x1370-1410, y286-301.
+    // ------------------------------------------------------------------
+    expect(src).toContain("1178"); // the V's apex x
+    expect(src).toContain("270"); // the V's apex y
+    expect(src).toContain("EDGE_DARK_DEEP"); // the descent gradient's bottom tone
+    expect(src).toContain("14, 90, 20"); // the deep tone's value
+    // ------------------------------------------------------------------
+    // Session-211 (F-211a/c/d): the descent-top is a CONCAVE CURVE (the
+    // s210 cap wedge was a misread of the dark band's gradient top +
+    // AA — RETIRED); the right-edge descent family is DESKTOP-ONLY
+    // (the ref's 390 scene omits it entirely — lawn holds below 1024);
+    // the left tree's trunk widens + the crown gains its downward
+    // gradient (50,159,72)->(13,93,21).
+    // ------------------------------------------------------------------
+    expect(src).toContain("DESCENT_ARC"); // the concave-arc painter
+    expect(src).not.toContain("DESCENT_CAP"); // the misread wedge retired
+    expect(src).toContain("w < 1024"); // the mobile scene gate
+    expect(src).toContain("CROWN_GRAD_TOP"); // the tree crown's gradient
+    expect(src).toContain("CROWN_GRAD_BOTTOM"); // (13,93,21)
+    // ------------------------------------------------------------------
+    // Session-207 (F-207b — the hedge's vertical gradient): the ref's
+    // hedge darkens (49,160,72)@y698 -> (15,95,26)@y788 — a smooth
+    // linear gradient inside the dome, NOT the flat fill + the hard
+    // under-band (both retired). The soil patch at its foot: solid
+    // (96,71,40), x73-110 y780-805.
+    // ------------------------------------------------------------------
+    expect(src).toContain("49, 160, 72"); // the gradient's top stop
+    expect(src).toContain("15, 95, 26"); // the gradient's bottom stop
+    expect(src).toContain("function polygonGradient("); // the multi-stop gradient painter
+    expect(src).toContain("[0.802, HEDGE_GRAD_TOP]"); // the convex hold (the ref's flat top to y~722)
+    expect(src).toContain("[0.876, HEDGE_GRAD_BOTTOM]"); // the gradient's bottom (y~788)
+    expect(src).toContain("96, 71, 40"); // the soil patch's solid tone
+    // ------------------------------------------------------------------
+    // Session-207 (F-207a — the dead-code retirement): the five s201-era
+    // constants orphaned by the s206 solid re-derivation are GONE (the
+    // s146 dead-code doctrine — no orphaned constants left behind).
+    // ------------------------------------------------------------------
+    expect(src).not.toContain("const MASS ="); // retired with the s206 polygons
+    expect(src).not.toContain("const MASS_DEEP =");
+    expect(src).not.toContain("const BUSH_LEFT =");
+    expect(src).not.toContain("const SOIL_GREEN =");
+    expect(src).not.toContain("const EDGE_GREEN =");
+    // ------------------------------------------------------------------
+    // Session-208 (F-208c — the far-left horizon DIAGONAL): the ref's
+    // sky->lawn boundary at the far-left corner is a DIAGONAL — sky
+    // holds to y278@x0 -> y266@x20 -> y253@x40 -> y241@x60 -> flat
+    // y231@x80+ (page-shared: booking + landing agree). The diagonal
+    // polygon patches the corner OVER the flat gradient.
+    // ------------------------------------------------------------------
+    expect(src).toContain("HORIZON_DIAGONAL"); // the far-left diagonal patch
+    expect(src).toContain("rgba(174, 226, 255"); // the diagonal paints SKY over the corner
+    // ------------------------------------------------------------------
+    // Session-208 (F-208d — the left crown's true top): the ref's
+    // crown rises to (43,272) — a taller oval ((30-55)@277 widening
+    // to (12-82)@307); ours peaked at y284. The crown re-derived.
+    // ------------------------------------------------------------------
+    expect(src).toContain("the crown's top (43,272)"); // the taller crown
+    // ------------------------------------------------------------------
+    // Session-208 (F-208e — the right-side bush): the ref's light-green
+    // + brown bush at (x1310-1430, y440-500) — tones (187,220,170) +
+    // (165-176,123-137,72-92) + the dark spot (26,30,27).
+    // ------------------------------------------------------------------
+    expect(src).toContain("187, 220, 170"); // the bush's light-green
+    expect(src).toContain("RIGHT_BUSH"); // the bush constants
+    expect(src).toContain("26, 30, 27"); // the bush's dark spot
+    // ------------------------------------------------------------------
+    // Session-208 (F-208f — the mid-distance structures): behind the
+    // booking glass the ref paints a dark-green tree mass (x460-620,
+    // y265-315) + a blue-gray structure (x660-800, y265-310) — they
+    // tint the glass zones (booking + landing agree).
+    // ------------------------------------------------------------------
+    expect(src).toContain("MID_TREE"); // the dark-green mid tree mass
+    expect(src).toContain("MID_BLUE"); // the blue-gray mid structure
+    // ------------------------------------------------------------------
+    // Session-209 (F-209a/b — the ANIMATION PORT, decoded by the
+    // 22-frame rapid-fire tracker): the two standing sprites are real
+    // animations. THE BIRD: a two-part red sprite (the leading band
+    // ~13x8 @y356-362 + the wing-spread body ~48x16 @y382-394, tone
+    // (199,66,62)) translating right at ~46px/s from x~-60 to x~420,
+    // cycling every ~17s; the second pass is the TWO-BIRD flock at
+    // y408-424. THE BUSH STRIP: the light-green strip (y430-502) GROWS
+    // from the right edge (x1317) leftward to x1080 over 9s, holds,
+    // VANISHES 8s, regrows. A requestAnimationFrame loop drives both.
+    // ------------------------------------------------------------------
+    expect(src).toContain("requestAnimationFrame"); // the animation loop
+    expect(src).toContain("BIRD_RED"); // the bird's core tone
+    expect(src).toContain("drawBird"); // the two-part bird painter
+    expect(src).toContain("drawBushStrip"); // the growing strip painter
+    expect(src).toContain("BIRD_CYCLE_MS"); // the ~17s bird cycle
+    expect(src).toContain("STRIP_CYCLE_MS"); // the grow/hold/vanish cycle
+    // the static-paint compatibility: the t=0 state reproduces the
+    // s208 ship (the strip at its x1317 seed + no bird in frame) so
+    // the drift captures stay comparable
+    expect(src).toContain("1317 + (1080 - 1317)"); // the left lobe's grow sweep (x1317 -> x1080)
+    expect(src).toContain("drawBushStrip(ctx2, growFrac)"); // the RAF call site
+    // the cleanup: the RAF handle cancelled on unmount (no leak)
+    expect(src).toMatch(/cancelAnimationFrame/);
+    // the wedge is a POLYGON (the crisp edges), not a radial blob — the
+    // s204 quick attempts failed exactly because a blob's soft edges
+    // blurred through the booking glass
+    expect(src).toContain("moveTo");
+    expect(src).toContain("lineTo");
+    // ------------------------------------------------------------------
+    // Session-206 (F-206c — the horizon sharpness genus): the ref's
+    // sky->lawn edge is SHARP (1px at y231; a 6px band at most) while
+    // ours blended over ~27px (the s204 stops 0.255/0.285). The y231
+    // line = 0.2567 of 900 — the tightened stops below.
+    // ------------------------------------------------------------------
+    expect(src).toContain("sky.addColorStop(0.257, SKY)"); // the sharp edge (y~231)
+    expect(src).toContain("sky.addColorStop(0.262, LAWN)"); // the 6px blend band
+    expect(src).not.toContain("sky.addColorStop(0.285, LAWN)"); // the retired soft blend
+    // the retired first-pass blob attempts never return (the s204 record)
+    expect(src).not.toContain("0.22, 0.29, 0.09");
+    expect(src).not.toContain("0.26, 0.27, 0.1");
+    // the painter is a fixed, aria-hidden, pointer-events-none canvas
+    // below the content (the reference's own construction)
+    expect(src).toContain("fixed inset-0");
+    expect(src).toContain('aria-hidden="true"');
+    expect(src).toContain("pointer-events-none");
+    // the negatives: the canvas never rides the 404 or the auth pages
+    // (the reference's own posture — both render white)
+    expect(read("src/app/not-found.tsx")).not.toContain("SiteBackgroundCanvas");
+    expect(read("src/app/login/page.tsx")).not.toContain("SiteBackgroundCanvas");
+  });
+
+  it("the retired neo-crm landing forms never return (the negatives ladder)", () => {
+    for (const form of RETIRED_LANDING_FORMS) {
+      expect(read("src/app/(site)/page.tsx")).not.toContain(form);
+    }
+    // the retired landing component itself is GONE (the dead-code
+    // doctrine: no orphaned components)
+    expect(read("src/components/landing/landing-page.tsx")).toBe("");
+  });
+
+  it("the capital-casing aliases ride the .jsx dodge (the reference's mixed-case hrefs)", () => {
+    for (const cap of ["Home", "Services", "Gallery", "FAQ", "About", "Contact", "Booking"]) {
+      const src = read(`src/app/(site)/${cap}/page.jsx`);
+      expect(src, `${cap} alias`).toContain(`from "../${cap.toLowerCase()}/page"`);
+    }
+  });
+});
+
+describe("session-199: the site chrome construction (the recon-decoded anatomy)", () => {
+  it("the header: sticky white/70 blur-xl + the h-20 bar + the six nav links + Book Now", () => {
+    const src = read("src/components/site/site-header.tsx");
+    expect(src).toContain("sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/40 shadow-sm");
+    expect(src).toContain("h-20");
+    expect(src).toContain('href="/home"');
+    expect(src).toContain("bg-[#2E7D5F] hover:bg-[#236B4F] text-white shadow-md");
+    // the mobile menu: the icon-only lg:hidden button + the dialog
+    expect(src).toContain('aria-haspopup="dialog"');
+    expect(src).toContain("lg:hidden");
+  });
+
+  it("the footer: the #1F2933 dark band + the four columns + the ©2026 line", () => {
+    const src = read("src/components/site/site-footer.tsx");
+    expect(src).toContain("bg-[#1F2933] text-white");
+    expect(src).toContain("Quick Links");
+    expect(src).toContain("Healthy lawns. Tidy homes. Reliable service.");
+    expect(src).toContain("© 2026 Green Cut Lawn Care. All rights reserved.");
+    expect(src).toContain("Emergency/storm clean-up available");
+  });
+
+  it("session-205 (F-205g): the mobile menu is the reference's RIGHT SIDE SHEET — the live-decoded anatomy (w-80, inset-y-0 right-0, border-l, slide-in-from-right, the absolute X, the h-14 logo row, the tinted phone pill, the anchor-wrapped Book Now)", () => {
+    // ------------------------------------------------------------------
+    // Session-205 (F-205g): the reference's mobile menu RE-DECODED LIVE
+    // (the s205 ref-menu + sheet-geometry + footer-html probes, all on
+    // the logged-in reference at 390): the menu opens as a RIGHT SIDE
+    // SHEET — the shadcn Sheet anatomy: `fixed z-50 gap-4 p-6 shadow-lg
+    // transition ease-in-out ... inset-y-0 right-0 h-full border-l
+    // data-[state=closed]:slide-out-to-right data-[state=open]:
+    // slide-in-from-right sm:max-w-sm w-80 bg-white` over a
+    // `bg-black/80` overlay — NOT the top sheet the s200 decode
+    // recorded (the reference redesigned its menu since, the same
+    // moving-target genus as its s204 canvas redesign). The inner
+    // construction (live outerHTML): the absolute `right-4 top-4` X
+    // close (sr-only "Close"), then `flex flex-col h-full`: the
+    // LOGO ROW (`flex items-center gap-2 pb-6 border-b`, the h-14
+    // img, NO title text), the NAV (`flex flex-col gap-2 py-6 flex-1`,
+    // six `px-4 py-3 rounded-lg text-base font-medium transition-all
+    // text-[#1F2933] hover:bg-[#E8F3ED]/50` links), the FOOTER
+    // (`border-t pt-6 space-y-3`: the phone PILL `flex items-center
+    // gap-3 px-4 py-3 bg-[#E8F3ED] rounded-lg text-[#2E7D5F]
+    // font-medium` with the lucide Phone w-5 h-5 + the span, then the
+    // ANCHOR-WRAPPED Book Now button `w-full bg-[#2E7D5F]
+    // hover:bg-[#236B4F] text-white` inside href="/booking").
+    // ------------------------------------------------------------------
+    const src = read("src/components/site/site-header.tsx");
+    // the sheet geometry (the reference's own classes, verbatim)
+    expect(src).toContain("inset-y-0 right-0");
+    expect(src).toContain("border-l");
+    expect(src).toContain("w-80");
+    expect(src).toContain("slide-in-from-right");
+    expect(src).toContain("data-[state=closed]:slide-out-to-right");
+    expect(src).toContain("bg-black/80");
+    // the close: the absolute top-right X (the reference's own spot)
+    expect(src).toContain("absolute right-4 top-4");
+    // the logo row: the h-14 image, no title text band
+    expect(src).toContain("h-14");
+    expect(src).not.toContain('className="text-sm font-semibold text-[#1F2933]"');
+    // the nav: the reference's gap-2 stack + flex-1
+    expect(src).toContain("flex flex-col gap-2 py-6 flex-1");
+    // the footer block: the reference's own construction
+    expect(src).toContain("border-t pt-6 space-y-3");
+    expect(src).toContain("bg-[#E8F3ED] rounded-lg text-[#2E7D5F] font-medium");
+    // the retired top-sheet classes never return
+    expect(src).not.toContain("inset-x-0 top-0");
+  });
+
+  it("session-212 (F-212a): the floating call FAB — the reference's mobile-only tel: button on every public page (lg:hidden fixed bottom-6 right-6, the 64px green circle with the 4px white ring)", () => {
+    // ------------------------------------------------------------------
+    // Session-212 (F-212a): the reference carries a floating call button
+    // on ALL SEVEN public pages (live-verified 2026-11-16 at 390: /,
+    // /services, /gallery, /about, /faq, /contact, /booking — absent on
+    // /login, which lives outside the site chrome): the container
+    // `lg:hidden fixed bottom-6 right-6 z-40` wrapping
+    // `<a href="tel:+61400000000"><button class="… px-8 rounded-full
+    // w-16 h-16 shadow-2xl bg-[#2E7D5F] hover:bg-[#236B4F] border-4
+    // border-white text-primary-foreground">` with `lucide-phone w-6
+    // h-6`. Computed @390: 64×64 at (294,756), bg rgb(46,125,95), the
+    // 4px solid white border. The reference ships it with NO accessible
+    // name and with a <button> NESTED inside the <a> (interactive
+    // inside interactive — invalid HTML); ours renders the anchor AS
+    // the button (the defect fixed, the computed styles identical) and
+    // carries the icon-only aria-label (the standing a11y superset).
+    // ------------------------------------------------------------------
+    const layout = read("src/app/(site)/layout.tsx");
+    expect(layout).toContain("CallFab");
+    const fab = read("src/components/site/call-fab.tsx");
+    // the container anatomy (the reference's own classes, verbatim)
+    expect(fab).toContain("lg:hidden fixed bottom-6 right-6 z-40");
+    // the button: the reference's own construction (the 64px circle)
+    expect(fab).toContain("rounded-full w-16 h-16 shadow-2xl");
+    expect(fab).toContain("bg-[#2E7D5F] hover:bg-[#236B4F]");
+    expect(fab).toContain("border-4 border-white");
+    // the tel: link rides the extracted phone constant, the icon is
+    // decorative (the visible affordance is the phone glyph itself)
+    expect(fab).toContain("SITE_PHONE_HREF");
+    expect(fab).toContain('aria-hidden="true"');
+    // our two documented supersets over the reference's own FAB
+    expect(fab).toContain('aria-label="Call us"');
+    expect(fab).not.toContain("<button");
+  });
+});
+
+describe("session-212: the standing audit remediation pins", () => {
+  it("F-212b (the F-211e cure): the three booking step cards use the reference's responsive padding (p-6 md:p-8 — 24px at the phone axis, 32px at md+), not the pinned p-8", () => {
+    // Live-decoded 2026-11-16 @390: the reference's inner white card
+    // computes padding 24px (and 32px @1440 per the s202 decode) — its
+    // own responsive form. Ours pinned p-8 at every width: card 666 vs
+    // 650, main 1080 vs 1064, footerTop 1161 vs 1145, docHeight 2090
+    // vs 2070 — the exact F-211e signature (+16px above the footer).
+    const src = read("src/components/site/booking-flow.tsx");
+    expect(src.match(/bg-white rounded-2xl border border-gray-100 p-6 md:p-8/g)?.length).toBe(3);
+    expect(src).not.toContain("border-gray-100 p-8");
+  });
+
+  it("F-212c (the mobile brown tip): the reference's 390 canvas carries a brown wedge at the right edge below the mini-descent — painted, not just documented", () => {
+    // Live pixel-probe of the reference @390 (2026-11-16): a solid
+    // rgb(62,48,23) wedge at x384-390, y314-335 — below the mobile
+    // mini-descent gradient (which ends y~310). The s211 comment
+    // documented "the brown tip y310-318" as part of the decode but
+    // the w<1024 branch painted only the gradient quad.
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain("MOBILE_BROWN_TIP");
+    expect(src).toContain('"rgba(62, 48, 23, 1)"');
+  });
+
+  it("F-212d/F-212e (the canvas posture): the reduced-motion gate + the offscreen static buffer + the explicit bush-strip gate", () => {
+    // F-212d: the birds/bush RAF must respect prefers-reduced-motion
+    // (the globals.css reduce block freezes CSS animations only — the
+    // canvas loop ran regardless). F-212e: the static scene renders
+    // ONCE per resize into an offscreen canvas; the RAF frame blits it
+    // + draws the two sprites (no full-scene repaint per frame, no
+    // canvas.width reset per frame). The bush strip (absolute
+    // 1440-space geometry) gains its explicit w >= 1024 gate.
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain('(prefers-reduced-motion: reduce)');
+    expect(src).toContain("createElement(\"canvas\")");
+    expect(src).toContain("drawImage");
+    expect(src).not.toContain("paint();\n      const canvasEl");
+  });
+
+  it("F-214 (the canvas posture, s213): the reduced-motion gate paints the SEED-STATE bush — the gate's own first-frame contract", () => {
+    // The s212 F-212d gate stopped the RAF loop under reduced motion,
+    // but the bush strip paints ONLY inside the loop — so the gate
+    // dropped a STANDING scene element entirely (the base x1323-1410
+    // renders even at growFrac 0). The gate's own contract comment says
+    // the sprites "hold their first-frame state"; the first frame paints
+    // drawBushStrip(ctx, 0). The cure: the seed-state paint at mount +
+    // on every resize re-render under the gate + the mid-session stop
+    // lands the frozen scene on the same seed posture (blit + seed,
+    // never an overlay on a mid-grown frame).
+    const src = read("src/components/site/background-canvas.tsx");
+    expect(src).toContain("const drawSeedSprites = () => {");
+    expect(src).toContain("if (window.innerWidth >= 1024) drawBushStrip(ctx, 0);");
+    expect(src).toContain("if (motionQuery.matches) drawSeedSprites();");
+    expect(src).toContain("landSeedState();");
+    // the resize re-render keeps the seed posture under the gate (the
+    // live matchMedia read — the listener registers before the const)
+    expect(src).toContain(
+      'if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) drawSeedSprites();',
+    );
+  });
+
+  it("the s213 stable-4 cures: the estimate band's CTA + the yard-size header match the reference's own constructions", () => {
+    // THE DECODE (the census's 4 residual events, stable across every
+    // axis): the estimate band's CTA read "Book a Service" (w136,
+    // iconless) where the reference ships "Book with this estimate"
+    // (w261) with the calendar-check glyph; and the yard-size header
+    // was a label-wrapped block where the reference ships a bare flex
+    // row (div > p + span). Both cured to the reference's constructions.
+    const home = read("src/components/site/home-page.tsx");
+    // the estimate CTA: the text + the glyph (the hero's own idiom)
+    expect(home).toContain("Book with this estimate");
+    expect(
+      (home.match(/Book a Service/g) ?? []).length,
+      "the hero keeps the reference's own Book a Service; the estimate band's copy is the estimate CTA",
+    ).toBe(1);
+    const card = read("src/components/site/estimate-card.tsx");
+    // the yard-size header: the reference's bare flex row
+    expect(card).toContain('<div className="flex justify-between items-baseline mb-3">');
+    expect(card).toContain(
+      '<p className="text-sm font-medium text-[#1F2933]">How big is your yard?</p>',
+    );
+    // the label-wrapped construction never returns
+    expect(card).not.toContain('<label className="block">');
+    // the thumb keeps its accessible name (the a11y superset survives
+    // the label retirement)
+    expect(card).toContain('aria-label="Yard size in square metres"');
+  });
+});
+
+describe("session-199: the Oasis surfaces' content wiring", () => {
+  it("the home: the hero copy + the #estimate section + the shared estimate card", () => {
+    const src = read("src/components/site/home-page.tsx");
+    expect(src).toContain("Your property,");
+    expect(src).toContain("perfectly maintained.");
+    expect(src).toContain('id="estimate"');
+    expect(src).toContain("EstimateCard");
+    expect(src).toContain("Trusted by homeowners across SE Queensland");
+    // ------------------------------------------------------------------
+    // Session-201 (F-201d): the hero buttons' METRICS pin — decoded live
+    // from the reference (the landing drift adjudication): its hero CTAs
+    // render py-0 px-8 at the natural content height (24px, pad=0px 32px
+    // computed) while OURS forced h-13 + the base py-2 (52px) — the 25px
+    // overflow pushed the hero past its 86vh floor (801 vs the
+    // reference's 776), rescaling the full-bleed cover photo and
+    // shifting every row below: the landing's 77.28% drift, uniform
+    // across every band. The cure: the reference's compact form.
+    // ------------------------------------------------------------------
+    expect(
+      src,
+      "the primary hero CTA must carry the reference's compact metrics (px-8 h-auto py-0)",
+    ).toContain("text-base px-8 h-auto py-0 shadow-lg");
+    expect(
+      src,
+      "the secondary hero CTA must carry the same compact metrics",
+    ).toContain("text-base px-8 h-auto py-0");
+    expect(
+      src,
+      "the retired h-13 tall-button form must be gone (the 52px overflow genus)",
+    ).not.toContain("h-13");
+  });
+
+  it("the services page: the five groups + the extracted card catalog + the Add to Quote superset", () => {
+    const src = read("src/components/site/services-page.tsx");
+    expect(src).toContain("SERVICE_PAGE_GROUPS");
+    expect(src).toContain("SERVICE_PAGE_CARDS");
+    expect(src).toContain("Add to Quote");
+    expect(src).toContain("/contact?service=");
+  });
+
+  it("the gallery: the six before/after pairs on the reference's own assets", () => {
+    const src = read("src/components/site/gallery-page.tsx");
+    expect(src).toContain("GALLERY_PAIRS");
+    expect(src).toContain("bg-red-500");
+    expect(src).toContain("Before &amp; After Gallery");
+  });
+
+  it("the FAQ: the Radix accordion over the extracted 21 items", () => {
+    const src = read("src/components/site/faq-page.tsx");
+    expect(src).toContain("@radix-ui/react-accordion");
+    expect(src).toContain("FAQ_ITEMS");
+    expect(src).toContain("Still have questions?");
+    // ------------------------------------------------------------------
+    // Session-202 (F-201g cure #2): the faq hero's EYEBROW — decoded live
+    // on the reference (its hero runs 332px vs our 272: the missing 60px
+    // was this element): a glassy pill above the h1 —
+    // inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full
+    // mb-6 — carrying the CircleHelp icon (w-5 h-5) + the span
+    // "We've Got Answers" (text-sm font-medium). Its absence shifted
+    // every accordion header below by 60px (the faq drift's dominant
+    // genus).
+    // ------------------------------------------------------------------
+    expect(src).toContain(
+      'className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6"',
+    );
+    expect(src).toContain("<CircleHelp className=\"w-5 h-5\" aria-hidden=\"true\" />");
+    expect(src).toContain("We've Got Answers");
+    // ------------------------------------------------------------------
+    // Session-203 (the faq residual, leg 1): the INTER-CARD RHYTHM —
+    // decoded live: the reference's accordion list runs space-y-12
+    // (the observed 48px gaps; ours space-y-8's 32px — the +16/gap
+    // genus, ~48px of the 64px container delta). The ref's middle-gap
+    // +20 is a margin-collapse artifact of its classless cards (the
+    // answer <p>'s margin rides OUTSIDE the card) — not reproducible
+    // inside our bordered cards without a hack; recorded as the floor.
+    // ------------------------------------------------------------------
+    expect(src).toContain('className="space-y-12"');
+    expect(src).not.toContain('className="space-y-8"');
+  });
+
+  it("the contact: the extracted form inventory + the superset quote submit", () => {
+    const src = read("src/components/site/contact-page.tsx");
+    expect(src).toContain("CONTACT_SERVICE_OPTIONS");
+    expect(src).toContain("CONTACT_SUBURBS");
+    expect(src).toContain('"/api/quote-requests"');
+    // the s24 doctrine: the ?service= read lives at the PAGE, the
+    // component takes a prop (no useSearchParams anywhere)
+    expect(src).not.toContain("useSearchParams");
+  });
+
+  it("the booking flow: the three steps + the seam wiring + the superset submit", () => {
+    const src = read("src/components/site/booking-flow.tsx");
+    expect(src).toContain("STEP_LABELS");
+    expect(src).toContain("TIME_SLOTS");
+    expect(src).toContain("react-day-picker");
+    expect(src).toContain('"/api/bookings"');
+    expect(src).toContain("Confirm Booking");
+    // ------------------------------------------------------------------
+    // Session-202 (F-201g cure #1): the OPAQUE INNER FORM CARD — decoded
+    // live on the reference's booking flow (steps 1 AND 2 censused: the
+    // same card at 401,374, 638x542/393, pad-32, radius-16, the 1px
+    // gray-100 border). Our step fields rode the /85 outer card directly
+    // — the greenish tint showed through (the booking drift's 42%
+    // genus, post-canvas). The reference's anatomy: the outer card
+    // carries heading + progress + the step zone; the INNER opaque card
+    // wraps the step FIELDS; the nav rows (Back/Continue/Confirm) stay
+    // BELOW the card in the outer zone.
+    // ------------------------------------------------------------------
+    expect(
+      src,
+      "every step's fields ride the opaque inner card (the reference's own construction)",
+    ).toContain('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"');
+    const wraps = src.split('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"').length - 1;
+    expect(wraps, "all THREE steps carry the inner card").toBe(3);
+    expect(
+      src.indexOf('className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8"'),
+      "the inner card wraps the EstimateCard (step 1), not the nav row",
+    ).toBeLessThan(src.indexOf("Confirm Booking"));
+    // ------------------------------------------------------------------
+    // Session-203 (the booking residual, leg 2): the ESTIMATE HEADER
+    // RHYTHM — decoded live on the reference: its "Instant Estimate"
+    // header row sits mb-6 (the 24px gap to "What do you need?"; ours
+    // mb-4's 16px — the -8px genus carried through EVERY row below:
+    // the label, the services grid, the yard row, the estimate strip).
+    // The yard slider's LABEL-ANCESTRY construction stays ours — the
+    // s199 axe two-gate contract (aria-input-field-name) rides it.
+    // ------------------------------------------------------------------
+    const est = read("src/components/site/estimate-card.tsx");
+    expect(est).toContain('className="flex items-center gap-3 mb-6"');
+    expect(est).not.toContain('className="flex items-center gap-3 mb-4"');
+    // ------------------------------------------------------------------
+    // Session-208 (F-208a — the step-dots row, decoded live on the
+    // reference): 3 dot groups in a gap-2 flex + TWO sibling
+    // connectors (w-8 h-0.5 bg-gray-200) BETWEEN the groups — not the
+    // nested w-8 sm:w-12 h-px mx-2 connector at each group's end (the
+    // s199 construction; the ref renders 2x32x2 connectors, ours
+    // 2x48x1 — the dots row's drift cell).
+    // ------------------------------------------------------------------
+    expect(src).toContain("flex items-center justify-center gap-2 mb-10");
+    expect(src).toContain('"w-8 h-0.5 bg-gray-200"');
+    expect(src).not.toContain("w-8 sm:w-12 h-px bg-gray-200 mx-2"); // the retired nested connector
+    // ------------------------------------------------------------------
+    // Session-208 (F-208b — the yard slider's fill): the reference's
+    // fill + thumb border are the shadcn CHARCOAL primary (rgb(23,23,23)
+    // / border-primary/50), not the brand green. The mint track stays.
+    // ------------------------------------------------------------------
+    expect(est).toContain("bg-[#171717]"); // the charcoal fill (the ref's shadcn primary; OURS is blue)
+    expect(est).toContain("border-[#171717]/50"); // the charcoal thumb border
+    expect(est).not.toContain('bg-[#2E7D5F]"'); // the retired green fill
+    expect(est).not.toContain("border-[#2E7D5F]/50"); // the retired green thumb border
+  });
+});
+
+describe("session-199: the login + 404 re-skins", () => {
+  it("the login card carries the Oasis identity + the three social buttons", () => {
+    const src = read("src/components/layout/login-card.tsx");
+    expect(src).toContain("Welcome to Oasis Property Maintenance");
+    expect(src).toContain("Continue with Google");
+    expect(src).toContain("Continue with Facebook");
+    expect(src).toContain("Continue with Apple");
+    expect(src).toContain("1f56b6773_logo.png");
+    // the retired neo-crm title never returns
+    expect(src).not.toContain("Welcome to NEO CRM");
+  });
+
+  it("the 404 rides the site chrome + Go Home points at /home", () => {
+    const notFound = read("src/app/not-found.tsx");
+    expect(notFound).toContain("SiteHeader");
+    expect(notFound).toContain("SiteFooter");
+    const body = read("src/app/not-found-body.tsx");
+    expect(body).toContain('href="/home"');
+  });
+});
