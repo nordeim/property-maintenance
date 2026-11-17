@@ -10,14 +10,14 @@ description: >
   superset. Next.js 16 App Router + React 19 + TypeScript (strict) +
   Tailwind CSS v4 (CSS-first) + shadcn/Radix + one Zustand store +
   Prisma/SQLite + Zod-validated API + scrypt/HMAC cookie auth + a
-  2859-check Vitest / 193-check Playwright corpus and a single-command
+  2863-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.17.0
+version: 1.18.0
 last_updated: 2026-11-17
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.17.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.18.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -63,7 +63,7 @@ no CRM at all; every CRM route is a 404 there).
 | ORM/DB | Prisma 6.19 / SQLite | `db/` at the repo root — see §3 |
 | Validation | Zod 4.6 at every API boundary | `parseBody` (bounded reader) |
 | Auth | scrypt + HMAC cookie sessions | no auth library |
-| Unit | Vitest 5 (145 suites / 2859 checks) | |
+| Unit | Vitest 5 (146 suites / 2863 checks) | |
 | E2E | Playwright 1.64 (11 specs + setup / 193) | against the production build on :3100 |
 | A11y | axe-core in the e2e suite | the two-gate register |
 
@@ -249,9 +249,9 @@ GET  /api/quote-requests  requireSession
   (name/phone/email/suburb/services[]/serviceType/message) — 11 models
   total.
 
-## 7. The Test Corpus (2859 unit / 193 e2e)
+## 7. The Test Corpus (2863 unit / 193 e2e)
 
-- **Unit (Vitest, 145 suites):** the pure seams (`booking.ts` 12
+- **Unit (Vitest, 146 suites):** the pure seams (`booking.ts` 12
   checks — the matrix, the slots, the calendar), the doc-truth pins
   (every live-tense count site in README/AGENTS/CLAUDE/PAD/SKILL is
   pinned to the live census — "code wins, docs follow"), the
@@ -354,6 +354,25 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-222's layers:** the EADDRINUSE row round (F-224a — the
+  owner's live `EADDRINUSE` on their first `bun run start` ["Is port
+  3000 in use?" — a lingering :3000 process from the earlier session
+  held the port; the retry succeeded] names an operator-facing genus
+  the README Troubleshooting table did not cover — cured as the row:
+  the symptom in the operator's exact phrasing + the cause + the
+  `lsof -ti :3000 | xargs kill` / `npx kill-port 3000` fix · F-224b —
+  the `db/` scratch family accumulates [`custom.db` + `e2e.db` +
+  `smoke.db`, all gitignored — Info, no cure owed; recorded as the
+  operator-facing listing note]). The pins:
+  tests/session-222-audit.test.ts (the 146th suite, 4 pins — 2
+  RED-first at birth: the README row + the session record). The count
+  ladder: 2859 → 2863 (+4) · SUITES 145 → 146 · badge 3052 → 3056.
+  The round's baseline on the fresh clone ran the full battery green
+  (the owner's machine verified green too: their checkout refreshed —
+  next@16.4.6 rode through, build clean in 28.2s, the TS2307 genus
+  resolved on their side). The verification battery: lint 0/0 · tsc 0 ·
+  146/2863 · build · smoke 14/14 · e2e 193/193 · the drift battery
+  EXIT:0 · captures 85-87.
 - **Session-221's layers:** the audit-census truth round (F-223a —
   the `bun audit` census drifted 10 → 11: the NEW moderate
   GHSA-mfr8-8qww-v76h on next@16.4.2, the FIRST advisory on a direct

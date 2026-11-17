@@ -1,3 +1,41 @@
+## Task 222 — The EADDRINUSE Row Round: The Owner's Second Fresh-Clone Report (2026-11-17)
+
+The owner's session_34.md (the s221 execution record) + the updated
+docs/start_server_error.txt archive (0cfe160) triggered the rotation.
+The workspace was reset — the round began with the mandated fresh git
+clone. THE OWNER'S REPORT (the s221 verification leg — their machine is
+green): bun install picked up next@16.4.6 (the s221 cure riding through
+their checkout), db:push + db:seed pristine, and next build compiled
+clean in 28.2s — the TS2307 genus resolved on their side (their
+checkout was refreshed); the standalone server booted Ready after one
+EADDRINUSE retry ("Is port 3000 in use?" — a lingering :3000 process
+from the earlier session held the port).
+
+THE BASELINE (the fresh clone): lint 0/0 · tsc 0 · 145/2859 unit ·
+build ✓ (24.2s) · smoke 14/14 · e2e 193/193 (6.1m) · probe:ref STABLE
+(bundle ee166dd5) · the drift battery (sweep desktop + phone · fullpage
+· interior census) EXIT:0 · the mobile-nav drawer battery (panel 288px
+@ x0 · 8 links · no Tailwind v4 bug) · db census MATCH.
+
+The audit (the web-application skill §12/§16/§18 dimensions): the s221
+cures verified all in place (nine) + every security seam at line level
+(the Zod boundary [23 route files] · force-dynamic [zero misses] ·
+zero dangerouslySetInnerHTML · the single PrismaClient · the db-path
+seam · the env-knob parity). TWO findings: F-224a the owner's live
+EADDRINUSE names a genus the README Troubleshooting table did not
+cover · F-224b the db/ scratch family accumulates (gitignored — Info,
+no cure owed).
+
+Stage Summary: lint 0/0 · tsc 0 · 146 suites / 2863 unit (+4 pins,
+tests/session-222-audit.test.ts the 146th suite) · build · smoke
+14/14 · e2e 193/193 · the drift battery EXIT:0 · captures 85-87; the
+count ladder 2859 → 2863, suites 145 → 146, badge 3052 → 3056
+(count-ladder-222.py, 28 flips) · the neo-crm SKILL v1.223.0 + the
+s222 head layer (skill-head-222.py, replay NOOP-idempotent) · the
+pm-SKILL v1.18.0 + its own Session-222 history entry · the README
+EADDRINUSE troubleshooting row (the F-224a cure) · everything
+committed to main and pushed via the SSH wrapper.
+
 ## Task 221 — The Audit-Census Truth Round: The Owner's Fresh-Clone Report + The Advisory Drift (2026-11-17)
 
 The owner's session_32.md + docs/start_server_error.txt archive
