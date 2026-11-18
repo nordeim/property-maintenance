@@ -13,11 +13,11 @@ description: >
   2869-check Vitest / 193-check Playwright corpus and a single-command
   quality gate. Use it to extend, debug, onboard, or replicate this
   architecture.
-version: 1.19.0
-last_updated: 2026-11-17
+version: 1.20.0
+last_updated: 2026-11-18
 ---
 
-# property-maintenance — Engineering Skill (SKILL.md v1.19.0)
+# property-maintenance — Engineering Skill (SKILL.md v1.20.0)
 
 > **How to use this document:** the single-source engineering reference
 > for the Oasis clone. §1 identity · §2 stack · §3 environment · §4 the
@@ -354,6 +354,25 @@ Gate order is the contract; no push without green. Kill any leftover
   retired layer's history (comment-demote instead).
 - The `skills/` folder is guidance, not product code — excluded from
   all checking, testing, and compilation.
+- **Session-224's layers:** the quiet round (the FOURTH census hold
+  + the verification record — no material finding; the rotation's
+  trigger the owner's 7bd0442 [the session_38.md archive, the s223
+  execution record]). The s223 cures verified still in place at line
+  level (the PAD ledger at 11: 5h/5m/1l · the AGENTS tail · the
+  structural + runtime-zod dormancy pins · the count ladder
+  147/2869/3062 · the pm-SKILL v1.19.0 + the neo-crm v1.224.0); the
+  standing pre-ship duty held — `bun audit` at exactly 11 (5h/5m/1l),
+  byte-identical to the ledger, NO fourth drift, and the open
+  picomatch question verified live against the advisory page
+  (reviewed 2026-11-17: patched-versions still "None", the
+  micromatch/picomatch#194 fix PR unreleased — the dormancy +
+  no-mid-rotation posture holds). The live parity battery: the
+  mobile-nav menu-OPEN byte-identical at 390×844 · NO Tailwind v4
+  bug · the SEO family live · probe:ref STABLE. All six drift gates
+  EXIT:0 (the four-band sweeps · the fullpage · the interior
+  census byte-parity). The verification battery: lint 0/0 · tsc 0 ·
+  147/2869 · build · smoke 14/14 · e2e 193/193 (9.5m) · db census
+  MATCH · captures 91-93.
 - **Session-223's layers:** the picomatch advisory round (F-225a —
   the THIRD advisory-census drift: `bun audit` 10 → 11 [5 high /
   5 moderate / 1 low], the NEW high GHSA-fc5q-39xc-vjpf on picomatch

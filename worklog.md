@@ -1,3 +1,44 @@
+## Task 224 — The Quiet Round: The Fourth Census Hold + The Verification Record (2026-11-18)
+
+The owner's session_38.md archive (7bd0442 — the s223 execution record)
+triggered the rotation. THE BASELINE (the tree survived the recycle
+intact): lint 0/0 · tsc 0 · 147/2869 unit · build · smoke 14/14 · e2e
+193/193 (9.5m, CI=1) · db census MATCH. THE AUDIT (the web-application
+skill §12/§16/§18 dimensions): the s223 cures verified still in place
+at line level (the PAD ledger at 11: 5h/5m/1l · the AGENTS tail · the
+structural + runtime-zod dormancy pins · the count ladder 147/2869/3062
+· the two SKILL head bumps) + all four audit pin suites green (58
+checks) + the standing security seams clean (zero
+dangerouslySetInnerHTML · the single PrismaClient · force-dynamic ·
+the capped Zod arrays). THE STANDING PRE-SHIP DUTY: the FOURTH census
+hold — bun audit at exactly 11 (5h/5m/1l), byte-identical to the
+s223-pinned ledger, NO fourth drift; the open question — whether a
+patched picomatch had landed upstream — verified live against the
+advisory page (reviewed 2026-11-17): the patched-versions field still
+reads None, the micromatch/picomatch#194 fix PR remains unreleased;
+the dormancy + no-mid-rotation posture holds unchanged.
+
+THE LIVE PARITY BATTERY: the mobile-nav menu-OPEN state byte-identical
+at 390x844 (geometry {70,0,320,844} · the 8-link vocabulary ·
+Esc-close, zero lock residue · the focus-return superset) — NO
+Tailwind v4 bug (the compiled stylesheet: the brand tokens · the
+cursor:pointer base rule · 4 oklch occurrences) + the SEO family live
+(16-URL sitemap · robots · manifest · the OG head) + probe:ref STABLE
+(bundle ee166dd5, every layer STANDING).
+
+THE DRIFT BATTERY — all six gates EXIT:0 (the four-band sweeps at
+1440/390/768/1024 --fail-on-drift clean · the fullpage desktop
+5.745%/phone 8.108% both under baseline · the interior census
+byte-parity zero margin). One environmental note: the first
+desktop-sweep attempt crashed while the e2e battery still held memory
+(the s223 sandbox genus); the retry after the e2e finished ran clean.
+
+Stage Summary: THE QUIET ROUND — no material finding; every named
+deliverable re-verified live rather than rebuilt. The record
+(docs/session_39.md) · the captures 91-93 (machine-verified non-blank:
+0.996/0.273/0.642) · the pm-SKILL v1.20.0 + its Session-224 history
+entry; everything committed to main and pushed via the SSH wrapper.
+
 ## Task 223 — The Picomatch Advisory Round: The Third Census Drift (2026-11-17)
 
 The owner's session_36.md archive (839b705) triggered the rotation. The

@@ -108,9 +108,12 @@ describe("session-220: the ship-time truth debt + the history-entry debt (reborn
     expect(pins).toContain("§7 (213/214) and §10 (215/217/216)");
   });
 
-  it("F-222i: the pm-SKILL last_updated rode the v1.15.0 bump (2026-11-17)", () => {
+  it("F-222i: the pm-SKILL last_updated rode the current head bump (re-anchored s224: 2026-11-18)", () => {
     const skill = read("property-maintenance_SKILL.md");
-    expect(skill).toContain("last_updated: 2026-11-17");
+    // the pin holds the LIVE date (the intent: last_updated always
+    // rides the version bump — the s223 round rode 2026-11-17, the
+    // s224 quiet round 2026-11-18)
+    expect(skill).toContain("last_updated: 2026-11-18");
   });
 
   it("F-222a/R-09: the s220 layer keeps its own ship counts in the demoted position (the s221 surgery demoted it — the frozen-record doctrine)", () => {
